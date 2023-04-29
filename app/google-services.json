@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "704448500966",
+    "project_id": "multimodulararch-jc",
+    "storage_bucket": "multimodulararch-jc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:704448500966:android:9bb049abedfa5b61cc9727",
+        "android_client_info": {
+          "package_name": "com.compose.multimodular"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "704448500966-ir0neqfh5nct0ucid83rtfde5ubmddpv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.compose.multimodular",
+            "certificate_hash": "2fcdcf41d81b6fc682e9c95e302542ee9d765a47"
+          }
+        },
+        {
+          "client_id": "704448500966-nd20df88dun1jfpeo06j3s5tail6beru.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8PQ0nq9PS81X5vJgkjeFWVTwzTRHurnk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "704448500966-nd20df88dun1jfpeo06j3s5tail6beru.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
