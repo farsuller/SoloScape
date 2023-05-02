@@ -1,4 +1,4 @@
-package com.compose.multimodular.ui.theme
+package com.compose.multi_mod_arch.ui.theme
 
 import android.app.Activity
 import android.os.Build

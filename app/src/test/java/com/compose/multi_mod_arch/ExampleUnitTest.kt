@@ -1,4 +1,4 @@
-package com.compose.multimodular
+package com.compose.multi_mod_arch
 
 import org.junit.Test
 
