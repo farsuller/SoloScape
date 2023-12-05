@@ -1,6 +1,7 @@
 package com.compose.multi_mod_arch.ui.theme
 
 import android.app.Activity
+import android.graphics.Color
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -14,6 +15,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 
 private val LightColors = lightColorScheme(
     primary = md_theme_light_primary,
@@ -101,6 +103,22 @@ fun MultiModularArchJCTheme(
             (view.context as Activity).window.statusBarColor = colorScheme.primary.toArgb()
             ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = darkTheme
         }
+    }
+
+    SideEffect {
+        val window = (view.context as Activity).window
+
+        window.statusBarColor = Color.TRANSPARENT
+        window.navigationBarColor = Color.TRANSPARENT
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
+            window.isNavigationBarContrastEnforced = false
+        }
+
+        val windowInsetsController = WindowCompat.getInsetsController(window, view)
+
+        windowInsetsController.isAppearanceLightStatusBars = !darkTheme
+        windowInsetsController.isAppearanceLightNavigationBars = !darkTheme
     }
 
     MaterialTheme(
