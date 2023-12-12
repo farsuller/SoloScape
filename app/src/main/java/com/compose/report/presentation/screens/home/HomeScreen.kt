@@ -50,10 +50,11 @@ fun HomeScreen(
     onMenuClicked: () -> Unit,
     navigateToWrite: () -> Unit,
     drawerState: DrawerState,
-    onSignOutClicked: () -> Unit
+    onSignOutClicked: () -> Unit,
+    navigateToWriteWithArgs: (String) -> Unit
 ) {
-    var padding by remember{ mutableStateOf(PaddingValues()) }
-    var scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+    var padding by remember { mutableStateOf(PaddingValues()) }
+    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     NavigationDrawer(
         drawerState = drawerState,
         onSignOutClicked = onSignOutClicked
@@ -76,24 +77,30 @@ fun HomeScreen(
             },
             content = {
                 padding = it
-                when(reports){
+                when (reports) {
                     is RequestState.Success -> {
-                        HomeContent(paddingValues = it, reportNotes = reports.data, onClick = {})
+                        HomeContent(
+                            paddingValues = it,
+                            reportNotes = reports.data,
+                            onClick = navigateToWriteWithArgs)
                     }
-                    is RequestState.Error ->{
+
+                    is RequestState.Error -> {
                         EmptyPage(
                             title = "Error",
                             subtitle = "${reports.error.message}"
                         )
                     }
+
                     is RequestState.Loading -> {
-                        Box (
+                        Box(
                             modifier = Modifier.fillMaxSize(),
                             contentAlignment = Alignment.Center
-                        ){
+                        ) {
                             CircularProgressIndicator()
                         }
                     }
+
                     else -> {}
                 }
 

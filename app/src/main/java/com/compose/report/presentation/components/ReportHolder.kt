@@ -62,7 +62,7 @@ fun ReportHolder(report: Report, onClick: (String) -> Unit) {
                 MutableInteractionSource()
             }
         ) {
-            onClick(report._id.toString())
+            onClick(report._id.toHexString())
         }) {
 
         Spacer(modifier = Modifier.width(14.dp))
@@ -112,7 +112,7 @@ fun ReportHolder(report: Report, onClick: (String) -> Unit) {
                             stiffness = Spring.StiffnessLow
                         )
                     )
-                    ) {
+                ) {
                     Column(modifier = Modifier.padding(all = 14.dp)) {
                         Gallery(images = report.images)
                     }
@@ -178,6 +178,6 @@ fun ReportHolderPreview() {
         description =
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur"
         mood = Mood.Happy.name
-        images = realmListOf("","")
+        images = realmListOf("", "")
     }, onClick = {})
 }
