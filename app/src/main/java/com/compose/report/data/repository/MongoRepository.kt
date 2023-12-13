@@ -13,4 +13,7 @@ interface MongoRepository {
     fun configureTheRealm()
     fun getAllReports(): Flow <Reports>
     fun getSelectedReport (reportId : ObjectId) :  Flow<RequestState<Report>>
+   suspend fun addNewReport(report: Report) : RequestState<Report>
+   suspend fun updateReport(report: Report) : RequestState<Report>
+   suspend fun deleteReport(id: ObjectId) : RequestState<Report>
 }

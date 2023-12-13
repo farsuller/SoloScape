@@ -66,7 +66,7 @@ object MongoDB : MongoRepository {
         }
     }
 
-    override fun getSelectedReport(reportId: ObjectId):Flow<RequestState<Report>> {
+    override fun getSelectedReport(reportId: ObjectId): Flow<RequestState<Report>> {
         return if (user != null) {
             try {
                 realm.query<Report>(query = "_id == $0", reportId).asFlow().map {
@@ -79,6 +79,59 @@ object MongoDB : MongoRepository {
 
         } else {
             flow { emit(RequestState.Error(UserNotAuthenticatedException())) }
+        }
+    }
+
+    override suspend fun addNewReport(report: Report): RequestState<Report> {
+        return if (user != null) {
+            realm.write {
+                try {
+                    val addedReport = copyToRealm(report.apply { ownerId = user.id })
+                    RequestState.Success(data = addedReport)
+                } catch (e: Exception) {
+                    RequestState.Error(e)
+                }
+            }
+
+        } else {
+            RequestState.Error(UserNotAuthenticatedException())
+        }
+    }
+
+    override suspend fun updateReport(report: Report): RequestState<Report> {
+        return if (user != null) {
+            realm.write {
+                val queriedReport = query<Report>(query = "_id == $0", report._id).first().find()
+                if (queriedReport != null) {
+                    queriedReport.title = report.title
+                    queriedReport.description = report.description
+                    queriedReport.mood = report.mood
+                    queriedReport.images = report.images
+                    queriedReport.date = report.date
+                    RequestState.Success(data = queriedReport)
+                } else {
+                    RequestState.Error(error = Exception("Queried Report does not exist"))
+                }
+            }
+
+        } else {
+            RequestState.Error(UserNotAuthenticatedException())
+        }
+    }
+
+    override suspend fun deleteReport(id: ObjectId): RequestState<Report> {
+        return if (user != null) {
+            realm.write {
+                try {
+                    val report = query<Report>(query = "_id == $0 AND ownerId == $1", id, user.id).find().first()
+                    delete(report)
+                    RequestState.Success(data = report)
+                } catch (e: Exception) {
+                    RequestState.Error(e)
+                }
+            }
+        } else {
+            RequestState.Error(UserNotAuthenticatedException())
         }
     }
 }

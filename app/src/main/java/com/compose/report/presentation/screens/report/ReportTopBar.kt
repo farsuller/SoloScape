@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -26,10 +27,18 @@ import androidx.compose.ui.text.style.TextAlign
 import com.compose.report.model.Report
 import com.compose.report.presentation.components.DisplayAlertDialog
 import com.compose.report.util.toInstant
+import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
+import com.maxkeppeler.sheets.calendar.CalendarDialog
+import com.maxkeppeler.sheets.calendar.models.CalendarConfig
+import com.maxkeppeler.sheets.calendar.models.CalendarSelection
+import com.maxkeppeler.sheets.clock.ClockDialog
+import com.maxkeppeler.sheets.clock.models.ClockSelection
 import okhttp3.internal.format
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalTime
+import java.time.ZoneId
+import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Date
 import java.util.Locale
@@ -37,14 +46,17 @@ import java.util.Locale
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ReportTopBar(
-    moodName : () -> String,
+    moodName: () -> String,
     selectedReport: Report?,
     onBackPressed: () -> Unit,
-    onDeleteConfirmed: () -> Unit
+    onDeleteConfirmed: () -> Unit,
+    onDateTimeUpdated: (ZonedDateTime) -> Unit
 ) {
+    val dateDialog = rememberUseCaseState()
+    val timeDialog = rememberUseCaseState()
+    var currentDate by remember { mutableStateOf(LocalDate.now()) }
+    var currentTime by remember { mutableStateOf(LocalTime.now()) }
 
-    val currentDate by remember { mutableStateOf(LocalDate.now())}
-    val currentTime by remember { mutableStateOf(LocalTime.now())}
     val formattedDate = remember(key1 = currentDate) {
         DateTimeFormatter.ofPattern("dd MMM yyyy")
             .format(currentDate).uppercase()
@@ -55,13 +67,15 @@ fun ReportTopBar(
             .format(currentTime).uppercase()
     }
 
-    val selectedReportDateTime = remember(selectedReport) {
+    var dateTimeUpdated by remember { mutableStateOf(false) }
 
-        if (selectedReport != null){
+    val selectedReportDateTime = remember(selectedReport) {
+        if (selectedReport != null) {
             SimpleDateFormat("dd MMM yyyy, hh:mm a", Locale.getDefault())
                 .format(Date.from(selectedReport.date.toInstant())).uppercase()
+        } else {
+            "Unknown"
         }
-        else{"Unknown"}
 
     }
 
@@ -85,7 +99,9 @@ fun ReportTopBar(
 
                 Text(
                     modifier = Modifier.fillMaxWidth(),
-                    text = if(selectedReport != null ) selectedReportDateTime else "$formattedDate, $formattedTime",
+                    text = if (selectedReport != null && dateTimeUpdated) "$formattedDate $formattedTime"
+                    else if (selectedReport != null) selectedReportDateTime
+                    else "$formattedDate, $formattedTime",
                     style = TextStyle(
                         fontSize = MaterialTheme.typography.bodySmall.fontSize,
                     ),
@@ -94,8 +110,32 @@ fun ReportTopBar(
             }
         },
         actions = {
-            IconButton(onClick = {}) {
-                Icon(imageVector = Icons.Default.DateRange, contentDescription = "Date Icon")
+
+            if (dateTimeUpdated) {
+                IconButton(onClick = {
+                    currentDate = LocalDate.now()
+                    currentTime = LocalTime.now()
+                    dateTimeUpdated = false
+                    onDateTimeUpdated(ZonedDateTime.of(
+                        currentDate,
+                        currentTime,
+                        ZoneId.systemDefault()
+                    ))
+                }) {
+                    Icon(
+                        imageVector = Icons.Default.Close,
+                        contentDescription = "Close Icon"
+                    )
+                }
+            } else {
+                IconButton(onClick = {
+                    dateDialog.show()
+                }) {
+                    Icon(
+                        imageVector = Icons.Default.DateRange,
+                        contentDescription = "Date Icon"
+                    )
+                }
             }
 
             if (selectedReport != null) {
@@ -106,6 +146,28 @@ fun ReportTopBar(
             }
         }
     )
+
+    CalendarDialog(
+        state = dateDialog,
+        selection = CalendarSelection.Date { localDate ->
+            currentDate = localDate
+            timeDialog.show()
+        },
+        config = CalendarConfig(monthSelection = true, yearSelection = true)
+    )
+
+    ClockDialog(state = timeDialog, selection = ClockSelection.HoursMinutes { hours, minutes ->
+
+        currentTime = LocalTime.of(hours, minutes)
+        dateTimeUpdated = true
+        onDateTimeUpdated(
+            ZonedDateTime.of(
+                currentDate,
+                currentTime,
+                ZoneId.systemDefault()
+            )
+        )
+    })
 }
 
 

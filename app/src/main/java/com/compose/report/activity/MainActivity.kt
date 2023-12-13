@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
         installSplashScreen().setKeepOnScreenCondition{ keepSplashOpened }
         WindowCompat.setDecorFitsSystemWindows(window,false)
         setContent {
-            MultiModularArchJCTheme {
+            MultiModularArchJCTheme{
                 val navController = rememberNavController()
                 SetupNavGraph(
                     startDestination = getStartDestination(),

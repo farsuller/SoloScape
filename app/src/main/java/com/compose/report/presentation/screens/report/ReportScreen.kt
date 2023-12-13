@@ -8,6 +8,7 @@ import com.compose.report.model.Mood
 import com.compose.report.model.Report
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
+import java.time.ZonedDateTime
 
 @OptIn(ExperimentalPagerApi::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -20,6 +21,8 @@ fun ReportScreen(
     onTitleChanged: (String) -> Unit,
     onDescriptionChanged: (String) -> Unit,
     moodName : () -> String,
+    onSaveClicked : (Report) -> Unit,
+    onDateTimeUpdated: (ZonedDateTime) -> Unit
 ) {
     LaunchedEffect(key1 = uiState.mood){
         pagerState.scrollToPage(Mood.valueOf(uiState.mood.name).ordinal)
@@ -31,17 +34,20 @@ fun ReportScreen(
                 selectedReport = uiState.selectedReport,
                 onDeleteConfirmed = onDeleteConfirmed,
                 onBackPressed = onBackPressed,
-                moodName = moodName
+                moodName = moodName,
+                onDateTimeUpdated = onDateTimeUpdated
             )
         },
         content = {
             ReportContent(
+                uiState = uiState,
                 title = uiState.title,
                 onTitleChanged = onTitleChanged,
                 description = uiState.description,
                 onDescriptionChanged = onDescriptionChanged,
                 pagerState = pagerState,
-                paddingValues = it
+                paddingValues = it,
+                onSaveClicked = onSaveClicked
             )
         }
     )

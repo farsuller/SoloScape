@@ -1,6 +1,7 @@
 package com.compose.report.navigation
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
@@ -11,6 +12,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -197,17 +199,38 @@ fun NavGraphBuilder.reportRoute(onBackPressed: () -> Unit) {
         val viewModel : ReportViewModel = viewModel()
         val uiState = viewModel.uiState
         val pagerState = rememberPagerState()
-        val pageNumber by remember {
-            derivedStateOf{ pagerState.currentPage}
-        }
+        val pageNumber by remember { derivedStateOf{ pagerState.currentPage} }
+        val context = LocalContext.current
         ReportScreen(
-            onDeleteConfirmed = {},
             onBackPressed = onBackPressed,
             pagerState = pagerState,
             uiState = uiState,
             onTitleChanged = {viewModel.setTitle(title = it)},
             onDescriptionChanged = {viewModel.setDescription(description = it)},
-            moodName = { Mood.values()[pageNumber].name}
+            moodName = { Mood.values()[pageNumber].name},
+            onSaveClicked = {
+                viewModel.insertUpdateReport(
+                    report =  it.apply { mood = Mood.values()[pageNumber].name},
+                    onSuccess = { onBackPressed() },
+                    onError = { message ->
+                        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+                    }
+                )
+            },
+            onDateTimeUpdated = {
+                viewModel.updateDateTime(zonedDateTime = it)
+            },
+            onDeleteConfirmed = {
+                viewModel.deleteReport(
+                    onSuccess = {
+                        Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show()
+                        onBackPressed()
+                    },
+                    onError = { message->
+                        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+                    }
+                )
+            },
         )
     }
 }

@@ -1,5 +1,6 @@
 package com.compose.report.presentation.screens.report
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -7,6 +8,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -14,42 +17,59 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Shapes
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.compose.report.model.Mood
+import com.compose.report.model.Report
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
+import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalPagerApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun ReportContent(
+    uiState: UiState,
     title: String,
-    onTitleChanged : (String) -> Unit,
+    onTitleChanged: (String) -> Unit,
     description: String,
-    onDescriptionChanged : (String) -> Unit,
+    onDescriptionChanged: (String) -> Unit,
     pagerState: PagerState,
-    paddingValues: PaddingValues){
-
+    paddingValues: PaddingValues,
+    onSaveClicked: (Report) -> Unit
+) {
+    val scope = rememberCoroutineScope()
     val scrollState = rememberScrollState()
+    val context = LocalContext.current
+    val focusManager = LocalFocusManager.current
+
+    val titleEmpty = uiState.title.isEmpty()
+    val descriptionEmpty = uiState.description.isEmpty()
+
+    LaunchedEffect(key1 = scrollState.maxValue){
+        scrollState.scrollTo(scrollState.maxValue)
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .imePadding()
+            .navigationBarsPadding()
             .padding(top = paddingValues.calculateTopPadding())
-            .padding(bottom = paddingValues.calculateBottomPadding())
             .padding(bottom = 24.dp)
             .padding(horizontal = 24.dp),
         verticalArrangement = Arrangement.SpaceBetween
@@ -57,13 +77,15 @@ fun ReportContent(
         Column(
             modifier = Modifier
                 .weight(1f)
-                .verticalScroll(state = scrollState))
+                .verticalScroll(state = scrollState)
+        )
         {
             Spacer(modifier = Modifier.height(30.dp))
             HorizontalPager(
                 state = pagerState,
-                count = Mood.values().size) 
-            { page->
+                count = Mood.values().size
+            )
+            { page ->
                 AsyncImage(
                     modifier = Modifier.size(120.dp),
                     model = ImageRequest
@@ -71,8 +93,9 @@ fun ReportContent(
                         .data(Mood.values()[page].icon)
                         .crossfade(true)
                         .build(),
-                    contentDescription = "Mood Image")
-                
+                    contentDescription = "Mood Image"
+                )
+
             }
             Spacer(modifier = Modifier.height(30.dp))
 
@@ -92,7 +115,12 @@ fun ReportContent(
                 ),
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                 keyboardActions = KeyboardActions(
-                    onNext = {}
+                    onNext = {
+                        scope.launch {
+                            scrollState.animateScrollTo(Int.MAX_VALUE)
+                            focusManager.moveFocus(FocusDirection.Down)
+                        }
+                    }
                 ),
                 maxLines = 1,
                 singleLine = true
@@ -114,7 +142,9 @@ fun ReportContent(
                 ),
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                 keyboardActions = KeyboardActions(
-                    onNext = {}
+                    onNext = {
+                        focusManager.clearFocus()
+                    }
                 ),
             )
         }
@@ -128,8 +158,24 @@ fun ReportContent(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(54.dp),
-                onClick = {},
-                shape = Shapes().small,) 
+                onClick = {
+                    when {
+                        !titleEmpty && !descriptionEmpty -> {
+                            onSaveClicked(
+                                Report().apply {
+                                    this.title = uiState.title
+                                    this.description = uiState.description
+                                }
+                            )
+                        }
+
+                        titleEmpty && !descriptionEmpty -> Toast.makeText(context, "Title cannot be empty.", Toast.LENGTH_SHORT).show()
+                        !titleEmpty && descriptionEmpty -> Toast.makeText(context, "Description cannot be empty.", Toast.LENGTH_SHORT).show()
+                        else -> Toast.makeText(context, "Fields cannot be empty.", Toast.LENGTH_SHORT).show()
+                    }
+                },
+                shape = Shapes().small,
+            )
             {
                 Text(text = "Save")
             }
