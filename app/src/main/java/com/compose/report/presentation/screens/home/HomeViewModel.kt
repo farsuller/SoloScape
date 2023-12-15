@@ -17,9 +17,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelAndJoin
+import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.time.debounce
 import kotlinx.coroutines.withContext
 import java.time.ZonedDateTime
 import javax.inject.Inject
@@ -53,12 +56,13 @@ class HomeViewModel @Inject constructor(
             observeAllReports()
         }
     }
+    @OptIn(FlowPreview::class)
     private fun observeAllReports(){
         allReportsJob = viewModelScope.launch {
             if(::filteredReportsJob.isInitialized){
                 filteredReportsJob.cancelAndJoin()
             }
-            MongoDB.getAllReports().collect{ result ->
+            MongoDB.getAllReports().debounce(2000).collect{ result ->
                 reports.value = result
             }
         }
