@@ -14,12 +14,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationDrawerItem
@@ -39,7 +41,8 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.compose.multimodular.R
 import com.compose.report.data.repository.Reports
-import com.compose.report.util.RequestState
+import com.compose.report.model.RequestState
+import java.time.ZonedDateTime
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -51,18 +54,28 @@ fun HomeScreen(
     navigateToWrite: () -> Unit,
     drawerState: DrawerState,
     onSignOutClicked: () -> Unit,
-    navigateToWriteWithArgs: (String) -> Unit
+    navigateToWriteWithArgs: (String) -> Unit,
+    onDeleteAllClicked :() -> Unit,
+    dateIsSelected: Boolean,
+    onDateSelected: (ZonedDateTime) -> Unit,
+    onDateReset: () -> Unit
 ) {
     var padding by remember { mutableStateOf(PaddingValues()) }
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     NavigationDrawer(
         drawerState = drawerState,
-        onSignOutClicked = onSignOutClicked
+        onSignOutClicked = onSignOutClicked,
+        onDeleteAllClicked = onDeleteAllClicked
     ) {
         Scaffold(
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
             topBar = {
-                HomeTopBar(onMenuClicked = onMenuClicked, scrollBehavior = scrollBehavior)
+                HomeTopBar(
+                    onMenuClicked = onMenuClicked,
+                    scrollBehavior = scrollBehavior,
+                    onDateReset = onDateReset,
+                    onDateSelected = onDateSelected,
+                    dateIsSelected = dateIsSelected)
             },
             floatingActionButton = {
                 FloatingActionButton(
@@ -113,6 +126,7 @@ fun HomeScreen(
 fun NavigationDrawer(
     drawerState: DrawerState,
     onSignOutClicked: () -> Unit,
+    onDeleteAllClicked :() -> Unit,
     content: @Composable () -> Unit
 ) {
     ModalNavigationDrawer(
@@ -136,9 +150,10 @@ fun NavigationDrawer(
                     NavigationDrawerItem(
                         label = {
                             Row(modifier = Modifier.padding(horizontal = 12.dp)) {
-                                Image(
+                                Icon(
                                     painter = painterResource(id = R.drawable.google_logo),
-                                    contentDescription = "Google Logo"
+                                    contentDescription = "Google Logo",
+                                    tint = MaterialTheme.colorScheme.onSurface
                                 )
                                 Spacer(modifier = Modifier.width(12.dp))
                                 Text(text = "Sign Out")
@@ -147,6 +162,22 @@ fun NavigationDrawer(
                         },
                         selected = false,
                         onClick = onSignOutClicked
+                    )
+                    NavigationDrawerItem(
+                        label = {
+                            Row(modifier = Modifier.padding(horizontal = 12.dp)) {
+                                Icon(
+                                    imageVector = Icons.Default.Delete,
+                                    contentDescription = "Delete All Icon",
+                                    tint = MaterialTheme.colorScheme.onSurface
+                                )
+                                Spacer(modifier = Modifier.width(12.dp))
+                                Text(text = "Delete All Report")
+
+                            }
+                        },
+                        selected = false,
+                        onClick = onDeleteAllClicked
                     )
                 }
             )

@@ -13,6 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -21,8 +22,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.compose.report.data.repository.MongoDB
+import com.compose.report.model.GalleryImage
 import com.compose.report.model.Mood
-import com.compose.report.model.Report
 import com.compose.report.presentation.components.DisplayAlertDialog
 import com.compose.report.presentation.screens.auth.AuthenticationScreen
 import com.compose.report.presentation.screens.auth.AuthenticationViewModel
@@ -32,7 +33,8 @@ import com.compose.report.presentation.screens.report.ReportScreen
 import com.compose.report.presentation.screens.report.ReportViewModel
 import com.compose.report.util.Constants.APP_ID
 import com.compose.report.util.Constants.REPORT_SCREEN_ARG_KEY
-import com.compose.report.util.RequestState
+import com.compose.report.model.RequestState
+import com.compose.report.model.rememberGalleryState
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.rememberPagerState
 import com.stevdzasan.messagebar.rememberMessageBarState
@@ -105,19 +107,23 @@ fun NavGraphBuilder.authenticationRoute(
                 oneTapState.open()
                 viewModel.setLoading(true)
             },
-            onTokenReceived = { tokenId ->
+            onSuccessFirebaseSignIn = { tokenId ->
                 viewModel.signInWithMongoAtlas(
                     tokenId = tokenId,
                     onSuccess = {
                         messageBarState.addSuccess("Successfully Authenticated")
                         viewModel.setLoading(false)
                     },
-                    onError = {
-                        messageBarState.addError(it)
+                    onError = { error ->
+                        messageBarState.addError(error)
                         viewModel.setLoading(false)
                     }
                 )
 
+            },
+            onFailedFirebaseSignIn = { error ->
+                messageBarState.addError(error)
+                viewModel.setLoading(false)
             },
             onDialogDismissed = { message ->
                 messageBarState.addError(Exception(message))
@@ -135,11 +141,13 @@ fun NavGraphBuilder.homeRoute(
     navigateToWriteWithArgs: (String) -> Unit,
 ) {
     composable(route = Screen.Home.route) {
-        val viewModel: HomeViewModel = viewModel()
+        val viewModel: HomeViewModel = hiltViewModel()
+        val scope = rememberCoroutineScope()
         val report by viewModel.reports
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
         var signOutDialogOpened by remember { mutableStateOf(false) }
-        val scope = rememberCoroutineScope()
+        var deleteAllDialogOpened by remember { mutableStateOf(false) }
+        val context = LocalContext.current
 
         LaunchedEffect(key1 = report) {
             if (report !is RequestState.Loading) {
@@ -158,13 +166,19 @@ fun NavGraphBuilder.homeRoute(
             navigateToWriteWithArgs = navigateToWriteWithArgs,
             onSignOutClicked = {
                 signOutDialogOpened = true
-            })
+            },
+            onDeleteAllClicked = {
+                deleteAllDialogOpened = true
+            },
+            dateIsSelected = viewModel.dateIsSelected,
+            onDateSelected = { viewModel.getReports(zonedDateTime = it) },
+            onDateReset = { viewModel.getReports() }
+        )
 
 
         LaunchedEffect(key1 = Unit) {
             MongoDB.configureTheRealm()
         }
-
 
         DisplayAlertDialog(
             title = "Log Out",
@@ -183,6 +197,32 @@ fun NavGraphBuilder.homeRoute(
                     }
                 }
             })
+
+        DisplayAlertDialog(
+            title = "Delete all reports",
+            message = "Are you sure you want to delete all reports?",
+            dialogOpened = deleteAllDialogOpened,
+            onCloseDialog = { deleteAllDialogOpened = false },
+            onYesClicked = {
+                viewModel.deleteAllReports(
+                    onSuccess = {
+                        Toast.makeText(context, "All Reports Deleted", Toast.LENGTH_SHORT).show()
+                        scope.launch {
+                            drawerState.close()
+                        }
+                    },
+                    onError = {
+                        Toast.makeText(
+                            context,
+                            if (it.message == "No Internet Connection.") "We need internet connection to delete all reports." else it.message,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        scope.launch {
+                            drawerState.close()
+                        }
+                    }
+                )
+            })
     }
 }
 
@@ -196,21 +236,22 @@ fun NavGraphBuilder.reportRoute(onBackPressed: () -> Unit) {
             defaultValue = null
         })
     ) {
-        val viewModel : ReportViewModel = viewModel()
+        val viewModel: ReportViewModel = hiltViewModel()
         val uiState = viewModel.uiState
         val pagerState = rememberPagerState()
-        val pageNumber by remember { derivedStateOf{ pagerState.currentPage} }
+        val pageNumber by remember { derivedStateOf { pagerState.currentPage } }
         val context = LocalContext.current
+        val galleryState = viewModel.galleryState
         ReportScreen(
             onBackPressed = onBackPressed,
             pagerState = pagerState,
             uiState = uiState,
-            onTitleChanged = {viewModel.setTitle(title = it)},
-            onDescriptionChanged = {viewModel.setDescription(description = it)},
-            moodName = { Mood.values()[pageNumber].name},
+            onTitleChanged = { viewModel.setTitle(title = it) },
+            onDescriptionChanged = { viewModel.setDescription(description = it) },
+            moodName = { Mood.values()[pageNumber].name },
             onSaveClicked = {
                 viewModel.insertUpdateReport(
-                    report =  it.apply { mood = Mood.values()[pageNumber].name},
+                    report = it.apply { mood = Mood.values()[pageNumber].name },
                     onSuccess = { onBackPressed() },
                     onError = { message ->
                         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
@@ -226,11 +267,18 @@ fun NavGraphBuilder.reportRoute(onBackPressed: () -> Unit) {
                         Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show()
                         onBackPressed()
                     },
-                    onError = { message->
+                    onError = { message ->
                         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
                     }
                 )
             },
+            galleryState = galleryState,
+            onImageSelect = {
+                val type = context.contentResolver.getType(it)?.split("/")?.last() ?: "jpg"
+                viewModel.addImage(image = it, imageType = type)
+
+            },
+            onImageDeleteClicked = { galleryState.removeImage(it) }
         )
     }
 }

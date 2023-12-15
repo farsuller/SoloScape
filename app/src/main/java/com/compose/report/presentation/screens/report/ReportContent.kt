@@ -1,5 +1,6 @@
 package com.compose.report.presentation.screens.report
 
+import android.net.Uri
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -34,11 +35,15 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.compose.report.model.GalleryImage
+import com.compose.report.model.GalleryState
 import com.compose.report.model.Mood
 import com.compose.report.model.Report
+import com.compose.report.presentation.components.GalleryUploader
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
+import io.realm.kotlin.ext.toRealmList
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalPagerApi::class)
@@ -51,7 +56,10 @@ fun ReportContent(
     onDescriptionChanged: (String) -> Unit,
     pagerState: PagerState,
     paddingValues: PaddingValues,
-    onSaveClicked: (Report) -> Unit
+    onSaveClicked: (Report) -> Unit,
+    galleryState: GalleryState,
+    onImageSelect : (Uri) -> Unit,
+    onImageClicked : (GalleryImage) -> Unit
 ) {
     val scope = rememberCoroutineScope()
     val scrollState = rememberScrollState()
@@ -153,7 +161,15 @@ fun ReportContent(
             verticalArrangement = Arrangement.Bottom
         ) {
             Spacer(modifier = Modifier.height(12.dp))
-
+            GalleryUploader(
+                galleryState = galleryState,
+                onAddClicked = {
+                    focusManager.clearFocus()
+                },
+                onImageSelect = onImageSelect,
+                onImageClicked = onImageClicked
+            )
+            Spacer(modifier = Modifier.height(12.dp))
             Button(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -165,6 +181,7 @@ fun ReportContent(
                                 Report().apply {
                                     this.title = uiState.title
                                     this.description = uiState.description
+                                    this.images = galleryState.images.map { it.remoteImagePath }.toRealmList()
                                 }
                             )
                         }

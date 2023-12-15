@@ -2,7 +2,7 @@ package com.compose.report.data.repository
 
 import com.compose.report.model.Report
 import com.compose.report.util.Constants.APP_ID
-import com.compose.report.util.RequestState
+import com.compose.report.model.RequestState
 import com.compose.report.util.toInstant
 import io.realm.kotlin.Realm
 import io.realm.kotlin.ext.query
@@ -10,11 +10,13 @@ import io.realm.kotlin.log.LogLevel
 import io.realm.kotlin.mongodb.App
 import io.realm.kotlin.mongodb.sync.SyncConfiguration
 import io.realm.kotlin.query.Sort
+import io.realm.kotlin.types.RealmInstant
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import org.mongodb.kbson.ObjectId
 import java.time.ZoneId
+import java.time.ZonedDateTime
 
 object MongoDB : MongoRepository {
 
@@ -58,6 +60,25 @@ object MongoDB : MongoRepository {
                             }
                         )
                     }
+            } catch (e: Exception) {
+                flow { emit(RequestState.Error(e)) }
+            }
+        } else {
+            flow { emit(RequestState.Error(UserNotAuthenticatedException())) }
+        }
+    }
+
+    override fun getFilteredReports(zonedDateTime: ZonedDateTime): Flow<Reports> {
+        return if (user != null) {
+            try {
+                realm.query<Report>(query = "ownerId == $0 AND date < $1 AND date > $2", user.id,
+                    RealmInstant.from(zonedDateTime.plusDays(1).toInstant().epochSecond, 0),
+                    RealmInstant.from(zonedDateTime.minusDays(1).toInstant().epochSecond, 0)
+                ).asFlow().map { result ->
+                    RequestState.Success(data = result.list.groupBy {
+                        it.date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+                    })
+                }
             } catch (e: Exception) {
                 flow { emit(RequestState.Error(e)) }
             }
@@ -122,11 +143,31 @@ object MongoDB : MongoRepository {
     override suspend fun deleteReport(id: ObjectId): RequestState<Report> {
         return if (user != null) {
             realm.write {
+                val report = query<Report>(query = "_id == $0 AND ownerId == $1", id, user.id).first().find()
+                if(report != null){
+                    try {
+                        delete(report)
+                        RequestState.Success(data = report)
+                    } catch (e: Exception) {
+                        RequestState.Error(e)
+                    }
+                }else{
+                    RequestState.Error(Exception("Report does not exist."))
+                }
+            }
+        } else {
+            RequestState.Error(UserNotAuthenticatedException())
+        }
+    }
+
+    override suspend fun deleteAllReports(): RequestState<Boolean> {
+        return if (user != null) {
+            realm.write {
+                val reports = this.query<Report>("ownerId == $0", user.id).find()
                 try {
-                    val report = query<Report>(query = "_id == $0 AND ownerId == $1", id, user.id).find().first()
-                    delete(report)
-                    RequestState.Success(data = report)
-                } catch (e: Exception) {
+                    delete(reports)
+                    RequestState.Success(data = true)
+                }catch (e: Exception){
                     RequestState.Error(e)
                 }
             }
