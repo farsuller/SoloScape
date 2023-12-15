@@ -1,10 +1,12 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id("com.google.devtools.ksp")
     id 'dagger.hilt.android.plugin'
     id 'io.realm.kotlin'
     id 'com.google.gms.google-services'
-    id 'kotlin-kapt'
+    //id 'kotlin-kapt'
+
 }
 
 android {
@@ -75,9 +77,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage-ktx:20.1.0'
 
     // Room components
-    implementation "androidx.room:room-runtime:2.6.1"
-    kapt "androidx.room:room-compiler:2.6.1"
-    implementation "androidx.room:room-ktx:2.6.1"
+    implementation "androidx.room:room-runtime:2.5.2"
+    ksp "androidx.room:room-compiler:2.5.2"
+    implementation "androidx.room:room-ktx:2.5.2"
 
     // Runtime Compose
     implementation "androidx.lifecycle:lifecycle-runtime-compose:2.6.2"
@@ -86,20 +88,19 @@ dependencies {
     implementation "androidx.core:core-splashscreen:1.0.1"
 
     // Mongo DB Realm
-    implementation 'io.realm.kotlin:library-base:1.11.0'
     implementation 'io.realm.kotlin:library-sync:1.11.0'// If using Device Sync
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.0' // If using coroutines with the SDK
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1' // If using coroutines with the SDK
 
     // Dagger Hilt
-    implementation "com.google.dagger:hilt-android:2.44.2"
-    kapt "com.google.dagger:hilt-compiler:2.44.2"
-    implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
+    implementation "com.google.dagger:hilt-android:2.48"
+    ksp "com.google.dagger:hilt-compiler:2.48"
+    implementation "androidx.hilt:hilt-navigation-compose:1.1.0"
 
     // Coil
     implementation "io.coil-kt:coil-compose:2.3.0"
 
     // Pager - Accompanist
-    implementation "com.google.accompanist:accompanist-pager:0.27.0"
+    //implementation "com.google.accompanist:accompanist-pager:0.27.0"
 
     // Date-Time Picker
     implementation 'com.maxkeppeler.sheets-compose-dialogs:core:1.2.0'
@@ -117,5 +118,5 @@ dependencies {
     implementation project(':onetap')
 
     // Desugar JDK
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.0'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
 }

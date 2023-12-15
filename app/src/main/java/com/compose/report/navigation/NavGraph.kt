@@ -2,6 +2,8 @@ package com.compose.report.navigation
 
 import android.util.Log
 import android.widget.Toast
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
@@ -34,9 +36,6 @@ import com.compose.report.presentation.screens.report.ReportViewModel
 import com.compose.report.util.Constants.APP_ID
 import com.compose.report.util.Constants.REPORT_SCREEN_ARG_KEY
 import com.compose.report.model.RequestState
-import com.compose.report.model.rememberGalleryState
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.rememberPagerState
 import com.stevdzasan.messagebar.rememberMessageBarState
 import com.stevdzasan.onetap.rememberOneTapSignInState
 import io.realm.kotlin.mongodb.App
@@ -226,7 +225,7 @@ fun NavGraphBuilder.homeRoute(
     }
 }
 
-@OptIn(ExperimentalPagerApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 fun NavGraphBuilder.reportRoute(onBackPressed: () -> Unit) {
     composable(
         route = Screen.Report.route,
@@ -238,7 +237,7 @@ fun NavGraphBuilder.reportRoute(onBackPressed: () -> Unit) {
     ) {
         val viewModel: ReportViewModel = hiltViewModel()
         val uiState = viewModel.uiState
-        val pagerState = rememberPagerState()
+        val pagerState = rememberPagerState(pageCount = { Mood.values().size })
         val pageNumber by remember { derivedStateOf { pagerState.currentPage } }
         val context = LocalContext.current
         val galleryState = viewModel.galleryState
