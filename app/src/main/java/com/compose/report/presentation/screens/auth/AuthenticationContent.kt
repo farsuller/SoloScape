@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.compose.report.presentation.components.GoogleButton
@@ -60,7 +61,7 @@ fun AuthenticationContent(
             }
             Column(
                 modifier = Modifier.weight(weight = 2f),
-                verticalArrangement = Arrangement.Bottom
+                verticalArrangement = Arrangement.Bottom,
             ) {
                 GoogleButton(
                     loadingState = loadingState,

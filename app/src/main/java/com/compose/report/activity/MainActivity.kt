@@ -5,20 +5,17 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
 import com.compose.report.data.database.ImageToDeleteDao
 
 import com.compose.report.data.database.ImageToUploadDao
-import com.compose.report.data.repository.MongoDB
-import com.compose.report.navigation.Screen
-import com.compose.report.navigation.SetupNavGraph
+import com.compose.report.navigation.routes.ScreensRoutes
+import com.compose.report.navigation.setup.SetupNavGraph
 import com.compose.report.ui.theme.MultiModularArchJCTheme
 import com.compose.report.util.Constants.APP_ID
 import com.compose.report.util.retryDeletingImageFromFirebase
 import com.compose.report.util.retryUploadingImageToFirebase
 import com.google.firebase.FirebaseApp
-import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 import io.realm.kotlin.mongodb.App
 import kotlinx.coroutines.CoroutineScope
@@ -91,7 +88,7 @@ private fun cleanUpCheck(
 
 private fun getStartDestination(): String {
     val user = App.create(APP_ID).currentUser
-    return if (user != null && user.loggedIn) Screen.Home.route
-    else Screen.Authentication.route
+    return if (user != null && user.loggedIn) ScreensRoutes.Home.route
+    else ScreensRoutes.Authentication.route
 }
 

@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.ui.platform.testTag
 import com.compose.multimodular.R
 
 @Composable
@@ -44,6 +45,7 @@ fun GoogleButton(
 
     Surface(
         modifier = modifier
+            .testTag("google_click")
             .clickable(enabled = !loadingState) { onClick() },
         shape = shape,
         border = BorderStroke(width = borderStrokeWidth, color = borderColor),

@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:allowBackup="true"
         android:name="com.compose.report.MyApplication"
+        android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -12,12 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MultiModularArchJC"
         tools:targetApi="33">
+        <profileable
+            android:shell="true"
+            tools:targetApi="29" />
+
         <activity
             android:name="com.compose.report.activity.MainActivity"
-            android:exported="true"
             android:configChanges="orientation|screenSize"
-            android:windowSoftInputMode="adjustResize"
-            android:theme="@style/Theme.MultiModularArchJC.MySplash">
+            android:exported="true"
+            android:theme="@style/Theme.MultiModularArchJC.MySplash"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

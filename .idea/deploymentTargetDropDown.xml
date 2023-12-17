@@ -2,6 +2,9 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="ExampleStartupBenchmark">
+        <State />
+      </entry>
       <entry key="ReportHolderPreview">
         <State />
       </entry>
@@ -20,6 +23,9 @@
           </targetSelectedWithDropDown>
           <timeTargetWasSelectedWithDropDown value="2023-12-14T14:00:05.168156100Z" />
         </State>
+      </entry>
+      <entry key="scrollAndNavigate()">
+        <State />
       </entry>
     </value>
   </component>
