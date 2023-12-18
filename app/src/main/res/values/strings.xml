@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MultiModularArch-JC</string>
-    <string name="auth_title">Welcome back</string>
-    <string name="auth_subtitle">Please sign in to continue</string>
+    <string name="app_name">SoloScape</string>
+    <string name="auth_title">SoloScape</string>
+    <string name="auth_subtitle">Your Personal Journey in Words</string>
 </resources>

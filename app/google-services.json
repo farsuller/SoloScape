@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "1031811589273",
-    "project_id": "report-01-398204",
-    "storage_bucket": "report-01-398204.appspot.com"
+    "project_number": "390613235031",
+    "project_id": "soloscape-408507",
+    "storage_bucket": "soloscape-408507.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1031811589273:android:97634e3bb056cc5c5ac408",
+        "mobilesdk_app_id": "1:390613235031:android:b4f8bb3a7a1c2130c0fa12",
         "android_client_info": {
-          "package_name": "com.compose.multimodular"
+          "package_name": "com.soloscape.compose"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1031811589273-jqr7p7fjt98u8rpvpuoco7vp6bjroo9v.apps.googleusercontent.com",
+          "client_id": "390613235031-rs1q3f2c4g2719htkqjm5glkk278p4f5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.compose.multimodular",
+            "package_name": "com.soloscape.compose",
             "certificate_hash": "8d4f3d9be9da63747ab0b90fbd91bc4a76b34757"
           }
         },
         {
-          "client_id": "1031811589273-rbv7m04gfmmttt8n9a4tbr1g4tcnnnb0.apps.googleusercontent.com",
+          "client_id": "390613235031-imqsu3tpat6uq8m9l20d5anm6hefqu1j.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIPspriQ45Lw6RsBPIK6idinNFTsDuxK4"
+          "current_key": "AIzaSyAQULRDzK1H9qckRmyyyRtANX3hS187riQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1031811589273-gf4lnfuurp28m42obbvmfomcglo2sut6.apps.googleusercontent.com",
+              "client_id": "390613235031-imqsu3tpat6uq8m9l20d5anm6hefqu1j.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

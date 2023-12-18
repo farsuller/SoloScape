@@ -10,11 +10,11 @@ plugins {
 }
 
 android {
-    namespace 'com.compose.multimodular'
+    namespace 'com.compose.soloscape'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.compose.multimodular"
+        applicationId "com.soloscape.compose"
         minSdk 24
         targetSdk 34
         versionCode 1
@@ -119,6 +119,9 @@ dependencies {
 
     // Message Bar Compose
     implementation 'com.github.stevdza-san:MessageBarCompose:1.0.5'
+
+    // Extended Icons
+    implementation "androidx.compose.material:material-icons-extended:1.5.4"
 
     // One-Tap Compose
     implementation project(':onetap')
