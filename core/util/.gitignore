@@ -1,2 +1,2 @@
 /build
-/src/main/package/**/*.class
+/src/main/java/com/soloscape/util/Constants.kt
