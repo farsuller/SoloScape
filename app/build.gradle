@@ -7,6 +7,15 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+} else {
+    throw new FileNotFoundException("Keystore properties file not found.")
+}
+
 android {
     namespace 'com.compose.soloscape'
     compileSdk ProjectConfig.compileSdk
@@ -15,18 +24,42 @@ android {
         applicationId "com.soloscape.compose"
         minSdk ProjectConfig.minSdk
         targetSdk ProjectConfig.targetSdk
-        versionCode 1
-        versionName "1.0"
+        versionCode ProjectConfig.versionCode
+        versionName "${ProjectConfig.majorVersion}.${ProjectConfig.minorVersion}.${ProjectConfig.patchVersion}"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary true
         }
     }
+    signingConfigs {
+        debug {
+            storeFile file("keystore/debug.keystore")
+            storePassword "android"
+            keyAlias "AndroidDebugKey"
+            keyPassword "android"
+        }
+
+
+        release {
+            storeFile file("keystore/soloscape.jks")
+            storePassword = keystoreProperties['releaseStorePassword'] as String
+            keyAlias = keystoreProperties['releaseKeyAlias'] as String
+            keyPassword = keystoreProperties['releaseKeyPassword'] as String
+        }
+    }
 
     buildTypes {
-        release {
+        debug{
+            applicationIdSuffix ".debug"
+            signingConfig signingConfigs.debug
+            debuggable true
             minifyEnabled false
+        }
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

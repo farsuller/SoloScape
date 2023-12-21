@@ -19,3 +19,36 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+
+#-keep class androidx.compose.** { *; }
+#-keep class androidx.ui.** { *; }
+#-keep class androidx.ui.tooling.** { *; }
+#-keep class androidx.ui.foundation.** { *; }
+#-keep class androidx.ui.material.** { *; }
+#-keep class androidx.ui.text.** { *; }
+#-keep class androidx.ui.graphics.** { *; }
+#-keep class androidx.ui.layout.** { *; }
+#-keep class androidx.ui.animation.** { *; }
+#-keep class androidx.ui.res.** { *; }
+#-keep class androidx.ui.tooling.preview.** { *; }
+
+-if class androidx.credentials.CredentialManager
+-keep class androidx.credentials.playservices.** {
+  *;
+}
+
+-keep class com.google.gson.reflect.TypeToken
+-keep class * extends com.google.gson.reflect.TypeToken
+-keep public class * implements java.lang.reflect.Type
+
+-dontwarn org.bouncycastle.jsse.BCSSLParameters
+-dontwarn org.bouncycastle.jsse.BCSSLSocket
+-dontwarn org.bouncycastle.jsse.provider.BouncyCastleJsseProvider
+-dontwarn org.conscrypt.Conscrypt$Version
+-dontwarn org.conscrypt.Conscrypt
+-dontwarn org.conscrypt.ConscryptHostnameVerifier
+-dontwarn org.openjsse.javax.net.ssl.SSLParameters
+-dontwarn org.openjsse.javax.net.ssl.SSLSocket
+-dontwarn org.openjsse.net.ssl.OpenJSSE
+-dontwarn org.slf4j.impl.StaticLoggerBinder

@@ -1,7 +1,9 @@
 package com.soloscape.home
 
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -37,13 +39,17 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.soloscape.ui.R
 import com.soloscape.mongo.repository.Reports
 import com.soloscape.util.model.RequestState
 import com.soloscape.ui.components.ThemeSwitcher
+import com.soloscape.util.getAppVersion
 import java.time.ZonedDateTime
 
 
@@ -66,12 +72,14 @@ internal fun HomeScreen(
 ) {
     var padding by remember { mutableStateOf(PaddingValues()) }
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+    val appVersion = getAppVersion(LocalContext.current)
     NavigationDrawer(
         drawerState = drawerState,
         onSignOutClicked = onSignOutClicked,
         onDeleteAllClicked = onDeleteAllClicked,
         darkTheme = darkTheme,
-        onThemeUpdated = onThemeUpdated
+        onThemeUpdated = onThemeUpdated,
+        appVersion = appVersion
     ) {
         Scaffold(
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -138,6 +146,7 @@ internal fun NavigationDrawer(
     onDeleteAllClicked :() -> Unit,
     darkTheme: Boolean,
     onThemeUpdated: () -> Unit,
+    appVersion: String,
     content: @Composable () -> Unit,
 ) {
 
@@ -154,11 +163,21 @@ internal fun NavigationDrawer(
                         contentAlignment = Alignment.Center
                     )
                     {
-                        Image(
-                            modifier = Modifier.size(200.dp),
-                            painter = painterResource(id = R.drawable.logo),
-                            contentDescription = "Logo Image"
-                        )
+                        Column(
+                            modifier = Modifier.fillMaxSize(),
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Image(
+                                modifier = Modifier.size(200.dp),
+                                painter = painterResource(id = R.drawable.logo),
+                                contentDescription = "Logo Image"
+                            )
+                            Text(
+                                text = appVersion,
+                                style = MaterialTheme.typography.bodySmall
+                            )
+                        }
                     }
                     Column (modifier = Modifier.fillMaxWidth()){
                         NavigationDrawerItem(
@@ -218,4 +237,27 @@ internal fun NavigationDrawer(
         },
         content = content
     )
+}
+
+@Composable
+fun AppVersion() {
+    val appVersion = getAppVersion(LocalContext.current)
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = appVersion,
+            style = MaterialTheme.typography.bodySmall
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun AppVersionPreview() {
+    AppVersion()
 }
