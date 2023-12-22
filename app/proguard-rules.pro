@@ -20,18 +20,7 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
-
-#-keep class androidx.compose.** { *; }
-#-keep class androidx.ui.** { *; }
-#-keep class androidx.ui.tooling.** { *; }
-#-keep class androidx.ui.foundation.** { *; }
-#-keep class androidx.ui.material.** { *; }
-#-keep class androidx.ui.text.** { *; }
-#-keep class androidx.ui.graphics.** { *; }
-#-keep class androidx.ui.layout.** { *; }
-#-keep class androidx.ui.animation.** { *; }
-#-keep class androidx.ui.res.** { *; }
-#-keep class androidx.ui.tooling.preview.** { *; }
+-keep class com.compose.soloscape.** { *; }
 
 -if class androidx.credentials.CredentialManager
 -keep class androidx.credentials.playservices.** {

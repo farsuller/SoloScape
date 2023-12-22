@@ -32,6 +32,13 @@ android {
             useSupportLibrary true
         }
     }
+
+    android.applicationVariants.configureEach { variant ->
+        variant.outputs.configureEach {
+            outputFileName = "${ProjectConfig.appBuildOutput}-${variant.buildType.name}-${versionCode}-${versionName}.apk"
+        }
+    }
+
     signingConfigs {
         debug {
             storeFile file("keystore/debug.keystore")
