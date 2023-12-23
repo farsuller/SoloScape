@@ -17,11 +17,11 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace 'com.compose.soloscape'
+    namespace ProjectConfig.namespace
     compileSdk ProjectConfig.compileSdk
 
     defaultConfig {
-        applicationId "com.soloscape.compose"
+        applicationId ProjectConfig.applicationId
         minSdk ProjectConfig.minSdk
         targetSdk ProjectConfig.targetSdk
         versionCode ProjectConfig.versionCode
@@ -35,7 +35,7 @@ android {
 
     android.applicationVariants.configureEach { variant ->
         variant.outputs.configureEach {
-            outputFileName = "${ProjectConfig.appBuildOutput}-${variant.buildType.name}-${versionCode}-${versionName}.apk"
+            archivesBaseName = "${ProjectConfig.appFileName}-${variant.buildType.name}-v${versionCode}-${versionName}"
         }
     }
 
@@ -122,9 +122,6 @@ dependencies {
     //Profile Installer
     implementation libs.profileinstaller
 
-
-    // One-Tap Compose
-    //implementation project(':onetap')
     implementation project(':core:ui')
     implementation project(':core:util')
     implementation project(':data:mongo')
