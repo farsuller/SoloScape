@@ -27,7 +27,6 @@ object MongoDB : MongoRepository {
     private val user = app.currentUser
     private lateinit var realm: Realm
 
-
     init {
         configureTheRealm()
     }
@@ -38,7 +37,7 @@ object MongoDB : MongoRepository {
                 .initialSubscriptions { sub ->
                     add(
                         query = sub.query<Report>("ownerId == $0", user.id),
-                        name = "User's Reports"
+                        name = "User's Reports",
                     )
                 }
                 .log(LogLevel.ALL)
@@ -47,6 +46,7 @@ object MongoDB : MongoRepository {
             realm = Realm.open(config)
         }
     }
+
     @SuppressLint("NewApi")
     override fun getAllNotes(): Flow<Reports> {
         return if (user != null) {
@@ -60,7 +60,7 @@ object MongoDB : MongoRepository {
                                 it.date.toInstant()
                                     .atZone(ZoneId.systemDefault())
                                     .toLocalDate()
-                            }
+                            },
                         )
                     }
             } catch (e: Exception) {
@@ -70,23 +70,34 @@ object MongoDB : MongoRepository {
             flow { emit(RequestState.Error(UserNotAuthenticatedException())) }
         }
     }
+
     @SuppressLint("NewApi")
     override fun getFilteredNotes(zonedDateTime: ZonedDateTime): Flow<Reports> {
         return if (user != null) {
             try {
-                realm.query<Report>(query = "ownerId == $0 AND date < $1 AND date > $2", user.id,
+                realm.query<Report>(
+                    query = "ownerId == $0 AND date < $1 AND date > $2",
+                    user.id,
                     RealmInstant.from(
-                        LocalDateTime.of(zonedDateTime.toLocalDate().plusDays(1),
-                            LocalTime.MIDNIGHT).toEpochSecond(zonedDateTime.offset),
-                        0),
+                        LocalDateTime.of(
+                            zonedDateTime.toLocalDate().plusDays(1),
+                            LocalTime.MIDNIGHT,
+                        ).toEpochSecond(zonedDateTime.offset),
+                        0,
+                    ),
                     RealmInstant.from(
-                        LocalDateTime.of(zonedDateTime.toLocalDate(),
-                            LocalTime.MIDNIGHT).toEpochSecond(zonedDateTime.offset),
-                        0)
+                        LocalDateTime.of(
+                            zonedDateTime.toLocalDate(),
+                            LocalTime.MIDNIGHT,
+                        ).toEpochSecond(zonedDateTime.offset),
+                        0,
+                    ),
                 ).asFlow().map { result ->
-                    RequestState.Success(data = result.list.groupBy {
-                        it.date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
-                    })
+                    RequestState.Success(
+                        data = result.list.groupBy {
+                            it.date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+                        },
+                    )
                 }
             } catch (e: Exception) {
                 flow { emit(RequestState.Error(e)) }
@@ -102,11 +113,9 @@ object MongoDB : MongoRepository {
                 realm.query<Report>(query = "_id == $0", reportId).asFlow().map {
                     RequestState.Success(data = it.list.first())
                 }
-
             } catch (e: Exception) {
                 flow { emit(RequestState.Error(e)) }
             }
-
         } else {
             flow { emit(RequestState.Error(UserNotAuthenticatedException())) }
         }
@@ -122,7 +131,6 @@ object MongoDB : MongoRepository {
                     RequestState.Error(e)
                 }
             }
-
         } else {
             RequestState.Error(UserNotAuthenticatedException())
         }
@@ -143,7 +151,6 @@ object MongoDB : MongoRepository {
                     RequestState.Error(error = Exception("Queried Report does not exist"))
                 }
             }
-
         } else {
             RequestState.Error(UserNotAuthenticatedException())
         }
@@ -153,14 +160,14 @@ object MongoDB : MongoRepository {
         return if (user != null) {
             realm.write {
                 val report = query<Report>(query = "_id == $0 AND ownerId == $1", id, user.id).first().find()
-                if(report != null){
+                if (report != null) {
                     try {
                         delete(report)
                         RequestState.Success(data = true)
                     } catch (e: Exception) {
                         RequestState.Error(e)
                     }
-                }else{
+                } else {
                     RequestState.Error(Exception("Report does not exist."))
                 }
             }
@@ -176,7 +183,7 @@ object MongoDB : MongoRepository {
                 try {
                     delete(reports)
                     RequestState.Success(data = true)
-                }catch (e: Exception){
+                } catch (e: Exception) {
                     RequestState.Error(e)
                 }
             }

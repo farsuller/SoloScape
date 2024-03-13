@@ -12,7 +12,6 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.navigation.compose.rememberNavController
 import com.compose.soloscape.navigation.SetupNavGraph
-import com.soloscape.ui.theme.MultiModularArchJCTheme
 import com.google.firebase.FirebaseApp
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storageMetadata
@@ -20,6 +19,7 @@ import com.soloscape.mongo.database.ImageToDeleteDao
 import com.soloscape.mongo.database.ImageToUploadDao
 import com.soloscape.mongo.database.entity.ImageToDelete
 import com.soloscape.mongo.database.entity.ImageToUpload
+import com.soloscape.ui.theme.MultiModularArchJCTheme
 import com.soloscape.util.Constants.APP_ID
 import com.soloscape.util.ScreensRoutes
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,6 +34,7 @@ class MainActivity : ComponentActivity() {
 
     @Inject
     lateinit var imageToUploadDao: ImageToUploadDao
+
     @Inject
     lateinit var imageToDeleteDao: ImageToDeleteDao
     var keepSplashOpened = true
@@ -47,7 +48,8 @@ class MainActivity : ComponentActivity() {
 
             MultiModularArchJCTheme(
                 darkTheme = darkTheme,
-                dynamicColor = false) {
+                dynamicColor = false,
+            ) {
                 val navController = rememberNavController()
                 SetupNavGraph(
                     startDestination = getStartDestination(),
@@ -58,7 +60,7 @@ class MainActivity : ComponentActivity() {
                     darkTheme = darkTheme,
                     onThemeUpdated = {
                         darkTheme = !darkTheme
-                    }
+                    },
                 )
             }
         }
@@ -73,7 +75,7 @@ class MainActivity : ComponentActivity() {
 private fun cleanUpCheck(
     scope: CoroutineScope,
     imageToUploadDao: ImageToUploadDao,
-    imageToDeleteDao: ImageToDeleteDao
+    imageToDeleteDao: ImageToDeleteDao,
 ) {
     scope.launch(Dispatchers.IO) {
         val result = imageToUploadDao.getAllImages()
@@ -84,7 +86,7 @@ private fun cleanUpCheck(
                     scope.launch(Dispatchers.IO) {
                         imageToUploadDao.cleanUpImage(imageId = imageToUpload.id)
                     }
-                }
+                },
             )
         }
         val result2 = imageToDeleteDao.getAllImages()
@@ -95,7 +97,7 @@ private fun cleanUpCheck(
                     scope.launch(Dispatchers.IO) {
                         imageToDeleteDao.cleanupImage(imageId = imageToDelete.id)
                     }
-                }
+                },
             )
         }
     }
@@ -103,28 +105,28 @@ private fun cleanUpCheck(
 
 private fun getStartDestination(): String {
     val user = App.create(APP_ID).currentUser
-    return if (user != null && user.loggedIn) ScreensRoutes.Home.route
-    else ScreensRoutes.Authentication.route
+    return if (user != null && user.loggedIn) {
+        ScreensRoutes.Home.route
+    } else ScreensRoutes.Authentication.route
 }
 
 fun retryUploadingImageToFirebase(
     imageToUpload: ImageToUpload,
-    onSuccess: () -> Unit
+    onSuccess: () -> Unit,
 ) {
     val storage = FirebaseStorage.getInstance().reference
     storage.child(imageToUpload.remoteImagePath).putFile(
         imageToUpload.imageUri.toUri(),
         storageMetadata { },
-        imageToUpload.sessionUri.toUri()
+        imageToUpload.sessionUri.toUri(),
     ).addOnSuccessListener { onSuccess() }
 }
 
 fun retryDeletingImageFromFirebase(
     imageToDelete: ImageToDelete,
-    onSuccess: () -> Unit
+    onSuccess: () -> Unit,
 ) {
     val storage = FirebaseStorage.getInstance().reference
     storage.child(imageToDelete.remoteImagePath).delete()
         .addOnSuccessListener { onSuccess() }
 }
-

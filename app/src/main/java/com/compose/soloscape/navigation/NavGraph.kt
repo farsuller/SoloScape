@@ -14,18 +14,18 @@ fun SetupNavGraph(
     navHostController: NavHostController,
     onDataLoaded: () -> Unit,
     darkTheme: Boolean,
-    onThemeUpdated: () -> Unit
+    onThemeUpdated: () -> Unit,
 ) {
     NavHost(
         navController = navHostController,
-        startDestination = startDestination)
-    {
+        startDestination = startDestination,
+    ) {
         authenticationRoute(
             navigateToHome = {
                 navHostController.popBackStack()
                 navHostController.navigate(ScreensRoutes.Home.route)
             },
-            onDataLoaded = onDataLoaded
+            onDataLoaded = onDataLoaded,
         )
         homeRoute(
             darkTheme = darkTheme,
@@ -40,12 +40,12 @@ fun SetupNavGraph(
                 navHostController.popBackStack()
                 navHostController.navigate(ScreensRoutes.Authentication.route)
             },
-            onDataLoaded = onDataLoaded
+            onDataLoaded = onDataLoaded,
         )
         reportRoute(
             onBackPressed = {
                 navHostController.popBackStack()
-            }
+            },
         )
     }
 }

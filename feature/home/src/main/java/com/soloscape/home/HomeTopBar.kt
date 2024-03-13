@@ -1,8 +1,6 @@
 package com.soloscape.home
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.DateRange
@@ -19,14 +17,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
 import com.maxkeppeler.sheets.calendar.CalendarDialog
 import com.maxkeppeler.sheets.calendar.models.CalendarConfig
 import com.maxkeppeler.sheets.calendar.models.CalendarSelection
-import com.soloscape.ui.R
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.ZoneId
@@ -40,9 +34,8 @@ internal fun HomeTopBar(
     onMenuClicked: () -> Unit,
     dateIsSelected: Boolean,
     onDateSelected: (ZonedDateTime) -> Unit,
-    onDateReset: () -> Unit
+    onDateReset: () -> Unit,
 ) {
-
     val dateDialog = rememberUseCaseState()
     var pickedDate by remember { mutableStateOf(LocalDate.now()) }
     TopAppBar(
@@ -51,7 +44,7 @@ internal fun HomeTopBar(
             IconButton(onClick = onMenuClicked) {
                 Icon(
                     imageVector = Icons.Default.Menu,
-                    contentDescription = "Hamburger Menu Icon"
+                    contentDescription = "Hamburger Menu Icon",
                 )
             }
         },
@@ -64,7 +57,7 @@ internal fun HomeTopBar(
                     Icon(
                         imageVector = Icons.Default.Close,
                         contentDescription = "Close Icon",
-                        tint = MaterialTheme.colorScheme.onSurface
+                        tint = MaterialTheme.colorScheme.onSurface,
                     )
                 }
             } else {
@@ -72,11 +65,11 @@ internal fun HomeTopBar(
                     Icon(
                         imageVector = Icons.Default.DateRange,
                         contentDescription = "Date Icon",
-                        tint = MaterialTheme.colorScheme.onSurface
+                        tint = MaterialTheme.colorScheme.onSurface,
                     )
                 }
             }
-        }
+        },
     )
 
     CalendarDialog(
@@ -87,10 +80,10 @@ internal fun HomeTopBar(
                 ZonedDateTime.of(
                     pickedDate,
                     LocalTime.now(),
-                    ZoneId.systemDefault()
-                )
+                    ZoneId.systemDefault(),
+                ),
             )
         },
-        config = CalendarConfig(monthSelection = true, yearSelection = true)
-        )
+        config = CalendarConfig(monthSelection = true, yearSelection = true),
+    )
 }

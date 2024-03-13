@@ -12,21 +12,23 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.soloscape.util.model.Mood
 import com.soloscape.note.ReportScreen
 import com.soloscape.note.ReportViewModel
 import com.soloscape.util.Constants.NOTE_SCREEN_ARG_KEY
 import com.soloscape.util.ScreensRoutes
+import com.soloscape.util.model.Mood
 
 @OptIn(ExperimentalFoundationApi::class)
 fun NavGraphBuilder.reportRoute(onBackPressed: () -> Unit) {
     composable(
         route = ScreensRoutes.Note.route,
-        arguments = listOf(navArgument(name = NOTE_SCREEN_ARG_KEY) {
-            type = NavType.StringType
-            nullable = true
-            defaultValue = null
-        })
+        arguments = listOf(
+            navArgument(name = NOTE_SCREEN_ARG_KEY) {
+                type = NavType.StringType
+                nullable = true
+                defaultValue = null
+            },
+        ),
     ) {
         val viewModel: ReportViewModel = hiltViewModel()
         val uiState = viewModel.uiState
@@ -47,7 +49,7 @@ fun NavGraphBuilder.reportRoute(onBackPressed: () -> Unit) {
                     onSuccess = { onBackPressed() },
                     onError = { message ->
                         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-                    }
+                    },
                 )
             },
             onDateTimeUpdated = {
@@ -61,16 +63,15 @@ fun NavGraphBuilder.reportRoute(onBackPressed: () -> Unit) {
                     },
                     onError = { message ->
                         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-                    }
+                    },
                 )
             },
             galleryState = galleryState,
             onImageSelect = {
                 val type = context.contentResolver.getType(it)?.split("/")?.last() ?: "jpg"
                 viewModel.addImage(image = it, imageType = type)
-
             },
-            onImageDeleteClicked = { galleryState.removeImage(it) }
+            onImageDeleteClicked = { galleryState.removeImage(it) },
         )
     }
 }

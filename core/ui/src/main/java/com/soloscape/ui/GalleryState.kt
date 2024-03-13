@@ -6,25 +6,25 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 
 @Composable
-fun rememberGalleryState (): GalleryState{
-    return remember {GalleryState()}
+fun rememberGalleryState(): GalleryState {
+    return remember { GalleryState() }
 }
+
 class GalleryState {
     val images = mutableStateListOf<GalleryImage>()
     val imagesToBeDeleted = mutableStateListOf<GalleryImage>()
 
-    fun addImage(galleryImage: GalleryImage){
+    fun addImage(galleryImage: GalleryImage) {
         images.add(galleryImage)
     }
 
-    fun removeImage(galleryImage: GalleryImage){
+    fun removeImage(galleryImage: GalleryImage) {
         images.remove(galleryImage)
         imagesToBeDeleted.add(galleryImage)
     }
-
 }
 
 data class GalleryImage(
-    val image : Uri,
+    val image: Uri,
     val remoteImagePath: String = "",
 )

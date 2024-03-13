@@ -42,9 +42,9 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.soloscape.ui.GalleryImage
 import com.soloscape.ui.GalleryState
+import com.soloscape.util.GalleryUploader
 import com.soloscape.util.model.Mood
 import com.soloscape.util.model.Report
-import com.soloscape.util.GalleryUploader
 import io.realm.kotlin.ext.toRealmList
 import kotlinx.coroutines.launch
 
@@ -60,8 +60,8 @@ internal fun ReportContent(
     paddingValues: PaddingValues,
     onSaveClicked: (Report) -> Unit,
     galleryState: GalleryState,
-    onImageSelect : (Uri) -> Unit,
-    onImageClicked : (GalleryImage) -> Unit
+    onImageSelect: (Uri) -> Unit,
+    onImageClicked: (GalleryImage) -> Unit,
 ) {
     val scope = rememberCoroutineScope()
     val scrollState = rememberScrollState()
@@ -71,7 +71,7 @@ internal fun ReportContent(
     val titleEmpty = uiState.title.isEmpty()
     val descriptionEmpty = uiState.description.isEmpty()
 
-    LaunchedEffect(key1 = scrollState.maxValue){
+    LaunchedEffect(key1 = scrollState.maxValue) {
         scrollState.scrollTo(scrollState.maxValue)
     }
     Column(
@@ -82,20 +82,18 @@ internal fun ReportContent(
             .padding(top = paddingValues.calculateTopPadding())
             .padding(bottom = 24.dp)
             .padding(horizontal = 24.dp),
-        verticalArrangement = Arrangement.SpaceBetween
+        verticalArrangement = Arrangement.SpaceBetween,
     ) {
         Column(
             modifier = Modifier
                 .weight(1f)
-                .verticalScroll(state = scrollState)
-        )
-        {
+                .verticalScroll(state = scrollState),
+        ) {
             Spacer(modifier = Modifier.height(30.dp))
-            HorizontalPager(state = pagerState,)
-            { page ->
+            HorizontalPager(state = pagerState) { page ->
                 Box(
                     modifier = Modifier.fillMaxWidth(),
-                    contentAlignment = Alignment.Center
+                    contentAlignment = Alignment.Center,
                 ) {
                     AsyncImage(
                         modifier = Modifier.size(120.dp),
@@ -104,10 +102,9 @@ internal fun ReportContent(
                             .data(Mood.values()[page].icon)
                             .crossfade(true)
                             .build(),
-                        contentDescription = "Mood Image"
+                        contentDescription = "Mood Image",
                     )
                 }
-
             }
             Spacer(modifier = Modifier.height(30.dp))
 
@@ -123,7 +120,7 @@ internal fun ReportContent(
                     disabledIndicatorColor = Color.Unspecified,
                     unfocusedIndicatorColor = Color.Unspecified,
                     focusedPlaceholderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f),
-                    unfocusedPlaceholderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
+                    unfocusedPlaceholderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f),
                 ),
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                 keyboardActions = KeyboardActions(
@@ -132,10 +129,10 @@ internal fun ReportContent(
                             scrollState.animateScrollTo(Int.MAX_VALUE)
                             focusManager.moveFocus(FocusDirection.Down)
                         }
-                    }
+                    },
                 ),
                 maxLines = 1,
-                singleLine = true
+                singleLine = true,
             )
 
             TextField(
@@ -150,19 +147,19 @@ internal fun ReportContent(
                     disabledIndicatorColor = Color.Unspecified,
                     unfocusedIndicatorColor = Color.Unspecified,
                     focusedPlaceholderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f),
-                    unfocusedPlaceholderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
+                    unfocusedPlaceholderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f),
                 ),
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                 keyboardActions = KeyboardActions(
                     onNext = {
                         focusManager.clearFocus()
-                    }
+                    },
                 ),
             )
         }
 
         Column(
-            verticalArrangement = Arrangement.Bottom
+            verticalArrangement = Arrangement.Bottom,
         ) {
             Spacer(modifier = Modifier.height(12.dp))
             GalleryUploader(
@@ -171,7 +168,7 @@ internal fun ReportContent(
                     focusManager.clearFocus()
                 },
                 onImageSelect = onImageSelect,
-                onImageClicked = onImageClicked
+                onImageClicked = onImageClicked,
             )
             Spacer(modifier = Modifier.height(12.dp))
             Button(
@@ -185,22 +182,35 @@ internal fun ReportContent(
                                 Report().apply {
                                     this.title = uiState.title
                                     this.description = uiState.description
-                                    this.images = galleryState.images.map { it.remoteImagePath }.toRealmList()
-                                }
+                                    this.images =
+                                        galleryState.images.map { it.remoteImagePath }.toRealmList()
+                                },
                             )
                         }
 
-                        titleEmpty && !descriptionEmpty -> Toast.makeText(context, "Title cannot be empty.", Toast.LENGTH_SHORT).show()
-                        !titleEmpty && descriptionEmpty -> Toast.makeText(context, "Description cannot be empty.", Toast.LENGTH_SHORT).show()
-                        else -> Toast.makeText(context, "Fields cannot be empty.", Toast.LENGTH_SHORT).show()
+                        titleEmpty && !descriptionEmpty -> Toast.makeText(
+                            context,
+                            "Title cannot be empty.",
+                            Toast.LENGTH_SHORT,
+                        ).show()
+
+                        !titleEmpty && descriptionEmpty -> Toast.makeText(
+                            context,
+                            "Description cannot be empty.",
+                            Toast.LENGTH_SHORT,
+                        ).show()
+
+                        else -> Toast.makeText(
+                            context,
+                            "Fields cannot be empty.",
+                            Toast.LENGTH_SHORT,
+                        ).show()
                     }
                 },
                 shape = Shapes().small,
-            )
-            {
+            ) {
                 Text(text = "Save")
             }
         }
-
     }
 }

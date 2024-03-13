@@ -12,11 +12,11 @@ typealias Reports = RequestState<Map<LocalDate, List<Report>>>
 internal interface MongoRepository {
 
     fun configureTheRealm()
-    fun getAllNotes(): Flow <Reports>
-    fun getFilteredNotes(zonedDateTime: ZonedDateTime) : Flow<Reports>
-    fun getSelectedNotes (reportId : ObjectId) :  Flow<RequestState<Report>>
-   suspend fun addNewNotes(report: Report) : RequestState<Report>
-   suspend fun updateNotes(report: Report) : RequestState<Report>
-   suspend fun deleteNotes(id: ObjectId) : RequestState<Boolean>
-   suspend fun deleteAllNotes () : RequestState<Boolean>
+    fun getAllNotes(): Flow<Reports>
+    fun getFilteredNotes(zonedDateTime: ZonedDateTime): Flow<Reports>
+    fun getSelectedNotes(reportId: ObjectId): Flow<RequestState<Report>>
+    suspend fun addNewNotes(report: Report): RequestState<Report>
+    suspend fun updateNotes(report: Report): RequestState<Report>
+    suspend fun deleteNotes(id: ObjectId): RequestState<Boolean>
+    suspend fun deleteAllNotes(): RequestState<Boolean>
 }
