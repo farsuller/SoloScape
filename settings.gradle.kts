@@ -10,15 +10,14 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://jitpack.io' }
+        maven { setUrl("https://jitpack.io")  }
     }
 }
 rootProject.name = "MultiModularArch-JC"
-include ':app'
-include ':onetap'
-include ':core:ui'
-include ':core:util'
-include ':data:mongo'
-include ':feature:auth'
-include ':feature:home'
-include ':feature:note'
+include (":app")
+include (":core:ui")
+include (":core:util")
+include (":data:mongo")
+include (":feature:auth")
+include (":feature:home")
+include (":feature:note")
