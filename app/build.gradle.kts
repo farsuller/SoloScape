@@ -24,24 +24,16 @@ val keystoreProperties: Properties by lazy {
 }
 
 android {
-    namespace = ProjectConfig.namespace
-    compileSdk = ProjectConfig.compileSdk
+    namespace = ProjectConfig.NAMESPACE
 
     defaultConfig {
-        applicationId = ProjectConfig.applicationId
-        minSdk = ProjectConfig.minSdk
-        targetSdk = ProjectConfig.targetSdk
-        versionCode = ProjectConfig.versionCode
-        versionName = "${ProjectConfig.majorVersion}.${ProjectConfig.minorVersion}.${ProjectConfig.patchVersion}"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary  =true
-        }
+        applicationId = ProjectConfig.APPLICATION_ID
+        versionCode = ProjectConfig.VERSION_CODE
+        versionName = "${ProjectConfig.MAJOR_VERSION}.${ProjectConfig.MINOR_VERSION}.${ProjectConfig.PATCH_VERSION}"
     }
 
     applicationVariants.all {
-        archivesName.set("${ProjectConfig.appFileName}-${buildType.name}-$versionCode-$versionName")
+        archivesName.set("${ProjectConfig.APP_FILE_NAME}-${buildType.name}-$versionCode-$versionName")
     }
 
     signingConfigs {
@@ -68,20 +60,16 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-        isCoreLibraryDesugaringEnabled = true
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.kotlinCompilerExtensionVersion.get()
     }
+
     kotlinOptions {
         jvmTarget = "17"
     }
     buildFeatures {
         compose = true
         buildConfig = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.kotlinCompilerExtensionVersion.get()
     }
 
 }
@@ -117,12 +105,12 @@ dependencies {
     //Profile Installer
     implementation (libs.profileinstaller)
 
-    implementation(projects.core.ui)
-    implementation(projects.core.util)
-    implementation(projects.data.mongo)
-    implementation(projects.feature.auth)
-    implementation(projects.feature.home)
-    implementation(projects.feature.note)
+    implementation (projects.core.ui)
+    implementation (projects.core.util)
+    implementation (projects.data.mongo)
+    implementation (projects.feature.auth)
+    implementation (projects.feature.home)
+    implementation (projects.feature.note)
 
     testImplementation (libs.junit)
     androidTestImplementation (libs.androidx.junit)

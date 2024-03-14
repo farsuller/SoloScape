@@ -26,9 +26,67 @@ buildscript {
     }
 }
 
+fun BaseExtension.defaultConfig() {
+    compileSdkVersion(ProjectConfig.COMPILE_SDK)
+
+    defaultConfig {
+        minSdk = ProjectConfig.MIN_SDK
+        targetSdk = ProjectConfig.TARGET_SDK
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary = true
+        }
+    }
+
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+        isCoreLibraryDesugaringEnabled = true
+    }
+
+    packagingOptions {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+}
+
+
+fun PluginContainer.applyDefaultConfig(project: Project) {
+
+    whenPluginAdded {
+        when (this) {
+            is AppPlugin -> {
+                project.extensions
+                    .getByType<AppExtension>()
+                    .apply {
+                        defaultConfig()
+                    }
+            }
+            is LibraryPlugin -> {
+                project.extensions
+                    .getByType<LibraryExtension>()
+                    .apply {
+                        defaultConfig()
+                    }
+            }
+            is JavaPlugin -> {
+                project.extensions
+                    .getByType<JavaPluginExtension>()
+                    .apply {
+                        sourceCompatibility = JavaVersion.VERSION_17
+                        targetCompatibility = JavaVersion.VERSION_17
+                    }
+            }
+        }
+    }
+}
+
 
 subprojects {
-
+    project.plugins.applyDefaultConfig(project)
     afterEvaluate {
         project.apply("${project.rootDir}/spotless.gradle")
     }
