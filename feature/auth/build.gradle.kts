@@ -39,4 +39,7 @@ dependencies {
 
     implementation(projects.core.ui)
     implementation(projects.core.util)
+
+    debugImplementation (libs.androidx.ui.tooling)
+    debugImplementation (libs.androidx.ui.test.manifest)
 }

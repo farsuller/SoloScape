@@ -56,7 +56,7 @@ junit = "4.13.2"
 androidxJunit = "1.1.5"
 espressoCore = "3.5.1"
 
-ui-tooling = "1.6.3"
+ui-tooling = "1.6.6"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx"}

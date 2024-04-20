@@ -25,7 +25,6 @@ dependencies {
     implementation (libs.activity.compose)
     implementation (libs.material3.compose)
     implementation (libs.navigation.compose)
-
     implementation (libs.coroutines.core)
 
     implementation (libs.realm.sync)
@@ -45,5 +44,8 @@ dependencies {
     implementation (projects.core.ui)
     implementation (projects.core.util)
     implementation (projects.data.mongo)
+
+    debugImplementation (libs.androidx.ui.tooling)
+    debugImplementation (libs.androidx.ui.test.manifest)
 
 }

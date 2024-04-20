@@ -16,6 +16,7 @@ import com.soloscape.mongo.database.ImageToDeleteDao
 import com.soloscape.mongo.database.ImageToUploadDao
 import com.soloscape.mongo.database.entity.ImageToUpload
 import com.soloscape.mongo.repository.MongoDB
+import com.soloscape.note.model.UiNoteState
 import com.soloscape.ui.GalleryImage
 import com.soloscape.ui.GalleryState
 import com.soloscape.util.Constants.NOTE_SCREEN_ARG_KEY
@@ -25,7 +26,6 @@ import com.soloscape.util.model.Report
 import com.soloscape.util.model.RequestState
 import com.soloscape.util.toRealmInstant
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.realm.kotlin.types.RealmInstant
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
@@ -35,7 +35,7 @@ import java.time.ZonedDateTime
 import javax.inject.Inject
 
 @HiltViewModel
-internal class ReportViewModel @Inject constructor(
+internal class NoteViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val imagesToUploadDao: ImageToUploadDao,
     private val imageToDeleteDao: ImageToDeleteDao,
@@ -43,7 +43,7 @@ internal class ReportViewModel @Inject constructor(
 
     val galleryState = GalleryState()
 
-    var uiState by mutableStateOf(UiState())
+    var uiState by mutableStateOf(UiNoteState())
         private set
 
     init {
@@ -86,6 +86,9 @@ internal class ReportViewModel @Inject constructor(
             }
         }
     }
+    fun refreshView() {
+        fetchSelectedReport()
+    }
 
     private fun setSelectedReport(report: Report) {
         uiState = uiState.copy(selectedReport = report)
@@ -99,7 +102,7 @@ internal class ReportViewModel @Inject constructor(
         uiState = uiState.copy(description = description)
     }
 
-    private fun setMood(mood: Mood) {
+    fun setMood(mood: Mood) {
         uiState = uiState.copy(mood = mood)
     }
 
@@ -241,11 +244,3 @@ internal class ReportViewModel @Inject constructor(
     }
 }
 
-internal data class UiState(
-    val selectedReportId: String? = null,
-    val selectedReport: Report? = null,
-    val title: String = "",
-    val description: String = "",
-    val mood: Mood = Mood.Neutral,
-    val updatedDateTime: RealmInstant? = null,
-)

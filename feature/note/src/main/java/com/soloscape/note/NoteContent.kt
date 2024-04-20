@@ -40,6 +40,8 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.soloscape.note.model.NoteChanges
+import com.soloscape.note.model.UiNoteState
 import com.soloscape.ui.GalleryImage
 import com.soloscape.ui.GalleryState
 import com.soloscape.util.GalleryUploader
@@ -50,12 +52,10 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-internal fun ReportContent(
-    uiState: UiState,
-    title: String,
-    onTitleChanged: (String) -> Unit,
-    description: String,
-    onDescriptionChanged: (String) -> Unit,
+internal fun NoteContent(
+    uiState: UiNoteState,
+    noteChanges: NoteChanges,
+    onNoteChange: (NoteChanges) -> Unit,
     pagerState: PagerState,
     paddingValues: PaddingValues,
     onSaveClicked: (Report) -> Unit,
@@ -110,8 +110,15 @@ internal fun ReportContent(
 
             TextField(
                 modifier = Modifier.fillMaxWidth(),
-                value = title,
-                onValueChange = onTitleChanged,
+                value = noteChanges.title,
+                onValueChange = {
+                    onNoteChange(
+                        NoteChanges(
+                            title = it,
+                            description = uiState.description,
+                        )
+                    )
+                },
                 placeholder = { Text(text = "Title") },
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.Transparent,
@@ -137,8 +144,15 @@ internal fun ReportContent(
 
             TextField(
                 modifier = Modifier.fillMaxWidth(),
-                value = description,
-                onValueChange = onDescriptionChanged,
+                value = noteChanges.description,
+                onValueChange = {
+                    onNoteChange(
+                        NoteChanges(
+                            title = uiState.title,
+                            description = it,
+                        )
+                    )
+                },
                 placeholder = { Text(text = "How was your day?") },
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.Transparent,

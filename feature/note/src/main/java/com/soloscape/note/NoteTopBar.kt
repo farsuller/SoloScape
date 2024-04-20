@@ -25,13 +25,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
 import com.maxkeppeler.sheets.calendar.CalendarDialog
 import com.maxkeppeler.sheets.calendar.models.CalendarConfig
 import com.maxkeppeler.sheets.calendar.models.CalendarSelection
 import com.maxkeppeler.sheets.clock.ClockDialog
 import com.maxkeppeler.sheets.clock.models.ClockSelection
+import com.soloscape.note.model.NoteChanges
 import com.soloscape.ui.components.DisplayAlertDialog
+import com.soloscape.ui.theme.MultiModularArchJCTheme
+import com.soloscape.util.model.Mood
 import com.soloscape.util.model.Report
 import com.soloscape.util.toInstant
 import java.text.SimpleDateFormat
@@ -46,7 +50,7 @@ import java.util.Locale
 @SuppressLint("NewApi")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun ReportTopBar(
+internal fun NoteTopBar(
     moodName: () -> String,
     selectedReport: Report?,
     onBackPressed: () -> Unit,
@@ -216,6 +220,21 @@ fun DeleteReportAction(
             imageVector = Icons.Default.MoreVert,
             contentDescription = "Overflow Menu Icon",
             tint = MaterialTheme.colorScheme.onSurface,
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun NoteTopBarPreview() {
+    MultiModularArchJCTheme{
+        NoteTopBar(
+            moodName = { Mood.Neutral.name },
+            selectedReport = null,
+            onBackPressed = {},
+            onDeleteConfirmed = {},
+            onDateTimeUpdated = {}
+
         )
     }
 }

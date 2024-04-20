@@ -28,6 +28,8 @@ dependencies {
     implementation (libs.material3.compose)
     implementation (libs.navigation.compose)
 
+    implementation (libs.compose.tooling.preview)
+
     implementation (libs.coil)
 
     implementation (libs.coroutines.core)
@@ -40,6 +42,7 @@ dependencies {
 
     implementation (libs.hilt.navigation.compose)
     implementation (libs.hilt.android)
+
     ksp (libs.hilt.compiler)
 
     implementation (libs.firebase.auth)
@@ -48,4 +51,7 @@ dependencies {
     implementation (projects.core.ui)
     implementation (projects.core.util)
     implementation (projects.data.mongo)
+
+    debugImplementation (libs.androidx.ui.tooling)
+    debugImplementation (libs.androidx.ui.test.manifest)
 }

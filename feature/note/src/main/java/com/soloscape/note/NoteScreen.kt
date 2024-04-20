@@ -36,6 +36,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.soloscape.note.model.NoteChanges
+import com.soloscape.note.model.UiNoteState
 import com.soloscape.ui.GalleryImage
 import com.soloscape.ui.GalleryState
 import com.soloscape.util.model.Mood
@@ -45,13 +47,12 @@ import java.time.ZonedDateTime
 @OptIn(ExperimentalFoundationApi::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-internal fun ReportScreen(
+internal fun NoteScreen(
     pagerState: PagerState,
     onDeleteConfirmed: () -> Unit,
     onBackPressed: () -> Unit,
-    uiState: UiState,
-    onTitleChanged: (String) -> Unit,
-    onDescriptionChanged: (String) -> Unit,
+    uiState: UiNoteState,
+    onNoteChange: (NoteChanges) -> Unit,
     moodName: () -> String,
     onSaveClicked: (Report) -> Unit,
     onDateTimeUpdated: (ZonedDateTime) -> Unit,
@@ -68,7 +69,7 @@ internal fun ReportScreen(
 
     Scaffold(
         topBar = {
-            ReportTopBar(
+            NoteTopBar(
                 selectedReport = uiState.selectedReport,
                 onDeleteConfirmed = onDeleteConfirmed,
                 onBackPressed = onBackPressed,
@@ -77,12 +78,15 @@ internal fun ReportScreen(
             )
         },
         content = { paddingValues ->
-            ReportContent(
+            NoteContent(
                 uiState = uiState,
-                title = uiState.title,
-                onTitleChanged = onTitleChanged,
-                description = uiState.description,
-                onDescriptionChanged = onDescriptionChanged,
+                noteChanges = NoteChanges(
+                    title = uiState.title,
+                    description = uiState.description,
+                ),
+                onNoteChange = { updatedNoteChanges ->
+                    onNoteChange(updatedNoteChanges)
+                },
                 pagerState = pagerState,
                 paddingValues = paddingValues,
                 onSaveClicked = onSaveClicked,

@@ -22,4 +22,7 @@ dependencies {
     implementation (libs.realm.sync)
     implementation (libs.coroutines.core)
     implementation (libs.material.icons.extended)
+
+    debugImplementation (libs.androidx.ui.tooling)
+    debugImplementation (libs.androidx.ui.test.manifest)
 }

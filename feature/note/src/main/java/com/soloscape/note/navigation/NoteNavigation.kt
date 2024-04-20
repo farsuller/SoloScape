@@ -12,8 +12,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.soloscape.note.ReportScreen
-import com.soloscape.note.ReportViewModel
+import com.soloscape.note.NoteScreen
+import com.soloscape.note.NoteViewModel
 import com.soloscape.util.Constants.NOTE_SCREEN_ARG_KEY
 import com.soloscape.util.ScreensRoutes
 import com.soloscape.util.model.Mood
@@ -30,18 +30,20 @@ fun NavGraphBuilder.reportRoute(onBackPressed: () -> Unit) {
             },
         ),
     ) {
-        val viewModel: ReportViewModel = hiltViewModel()
+        val viewModel: NoteViewModel = hiltViewModel()
         val uiState = viewModel.uiState
         val pagerState = rememberPagerState(pageCount = { Mood.values().size })
         val pageNumber by remember { derivedStateOf { pagerState.currentPage } }
         val context = LocalContext.current
         val galleryState = viewModel.galleryState
-        ReportScreen(
+        NoteScreen(
             onBackPressed = onBackPressed,
             pagerState = pagerState,
             uiState = uiState,
-            onTitleChanged = { viewModel.setTitle(title = it) },
-            onDescriptionChanged = { viewModel.setDescription(description = it) },
+            onNoteChange = { note ->
+                viewModel.setTitle(title = note.title)
+                viewModel.setDescription(description = note.description)
+            },
             moodName = { Mood.values()[pageNumber].name },
             onSaveClicked = {
                 viewModel.insertUpdateNotes(
