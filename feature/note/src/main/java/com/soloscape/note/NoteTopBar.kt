@@ -1,14 +1,15 @@
 package com.soloscape.note
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -16,6 +17,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -26,15 +28,16 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
 import com.maxkeppeler.sheets.calendar.CalendarDialog
 import com.maxkeppeler.sheets.calendar.models.CalendarConfig
 import com.maxkeppeler.sheets.calendar.models.CalendarSelection
 import com.maxkeppeler.sheets.clock.ClockDialog
 import com.maxkeppeler.sheets.clock.models.ClockSelection
-import com.soloscape.note.model.NoteChanges
 import com.soloscape.ui.components.DisplayAlertDialog
 import com.soloscape.ui.theme.MultiModularArchJCTheme
+import com.soloscape.util.clickableWithoutRipple
 import com.soloscape.util.model.Mood
 import com.soloscape.util.model.Report
 import com.soloscape.util.toInstant
@@ -83,7 +86,7 @@ internal fun NoteTopBar(
         }
     }
 
-    CenterAlignedTopAppBar(
+    TopAppBar(
         navigationIcon = {
             IconButton(onClick = onBackPressed) {
                 Icon(
@@ -93,7 +96,9 @@ internal fun NoteTopBar(
             }
         },
         title = {
-            Column {
+            Column(
+                modifier = Modifier.padding(start = 10.dp)
+            ) {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = moodName(),
@@ -137,18 +142,21 @@ internal fun NoteTopBar(
                     Icon(
                         imageVector = Icons.Default.Close,
                         contentDescription = "Close Icon",
-                    )
-                }
-            } else {
-                IconButton(onClick = {
-                    dateDialog.show()
-                }) {
-                    Icon(
-                        imageVector = Icons.Default.DateRange,
-                        contentDescription = "Date Icon",
                         tint = MaterialTheme.colorScheme.onSurface,
                     )
                 }
+            } else {
+                Icon(
+                    modifier = Modifier
+                        .padding(end = 10.dp)
+                        .clickableWithoutRipple(
+                        interactionSource = remember { MutableInteractionSource() },
+                        onClick = { dateDialog.show() }
+                    ),
+                    imageVector = Icons.Default.DateRange,
+                    contentDescription = "Date Icon",
+                    tint = MaterialTheme.colorScheme.onSurface,
+                )
             }
 
             if (selectedReport != null) {
@@ -215,19 +223,25 @@ fun DeleteReportAction(
         onYesClicked = onDeleteConfirmed,
     )
 
-    IconButton(onClick = { expanded = !expanded }) {
-        Icon(
-            imageVector = Icons.Default.MoreVert,
-            contentDescription = "Overflow Menu Icon",
-            tint = MaterialTheme.colorScheme.onSurface,
-        )
-    }
+    Icon(
+        modifier = Modifier
+            .padding(end = 5.dp)
+            .clickableWithoutRipple(
+            interactionSource = remember { MutableInteractionSource() },
+            onClick = {
+                expanded = !expanded
+            }
+        ),
+        imageVector = Icons.Default.MoreVert,
+        contentDescription = "Overflow Menu Icon",
+        tint = MaterialTheme.colorScheme.onSurface,
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun NoteTopBarPreview() {
-    MultiModularArchJCTheme{
+    MultiModularArchJCTheme {
         NoteTopBar(
             moodName = { Mood.Neutral.name },
             selectedReport = null,
