@@ -38,6 +38,7 @@ dependencies {
     implementation (libs.date.time.picker)
     implementation (libs.date.dialog)
 
+    implementation(platform(libs.firebase.bom))
     implementation (libs.firebase.auth)
     implementation (libs.firebase.storage)
 

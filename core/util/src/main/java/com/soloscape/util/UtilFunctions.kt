@@ -78,15 +78,15 @@ fun getAppVersion(context: Context): String {
 @SuppressLint("UnnecessaryComposedModifier")
 fun Modifier.clickableWithoutRipple(
     interactionSource: MutableInteractionSource,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) = composed(
     factory = {
         this.then(
             Modifier.clickable(
                 interactionSource = interactionSource,
                 indication = null,
-                onClick = { onClick() }
-            )
+                onClick = { onClick() },
+            ),
         )
-    }
+    },
 )

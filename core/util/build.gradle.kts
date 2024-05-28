@@ -25,7 +25,10 @@ dependencies {
     implementation (libs.activity.compose)
     implementation (libs.material3.compose)
     implementation (libs.core.ktx)
+
+    implementation(platform(libs.firebase.bom))
     implementation (libs.firebase.storage)
+
     implementation (libs.realm.sync)
     implementation (libs.coroutines.core)
     implementation (libs.coil)

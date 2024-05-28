@@ -79,6 +79,7 @@ dependencies {
     implementation (libs.navigation.compose)
 
     // Firebase
+    implementation(platform(libs.firebase.bom))
     implementation (libs.firebase.storage)
 
     // Room components

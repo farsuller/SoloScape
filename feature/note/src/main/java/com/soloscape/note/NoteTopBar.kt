@@ -97,7 +97,7 @@ internal fun NoteTopBar(
         },
         title = {
             Column(
-                modifier = Modifier.padding(start = 10.dp)
+                modifier = Modifier.padding(start = 10.dp),
             ) {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
@@ -150,9 +150,9 @@ internal fun NoteTopBar(
                     modifier = Modifier
                         .padding(end = 10.dp)
                         .clickableWithoutRipple(
-                        interactionSource = remember { MutableInteractionSource() },
-                        onClick = { dateDialog.show() }
-                    ),
+                            interactionSource = remember { MutableInteractionSource() },
+                            onClick = { dateDialog.show() },
+                        ),
                     imageVector = Icons.Default.DateRange,
                     contentDescription = "Date Icon",
                     tint = MaterialTheme.colorScheme.onSurface,
@@ -227,11 +227,11 @@ fun DeleteReportAction(
         modifier = Modifier
             .padding(end = 5.dp)
             .clickableWithoutRipple(
-            interactionSource = remember { MutableInteractionSource() },
-            onClick = {
-                expanded = !expanded
-            }
-        ),
+                interactionSource = remember { MutableInteractionSource() },
+                onClick = {
+                    expanded = !expanded
+                },
+            ),
         imageVector = Icons.Default.MoreVert,
         contentDescription = "Overflow Menu Icon",
         tint = MaterialTheme.colorScheme.onSurface,
@@ -247,7 +247,7 @@ fun NoteTopBarPreview() {
             selectedReport = null,
             onBackPressed = {},
             onDeleteConfirmed = {},
-            onDateTimeUpdated = {}
+            onDateTimeUpdated = {},
 
         )
     }

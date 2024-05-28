@@ -31,6 +31,7 @@ dependencies {
     implementation(libs.message.bar.compose)
     implementation(libs.one.tap.compose)
 
+    implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth)
 
     implementation(libs.coroutines.core)

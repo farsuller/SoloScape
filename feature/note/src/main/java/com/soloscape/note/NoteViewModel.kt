@@ -243,4 +243,3 @@ internal class NoteViewModel @Inject constructor(
         return "images/${Firebase.auth.currentUser?.uid}/$imageName"
     }
 }
-
