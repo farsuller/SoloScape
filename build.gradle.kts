@@ -11,12 +11,17 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     alias (libs.plugins.android.application) apply false
     alias (libs.plugins.android.library) apply false
-    alias (libs.plugins.android.test) apply false
     alias (libs.plugins.kotlin.android) apply false
-    alias (libs.plugins.hilt) apply false
-    alias (libs.plugins.realm.kotlin) apply false
-    alias (libs.plugins.gms.google.services) apply false
+    alias(libs.plugins.compose.compiler) apply false
+
     alias (libs.plugins.devtool.ksp) apply false
+
+    alias (libs.plugins.hilt) apply false
+
+    alias (libs.plugins.realm.kotlin) apply false
+
+    alias (libs.plugins.gms.google.services) apply false
+
     alias(libs.plugins.spotless) apply false
 }
 
@@ -41,9 +46,9 @@ fun BaseExtension.defaultConfig() {
 
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-        isCoreLibraryDesugaringEnabled = true
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+      //  isCoreLibraryDesugaringEnabled = true
     }
 
     packagingOptions {
@@ -72,14 +77,6 @@ fun PluginContainer.applyDefaultConfig(project: Project) {
                         defaultConfig()
                     }
             }
-            is JavaPlugin -> {
-                project.extensions
-                    .getByType<JavaPluginExtension>()
-                    .apply {
-                        sourceCompatibility = JavaVersion.VERSION_17
-                        targetCompatibility = JavaVersion.VERSION_17
-                    }
-            }
         }
     }
 }
@@ -93,7 +90,7 @@ subprojects {
 
     tasks.withType<KotlinCompile> {
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
+            jvmTarget.set(JvmTarget.JVM_1_8)
             freeCompilerArgs.addAll(
                 listOf(
                     "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",

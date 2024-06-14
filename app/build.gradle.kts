@@ -1,10 +1,10 @@
 import java.io.FileNotFoundException
 import java.util.Properties
-import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.archivesName
 
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.hilt)
     id("com.google.devtools.ksp")
     id ("io.realm.kotlin")
@@ -33,7 +33,7 @@ android {
     }
 
     applicationVariants.all {
-        archivesName.set("${ProjectConfig.APP_FILE_NAME}-${buildType.name}-$versionCode-$versionName")
+        base.archivesName.set("${ProjectConfig.APP_FILE_NAME}-${buildType.name}-$versionCode-$versionName")
     }
 
     signingConfigs {
@@ -60,12 +60,13 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.kotlinCompilerExtensionVersion.get()
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "1.8"
     }
     buildFeatures {
         compose = true
@@ -100,7 +101,7 @@ dependencies {
     // Desugar JDK
     coreLibraryDesugaring (libs.desugar.jdk)
 
-    //Leak Canary
+//    //Leak Canary
     debugImplementation (libs.leakcanary.android)
 
     //Profile Installer

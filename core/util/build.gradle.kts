@@ -1,6 +1,7 @@
 plugins {
     alias (libs.plugins.android.library)
     alias (libs.plugins.kotlin.android)
+    alias(libs.plugins.compose.compiler)
     id ("io.realm.kotlin")
 }
 
@@ -10,12 +11,14 @@ android {
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.kotlinCompilerExtensionVersion.get()
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "1.8"
     }
 
 }

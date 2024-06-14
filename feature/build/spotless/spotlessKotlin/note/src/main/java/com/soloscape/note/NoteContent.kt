@@ -23,17 +23,16 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Shapes
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
@@ -108,7 +107,7 @@ internal fun NoteContent(
             }
             Spacer(modifier = Modifier.height(30.dp))
 
-            TextField(
+            OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = noteChanges.title,
                 onValueChange = {
@@ -119,15 +118,16 @@ internal fun NoteContent(
                         ),
                     )
                 },
-                placeholder = { Text(text = "Title") },
-                colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Color.Transparent,
-                    unfocusedContainerColor = Color.Transparent,
-                    focusedIndicatorColor = Color.Unspecified,
-                    disabledIndicatorColor = Color.Unspecified,
-                    unfocusedIndicatorColor = Color.Unspecified,
-                    focusedPlaceholderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f),
-                    unfocusedPlaceholderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f),
+                placeholder = {
+                    Text(
+                        text = "Title",
+                        color = MaterialTheme.colorScheme.secondary,
+                    )
+                },
+                colors = OutlinedTextFieldDefaults.colors(
+                    unfocusedBorderColor = MaterialTheme.colorScheme.secondary,
+                    errorBorderColor = MaterialTheme.colorScheme.secondary,
+                    errorLabelColor = MaterialTheme.colorScheme.onSurface,
                 ),
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                 keyboardActions = KeyboardActions(
@@ -141,8 +141,9 @@ internal fun NoteContent(
                 maxLines = 1,
                 singleLine = true,
             )
+            Spacer(modifier = Modifier.height(12.dp))
 
-            TextField(
+            OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = noteChanges.description,
                 onValueChange = {
@@ -153,15 +154,16 @@ internal fun NoteContent(
                         ),
                     )
                 },
-                placeholder = { Text(text = "How was your day?") },
-                colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Color.Transparent,
-                    unfocusedContainerColor = Color.Transparent,
-                    focusedIndicatorColor = Color.Unspecified,
-                    disabledIndicatorColor = Color.Unspecified,
-                    unfocusedIndicatorColor = Color.Unspecified,
-                    focusedPlaceholderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f),
-                    unfocusedPlaceholderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f),
+                placeholder = {
+                    Text(
+                        text = "How was your day?",
+                        color = MaterialTheme.colorScheme.secondary,
+                    )
+                },
+                colors = OutlinedTextFieldDefaults.colors(
+                    unfocusedBorderColor = MaterialTheme.colorScheme.secondary,
+                    errorBorderColor = MaterialTheme.colorScheme.secondary,
+                    errorLabelColor = MaterialTheme.colorScheme.onSurface,
                 ),
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                 keyboardActions = KeyboardActions(
