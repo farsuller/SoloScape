@@ -2,6 +2,7 @@ We're thrilled to introduce SoloScape, your new go-to diary app that seamlessly 
 Say goodbye to local storage limitations, and hello to a world where your thoughts are safely preserved in the cloud. 
 In this inaugural release, we've focused on creating a user-friendly experience centered around Google Sign-In and intuitive note-taking functionalities.
 
+https://play.google.com/store/apps/details?id=com.soloscape.compose
 
 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
     <img src="https://github.com/user-attachments/assets/af428437-c9b0-49ed-82a5-9efbe3ac4f75" alt="Screenshot 1" width="200"/>
