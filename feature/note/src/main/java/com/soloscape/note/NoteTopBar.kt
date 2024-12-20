@@ -1,15 +1,15 @@
 package com.soloscape.note
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -17,6 +17,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -26,14 +27,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import com.soloscape.util.model.Report
-import com.soloscape.ui.components.DisplayAlertDialog
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
 import com.maxkeppeler.sheets.calendar.CalendarDialog
 import com.maxkeppeler.sheets.calendar.models.CalendarConfig
 import com.maxkeppeler.sheets.calendar.models.CalendarSelection
 import com.maxkeppeler.sheets.clock.ClockDialog
 import com.maxkeppeler.sheets.clock.models.ClockSelection
+import com.soloscape.ui.components.DisplayAlertDialog
+import com.soloscape.ui.theme.MultiModularArchJCTheme
+import com.soloscape.util.clickableWithoutRipple
+import com.soloscape.util.model.Mood
+import com.soloscape.util.model.Report
 import com.soloscape.util.toInstant
 import java.text.SimpleDateFormat
 import java.time.LocalDate
@@ -47,12 +53,12 @@ import java.util.Locale
 @SuppressLint("NewApi")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun ReportTopBar(
+internal fun NoteTopBar(
     moodName: () -> String,
     selectedReport: Report?,
     onBackPressed: () -> Unit,
     onDeleteConfirmed: () -> Unit,
-    onDateTimeUpdated: (ZonedDateTime) -> Unit
+    onDateTimeUpdated: (ZonedDateTime) -> Unit,
 ) {
     val dateDialog = rememberUseCaseState()
     val timeDialog = rememberUseCaseState()
@@ -78,76 +84,88 @@ internal fun ReportTopBar(
         } else {
             "Unknown"
         }
-
     }
 
-    CenterAlignedTopAppBar(
+    TopAppBar(
         navigationIcon = {
             IconButton(onClick = onBackPressed) {
-                Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back Arrow Icon")
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                    contentDescription = "Back Arrow Icon",
+                )
             }
         },
         title = {
-            Column {
+            Column(
+                modifier = Modifier.padding(start = 10.dp),
+            ) {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = moodName(),
                     style = TextStyle(
                         fontSize = MaterialTheme.typography.titleLarge.fontSize,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
                     ),
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
                 )
 
                 Text(
                     modifier = Modifier.fillMaxWidth(),
-                    text = if (selectedReport != null && dateTimeUpdated) "$formattedDate $formattedTime"
-                    else if (selectedReport != null) selectedReportDateTime
-                    else "$formattedDate, $formattedTime",
+                    text = if (selectedReport != null && dateTimeUpdated) {
+                        "$formattedDate $formattedTime"
+                    } else if (selectedReport != null) {
+                        selectedReportDateTime
+                    } else {
+                        "$formattedDate, $formattedTime"
+                    },
                     style = TextStyle(
                         fontSize = MaterialTheme.typography.bodySmall.fontSize,
                     ),
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
                 )
             }
         },
         actions = {
-
             if (dateTimeUpdated) {
                 IconButton(onClick = {
                     currentDate = LocalDate.now()
                     currentTime = LocalTime.now()
                     dateTimeUpdated = false
-                    onDateTimeUpdated(ZonedDateTime.of(
-                        currentDate,
-                        currentTime,
-                        ZoneId.systemDefault()
-                    ))
+                    onDateTimeUpdated(
+                        ZonedDateTime.of(
+                            currentDate,
+                            currentTime,
+                            ZoneId.systemDefault(),
+                        ),
+                    )
                 }) {
                     Icon(
                         imageVector = Icons.Default.Close,
-                        contentDescription = "Close Icon"
+                        contentDescription = "Close Icon",
+                        tint = MaterialTheme.colorScheme.onSurface,
                     )
                 }
             } else {
-                IconButton(onClick = {
-                    dateDialog.show()
-                }) {
-                    Icon(
-                        imageVector = Icons.Default.DateRange,
-                        contentDescription = "Date Icon",
-                        tint = MaterialTheme.colorScheme.onSurface
-                    )
-                }
+                Icon(
+                    modifier = Modifier
+                        .padding(end = 10.dp)
+                        .clickableWithoutRipple(
+                            interactionSource = remember { MutableInteractionSource() },
+                            onClick = { dateDialog.show() },
+                        ),
+                    imageVector = Icons.Default.DateRange,
+                    contentDescription = "Date Icon",
+                    tint = MaterialTheme.colorScheme.onSurface,
+                )
             }
 
             if (selectedReport != null) {
                 DeleteReportAction(
                     selectedReport = selectedReport,
-                    onDeleteConfirmed = onDeleteConfirmed
+                    onDeleteConfirmed = onDeleteConfirmed,
                 )
             }
-        }
+        },
     )
 
     CalendarDialog(
@@ -156,28 +174,30 @@ internal fun ReportTopBar(
             currentDate = localDate
             timeDialog.show()
         },
-        config = CalendarConfig(monthSelection = true, yearSelection = true)
+        config = CalendarConfig(monthSelection = true, yearSelection = true),
     )
 
-    ClockDialog(state = timeDialog, selection = ClockSelection.HoursMinutes { hours, minutes ->
+    ClockDialog(
+        state = timeDialog,
+        selection = ClockSelection.HoursMinutes { hours, minutes ->
 
-        currentTime = LocalTime.of(hours, minutes)
-        dateTimeUpdated = true
-        onDateTimeUpdated(
-            ZonedDateTime.of(
-                currentDate,
-                currentTime,
-                ZoneId.systemDefault()
+            currentTime = LocalTime.of(hours, minutes)
+            dateTimeUpdated = true
+            onDateTimeUpdated(
+                ZonedDateTime.of(
+                    currentDate,
+                    currentTime,
+                    ZoneId.systemDefault(),
+                ),
             )
-        )
-    })
+        },
+    )
 }
-
 
 @Composable
 fun DeleteReportAction(
     selectedReport: Report?,
-    onDeleteConfirmed: () -> Unit
+    onDeleteConfirmed: () -> Unit,
 ) {
     var expanded by remember {
         mutableStateOf(false)
@@ -200,15 +220,35 @@ fun DeleteReportAction(
         message = "Are you sure you want to delete this note? '${selectedReport?.title}'?",
         dialogOpened = openDialog,
         onCloseDialog = { openDialog = false },
-        onYesClicked = onDeleteConfirmed
+        onYesClicked = onDeleteConfirmed,
     )
 
-    IconButton(onClick = { expanded = !expanded }) {
-        Icon(
-            imageVector = Icons.Default.MoreVert,
-            contentDescription = "Overflow Menu Icon",
-            tint = MaterialTheme.colorScheme.onSurface
+    Icon(
+        modifier = Modifier
+            .padding(end = 5.dp)
+            .clickableWithoutRipple(
+                interactionSource = remember { MutableInteractionSource() },
+                onClick = {
+                    expanded = !expanded
+                },
+            ),
+        imageVector = Icons.Default.MoreVert,
+        contentDescription = "Overflow Menu Icon",
+        tint = MaterialTheme.colorScheme.onSurface,
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun NoteTopBarPreview() {
+    MultiModularArchJCTheme {
+        NoteTopBar(
+            moodName = { Mood.Neutral.name },
+            selectedReport = null,
+            onBackPressed = {},
+            onDeleteConfirmed = {},
+            onDateTimeUpdated = {},
+
         )
     }
-
 }

@@ -9,5 +9,4 @@ object Elevation {
     val level3 = 6.0.dp
     val level4 = 8.0.dp
     val level5 = 12.0.dp
-
 }

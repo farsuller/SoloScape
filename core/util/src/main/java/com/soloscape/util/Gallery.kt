@@ -38,7 +38,6 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.soloscape.ui.GalleryImage
 import com.soloscape.ui.GalleryState
-
 import com.soloscape.ui.theme.Elevation
 import kotlin.math.max
 
@@ -48,14 +47,14 @@ fun Gallery(
     images: List<Uri>,
     imageSize: Dp = 40.dp,
     spaceBetween: Dp = 10.dp,
-    imageShape: CornerBasedShape = Shapes().small
+    imageShape: CornerBasedShape = Shapes().small,
 ) {
-    BoxWithConstraints (modifier = modifier){
+    BoxWithConstraints(modifier = modifier) {
         val numberOfVisibleImages = remember {
             derivedStateOf {
                 max(
                     a = 0,
-                    b = this.maxWidth.div(spaceBetween + imageSize).toInt().minus(1)
+                    b = this.maxWidth.div(spaceBetween + imageSize).toInt().minus(1),
                 )
             }
         }
@@ -78,16 +77,17 @@ fun Gallery(
                         .crossfade(true)
                         .build(),
                     contentScale = ContentScale.Crop,
-                    contentDescription = "Gallery Image"
+                    contentDescription = "Gallery Image",
 
                 )
                 Spacer(modifier = Modifier.width(spaceBetween))
             }
-            if(remainingImages.value > 0){
+            if (remainingImages.value > 0) {
                 LastImageOverlay(
                     imageSize = imageSize,
                     imageShape = imageShape,
-                    remainingImages = remainingImages.value )
+                    remainingImages = remainingImages.value,
+                )
             }
         }
     }
@@ -97,18 +97,17 @@ fun Gallery(
 fun GalleryUploader(
     modifier: Modifier = Modifier,
     galleryState: GalleryState,
-    imageSize : Dp = 60.dp,
-    imageShape : CornerBasedShape = Shapes().medium,
+    imageSize: Dp = 60.dp,
+    imageShape: CornerBasedShape = Shapes().medium,
     spaceBetween: Dp = 12.dp,
-    onAddClicked : () -> Unit,
-    onImageSelect : (Uri) -> Unit,
-    onImageClicked : (GalleryImage) -> Unit
-){
+    onAddClicked: () -> Unit,
+    onImageSelect: (Uri) -> Unit,
+    onImageClicked: (GalleryImage) -> Unit,
+) {
     val multiplePhotoPicker = rememberLauncherForActivityResult(
-       // contract = ActivityResultContracts.PickMultipleVisualMedia(maxItems = 8)
-        contract = ActivityResultContracts.PickVisualMedia()
-    )
-    { images->
+        // contract = ActivityResultContracts.PickMultipleVisualMedia(maxItems = 8)
+        contract = ActivityResultContracts.PickVisualMedia(),
+    ) { images ->
         if (images != null) {
             onImageSelect(images)
         }
@@ -117,12 +116,12 @@ fun GalleryUploader(
 //        }
     }
 
-    BoxWithConstraints (modifier = modifier){
+    BoxWithConstraints(modifier = modifier) {
         val numberOfVisibleImages = remember {
             derivedStateOf {
                 max(
                     a = 0,
-                    b = this.maxWidth.div(spaceBetween + imageSize).toInt().minus(2)
+                    b = this.maxWidth.div(spaceBetween + imageSize).toInt().minus(2),
                 )
             }
         }
@@ -133,20 +132,21 @@ fun GalleryUploader(
             }
         }
 
-        Row (
+        Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = if(galleryState.images.isEmpty()) Arrangement.Start else Arrangement.Center
+            horizontalArrangement = if (galleryState.images.isEmpty()) Arrangement.Start else Arrangement.Center,
         ) {
-            if(galleryState.images.isEmpty()){
+            if (galleryState.images.isEmpty()) {
                 AddImageButton(
                     imageSize = imageSize,
                     imageShape = imageShape,
                     onClick = {
                         onAddClicked()
                         multiplePhotoPicker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-                    })
+                    },
+                )
             }
-            
+
             Spacer(modifier = Modifier.width(spaceBetween))
 
             galleryState.images.take(numberOfVisibleImages.value).forEach { galleryImage ->
@@ -157,70 +157,73 @@ fun GalleryUploader(
                         .clickable {
                             onImageClicked(galleryImage)
                         },
-                    model = ImageRequest.Builder(LocalContext.current).data(galleryImage.image).crossfade(true).build(),
+                    model = ImageRequest.Builder(LocalContext.current).data(galleryImage.image)
+                        .crossfade(true).build(),
                     contentScale = ContentScale.Crop,
-                    contentDescription = "Gallery Image"
+                    contentDescription = "Gallery Image",
 
                 )
                 Spacer(modifier = Modifier.width(spaceBetween))
             }
-            if(remainingImages.value > 0){
-                LastImageOverlay(imageSize = imageSize, imageShape = imageShape,remainingImages = remainingImages.value )
+            if (remainingImages.value > 0) {
+                LastImageOverlay(
+                    imageSize = imageSize,
+                    imageShape = imageShape,
+                    remainingImages = remainingImages.value,
+                )
             }
         }
     }
-
-
 }
 
 @Composable
 fun AddImageButton(
     imageSize: Dp,
     imageShape: CornerBasedShape,
-    onClick : () -> Unit
-){
+    onClick: () -> Unit,
+) {
     Surface(
         modifier = Modifier
             .size(imageSize)
             .clip(shape = imageShape),
         onClick = onClick,
-        tonalElevation = Elevation.level1
+        tonalElevation = Elevation.level1,
     ) {
         Box(
             modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ){
+            contentAlignment = Alignment.Center,
+        ) {
             Icon(
                 imageVector = Icons.Default.Add,
-                contentDescription = "Add Icon"
+                contentDescription = "Add Icon",
             )
         }
     }
-
 }
 
 @Composable
 fun LastImageOverlay(
     imageSize: Dp,
-    imageShape : CornerBasedShape,
-    remainingImages : Int,
+    imageShape: CornerBasedShape,
+    remainingImages: Int,
 
-){
-    Box(contentAlignment = Alignment.Center){
-        Surface(modifier = Modifier
-            .clip(imageShape)
-            .size(imageSize),
-            color = MaterialTheme.colorScheme.primaryContainer) {
-
+) {
+    Box(contentAlignment = Alignment.Center) {
+        Surface(
+            modifier = Modifier
+                .clip(imageShape)
+                .size(imageSize),
+            color = MaterialTheme.colorScheme.primaryContainer,
+        ) {
         }
 
-        Text(text = "${remainingImages}",
+        Text(
+            text = "$remainingImages",
             style = TextStyle(
                 fontSize = MaterialTheme.typography.bodyLarge.fontSize,
-                fontWeight = FontWeight.Medium
+                fontWeight = FontWeight.Medium,
             ),
-            color = MaterialTheme.colorScheme.onPrimaryContainer
+            color = MaterialTheme.colorScheme.onPrimaryContainer,
         )
     }
-
 }

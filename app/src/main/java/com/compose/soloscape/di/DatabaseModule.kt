@@ -18,12 +18,12 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideDatabase(
-        @ApplicationContext context: Context
+        @ApplicationContext context: Context,
     ): ImagesDatabase {
         return Room.databaseBuilder(
             context = context,
             klass = ImagesDatabase::class.java,
-            name = IMAGES_DATABASE
+            name = IMAGES_DATABASE,
         ).build()
     }
 
@@ -37,5 +37,5 @@ object DatabaseModule {
 
     @Singleton
     @Provides
-    fun provideNetworkConnectivityObserver(@ApplicationContext context: Context) = NetworkConnectivityObserver(context =  context)
+    fun provideNetworkConnectivityObserver(@ApplicationContext context: Context) = NetworkConnectivityObserver(context = context)
 }

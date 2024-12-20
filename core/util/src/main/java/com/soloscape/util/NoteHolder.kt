@@ -55,31 +55,33 @@ import java.util.Locale
 
 @Composable
 fun ReportHolder(report: Report, onClick: (String) -> Unit) {
-
     val context = LocalContext.current
     val localDensity = LocalDensity.current
     var componentHeight by remember { mutableStateOf(0.dp) }
     var galleryOpened by remember { mutableStateOf(false) }
-    val downloadedImages = remember{ mutableStateListOf<Uri>()}
+    val downloadedImages = remember { mutableStateListOf<Uri>() }
     var galleryLoading by remember { mutableStateOf(false) }
 
-
-    LaunchedEffect(key1 = galleryOpened){
-        if(galleryOpened && downloadedImages.isEmpty()){
+    LaunchedEffect(key1 = galleryOpened) {
+        if (galleryOpened && downloadedImages.isEmpty()) {
             galleryLoading = true
             fetchImagesFromFirebase(
                 remoteImagePaths = report.images,
                 onImageDownload = { images -> downloadedImages.add(images) },
                 onImageDownloadFailed = {
-                    Toast.makeText(context, "Images not uploaded yet." +
-                            "Wait a little bit, or try uploading again.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        "Images not uploaded yet." +
+                            "Wait a little bit, or try uploading again.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
                     galleryLoading = false
                     galleryOpened = false
                 },
                 onReadyDisplay = {
                     galleryLoading = false
                     galleryOpened = true
-                }
+                },
             )
         }
     }
@@ -88,19 +90,18 @@ fun ReportHolder(report: Report, onClick: (String) -> Unit) {
             indication = null,
             interactionSource = remember {
                 MutableInteractionSource()
-            }
+            },
         ) {
             onClick(report._id.toHexString())
-        }) {
-
+        },
+    ) {
         Spacer(modifier = Modifier.width(14.dp))
         Surface(
             modifier = Modifier
                 .width(2.dp)
                 .height(componentHeight + 14.dp),
-            tonalElevation = Elevation.level1
+            tonalElevation = Elevation.level1,
         ) {
-
         }
         Spacer(modifier = Modifier.width(20.dp))
 
@@ -110,9 +111,8 @@ fun ReportHolder(report: Report, onClick: (String) -> Unit) {
                 .onGloballyPositioned {
                     componentHeight = with(localDensity) { it.size.height.toDp() }
                 },
-            tonalElevation = Elevation.level1
-        )
-        {
+            tonalElevation = Elevation.level1,
+        ) {
             Column(modifier = Modifier.fillMaxWidth()) {
                 ReportHeader(moodName = report.mood, time = report.date.toInstant())
 
@@ -121,7 +121,7 @@ fun ReportHolder(report: Report, onClick: (String) -> Unit) {
                     text = report.description,
                     style = TextStyle(fontSize = MaterialTheme.typography.bodyLarge.fontSize),
                     maxLines = 4,
-                    overflow = TextOverflow.Ellipsis
+                    overflow = TextOverflow.Ellipsis,
                 )
 
                 if (report.images.isNotEmpty()) {
@@ -130,7 +130,8 @@ fun ReportHolder(report: Report, onClick: (String) -> Unit) {
                         galleryOpened = galleryOpened,
                         onClick = {
                             galleryOpened = !galleryOpened
-                        })
+                        },
+                    )
                 }
 
                 AnimatedVisibility(
@@ -138,16 +139,15 @@ fun ReportHolder(report: Report, onClick: (String) -> Unit) {
                     enter = fadeIn() + expandVertically(
                         animationSpec = spring(
                             dampingRatio = Spring.DampingRatioMediumBouncy,
-                            stiffness = Spring.StiffnessLow
-                        )
-                    )
+                            stiffness = Spring.StiffnessLow,
+                        ),
+                    ),
                 ) {
                     Column(modifier = Modifier.padding(all = 14.dp)) {
-                        Gallery(images = downloadedImages )
+                        Gallery(images = downloadedImages)
                     }
                 }
             }
-
         }
     }
 }
@@ -163,26 +163,26 @@ fun ReportHeader(moodName: String, time: Instant) {
             .background(mood.containerColor)
             .padding(horizontal = 14.dp, vertical = 7.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Image(
                 modifier = Modifier.size(18.dp),
                 painter = painterResource(id = mood.icon),
-                contentDescription = "Mood Icon"
+                contentDescription = "Mood Icon",
             )
 
             Spacer(modifier = Modifier.width(7.dp))
             Text(
                 text = mood.name,
                 color = mood.contentColor,
-                style = TextStyle(fontSize = MaterialTheme.typography.bodyMedium.fontSize)
+                style = TextStyle(fontSize = MaterialTheme.typography.bodyMedium.fontSize),
             )
         }
         Text(
             style = TextStyle(fontSize = MaterialTheme.typography.bodyMedium.fontSize),
             color = mood.contentColor,
-            text = SimpleDateFormat("hh:mm a", Locale.US).format(Date.from(time))
+            text = SimpleDateFormat("hh:mm a", Locale.US).format(Date.from(time)),
         )
     }
 }
@@ -190,15 +190,17 @@ fun ReportHeader(moodName: String, time: Instant) {
 @Composable
 fun ShowGalleryButton(
     galleryOpened: Boolean,
-    galleryLoading : Boolean,
-    onClick: () -> Unit
+    galleryLoading: Boolean,
+    onClick: () -> Unit,
 ) {
     TextButton(onClick = onClick) {
         Text(
-            text = if (galleryOpened)
+            text = if (galleryOpened) {
                 if (galleryLoading) "Loading" else "Hide Gallery"
-            else "Show Gallery",
-            style = TextStyle(fontSize = MaterialTheme.typography.bodySmall.fontSize)
+            } else {
+                "Show Gallery"
+            },
+            style = TextStyle(fontSize = MaterialTheme.typography.bodySmall.fontSize),
         )
     }
 }
@@ -206,11 +208,14 @@ fun ShowGalleryButton(
 @Composable
 @Preview(showBackground = true)
 fun ReportHolderPreview() {
-    ReportHolder(report = Report().apply {
-        title = "My Report"
-        description =
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur"
-        mood = Mood.Happy.name
-        images = realmListOf("", "")
-    }, onClick = {})
+    ReportHolder(
+        report = Report().apply {
+            title = "My Report"
+            description =
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur"
+            mood = Mood.Happy.name
+            images = realmListOf("", "")
+        },
+        onClick = {},
+    )
 }

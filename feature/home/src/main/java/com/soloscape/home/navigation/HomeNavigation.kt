@@ -21,7 +21,6 @@ import com.soloscape.util.Constants.APP_ID
 import com.soloscape.util.ScreensRoutes
 import com.soloscape.util.model.RequestState
 import io.realm.kotlin.mongodb.App
-
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -32,7 +31,7 @@ fun NavGraphBuilder.homeRoute(
     onDataLoaded: () -> Unit,
     navigateToWriteWithArgs: (String) -> Unit,
     darkTheme: Boolean,
-    onThemeUpdated: () -> Unit
+    onThemeUpdated: () -> Unit,
 ) {
     composable(route = ScreensRoutes.Home.route) {
         val viewModel: HomeViewModel = hiltViewModel()
@@ -42,7 +41,6 @@ fun NavGraphBuilder.homeRoute(
         var signOutDialogOpened by remember { mutableStateOf(false) }
         var deleteAllDialogOpened by remember { mutableStateOf(false) }
         val context = LocalContext.current
-
 
         LaunchedEffect(key1 = report) {
             if (report !is RequestState.Loading) {
@@ -73,7 +71,6 @@ fun NavGraphBuilder.homeRoute(
 
         )
 
-
         LaunchedEffect(key1 = Unit) {
             MongoDB.configureTheRealm()
         }
@@ -94,7 +91,8 @@ fun NavGraphBuilder.homeRoute(
                         }
                     }
                 }
-            })
+            },
+        )
 
         DisplayAlertDialog(
             title = "Delete all notes",
@@ -113,13 +111,14 @@ fun NavGraphBuilder.homeRoute(
                         Toast.makeText(
                             context,
                             if (it.message == "No Internet Connection.") "We need internet connection to delete all notes." else it.message,
-                            Toast.LENGTH_SHORT
+                            Toast.LENGTH_SHORT,
                         ).show()
                         scope.launch {
                             drawerState.close()
                         }
-                    }
+                    },
                 )
-            })
+            },
+        )
     }
 }

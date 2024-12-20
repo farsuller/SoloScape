@@ -8,9 +8,6 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.soloscape.util.model.Mood
-import com.soloscape.util.model.Report
-import com.soloscape.util.model.RequestState
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -19,13 +16,16 @@ import com.soloscape.mongo.database.ImageToDeleteDao
 import com.soloscape.mongo.database.ImageToUploadDao
 import com.soloscape.mongo.database.entity.ImageToUpload
 import com.soloscape.mongo.repository.MongoDB
+import com.soloscape.note.model.UiNoteState
 import com.soloscape.ui.GalleryImage
 import com.soloscape.ui.GalleryState
 import com.soloscape.util.Constants.NOTE_SCREEN_ARG_KEY
 import com.soloscape.util.fetchImagesFromFirebase
+import com.soloscape.util.model.Mood
+import com.soloscape.util.model.Report
+import com.soloscape.util.model.RequestState
 import com.soloscape.util.toRealmInstant
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.realm.kotlin.types.RealmInstant
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
@@ -35,15 +35,15 @@ import java.time.ZonedDateTime
 import javax.inject.Inject
 
 @HiltViewModel
-internal class ReportViewModel @Inject constructor(
+internal class NoteViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val imagesToUploadDao: ImageToUploadDao,
-    private val imageToDeleteDao: ImageToDeleteDao
+    private val imageToDeleteDao: ImageToDeleteDao,
 ) : ViewModel() {
 
     val galleryState = GalleryState()
 
-    var uiState by mutableStateOf(UiState())
+    var uiState by mutableStateOf(UiNoteState())
         private set
 
     init {
@@ -53,7 +53,7 @@ internal class ReportViewModel @Inject constructor(
 
     private fun getReportIdArgument() {
         uiState = uiState.copy(
-            selectedReportId = savedStateHandle.get<String>(key = NOTE_SCREEN_ARG_KEY)
+            selectedReportId = savedStateHandle.get<String>(key = NOTE_SCREEN_ARG_KEY),
         )
     }
 
@@ -76,15 +76,18 @@ internal class ReportViewModel @Inject constructor(
                                     galleryState.addImage(
                                         GalleryImage(
                                             image = downloadedImage,
-                                            remoteImagePath = extractImagePath(fullImageUrl = downloadedImage.toString())
-                                        )
+                                            remoteImagePath = extractImagePath(fullImageUrl = downloadedImage.toString()),
+                                        ),
                                     )
-                                }
+                                },
                             )
                         }
                     }
             }
         }
+    }
+    fun refreshView() {
+        fetchSelectedReport()
     }
 
     private fun setSelectedReport(report: Report) {
@@ -99,7 +102,7 @@ internal class ReportViewModel @Inject constructor(
         uiState = uiState.copy(description = description)
     }
 
-    private fun setMood(mood: Mood) {
+    fun setMood(mood: Mood) {
         uiState = uiState.copy(mood = mood)
     }
 
@@ -111,7 +114,7 @@ internal class ReportViewModel @Inject constructor(
     fun insertUpdateNotes(
         report: Report,
         onSuccess: () -> Unit,
-        onError: (String) -> Unit
+        onError: (String) -> Unit,
     ) {
         viewModelScope.launch(Dispatchers.Main) {
             if (uiState.selectedReportId != null) {
@@ -125,13 +128,15 @@ internal class ReportViewModel @Inject constructor(
     private suspend fun insertNotes(
         report: Report,
         onSuccess: () -> Unit,
-        onError: (String) -> Unit
+        onError: (String) -> Unit,
     ) {
-        val result = MongoDB.addNewNotes(report = report.apply {
-            if (uiState.updatedDateTime != null) {
-                date = uiState.updatedDateTime!!
-            }
-        })
+        val result = MongoDB.addNewNotes(
+            report = report.apply {
+                if (uiState.updatedDateTime != null) {
+                    date = uiState.updatedDateTime!!
+                }
+            },
+        )
         if (result is RequestState.Success) {
             uploadImageToFirebase()
             withContext(Dispatchers.Main) {
@@ -147,14 +152,15 @@ internal class ReportViewModel @Inject constructor(
     private suspend fun updateNotes(
         report: Report,
         onSuccess: () -> Unit,
-        onError: (String) -> Unit
+        onError: (String) -> Unit,
     ) {
-        val result = MongoDB.updateNotes(report = report.apply {
-            _id = ObjectId.invoke(uiState.selectedReportId!!)
-            date =
-                if (uiState.updatedDateTime != null) uiState.updatedDateTime!! else uiState.selectedReport!!.date
-
-        })
+        val result = MongoDB.updateNotes(
+            report = report.apply {
+                _id = ObjectId.invoke(uiState.selectedReportId!!)
+                date =
+                    if (uiState.updatedDateTime != null) uiState.updatedDateTime!! else uiState.selectedReport!!.date
+            },
+        )
         if (result is RequestState.Success) {
             uploadImageToFirebase()
             deleteImagesFromFirebase(images = uiState.selectedReport?.images)
@@ -170,7 +176,7 @@ internal class ReportViewModel @Inject constructor(
 
     fun deleteNotes(
         onSuccess: () -> Unit,
-        onError: (String) -> Unit
+        onError: (String) -> Unit,
     ) {
         viewModelScope.launch(Dispatchers.IO) {
             if (uiState.selectedReportId != null) {
@@ -189,33 +195,33 @@ internal class ReportViewModel @Inject constructor(
         }
     }
 
-    fun addImage(image: Uri, imageType: String){
+    fun addImage(image: Uri, imageType: String) {
         val remoteImagePath = "images/${FirebaseAuth.getInstance().currentUser?.uid}/" +
-                "${image.lastPathSegment}-${System.currentTimeMillis()}.$imageType"
+            "${image.lastPathSegment}-${System.currentTimeMillis()}.$imageType"
 
         galleryState.addImage(
             GalleryImage(
                 image = image,
-                remoteImagePath = remoteImagePath
-            )
+                remoteImagePath = remoteImagePath,
+            ),
         )
     }
 
-    private fun uploadImageToFirebase(){
+    private fun uploadImageToFirebase() {
         val storage = FirebaseStorage.getInstance().reference
         galleryState.images.forEach { galleryImage ->
             val imagePath = storage.child(galleryImage.remoteImagePath)
             imagePath.putFile(galleryImage.image)
                 .addOnProgressListener {
                     val sessionUri = it.uploadSessionUri
-                    if(sessionUri != null){
+                    if (sessionUri != null) {
                         viewModelScope.launch(Dispatchers.IO) {
                             imagesToUploadDao.addImageToUpload(
                                 ImageToUpload(
                                     remoteImagePath = galleryImage.remoteImagePath,
                                     imageUri = galleryImage.image.toString(),
-                                    sessionUri = sessionUri.toString()
-                                )
+                                    sessionUri = sessionUri.toString(),
+                                ),
                             )
                         }
                     }
@@ -231,19 +237,9 @@ internal class ReportViewModel @Inject constructor(
         }
     }
 
-    private fun extractImagePath(fullImageUrl : String) : String{
+    private fun extractImagePath(fullImageUrl: String): String {
         val chunks = fullImageUrl.split("%2F")
         val imageName = chunks[2].split("?").first()
         return "images/${Firebase.auth.currentUser?.uid}/$imageName"
     }
-
 }
-
-internal data class UiState(
-    val selectedReportId: String? = null,
-    val selectedReport: Report? = null,
-    val title: String = "",
-    val description: String = "",
-    val mood: Mood = Mood.Neutral,
-    val updatedDateTime: RealmInstant? = null
-)

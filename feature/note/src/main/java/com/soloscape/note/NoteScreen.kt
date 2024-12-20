@@ -36,6 +36,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.soloscape.note.model.NoteChanges
+import com.soloscape.note.model.UiNoteState
 import com.soloscape.ui.GalleryImage
 import com.soloscape.ui.GalleryState
 import com.soloscape.util.model.Mood
@@ -45,54 +47,55 @@ import java.time.ZonedDateTime
 @OptIn(ExperimentalFoundationApi::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-internal fun ReportScreen(
+internal fun NoteScreen(
     pagerState: PagerState,
     onDeleteConfirmed: () -> Unit,
     onBackPressed: () -> Unit,
-    uiState: UiState,
-    onTitleChanged: (String) -> Unit,
-    onDescriptionChanged: (String) -> Unit,
-    moodName : () -> String,
-    onSaveClicked : (Report) -> Unit,
+    uiState: UiNoteState,
+    onNoteChange: (NoteChanges) -> Unit,
+    moodName: () -> String,
+    onSaveClicked: (Report) -> Unit,
     onDateTimeUpdated: (ZonedDateTime) -> Unit,
     galleryState: GalleryState,
-    onImageSelect : (Uri) -> Unit,
-    onImageDeleteClicked : (GalleryImage) -> Unit
+    onImageSelect: (Uri) -> Unit,
+    onImageDeleteClicked: (GalleryImage) -> Unit,
 ) {
-    var selectedGalleryImage by remember{ mutableStateOf<GalleryImage?>(null) }
+    var selectedGalleryImage by remember { mutableStateOf<GalleryImage?>(null) }
 
-    //update the mood when selecting an existing report
-    LaunchedEffect(key1 = uiState.mood){
+    // update the mood when selecting an existing report
+    LaunchedEffect(key1 = uiState.mood) {
         pagerState.scrollToPage(Mood.valueOf(uiState.mood.name).ordinal)
     }
 
     Scaffold(
         topBar = {
-            ReportTopBar(
+            NoteTopBar(
                 selectedReport = uiState.selectedReport,
                 onDeleteConfirmed = onDeleteConfirmed,
                 onBackPressed = onBackPressed,
                 moodName = moodName,
-                onDateTimeUpdated = onDateTimeUpdated
+                onDateTimeUpdated = onDateTimeUpdated,
             )
         },
         content = { paddingValues ->
-            ReportContent(
+            NoteContent(
                 uiState = uiState,
-                title = uiState.title,
-                onTitleChanged = onTitleChanged,
-                description = uiState.description,
-                onDescriptionChanged = onDescriptionChanged,
+                noteChanges = NoteChanges(
+                    title = uiState.title,
+                    description = uiState.description,
+                ),
+                onNoteChange = { updatedNoteChanges ->
+                    onNoteChange(updatedNoteChanges)
+                },
                 pagerState = pagerState,
                 paddingValues = paddingValues,
                 onSaveClicked = onSaveClicked,
                 galleryState = galleryState,
                 onImageSelect = onImageSelect,
-                onImageClicked= { selectedGalleryImage = it }
+                onImageClicked = { selectedGalleryImage = it },
             )
 
-            AnimatedVisibility(visible = selectedGalleryImage != null)
-            {
+            AnimatedVisibility(visible = selectedGalleryImage != null) {
                 Dialog(onDismissRequest = { selectedGalleryImage = null }) {
                     if (selectedGalleryImage != null) {
                         ZoomableImage(
@@ -103,28 +106,29 @@ internal fun ReportScreen(
                                     onImageDeleteClicked(selectedGalleryImage!!)
                                     selectedGalleryImage = null
                                 }
-                            })
+                            },
+                        )
                     }
                 }
             }
-        }
+        },
     )
 }
 
 @Composable
 fun ZoomableImage(
-    selectedGalleryImage : GalleryImage,
-    onCloseClicked : () -> Unit,
-    onDeleteClicked : () -> Unit
-){
+    selectedGalleryImage: GalleryImage,
+    onCloseClicked: () -> Unit,
+    onDeleteClicked: () -> Unit,
+) {
     var offsetX by remember { mutableFloatStateOf(0f) }
     var offsetY by remember { mutableFloatStateOf(0f) }
     var scale by remember { mutableFloatStateOf(1f) }
 
     Box(
-        modifier = Modifier.pointerInput(Unit){
+        modifier = Modifier.pointerInput(Unit) {
             detectTransformGestures { _, pan, zoom, _ ->
-                //maximum zoom is 5
+                // maximum zoom is 5
                 scale = maxOf(1f, minOf(scale * zoom, 5f))
 
                 val maxX = (size.width * (scale - 1)) / 2
@@ -135,31 +139,33 @@ fun ZoomableImage(
                 val minY = -maxY
                 offsetY = maxOf(minY, minOf(maxY, offsetY + pan.y))
             }
-        }
-    ){
-        AsyncImage(modifier = Modifier
-            .fillMaxSize()
-            .graphicsLayer(
-                scaleX = maxOf(.5f, minOf(3f, scale)),
-                scaleY = maxOf(.5f, minOf(3f, scale)),
-                translationX = offsetX,
-                translationY = offsetY
-            ),
+        },
+    ) {
+        AsyncImage(
+            modifier = Modifier
+                .fillMaxSize()
+                .graphicsLayer(
+                    scaleX = maxOf(.5f, minOf(3f, scale)),
+                    scaleY = maxOf(.5f, minOf(3f, scale)),
+                    translationX = offsetX,
+                    translationY = offsetY,
+                ),
             model = ImageRequest
                 .Builder(LocalContext.current)
                 .data(selectedGalleryImage.image.toString())
                 .crossfade(true)
                 .build(),
             contentScale = ContentScale.Fit,
-            contentDescription = "Gallery Image")
-        Row (
+            contentDescription = "Gallery Image",
+        )
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 24.dp)
                 .padding(top = 24.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ){
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
             Button(onClick = onCloseClicked) {
                 Icon(imageVector = Icons.Default.Close, contentDescription = "Close Icon")
                 Text(text = "Close")

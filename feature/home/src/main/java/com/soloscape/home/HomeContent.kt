@@ -24,43 +24,41 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.soloscape.util.model.Report
 import com.soloscape.util.ReportHolder
+import com.soloscape.util.model.Report
 import java.time.LocalDate
-
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun HomeContent(
     paddingValues: PaddingValues,
-    reportNotes : Map<LocalDate, List<Report>>,
-    onClick: (String) -> Unit
-){
-    if(reportNotes.isNotEmpty()){
-        LazyColumn(modifier = Modifier
-            .padding(horizontal = 24.dp)
-            .navigationBarsPadding()
-            .padding(top = paddingValues.calculateTopPadding())
-            )
-        {
+    reportNotes: Map<LocalDate, List<Report>>,
+    onClick: (String) -> Unit,
+) {
+    if (reportNotes.isNotEmpty()) {
+        LazyColumn(
+            modifier = Modifier
+                .padding(horizontal = 24.dp)
+                .navigationBarsPadding()
+                .padding(top = paddingValues.calculateTopPadding()),
+        ) {
             reportNotes.forEach { (localDate, reports) ->
-                stickyHeader(key = localDate){
+                stickyHeader(key = localDate) {
                     DateHeader(localDate = localDate)
                 }
-
                 items(
                     items = reports,
-                    key = { it._id.toString() })
-                {
+                    key = { it._id.toString() },
+                ) {
                     ReportHolder(report = it, onClick = onClick)
                 }
             }
         }
-    }else{
+    } else {
         EmptyPage()
     }
-
 }
+
 @SuppressLint("NewApi")
 @Composable
 internal fun DateHeader(localDate: LocalDate) {
@@ -68,50 +66,47 @@ internal fun DateHeader(localDate: LocalDate) {
         modifier = Modifier
             .fillMaxWidth()
             .background(MaterialTheme.colorScheme.surface)
-            .padding(vertical = 14.dp)
-            ,
-        verticalAlignment = Alignment.CenterVertically)
-    {
-        Column(horizontalAlignment = Alignment.End)
-        {
+            .padding(vertical = 14.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Column(horizontalAlignment = Alignment.End) {
             Text(
                 style =
                 TextStyle(
                     fontSize = MaterialTheme.typography.titleLarge.fontSize,
-                    fontWeight = FontWeight.Light
+                    fontWeight = FontWeight.Light,
                 ),
-                text = String.format("%02d", localDate.dayOfMonth)
+                text = String.format("%02d", localDate.dayOfMonth),
             )
 
             Text(
                 style = TextStyle(
                     fontSize = MaterialTheme.typography.bodySmall.fontSize,
-                    fontWeight = FontWeight.Light
+                    fontWeight = FontWeight.Light,
                 ),
-                text = localDate.dayOfWeek.toString().take(3)
+                text = localDate.dayOfWeek.toString().take(3),
             )
         }
 
         Spacer(modifier = Modifier.width(14.dp))
 
-        Column(horizontalAlignment = Alignment.Start)
-        {
+        Column(horizontalAlignment = Alignment.Start) {
             Text(
                 style =
                 TextStyle(
                     fontSize = MaterialTheme.typography.titleLarge.fontSize,
-                    fontWeight = FontWeight.Light
+                    fontWeight = FontWeight.Light,
                 ),
-                text = localDate.month.toString().lowercase().replaceFirstChar { it.titlecase() }
+                text = localDate.month.toString().lowercase().replaceFirstChar { it.titlecase() },
             )
 
             Text(
                 style = TextStyle(
                     fontSize = MaterialTheme.typography.bodySmall.fontSize,
-                    fontWeight = FontWeight.Light
+                    fontWeight = FontWeight.Light,
                 ),
                 text = "${localDate.year}",
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
             )
         }
     }
@@ -120,28 +115,28 @@ internal fun DateHeader(localDate: LocalDate) {
 @Composable
 internal fun EmptyPage(
     title: String = "Welcome to SoloScape",
-    subtitle: String = "Write Something"
+    subtitle: String = "Write Something",
 ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(all = 24.dp),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
             text = title,
             style = TextStyle(
                 fontSize = MaterialTheme.typography.titleMedium.fontSize,
-                fontWeight = FontWeight.Medium
-            )
+                fontWeight = FontWeight.Medium,
+            ),
         )
         Text(
             text = subtitle,
             style = TextStyle(
                 fontSize = MaterialTheme.typography.bodyMedium.fontSize,
-                fontWeight = FontWeight.Normal
-            )
+                fontWeight = FontWeight.Normal,
+            ),
         )
     }
 }

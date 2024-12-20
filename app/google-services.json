@@ -14,11 +14,40 @@
       },
       "oauth_client": [
         {
-          "client_id": "390613235031-qngnnv95k6s2kis1j3a4hjhj848ce528.apps.googleusercontent.com",
+          "client_id": "390613235031-4heie03ect9t1loh5plkfaervtumpbp7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsQgY-IkFSQZJmk4XuCnqHHB091N_vfiY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "390613235031-41s3u0sanuhv6fgbb1mv6db27n7io0av.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:390613235031:android:765818d9d4534608c0fa12",
+        "android_client_info": {
+          "package_name": "com.soloscape.compose.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "390613235031-j446e1se8ja4ie1ajo5ig61tfffjrno8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.soloscape.compose",
-            "certificate_hash": "0abe68b92ad1c0a6c03a1c81f33b9a1f80cf1c9c"
+            "package_name": "com.soloscape.compose.debug",
+            "certificate_hash": "8d4f3d9be9da63747ab0b90fbd91bc4a76b34757"
           }
         },
         {

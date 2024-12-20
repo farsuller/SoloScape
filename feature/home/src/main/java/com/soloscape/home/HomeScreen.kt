@@ -1,7 +1,6 @@
 package com.soloscape.home
 
 import android.annotation.SuppressLint
-import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -41,17 +40,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import com.soloscape.ui.R
 import com.soloscape.mongo.repository.Reports
-import com.soloscape.util.model.RequestState
+import com.soloscape.ui.R
 import com.soloscape.ui.components.ThemeSwitcher
 import com.soloscape.util.getAppVersion
+import com.soloscape.util.model.RequestState
 import java.time.ZonedDateTime
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -63,7 +60,7 @@ internal fun HomeScreen(
     drawerState: DrawerState,
     onSignOutClicked: () -> Unit,
     navigateToWriteWithArgs: (String) -> Unit,
-    onDeleteAllClicked :() -> Unit,
+    onDeleteAllClicked: () -> Unit,
     dateIsSelected: Boolean,
     onDateSelected: (ZonedDateTime) -> Unit,
     onDateReset: () -> Unit,
@@ -79,7 +76,7 @@ internal fun HomeScreen(
         onDeleteAllClicked = onDeleteAllClicked,
         darkTheme = darkTheme,
         onThemeUpdated = onThemeUpdated,
-        appVersion = appVersion
+        appVersion = appVersion,
     ) {
         Scaffold(
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -89,7 +86,8 @@ internal fun HomeScreen(
                     scrollBehavior = scrollBehavior,
                     onDateReset = onDateReset,
                     onDateSelected = onDateSelected,
-                    dateIsSelected = dateIsSelected)
+                    dateIsSelected = dateIsSelected,
+                )
             },
             floatingActionButton = {
                 FloatingActionButton(
@@ -97,11 +95,11 @@ internal fun HomeScreen(
                     modifier = Modifier
                         .padding(end = padding.calculateEndPadding(LayoutDirection.Ltr)),
                     onClick = navigateToWrite,
-                    containerColor = MaterialTheme.colorScheme.primary
+                    containerColor = MaterialTheme.colorScheme.primary,
                 ) {
                     Icon(
                         imageVector = Icons.Default.Edit,
-                        contentDescription = "New Report Icon"
+                        contentDescription = "New Report Icon",
                     )
                 }
             },
@@ -112,20 +110,21 @@ internal fun HomeScreen(
                         HomeContent(
                             paddingValues = it,
                             reportNotes = reports.data,
-                            onClick = navigateToWriteWithArgs)
+                            onClick = navigateToWriteWithArgs,
+                        )
                     }
 
                     is RequestState.Error -> {
                         EmptyPage(
                             title = "Error",
-                            subtitle = "${reports.error.message}"
+                            subtitle = "${reports.error.message}",
                         )
                     }
 
                     is RequestState.Loading -> {
                         Box(
                             modifier = Modifier.fillMaxSize(),
-                            contentAlignment = Alignment.Center
+                            contentAlignment = Alignment.Center,
                         ) {
                             CircularProgressIndicator()
                         }
@@ -133,8 +132,7 @@ internal fun HomeScreen(
 
                     else -> {}
                 }
-
-            }
+            },
         )
     }
 }
@@ -143,13 +141,12 @@ internal fun HomeScreen(
 internal fun NavigationDrawer(
     drawerState: DrawerState,
     onSignOutClicked: () -> Unit,
-    onDeleteAllClicked :() -> Unit,
+    onDeleteAllClicked: () -> Unit,
     darkTheme: Boolean,
     onThemeUpdated: () -> Unit,
     appVersion: String,
     content: @Composable () -> Unit,
 ) {
-
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
@@ -160,43 +157,42 @@ internal fun NavigationDrawer(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(250.dp),
-                        contentAlignment = Alignment.Center
-                    )
-                    {
+                        contentAlignment = Alignment.Center,
+                    ) {
                         Column(
                             modifier = Modifier.fillMaxSize(),
                             verticalArrangement = Arrangement.Center,
-                            horizontalAlignment = Alignment.CenterHorizontally
+                            horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
                             Image(
                                 modifier = Modifier.size(200.dp),
                                 painter = painterResource(id = R.drawable.logo),
-                                contentDescription = "Logo Image"
+                                contentDescription = "Logo Image",
                             )
                             Text(
                                 text = appVersion,
-                                style = MaterialTheme.typography.bodySmall
+                                style = MaterialTheme.typography.bodySmall,
                             )
                         }
                     }
-                    Column (modifier = Modifier.fillMaxWidth()){
+                    Column(modifier = Modifier.fillMaxWidth()) {
                         NavigationDrawerItem(
                             label = {
                                 Row(modifier = Modifier.padding(horizontal = 12.dp)) {
                                     Icon(
                                         imageVector = Icons.Default.Delete,
                                         contentDescription = "Delete All Icon",
-                                        tint = MaterialTheme.colorScheme.onSurface
+                                        tint = MaterialTheme.colorScheme.onSurface,
                                     )
                                     Spacer(modifier = Modifier.width(12.dp))
                                     Text(
                                         text = "Delete All",
-                                        color = MaterialTheme.colorScheme.onSurface)
-
+                                        color = MaterialTheme.colorScheme.onSurface,
+                                    )
                                 }
                             },
                             selected = false,
-                            onClick = onDeleteAllClicked
+                            onClick = onDeleteAllClicked,
                         )
                         NavigationDrawerItem(
                             label = {
@@ -204,17 +200,17 @@ internal fun NavigationDrawer(
                                     Icon(
                                         painter = painterResource(id = R.drawable.google_logo),
                                         contentDescription = "Google Logo",
-                                        tint = MaterialTheme.colorScheme.onSurface
+                                        tint = MaterialTheme.colorScheme.onSurface,
                                     )
                                     Spacer(modifier = Modifier.width(12.dp))
                                     Text(
                                         text = "Sign Out",
-                                        color = MaterialTheme.colorScheme.onSurface)
-
+                                        color = MaterialTheme.colorScheme.onSurface,
+                                    )
                                 }
                             },
                             selected = false,
-                            onClick = onSignOutClicked
+                            onClick = onSignOutClicked,
                         )
                         Spacer(modifier = Modifier.weight(1f))
                         NavigationDrawerItem(
@@ -223,19 +219,17 @@ internal fun NavigationDrawer(
                                     darkTheme = darkTheme,
                                     size = 50.dp,
                                     padding = 5.dp,
-                                    onClick = onThemeUpdated
+                                    onClick = onThemeUpdated,
                                 )
                             },
                             selected = false,
-                            onClick = {}
+                            onClick = {},
                         )
                     }
-
-
-                }
+                },
             )
         },
-        content = content
+        content = content,
     )
 }
 
@@ -247,11 +241,11 @@ fun AppVersion() {
             .fillMaxSize()
             .padding(16.dp),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
             text = appVersion,
-            style = MaterialTheme.typography.bodySmall
+            style = MaterialTheme.typography.bodySmall,
         )
     }
 }

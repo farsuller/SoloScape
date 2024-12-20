@@ -10,12 +10,10 @@ import com.soloscape.auth.AuthenticationViewModel
 import com.soloscape.util.ScreensRoutes
 import com.stevdzasan.messagebar.rememberMessageBarState
 import com.stevdzasan.onetap.rememberOneTapSignInState
-import java.lang.Exception
-
 
 fun NavGraphBuilder.authenticationRoute(
     navigateToHome: () -> Unit,
-    onDataLoaded: () -> Unit
+    onDataLoaded: () -> Unit,
 ) {
     composable(route = ScreensRoutes.Authentication.route) {
         val viewModel: AuthenticationViewModel = viewModel()
@@ -46,9 +44,8 @@ fun NavGraphBuilder.authenticationRoute(
                     onError = { error ->
                         messageBarState.addError(error)
                         viewModel.setLoading(false)
-                    }
+                    },
                 )
-
             },
             onFailedFirebaseSignIn = { error ->
                 messageBarState.addError(error)
@@ -58,7 +55,7 @@ fun NavGraphBuilder.authenticationRoute(
                 messageBarState.addError(Exception(message))
                 viewModel.setLoading(false)
             },
-            navigateToHome = navigateToHome
+            navigateToHome = navigateToHome,
         )
     }
 }

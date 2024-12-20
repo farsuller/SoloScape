@@ -5,13 +5,12 @@ import androidx.room.RoomDatabase
 import com.soloscape.mongo.database.entity.ImageToDelete
 import com.soloscape.mongo.database.entity.ImageToUpload
 
-
 @Database(
     entities = [ImageToUpload::class, ImageToDelete::class],
     version = 2,
-    exportSchema = false
+    exportSchema = false,
 )
 abstract class ImagesDatabase : RoomDatabase() {
-    abstract fun imageToUploadDao() : ImageToUploadDao
+    abstract fun imageToUploadDao(): ImageToUploadDao
     abstract fun imageToDeleteDao(): ImageToDeleteDao
 }
