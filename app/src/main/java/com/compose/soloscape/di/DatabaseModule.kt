@@ -2,9 +2,9 @@ package com.compose.soloscape.di
 
 import android.content.Context
 import androidx.room.Room
-import com.compose.soloscape.connectivity.NetworkConnectivityObserver
-import com.compose.soloscape.data.database.ImagesDatabase
-import com.compose.soloscape.util.Constants.IMAGES_DATABASE
+import com.soloscape.mongo.database.ImagesDatabase
+import com.soloscape.util.Constants.IMAGES_DATABASE
+import com.soloscape.util.connectivity.NetworkConnectivityObserver
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,12 +18,12 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideDatabase(
-        @ApplicationContext context: Context
-    ):ImagesDatabase{
+        @ApplicationContext context: Context,
+    ): ImagesDatabase {
         return Room.databaseBuilder(
             context = context,
             klass = ImagesDatabase::class.java,
-            name = IMAGES_DATABASE
+            name = IMAGES_DATABASE,
         ).build()
     }
 
@@ -37,5 +37,5 @@ object DatabaseModule {
 
     @Singleton
     @Provides
-    fun provideNetworkConnectivityObserver(@ApplicationContext context: Context) = NetworkConnectivityObserver(context =  context)
+    fun provideNetworkConnectivityObserver(@ApplicationContext context: Context) = NetworkConnectivityObserver(context = context)
 }
