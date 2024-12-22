@@ -2,7 +2,8 @@
 <resources>
 
     <style name="Theme.MultiModularArchJC" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:windowBackground">@color/black</item>
+        <item name="windowSplashScreenBackground">#FBFCFF</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logo</item>
     </style>
 
 </resources>

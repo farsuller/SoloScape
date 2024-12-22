@@ -1,8 +1,7 @@
 plugins {
     alias (libs.plugins.android.library)
     alias (libs.plugins.kotlin.android)
-
-    id ("com.google.devtools.ksp")
+    alias(libs.plugins.devtool.ksp)
     id ("io.realm.kotlin")
 }
 
@@ -20,13 +19,15 @@ android {
 
 dependencies {
 
-    implementation (libs.core.ktx)
+    implementation(libs.androidx.core.ktx)
     implementation (libs.coroutines.core)
+
+    implementation (libs.library.base)
     implementation (libs.realm.sync)
 
-    implementation (libs.room.runtime)
-    implementation (libs.room.ktx)
-    ksp (libs.room.compiler)
+    //Room
+    implementation(libs.bundles.bundle.room)
+    ksp(libs.androidx.room.compiler)
 
     //util
     implementation (projects.core.util)

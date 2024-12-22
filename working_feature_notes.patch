@@ -1,0 +1,4532 @@
+Subject: [PATCH] working feature notes
+---
+Index: .idea/.gitignore
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+deleted file mode 100644
+--- a/.idea/.gitignore	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ /dev/null	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
+@@ -1,3 +0,0 @@
+-# Default ignored files
+-/shelf/
+-/workspace.xml
+Index: .idea/androidTestResultsUserPreferences.xml
+===================================================================
+diff --git a/.idea/androidTestResultsUserPreferences.xml b/.idea/androidTestResultsUserPreferences.xml
+deleted file mode 100644
+--- a/.idea/androidTestResultsUserPreferences.xml	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ /dev/null	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
+@@ -1,35 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="AndroidTestResultsUserPreferences">
+-    <option name="androidTestResultsTableState">
+-      <map>
+-        <entry key="380631753">
+-          <value>
+-            <AndroidTestResultsTableState>
+-              <option name="preferredColumnWidths">
+-                <map>
+-                  <entry key="Duration" value="90" />
+-                  <entry key="Tests" value="360" />
+-                  <entry key="samsung SM-A725F" value="120" />
+-                </map>
+-              </option>
+-            </AndroidTestResultsTableState>
+-          </value>
+-        </entry>
+-        <entry key="1175946051">
+-          <value>
+-            <AndroidTestResultsTableState>
+-              <option name="preferredColumnWidths">
+-                <map>
+-                  <entry key="Duration" value="90" />
+-                  <entry key="Tests" value="360" />
+-                  <entry key="samsung SM-A725F" value="120" />
+-                </map>
+-              </option>
+-            </AndroidTestResultsTableState>
+-          </value>
+-        </entry>
+-      </map>
+-    </option>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/deploymentTargetDropDown.xml
+===================================================================
+diff --git a/.idea/deploymentTargetDropDown.xml b/.idea/deploymentTargetDropDown.xml
+deleted file mode 100644
+--- a/.idea/deploymentTargetDropDown.xml	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ /dev/null	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
+@@ -1,32 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="deploymentTargetDropDown">
+-    <value>
+-      <entry key="ExampleStartupBenchmark">
+-        <State />
+-      </entry>
+-      <entry key="ReportHolderPreview">
+-        <State />
+-      </entry>
+-      <entry key="app">
+-        <State>
+-          <targetSelectedWithDropDown>
+-            <Target>
+-              <type value="QUICK_BOOT_TARGET" />
+-              <deviceKey>
+-                <Key>
+-                  <type value="VIRTUAL_DEVICE_PATH" />
+-                  <value value="C:\Users\user\.android\avd\Pixel_7_API_32.avd" />
+-                </Key>
+-              </deviceKey>
+-            </Target>
+-          </targetSelectedWithDropDown>
+-          <timeTargetWasSelectedWithDropDown value="2023-12-14T14:00:05.168156100Z" />
+-        </State>
+-      </entry>
+-      <entry key="scrollAndNavigate()">
+-        <State />
+-      </entry>
+-    </value>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/other.xml
+===================================================================
+diff --git a/.idea/other.xml b/.idea/other.xml
+deleted file mode 100644
+--- a/.idea/other.xml	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ /dev/null	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
+@@ -1,263 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="direct_access_persist.xml">
+-    <option name="deviceSelectionList">
+-      <list>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="27" />
+-          <option name="brand" value="DOCOMO" />
+-          <option name="codename" value="F01L" />
+-          <option name="id" value="F01L" />
+-          <option name="manufacturer" value="FUJITSU" />
+-          <option name="name" value="F-01L" />
+-          <option name="screenDensity" value="360" />
+-          <option name="screenX" value="720" />
+-          <option name="screenY" value="1280" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="28" />
+-          <option name="brand" value="DOCOMO" />
+-          <option name="codename" value="SH-01L" />
+-          <option name="id" value="SH-01L" />
+-          <option name="manufacturer" value="SHARP" />
+-          <option name="name" value="AQUOS sense2 SH-01L" />
+-          <option name="screenDensity" value="480" />
+-          <option name="screenX" value="1080" />
+-          <option name="screenY" value="2160" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="31" />
+-          <option name="brand" value="samsung" />
+-          <option name="codename" value="a51" />
+-          <option name="id" value="a51" />
+-          <option name="manufacturer" value="Samsung" />
+-          <option name="name" value="Galaxy A51" />
+-          <option name="screenDensity" value="420" />
+-          <option name="screenX" value="1080" />
+-          <option name="screenY" value="2400" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="34" />
+-          <option name="brand" value="google" />
+-          <option name="codename" value="akita" />
+-          <option name="id" value="akita" />
+-          <option name="manufacturer" value="Google" />
+-          <option name="name" value="Pixel 8a" />
+-          <option name="screenDensity" value="420" />
+-          <option name="screenX" value="1080" />
+-          <option name="screenY" value="2400" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="33" />
+-          <option name="brand" value="samsung" />
+-          <option name="codename" value="b0q" />
+-          <option name="id" value="b0q" />
+-          <option name="manufacturer" value="Samsung" />
+-          <option name="name" value="Galaxy S22 Ultra" />
+-          <option name="screenDensity" value="600" />
+-          <option name="screenX" value="1440" />
+-          <option name="screenY" value="3088" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="32" />
+-          <option name="brand" value="google" />
+-          <option name="codename" value="bluejay" />
+-          <option name="id" value="bluejay" />
+-          <option name="manufacturer" value="Google" />
+-          <option name="name" value="Pixel 6a" />
+-          <option name="screenDensity" value="420" />
+-          <option name="screenX" value="1080" />
+-          <option name="screenY" value="2400" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="29" />
+-          <option name="brand" value="samsung" />
+-          <option name="codename" value="crownqlteue" />
+-          <option name="id" value="crownqlteue" />
+-          <option name="manufacturer" value="Samsung" />
+-          <option name="name" value="Galaxy Note9" />
+-          <option name="screenDensity" value="420" />
+-          <option name="screenX" value="2220" />
+-          <option name="screenY" value="1080" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="34" />
+-          <option name="brand" value="samsung" />
+-          <option name="codename" value="dm3q" />
+-          <option name="id" value="dm3q" />
+-          <option name="manufacturer" value="Samsung" />
+-          <option name="name" value="Galaxy S23 Ultra" />
+-          <option name="screenDensity" value="600" />
+-          <option name="screenX" value="1440" />
+-          <option name="screenY" value="3088" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="33" />
+-          <option name="brand" value="google" />
+-          <option name="codename" value="felix" />
+-          <option name="id" value="felix" />
+-          <option name="manufacturer" value="Google" />
+-          <option name="name" value="Pixel Fold" />
+-          <option name="screenDensity" value="420" />
+-          <option name="screenX" value="2208" />
+-          <option name="screenY" value="1840" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="33" />
+-          <option name="brand" value="google" />
+-          <option name="codename" value="felix_camera" />
+-          <option name="id" value="felix_camera" />
+-          <option name="manufacturer" value="Google" />
+-          <option name="name" value="Pixel Fold (Camera-enabled)" />
+-          <option name="screenDensity" value="420" />
+-          <option name="screenX" value="2208" />
+-          <option name="screenY" value="1840" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="33" />
+-          <option name="brand" value="samsung" />
+-          <option name="codename" value="gts8uwifi" />
+-          <option name="id" value="gts8uwifi" />
+-          <option name="manufacturer" value="Samsung" />
+-          <option name="name" value="Galaxy Tab S8 Ultra" />
+-          <option name="screenDensity" value="320" />
+-          <option name="screenX" value="1848" />
+-          <option name="screenY" value="2960" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="34" />
+-          <option name="brand" value="google" />
+-          <option name="codename" value="husky" />
+-          <option name="id" value="husky" />
+-          <option name="manufacturer" value="Google" />
+-          <option name="name" value="Pixel 8 Pro" />
+-          <option name="screenDensity" value="390" />
+-          <option name="screenX" value="1008" />
+-          <option name="screenY" value="2244" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="30" />
+-          <option name="brand" value="motorola" />
+-          <option name="codename" value="java" />
+-          <option name="id" value="java" />
+-          <option name="manufacturer" value="Motorola" />
+-          <option name="name" value="G20" />
+-          <option name="screenDensity" value="280" />
+-          <option name="screenX" value="720" />
+-          <option name="screenY" value="1600" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="33" />
+-          <option name="brand" value="google" />
+-          <option name="codename" value="lynx" />
+-          <option name="id" value="lynx" />
+-          <option name="manufacturer" value="Google" />
+-          <option name="name" value="Pixel 7a" />
+-          <option name="screenDensity" value="420" />
+-          <option name="screenX" value="1080" />
+-          <option name="screenY" value="2400" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="31" />
+-          <option name="brand" value="google" />
+-          <option name="codename" value="oriole" />
+-          <option name="id" value="oriole" />
+-          <option name="manufacturer" value="Google" />
+-          <option name="name" value="Pixel 6" />
+-          <option name="screenDensity" value="420" />
+-          <option name="screenX" value="1080" />
+-          <option name="screenY" value="2400" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="33" />
+-          <option name="brand" value="google" />
+-          <option name="codename" value="panther" />
+-          <option name="id" value="panther" />
+-          <option name="manufacturer" value="Google" />
+-          <option name="name" value="Pixel 7" />
+-          <option name="screenDensity" value="420" />
+-          <option name="screenX" value="1080" />
+-          <option name="screenY" value="2400" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="31" />
+-          <option name="brand" value="samsung" />
+-          <option name="codename" value="q2q" />
+-          <option name="id" value="q2q" />
+-          <option name="manufacturer" value="Samsung" />
+-          <option name="name" value="Galaxy Z Fold3" />
+-          <option name="screenDensity" value="420" />
+-          <option name="screenX" value="1768" />
+-          <option name="screenY" value="2208" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="34" />
+-          <option name="brand" value="samsung" />
+-          <option name="codename" value="q5q" />
+-          <option name="id" value="q5q" />
+-          <option name="manufacturer" value="Samsung" />
+-          <option name="name" value="Galaxy Z Fold5" />
+-          <option name="screenDensity" value="420" />
+-          <option name="screenX" value="1812" />
+-          <option name="screenY" value="2176" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="30" />
+-          <option name="brand" value="google" />
+-          <option name="codename" value="r11" />
+-          <option name="id" value="r11" />
+-          <option name="manufacturer" value="Google" />
+-          <option name="name" value="Pixel Watch" />
+-          <option name="screenDensity" value="320" />
+-          <option name="screenX" value="384" />
+-          <option name="screenY" value="384" />
+-          <option name="type" value="WEAR_OS" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="30" />
+-          <option name="brand" value="google" />
+-          <option name="codename" value="redfin" />
+-          <option name="id" value="redfin" />
+-          <option name="manufacturer" value="Google" />
+-          <option name="name" value="Pixel 5" />
+-          <option name="screenDensity" value="440" />
+-          <option name="screenX" value="1080" />
+-          <option name="screenY" value="2340" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="34" />
+-          <option name="brand" value="google" />
+-          <option name="codename" value="shiba" />
+-          <option name="id" value="shiba" />
+-          <option name="manufacturer" value="Google" />
+-          <option name="name" value="Pixel 8" />
+-          <option name="screenDensity" value="420" />
+-          <option name="screenX" value="1080" />
+-          <option name="screenY" value="2400" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="33" />
+-          <option name="brand" value="google" />
+-          <option name="codename" value="tangorpro" />
+-          <option name="id" value="tangorpro" />
+-          <option name="manufacturer" value="Google" />
+-          <option name="name" value="Pixel Tablet" />
+-          <option name="screenDensity" value="320" />
+-          <option name="screenX" value="1600" />
+-          <option name="screenY" value="2560" />
+-        </PersistentDeviceSelectionData>
+-        <PersistentDeviceSelectionData>
+-          <option name="api" value="29" />
+-          <option name="brand" value="samsung" />
+-          <option name="codename" value="x1q" />
+-          <option name="id" value="x1q" />
+-          <option name="manufacturer" value="Samsung" />
+-          <option name="name" value="Galaxy S20" />
+-          <option name="screenDensity" value="480" />
+-          <option name="screenX" value="1440" />
+-          <option name="screenY" value="3200" />
+-        </PersistentDeviceSelectionData>
+-      </list>
+-    </option>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .kotlin/errors/errors-1718354857344.log
+===================================================================
+diff --git a/.kotlin/errors/errors-1718354857344.log b/.kotlin/errors/errors-1718354857344.log
+deleted file mode 100644
+--- a/.kotlin/errors/errors-1718354857344.log	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ /dev/null	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
+@@ -1,44 +0,0 @@
+-kotlin version: 2.0.0
+-error message: androidx.compose.compiler.plugins.kotlin.IncompatibleComposeRuntimeVersionException: The Compose Compiler requires the Compose Runtime to be on the class path, but none could be found. The compose compiler plugin you are using (version 1.5.12) expects a minimum runtime version of 1.0.0.
+-	at androidx.compose.compiler.plugins.kotlin.VersionChecker.noRuntimeOnClasspathError(VersionChecker.kt:196)
+-	at androidx.compose.compiler.plugins.kotlin.VersionChecker.check(VersionChecker.kt:169)
+-	at androidx.compose.compiler.plugins.kotlin.ComposeIrGenerationExtension.generate(ComposeIrGenerationExtension.kt:81)
+-	at org.jetbrains.kotlin.fir.pipeline.ConvertToIrKt.applyIrGenerationExtensions(convertToIr.kt:260)
+-	at org.jetbrains.kotlin.fir.pipeline.ConvertToIrKt.convertToIrAndActualize(convertToIr.kt:139)
+-	at org.jetbrains.kotlin.fir.pipeline.ConvertToIrKt.convertToIrAndActualize$default(convertToIr.kt:65)
+-	at org.jetbrains.kotlin.cli.jvm.compiler.pipeline.JvmCompilerPipelineKt.convertToIrAndActualizeForJvm(jvmCompilerPipeline.kt:193)
+-	at org.jetbrains.kotlin.cli.jvm.compiler.pipeline.JvmCompilerPipelineKt.convertAnalyzedFirToIr(jvmCompilerPipeline.kt:167)
+-	at org.jetbrains.kotlin.cli.jvm.compiler.pipeline.JvmCompilerPipelineKt.compileModulesUsingFrontendIrAndLightTree(jvmCompilerPipeline.kt:138)
+-	at org.jetbrains.kotlin.cli.jvm.K2JVMCompiler.doExecute(K2JVMCompiler.kt:155)
+-	at org.jetbrains.kotlin.cli.jvm.K2JVMCompiler.doExecute(K2JVMCompiler.kt:50)
+-	at org.jetbrains.kotlin.cli.common.CLICompiler.execImpl(CLICompiler.kt:104)
+-	at org.jetbrains.kotlin.cli.common.CLICompiler.execImpl(CLICompiler.kt:48)
+-	at org.jetbrains.kotlin.cli.common.CLITool.exec(CLITool.kt:101)
+-	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunner.runCompiler(IncrementalJvmCompilerRunner.kt:453)
+-	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunner.runCompiler(IncrementalJvmCompilerRunner.kt:62)
+-	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.doCompile(IncrementalCompilerRunner.kt:506)
+-	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileImpl(IncrementalCompilerRunner.kt:423)
+-	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileNonIncrementally(IncrementalCompilerRunner.kt:301)
+-	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compile(IncrementalCompilerRunner.kt:129)
+-	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.execIncrementalCompiler(CompileServiceImpl.kt:676)
+-	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.access$execIncrementalCompiler(CompileServiceImpl.kt:92)
+-	at org.jetbrains.kotlin.daemon.CompileServiceImpl.compile(CompileServiceImpl.kt:1661)
+-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+-	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360)
+-	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
+-	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
+-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:712)
+-	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+-	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:587)
+-	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:828)
+-	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:705)
+-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+-	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:704)
+-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+-	at java.base/java.lang.Thread.run(Thread.java:840)
+-
+-
+Index: .kotlin/errors/errors-1718355001997.log
+===================================================================
+diff --git a/.kotlin/errors/errors-1718355001997.log b/.kotlin/errors/errors-1718355001997.log
+deleted file mode 100644
+--- a/.kotlin/errors/errors-1718355001997.log	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ /dev/null	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
+@@ -1,44 +0,0 @@
+-kotlin version: 2.0.0
+-error message: androidx.compose.compiler.plugins.kotlin.IncompatibleComposeRuntimeVersionException: The Compose Compiler requires the Compose Runtime to be on the class path, but none could be found. The compose compiler plugin you are using (version 1.5.12) expects a minimum runtime version of 1.0.0.
+-	at androidx.compose.compiler.plugins.kotlin.VersionChecker.noRuntimeOnClasspathError(VersionChecker.kt:196)
+-	at androidx.compose.compiler.plugins.kotlin.VersionChecker.check(VersionChecker.kt:169)
+-	at androidx.compose.compiler.plugins.kotlin.ComposeIrGenerationExtension.generate(ComposeIrGenerationExtension.kt:81)
+-	at org.jetbrains.kotlin.fir.pipeline.ConvertToIrKt.applyIrGenerationExtensions(convertToIr.kt:260)
+-	at org.jetbrains.kotlin.fir.pipeline.ConvertToIrKt.convertToIrAndActualize(convertToIr.kt:139)
+-	at org.jetbrains.kotlin.fir.pipeline.ConvertToIrKt.convertToIrAndActualize$default(convertToIr.kt:65)
+-	at org.jetbrains.kotlin.cli.jvm.compiler.pipeline.JvmCompilerPipelineKt.convertToIrAndActualizeForJvm(jvmCompilerPipeline.kt:193)
+-	at org.jetbrains.kotlin.cli.jvm.compiler.pipeline.JvmCompilerPipelineKt.convertAnalyzedFirToIr(jvmCompilerPipeline.kt:167)
+-	at org.jetbrains.kotlin.cli.jvm.compiler.pipeline.JvmCompilerPipelineKt.compileModulesUsingFrontendIrAndLightTree(jvmCompilerPipeline.kt:138)
+-	at org.jetbrains.kotlin.cli.jvm.K2JVMCompiler.doExecute(K2JVMCompiler.kt:155)
+-	at org.jetbrains.kotlin.cli.jvm.K2JVMCompiler.doExecute(K2JVMCompiler.kt:50)
+-	at org.jetbrains.kotlin.cli.common.CLICompiler.execImpl(CLICompiler.kt:104)
+-	at org.jetbrains.kotlin.cli.common.CLICompiler.execImpl(CLICompiler.kt:48)
+-	at org.jetbrains.kotlin.cli.common.CLITool.exec(CLITool.kt:101)
+-	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunner.runCompiler(IncrementalJvmCompilerRunner.kt:453)
+-	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunner.runCompiler(IncrementalJvmCompilerRunner.kt:62)
+-	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.doCompile(IncrementalCompilerRunner.kt:506)
+-	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileImpl(IncrementalCompilerRunner.kt:423)
+-	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileNonIncrementally(IncrementalCompilerRunner.kt:301)
+-	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compile(IncrementalCompilerRunner.kt:129)
+-	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.execIncrementalCompiler(CompileServiceImpl.kt:676)
+-	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.access$execIncrementalCompiler(CompileServiceImpl.kt:92)
+-	at org.jetbrains.kotlin.daemon.CompileServiceImpl.compile(CompileServiceImpl.kt:1661)
+-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+-	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360)
+-	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
+-	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
+-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:712)
+-	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+-	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:587)
+-	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:828)
+-	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:705)
+-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+-	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:704)
+-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+-	at java.base/java.lang.Thread.run(Thread.java:840)
+-
+-
+Index: app/src/main/res/values/splash.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/splash.xml b/app/src/main/res/values/splash.xml
+deleted file mode 100644
+--- a/app/src/main/res/values/splash.xml	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ /dev/null	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
+@@ -1,8 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<resources>
+-    <style name="Theme.MultiModularArchJC.MySplash" parent="Theme.SplashScreen">
+-        <item name="windowSplashScreenBackground">#FBFCFF</item>
+-        <item name="windowSplashScreenAnimatedIcon">@drawable/logo</item>
+-        <item name="postSplashScreenTheme">@style/Theme.MultiModularArchJC</item>
+-    </style>
+-</resources>
+\ No newline at end of file
+Index: app/src/main/res/values-night/splash.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values-night/splash.xml b/app/src/main/res/values-night/splash.xml
+deleted file mode 100644
+--- a/app/src/main/res/values-night/splash.xml	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ /dev/null	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
+@@ -1,8 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<resources>
+-    <style name="Theme.MultiModularArchJC.MySplash" parent="Theme.SplashScreen">
+-        <item name="windowSplashScreenBackground">#001E2C</item>
+-        <item name="windowSplashScreenAnimatedIcon">@drawable/logo</item>
+-        <item name="postSplashScreenTheme">@style/Theme.MultiModularArchJC</item>
+-    </style>
+-</resources>
+\ No newline at end of file
+Index: core/ui/proguard-rules.pro
+===================================================================
+diff --git a/core/ui/proguard-rules.pro b/core/ui/proguard-rules.pro
+deleted file mode 100644
+--- a/core/ui/proguard-rules.pro	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ /dev/null	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
+@@ -1,21 +0,0 @@
+-# Add project specific ProGuard rules here.
+-# You can control the set of applied configuration files using the
+-# proguardFiles setting in build.gradle.kts.
+-#
+-# For more details, see
+-#   http://developer.android.com/guide/developing/tools/proguard.html
+-
+-# If your project uses WebView with JS, uncomment the following
+-# and specify the fully qualified class name to the JavaScript interface
+-# class:
+-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+-#   public *;
+-#}
+-
+-# Uncomment this to preserve the line number information for
+-# debugging stack traces.
+-#-keepattributes SourceFile,LineNumberTable
+-
+-# If you keep the line number information, uncomment this to
+-# hide the original source file name.
+-#-renamesourcefileattribute SourceFile
+\ No newline at end of file
+Index: core/util/proguard-rules.pro
+===================================================================
+diff --git a/core/util/proguard-rules.pro b/core/util/proguard-rules.pro
+deleted file mode 100644
+--- a/core/util/proguard-rules.pro	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ /dev/null	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
+@@ -1,21 +0,0 @@
+-# Add project specific ProGuard rules here.
+-# You can control the set of applied configuration files using the
+-# proguardFiles setting in build.gradle.kts.
+-#
+-# For more details, see
+-#   http://developer.android.com/guide/developing/tools/proguard.html
+-
+-# If your project uses WebView with JS, uncomment the following
+-# and specify the fully qualified class name to the JavaScript interface
+-# class:
+-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+-#   public *;
+-#}
+-
+-# Uncomment this to preserve the line number information for
+-# debugging stack traces.
+-#-keepattributes SourceFile,LineNumberTable
+-
+-# If you keep the line number information, uncomment this to
+-# hide the original source file name.
+-#-renamesourcefileattribute SourceFile
+\ No newline at end of file
+Index: core/util/src/main/java/com/soloscape/util/model/Report.kt
+===================================================================
+diff --git a/core/util/src/main/java/com/soloscape/util/model/Report.kt b/core/util/src/main/java/com/soloscape/util/model/Report.kt
+deleted file mode 100644
+--- a/core/util/src/main/java/com/soloscape/util/model/Report.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ /dev/null	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
+@@ -1,24 +0,0 @@
+-package com.soloscape.util.model
+-
+-import android.annotation.SuppressLint
+-import com.soloscape.util.toRealmInstant
+-import io.realm.kotlin.ext.realmListOf
+-import io.realm.kotlin.types.RealmInstant
+-import io.realm.kotlin.types.RealmList
+-import io.realm.kotlin.types.RealmObject
+-import io.realm.kotlin.types.annotations.PrimaryKey
+-import org.mongodb.kbson.ObjectId
+-import java.time.Instant
+-
+-open class Report : RealmObject {
+-    @PrimaryKey
+-    var _id: ObjectId = ObjectId.invoke()
+-    var ownerId: String = ""
+-    var mood: String = Mood.Neutral.name
+-    var title: String = ""
+-    var description: String = ""
+-    var images: RealmList<String> = realmListOf()
+-
+-    @SuppressLint("NewApi")
+-    var date: RealmInstant = Instant.now().toRealmInstant()
+-}
+Index: core/util/src/main/res/drawable/logo.xml
+===================================================================
+diff --git a/core/util/src/main/res/drawable/logo.xml b/core/util/src/main/res/drawable/logo.xml
+deleted file mode 100644
+--- a/core/util/src/main/res/drawable/logo.xml	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ /dev/null	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
+@@ -1,53 +0,0 @@
+-<vector xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    android:width="240dp"
+-    android:height="240dp"
+-    android:viewportWidth="240"
+-    android:viewportHeight="240"
+-    tools:ignore="VectorRaster">
+-    <path
+-        android:pathData="M175.54,166.71H64.46C62.55,166.71 61,165.16 61,163.25V75.68C61,73.77 62.55,72.22 64.46,72.22H175.54C177.45,72.22 179,73.77 179,75.68V163.25C179,165.16 177.45,166.71 175.54,166.71Z"
+-        android:fillColor="#693a02"/>
+-    <path
+-        android:pathData="M175.54,72.22H120V166.71H175.54C177.45,166.71 179,165.16 179,163.25V75.68C179,73.77 177.45,72.22 175.54,72.22Z"
+-        android:fillColor="#c9a579"/>
+-    <path
+-        android:pathData="M97.75,179.75L94.65,176.02L91.54,179.75C89.47,182.23 85.43,180.77 85.43,177.54V150.58H103.87V177.54C103.87,180.77 99.82,182.23 97.75,179.75V179.75Z"
+-        android:fillColor="#FF8659"/>
+-    <path
+-        android:pathData="M75.06,139.05V149.43C75.06,151.34 76.61,152.88 78.52,152.88H107.08C111.13,152.88 114.88,154.89 117.12,158.26C117.76,159.22 118.84,159.8 120,159.8C121.16,159.8 122.24,159.22 122.88,158.26C125.12,154.89 128.87,152.88 132.92,152.88H161.48C163.39,152.88 164.94,151.34 164.94,149.43V139.05L120,132.14L75.06,139.05Z"
+-        android:fillColor="#dbcbb6"/>
+-    <path
+-        android:pathData="M120,132.14V159.8C121.16,159.8 122.24,159.22 122.88,158.26C125.12,154.89 128.87,152.88 132.92,152.88H161.48C163.39,152.88 164.94,151.34 164.94,149.43V139.05L120,132.14Z"
+-        android:fillColor="#b3a38f"/>
+-    <path
+-        android:pathData="M120,145.97C118.84,145.97 117.76,145.39 117.12,144.43C114.89,141.07 111.11,139.05 107.08,139.05H75.06V66.46C75.06,64.55 76.61,63 78.52,63H107.08C111.94,63 116.53,64.84 120,68.07C123.47,64.84 128.06,63 132.92,63H161.48C163.39,63 164.94,64.55 164.94,66.46V139.05H132.92C128.88,139.05 125.11,141.07 122.88,144.43C122.24,145.39 121.16,145.97 120,145.97Z"
+-        android:fillColor="#f7f3ed"/>
+-    <path
+-        android:pathData="M161.48,63H132.92C128.06,63 123.47,64.84 120,68.07V145.97C121.16,145.97 122.24,145.39 122.88,144.43C125.11,141.07 128.88,139.05 132.92,139.05H164.94V66.46C164.94,64.55 163.39,63 161.48,63Z"
+-        android:fillColor="#f7f3ed"/>
+-    <path
+-        android:pathData="M152.27,80.29H131.52C129.61,80.29 128.07,78.74 128.07,76.83C128.07,74.92 129.61,73.37 131.52,73.37H152.27C154.18,73.37 155.72,74.92 155.72,76.83C155.72,78.74 154.18,80.29 152.27,80.29Z"
+-        android:fillColor="#544430"/>
+-    <path
+-        android:pathData="M152.27,96.42H131.52C129.61,96.42 128.07,94.87 128.07,92.96C128.07,91.05 129.61,89.5 131.52,89.5H152.27C154.18,89.5 155.72,91.05 155.72,92.96C155.72,94.87 154.18,96.42 152.27,96.42Z"
+-        android:fillColor="#544430"/>
+-    <path
+-        android:pathData="M152.27,112.55H131.52C129.61,112.55 128.07,111 128.07,109.09C128.07,107.18 129.61,105.64 131.52,105.64H152.27C154.18,105.64 155.72,107.18 155.72,109.09C155.72,111 154.18,112.55 152.27,112.55Z"
+-        android:fillColor="#544430"/>
+-    <path
+-        android:pathData="M152.27,128.68H131.52C129.61,128.68 128.07,127.14 128.07,125.23C128.07,123.32 129.61,121.77 131.52,121.77H152.27C154.18,121.77 155.72,123.32 155.72,125.23C155.72,127.14 154.18,128.68 152.27,128.68Z"
+-        android:fillColor="#544430"/>
+-    <path
+-        android:pathData="M108.48,80.29H87.73C85.83,80.29 84.28,78.74 84.28,76.83C84.28,74.92 85.83,73.37 87.73,73.37H108.48C110.39,73.37 111.93,74.92 111.93,76.83C111.93,78.74 110.39,80.29 108.48,80.29Z"
+-        android:fillColor="#402a08"/>
+-    <path
+-        android:pathData="M108.48,96.42H87.73C85.83,96.42 84.28,94.87 84.28,92.96C84.28,91.05 85.83,89.5 87.73,89.5H108.48C110.39,89.5 111.93,91.05 111.93,92.96C111.93,94.87 110.39,96.42 108.48,96.42Z"
+-        android:fillColor="#402a08"/>
+-    <path
+-        android:pathData="M108.48,112.55H87.73C85.83,112.55 84.28,111 84.28,109.09C84.28,107.18 85.83,105.64 87.73,105.64H108.48C110.39,105.64 111.93,107.18 111.93,109.09C111.93,111 110.39,112.55 108.48,112.55Z"
+-        android:fillColor="#402a08"/>
+-    <path
+-        android:pathData="M108.48,128.68H87.73C85.83,128.68 84.28,127.14 84.28,125.23C84.28,123.32 85.83,121.77 87.73,121.77H108.48C110.39,121.77 111.93,123.32 111.93,125.23C111.93,127.14 110.39,128.68 108.48,128.68Z"
+-        android:fillColor="#402a08"/>
+-</vector>
+Index: feature/auth/proguard-rules.pro
+===================================================================
+diff --git a/feature/auth/proguard-rules.pro b/feature/auth/proguard-rules.pro
+deleted file mode 100644
+--- a/feature/auth/proguard-rules.pro	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ /dev/null	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
+@@ -1,21 +0,0 @@
+-# Add project specific ProGuard rules here.
+-# You can control the set of applied configuration files using the
+-# proguardFiles setting in build.gradle.kts.
+-#
+-# For more details, see
+-#   http://developer.android.com/guide/developing/tools/proguard.html
+-
+-# If your project uses WebView with JS, uncomment the following
+-# and specify the fully qualified class name to the JavaScript interface
+-# class:
+-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+-#   public *;
+-#}
+-
+-# Uncomment this to preserve the line number information for
+-# debugging stack traces.
+-#-keepattributes SourceFile,LineNumberTable
+-
+-# If you keep the line number information, uncomment this to
+-# hide the original source file name.
+-#-renamesourcefileattribute SourceFile
+\ No newline at end of file
+Index: feature/note/src/main/java/com/soloscape/note/model/Location.kt
+===================================================================
+diff --git a/feature/note/src/main/java/com/soloscape/note/model/Location.kt b/feature/note/src/main/java/com/soloscape/note/model/Location.kt
+deleted file mode 100644
+--- a/feature/note/src/main/java/com/soloscape/note/model/Location.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ /dev/null	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
+@@ -1,49 +0,0 @@
+-package com.soloscape.note.model
+-
+-import com.soloscape.ui.R
+-
+-data class Location(
+-    val image: Int,
+-    val title: String,
+-    val subtitle: String,
+-    val rating: Int = 0,
+-)
+-
+-val locations = listOf(
+-    Location(
+-        image = R.drawable.tabriz,
+-        title = "Tabriz",
+-        subtitle = "Tabriz is the capital city of East Azerbaijan Province, in northwestern Iran. Tabriz Bazaar, once a major Silk Road market, is a sprawling brick-vaulted complex selling carpets, spices and jewelry\"",
+-        rating = 5,
+-    ),
+-    Location(
+-        image = R.drawable.dubai,
+-        subtitle = "Dubai is a city and emirate in the United Arab Emirates known for luxury shopping, ultramodern architecture and a lively nightlife scene. Burj Khalifa, an 830m-tall tower, dominates the skyscraper-filled skyline.",
+-        rating = 3,
+-        title = "Dubai",
+-    ),
+-    Location(
+-        image = R.drawable.los_angeles,
+-        title = "Los Angeles",
+-        rating = 4,
+-        subtitle = "Los Angeles is a sprawling Southern California city and the center of the nation’s film and television industry. Near its iconic Hollywood sign, studios such as Paramount Pictures, Universal and Warner Brothers offer behind-the-scenes tours.",
+-    ),
+-    Location(
+-        image = R.drawable.london,
+-        title = "London",
+-        rating = 3,
+-        subtitle = "London, the capital of England and the United Kingdom, is a 21st-century city with history stretching back to Roman times.",
+-    ),
+-    Location(
+-        image = R.drawable.sweden,
+-        title = "Sweden",
+-        rating = 5,
+-        subtitle = "Sweden is a Scandinavian nation with thousands of coastal islands and inland lakes, along with vast boreal forests and glaciated mountains.",
+-    ),
+-    Location(
+-        image = R.drawable.kazan,
+-        title = "Kazan",
+-        rating = 2,
+-        subtitle = "Kazan is a city in southwest Russia, on the banks of the Volga and Kazanka rivers. The capital of the Republic of Tatarstan",
+-    ),
+-)
+Index: feature/note/src/main/java/com/soloscape/note/model/NoteChanges.kt
+===================================================================
+diff --git a/feature/note/src/main/java/com/soloscape/note/model/NoteChanges.kt b/feature/note/src/main/java/com/soloscape/note/model/NoteChanges.kt
+deleted file mode 100644
+--- a/feature/note/src/main/java/com/soloscape/note/model/NoteChanges.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ /dev/null	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
+@@ -1,6 +0,0 @@
+-package com.soloscape.note.model
+-
+-data class NoteChanges(
+-    val title: String,
+-    val description: String,
+-)
+Index: feature/note/src/main/java/com/soloscape/note/model/UiNoteState.kt
+===================================================================
+diff --git a/feature/note/src/main/java/com/soloscape/note/model/UiNoteState.kt b/feature/note/src/main/java/com/soloscape/note/model/UiNoteState.kt
+deleted file mode 100644
+--- a/feature/note/src/main/java/com/soloscape/note/model/UiNoteState.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ /dev/null	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
+@@ -1,14 +0,0 @@
+-package com.soloscape.note.model
+-
+-import com.soloscape.util.model.Mood
+-import com.soloscape.util.model.Report
+-import io.realm.kotlin.types.RealmInstant
+-
+-data class UiNoteState(
+-    val selectedReportId: String? = null,
+-    val selectedReport: Report? = null,
+-    val title: String = "",
+-    val description: String = "",
+-    val mood: Mood = Mood.Neutral,
+-    val updatedDateTime: RealmInstant? = null,
+-)
+Index: feature/note/src/main/java/com/soloscape/note/CircularCarouselPager.kt
+===================================================================
+diff --git a/feature/note/src/main/java/com/soloscape/note/CircularCarouselPager.kt b/feature/note/src/main/java/com/soloscape/note/CircularCarouselPager.kt
+deleted file mode 100644
+--- a/feature/note/src/main/java/com/soloscape/note/CircularCarouselPager.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ /dev/null	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
+@@ -1,141 +0,0 @@
+-package com.soloscape.note
+-
+-import androidx.compose.foundation.ExperimentalFoundationApi
+-import androidx.compose.foundation.Image
+-import androidx.compose.foundation.background
+-import androidx.compose.foundation.layout.Box
+-import androidx.compose.foundation.layout.Column
+-import androidx.compose.foundation.layout.Spacer
+-import androidx.compose.foundation.layout.fillMaxHeight
+-import androidx.compose.foundation.layout.fillMaxSize
+-import androidx.compose.foundation.layout.height
+-import androidx.compose.foundation.layout.padding
+-import androidx.compose.foundation.pager.HorizontalPager
+-import androidx.compose.foundation.pager.PagerState
+-import androidx.compose.foundation.pager.rememberPagerState
+-import androidx.compose.foundation.shape.RoundedCornerShape
+-import androidx.compose.material3.MaterialTheme
+-import androidx.compose.material3.Surface
+-import androidx.compose.material3.Text
+-import androidx.compose.runtime.Composable
+-import androidx.compose.runtime.mutableStateOf
+-import androidx.compose.runtime.remember
+-import androidx.compose.ui.Alignment
+-import androidx.compose.ui.ExperimentalComposeUiApi
+-import androidx.compose.ui.Modifier
+-import androidx.compose.ui.draw.clip
+-import androidx.compose.ui.geometry.Offset
+-import androidx.compose.ui.graphics.Brush
+-import androidx.compose.ui.graphics.Color
+-import androidx.compose.ui.graphics.graphicsLayer
+-import androidx.compose.ui.input.pointer.pointerInteropFilter
+-import androidx.compose.ui.layout.ContentScale
+-import androidx.compose.ui.res.painterResource
+-import androidx.compose.ui.text.font.FontWeight
+-import androidx.compose.ui.unit.dp
+-import androidx.compose.ui.unit.sp
+-import com.soloscape.note.components.CirclePath
+-import com.soloscape.note.model.locations
+-import kotlin.math.absoluteValue
+-
+-@OptIn(ExperimentalFoundationApi::class)
+-fun PagerState.offsetForPage(page: Int) = (currentPage - page) + currentPageOffsetFraction
+-
+-@OptIn(ExperimentalFoundationApi::class)
+-fun PagerState.endOffsetForPage(page: Int) = offsetForPage(page).coerceAtMost(0f)
+-
+-@OptIn(ExperimentalFoundationApi::class)
+-fun PagerState.startOffsetForPage(page: Int) = offsetForPage(page).coerceAtLeast(0f)
+-
+-@Composable
+-@OptIn(ExperimentalFoundationApi::class, ExperimentalComposeUiApi::class)
+-fun CircularCarouselPager() {
+-    Surface(
+-        modifier = Modifier.fillMaxSize(),
+-        color = MaterialTheme.colorScheme.background,
+-    ) {
+-        val state = rememberPagerState(pageCount = {
+-            locations.count()
+-        })
+-
+-        val (offsetY, setOffsetY) = remember {
+-            mutableStateOf(0f)
+-        }
+-        HorizontalPager(
+-            state = state,
+-
+-            modifier = Modifier
+-                .pointerInteropFilter {
+-                    setOffsetY(it.y)
+-                    false
+-                }
+-                .padding(16.dp)
+-                .clip(RoundedCornerShape(14.dp)),
+-        ) { page ->
+-            Box(
+-                modifier = Modifier
+-                    .fillMaxSize()
+-                    .graphicsLayer {
+-                        val pageOffset = state.offsetForPage(page)
+-                        translationX = size.width * pageOffset
+-
+-                        val endOffset = state.endOffsetForPage(page)
+-                        shadowElevation = 20f
+-                        shape = CirclePath(
+-                            progress = 1f - endOffset.absoluteValue,
+-                            origin = Offset(
+-                                size.width,
+-                                offsetY,
+-                            ),
+-                        )
+-                        clip = true
+-
+-                        val abslouteOffset = state.offsetForPage(page).absoluteValue
+-                        val scale = 1f + (abslouteOffset.absoluteValue * .3f)
+-
+-                        scaleX = scale
+-                        scaleY = scale
+-
+-                        val startOffset = state.startOffsetForPage(page)
+-                        alpha = (2f - startOffset) / 2
+-                    },
+-            ) {
+-                val location = locations[page]
+-                Image(
+-                    painter = painterResource(id = location.image),
+-                    contentScale = ContentScale.Crop,
+-                    contentDescription = null,
+-                    modifier = Modifier.fillMaxSize(),
+-                )
+-                Box(
+-                    modifier = Modifier
+-                        .fillMaxSize()
+-                        .align(Alignment.BottomCenter)
+-                        .fillMaxHeight(.5f)
+-                        .background(
+-                            Brush.verticalGradient(
+-                                listOf(
+-                                    Color.Transparent,
+-                                    Color.Black.copy(alpha = .7f),
+-                                ),
+-                            ),
+-                        ),
+-                )
+-                Column(
+-                    modifier = Modifier
+-                        .align(Alignment.BottomCenter)
+-                        .padding(18.dp),
+-                ) {
+-                    Text(
+-                        text = location.title,
+-                        fontSize = 26.sp,
+-                        fontWeight = FontWeight.Bold,
+-                        color = Color.White,
+-                    )
+-                    Spacer(modifier = Modifier.height(8.dp))
+-                    Text(text = location.subtitle, fontSize = 16.sp, color = Color(0xffcccccc))
+-                }
+-            }
+-        }
+-    }
+-}
+Index: feature/note/proguard-rules.pro
+===================================================================
+diff --git a/feature/note/proguard-rules.pro b/feature/note/proguard-rules.pro
+deleted file mode 100644
+--- a/feature/note/proguard-rules.pro	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ /dev/null	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
+@@ -1,21 +0,0 @@
+-# Add project specific ProGuard rules here.
+-# You can control the set of applied configuration files using the
+-# proguardFiles setting in build.gradle.kts.
+-#
+-# For more details, see
+-#   http://developer.android.com/guide/developing/tools/proguard.html
+-
+-# If your project uses WebView with JS, uncomment the following
+-# and specify the fully qualified class name to the JavaScript interface
+-# class:
+-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+-#   public *;
+-#}
+-
+-# Uncomment this to preserve the line number information for
+-# debugging stack traces.
+-#-keepattributes SourceFile,LineNumberTable
+-
+-# If you keep the line number information, uncomment this to
+-# hide the original source file name.
+-#-renamesourcefileattribute SourceFile
+\ No newline at end of file
+Index: feature/home/proguard-rules.pro
+===================================================================
+diff --git a/feature/home/proguard-rules.pro b/feature/home/proguard-rules.pro
+deleted file mode 100644
+--- a/feature/home/proguard-rules.pro	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ /dev/null	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
+@@ -1,21 +0,0 @@
+-# Add project specific ProGuard rules here.
+-# You can control the set of applied configuration files using the
+-# proguardFiles setting in build.gradle.kts.
+-#
+-# For more details, see
+-#   http://developer.android.com/guide/developing/tools/proguard.html
+-
+-# If your project uses WebView with JS, uncomment the following
+-# and specify the fully qualified class name to the JavaScript interface
+-# class:
+-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+-#   public *;
+-#}
+-
+-# Uncomment this to preserve the line number information for
+-# debugging stack traces.
+-#-keepattributes SourceFile,LineNumberTable
+-
+-# If you keep the line number information, uncomment this to
+-# hide the original source file name.
+-#-renamesourcefileattribute SourceFile
+\ No newline at end of file
+Index: feature/home/src/main/java/com/soloscape/home/navigation/HomeNavigation.kt
+===================================================================
+diff --git a/feature/home/src/main/java/com/soloscape/home/navigation/HomeNavigation.kt b/feature/home/src/main/java/com/soloscape/home/navigation/HomeNavigation.kt
+deleted file mode 100644
+--- a/feature/home/src/main/java/com/soloscape/home/navigation/HomeNavigation.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ /dev/null	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
+@@ -1,124 +0,0 @@
+-package com.soloscape.home.navigation
+-
+-import android.widget.Toast
+-import androidx.compose.material3.DrawerValue
+-import androidx.compose.material3.rememberDrawerState
+-import androidx.compose.runtime.LaunchedEffect
+-import androidx.compose.runtime.getValue
+-import androidx.compose.runtime.mutableStateOf
+-import androidx.compose.runtime.remember
+-import androidx.compose.runtime.rememberCoroutineScope
+-import androidx.compose.runtime.setValue
+-import androidx.compose.ui.platform.LocalContext
+-import androidx.hilt.navigation.compose.hiltViewModel
+-import androidx.navigation.NavGraphBuilder
+-import androidx.navigation.compose.composable
+-import com.soloscape.home.HomeScreen
+-import com.soloscape.home.HomeViewModel
+-import com.soloscape.mongo.repository.MongoDB
+-import com.soloscape.ui.components.DisplayAlertDialog
+-import com.soloscape.util.Constants.APP_ID
+-import com.soloscape.util.ScreensRoutes
+-import com.soloscape.util.model.RequestState
+-import io.realm.kotlin.mongodb.App
+-import kotlinx.coroutines.Dispatchers
+-import kotlinx.coroutines.launch
+-import kotlinx.coroutines.withContext
+-
+-fun NavGraphBuilder.homeRoute(
+-    navigationToWrite: () -> Unit,
+-    navigateToAuth: () -> Unit,
+-    onDataLoaded: () -> Unit,
+-    navigateToWriteWithArgs: (String) -> Unit,
+-    darkTheme: Boolean,
+-    onThemeUpdated: () -> Unit,
+-) {
+-    composable(route = ScreensRoutes.Home.route) {
+-        val viewModel: HomeViewModel = hiltViewModel()
+-        val scope = rememberCoroutineScope()
+-        val report by viewModel.reports
+-        val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+-        var signOutDialogOpened by remember { mutableStateOf(false) }
+-        var deleteAllDialogOpened by remember { mutableStateOf(false) }
+-        val context = LocalContext.current
+-
+-        LaunchedEffect(key1 = report) {
+-            if (report !is RequestState.Loading) {
+-                onDataLoaded()
+-            }
+-        }
+-        HomeScreen(
+-            reports = report,
+-            drawerState = drawerState,
+-            onMenuClicked = {
+-                scope.launch {
+-                    drawerState.open()
+-                }
+-            },
+-            navigateToWrite = navigationToWrite,
+-            navigateToWriteWithArgs = navigateToWriteWithArgs,
+-            onSignOutClicked = {
+-                signOutDialogOpened = true
+-            },
+-            onDeleteAllClicked = {
+-                deleteAllDialogOpened = true
+-            },
+-            dateIsSelected = viewModel.dateIsSelected,
+-            onDateSelected = { viewModel.getReports(zonedDateTime = it) },
+-            onDateReset = { viewModel.getReports() },
+-            darkTheme = darkTheme,
+-            onThemeUpdated = onThemeUpdated,
+-
+-        )
+-
+-        LaunchedEffect(key1 = Unit) {
+-            MongoDB.configureTheRealm()
+-        }
+-
+-        DisplayAlertDialog(
+-            title = "Log Out",
+-            message = "Are you sure you want to Log out?",
+-            dialogOpened = signOutDialogOpened,
+-            onCloseDialog = { signOutDialogOpened = false },
+-            onYesClicked = {
+-                scope.launch(Dispatchers.IO) {
+-                    val user = App.create(APP_ID).currentUser
+-
+-                    if (user != null) {
+-                        user.logOut()
+-                        withContext(Dispatchers.Main) {
+-                            navigateToAuth()
+-                        }
+-                    }
+-                }
+-            },
+-        )
+-
+-        DisplayAlertDialog(
+-            title = "Delete all notes",
+-            message = "Are you sure you want to delete all notes?",
+-            dialogOpened = deleteAllDialogOpened,
+-            onCloseDialog = { deleteAllDialogOpened = false },
+-            onYesClicked = {
+-                viewModel.deleteAllReports(
+-                    onSuccess = {
+-                        Toast.makeText(context, "All Notes Deleted", Toast.LENGTH_SHORT).show()
+-                        scope.launch {
+-                            drawerState.close()
+-                        }
+-                    },
+-                    onError = {
+-                        Toast.makeText(
+-                            context,
+-                            if (it.message == "No Internet Connection.") "We need internet connection to delete all notes." else it.message,
+-                            Toast.LENGTH_SHORT,
+-                        ).show()
+-                        scope.launch {
+-                            drawerState.close()
+-                        }
+-                    },
+-                )
+-            },
+-        )
+-    }
+-}
+Index: feature/home/src/main/java/com/soloscape/home/HomeViewModel.kt
+===================================================================
+diff --git a/feature/home/src/main/java/com/soloscape/home/HomeViewModel.kt b/feature/home/src/main/java/com/soloscape/home/HomeViewModel.kt
+deleted file mode 100644
+--- a/feature/home/src/main/java/com/soloscape/home/HomeViewModel.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ /dev/null	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
+@@ -1,123 +0,0 @@
+-package com.soloscape.home
+-
+-import androidx.compose.runtime.MutableState
+-import androidx.compose.runtime.getValue
+-import androidx.compose.runtime.mutableStateOf
+-import androidx.compose.runtime.setValue
+-import androidx.lifecycle.ViewModel
+-import androidx.lifecycle.viewModelScope
+-import com.google.firebase.auth.FirebaseAuth
+-import com.google.firebase.storage.FirebaseStorage
+-import com.soloscape.mongo.database.ImageToDeleteDao
+-import com.soloscape.mongo.database.entity.ImageToDelete
+-import com.soloscape.mongo.repository.MongoDB
+-import com.soloscape.mongo.repository.Reports
+-import com.soloscape.util.connectivity.ConnectivityObserver
+-import com.soloscape.util.connectivity.NetworkConnectivityObserver
+-import com.soloscape.util.model.RequestState
+-import dagger.hilt.android.lifecycle.HiltViewModel
+-import kotlinx.coroutines.Dispatchers
+-import kotlinx.coroutines.FlowPreview
+-import kotlinx.coroutines.Job
+-import kotlinx.coroutines.cancelAndJoin
+-import kotlinx.coroutines.flow.debounce
+-import kotlinx.coroutines.launch
+-import kotlinx.coroutines.withContext
+-import java.time.ZonedDateTime
+-import javax.inject.Inject
+-
+-@HiltViewModel
+-internal class HomeViewModel @Inject constructor(
+-    private val connectivity: NetworkConnectivityObserver,
+-    private val imageToDeleteDao: ImageToDeleteDao,
+-) : ViewModel() {
+-
+-    private lateinit var allReportsJob: Job
+-    private lateinit var filteredReportsJob: Job
+-    private var network by mutableStateOf(ConnectivityObserver.Status.Unavailable)
+-    var reports: MutableState<Reports> = mutableStateOf(RequestState.Idle)
+-    var dateIsSelected by mutableStateOf(false)
+-        private set
+-
+-    init {
+-        getReports()
+-        viewModelScope.launch {
+-            connectivity.observe().collect { network = it }
+-        }
+-    }
+-
+-    fun getReports(zonedDateTime: ZonedDateTime? = null) {
+-        dateIsSelected = zonedDateTime != null
+-        reports.value = RequestState.Loading
+-        if (dateIsSelected && zonedDateTime != null) {
+-            observeFilteredReports(zonedDateTime = zonedDateTime)
+-        } else {
+-            observeAllReports()
+-        }
+-    }
+-
+-    @OptIn(FlowPreview::class)
+-    private fun observeAllReports() {
+-        allReportsJob = viewModelScope.launch {
+-            if (::filteredReportsJob.isInitialized) {
+-                filteredReportsJob.cancelAndJoin()
+-            }
+-            MongoDB.getAllNotes().debounce(2000).collect { result ->
+-                reports.value = result
+-            }
+-        }
+-    }
+-
+-    private fun observeFilteredReports(zonedDateTime: ZonedDateTime) {
+-        filteredReportsJob = viewModelScope.launch {
+-            if (::allReportsJob.isInitialized) {
+-                allReportsJob.cancelAndJoin()
+-            }
+-            MongoDB.getFilteredNotes(zonedDateTime = zonedDateTime).collect { result ->
+-                reports.value = result
+-            }
+-        }
+-    }
+-
+-    fun deleteAllReports(
+-        onSuccess: () -> Unit,
+-        onError: (Throwable) -> Unit,
+-    ) {
+-        if (network == ConnectivityObserver.Status.Available) {
+-            val userId = FirebaseAuth.getInstance().currentUser?.uid
+-            val imagesDirectory = "images/$userId"
+-            val storage = FirebaseStorage.getInstance().reference
+-            storage.child(imagesDirectory)
+-                .listAll()
+-                .addOnSuccessListener {
+-                    it.items.forEach { ref ->
+-                        val imagePath = "images/$userId/${ref.name}"
+-                        storage.child(imagePath).delete()
+-                            .addOnFailureListener {
+-                                viewModelScope.launch(Dispatchers.IO) {
+-                                    imageToDeleteDao.addImageToDelete(
+-                                        ImageToDelete(
+-                                            remoteImagePath = imagePath,
+-                                        ),
+-                                    )
+-                                }
+-                            }
+-                    }
+-                    viewModelScope.launch(Dispatchers.IO) {
+-                        val result = MongoDB.deleteAllNotes()
+-                        if (result is RequestState.Success) {
+-                            withContext(Dispatchers.Main) {
+-                                onSuccess()
+-                            }
+-                        } else if (result is RequestState.Error) {
+-                            withContext(Dispatchers.Main) {
+-                                onError(result.error)
+-                            }
+-                        }
+-                    }
+-                }.addOnFailureListener { onError(it) }
+-        } else {
+-            onError(Exception("No Internet Connection."))
+-        }
+-    }
+-}
+Index: feature/note/src/main/java/com/soloscape/note/NoteContent.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/feature/note/src/main/java/com/soloscape/note/NoteContent.kt b/feature/home/src/main/java/com/soloscape/home/presentations/write/NoteContent.kt
+rename from feature/note/src/main/java/com/soloscape/note/NoteContent.kt
+rename to feature/home/src/main/java/com/soloscape/home/presentations/write/NoteContent.kt
+--- a/feature/note/src/main/java/com/soloscape/note/NoteContent.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/feature/home/src/main/java/com/soloscape/home/presentations/write/NoteContent.kt	(date 1734862327252)
+@@ -1,8 +1,6 @@
+-package com.soloscape.note
++package com.soloscape.home.presentations.write
+ 
+-import android.net.Uri
+ import android.widget.Toast
+-import androidx.compose.foundation.ExperimentalFoundationApi
+ import androidx.compose.foundation.layout.Arrangement
+ import androidx.compose.foundation.layout.Box
+ import androidx.compose.foundation.layout.Column
+@@ -37,30 +35,20 @@
+ import androidx.compose.ui.platform.LocalFocusManager
+ import androidx.compose.ui.text.input.ImeAction
+ import androidx.compose.ui.unit.dp
+-import coil.compose.AsyncImage
+-import coil.request.ImageRequest
+-import com.soloscape.note.model.NoteChanges
+-import com.soloscape.note.model.UiNoteState
+-import com.soloscape.ui.GalleryImage
+-import com.soloscape.ui.GalleryState
+-import com.soloscape.util.GalleryUploader
+-import com.soloscape.util.model.Mood
+-import com.soloscape.util.model.Report
+-import io.realm.kotlin.ext.toRealmList
++import coil3.compose.AsyncImage
++import coil3.request.ImageRequest
++import coil3.request.crossfade
++import com.soloscape.database.domain.model.Write
++import com.soloscape.home.presentations.write.components.WriteChanges
++import com.soloscape.ui.Mood
+ import kotlinx.coroutines.launch
+ 
+-@OptIn(ExperimentalFoundationApi::class)
+ @Composable
+ internal fun NoteContent(
+-    uiState: UiNoteState,
+-    noteChanges: NoteChanges,
+-    onNoteChange: (NoteChanges) -> Unit,
++    uiState: WriteState,
+     pagerState: PagerState,
+     paddingValues: PaddingValues,
+-    onSaveClicked: (Report) -> Unit,
+-    galleryState: GalleryState,
+-    onImageSelect: (Uri) -> Unit,
+-    onImageClicked: (GalleryImage) -> Unit,
++    onSaveClicked: (Write) -> Unit,
+ ) {
+     val scope = rememberCoroutineScope()
+     val scrollState = rememberScrollState()
+@@ -98,7 +86,7 @@
+                         modifier = Modifier.size(120.dp),
+                         model = ImageRequest
+                             .Builder(LocalContext.current)
+-                            .data(Mood.values()[page].icon)
++                            .data(Mood.entries[page].icon)
+                             .crossfade(true)
+                             .build(),
+                         contentDescription = "Mood Image",
+@@ -112,7 +100,7 @@
+                 value = noteChanges.title,
+                 onValueChange = {
+                     onNoteChange(
+-                        NoteChanges(
++                        WriteChanges(
+                             title = it,
+                             description = uiState.description,
+                         ),
+@@ -148,7 +136,7 @@
+                 value = noteChanges.description,
+                 onValueChange = {
+                     onNoteChange(
+-                        NoteChanges(
++                        WriteChanges(
+                             title = uiState.title,
+                             description = it,
+                         ),
+@@ -178,14 +166,7 @@
+             verticalArrangement = Arrangement.Bottom,
+         ) {
+             Spacer(modifier = Modifier.height(12.dp))
+-            GalleryUploader(
+-                galleryState = galleryState,
+-                onAddClicked = {
+-                    focusManager.clearFocus()
+-                },
+-                onImageSelect = onImageSelect,
+-                onImageClicked = onImageClicked,
+-            )
++
+             Spacer(modifier = Modifier.height(12.dp))
+             Button(
+                 modifier = Modifier
+@@ -195,12 +176,10 @@
+                     when {
+                         !titleEmpty && !descriptionEmpty -> {
+                             onSaveClicked(
+-                                Report().apply {
+-                                    this.title = uiState.title
+-                                    this.description = uiState.description
+-                                    this.images =
+-                                        galleryState.images.map { it.remoteImagePath }.toRealmList()
+-                                },
++                                Write(
++                                    title = uiState.title,
++                                    description = uiState.description
++                                ),
+                             )
+                         }
+ 
+Index: feature/note/src/main/java/com/soloscape/note/NoteViewModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/feature/note/src/main/java/com/soloscape/note/NoteViewModel.kt b/feature/home/src/main/java/com/soloscape/home/presentations/write/NoteViewModel.kt
+rename from feature/note/src/main/java/com/soloscape/note/NoteViewModel.kt
+rename to feature/home/src/main/java/com/soloscape/home/presentations/write/NoteViewModel.kt
+--- a/feature/note/src/main/java/com/soloscape/note/NoteViewModel.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/feature/home/src/main/java/com/soloscape/home/presentations/write/NoteViewModel.kt	(date 1734862514917)
+@@ -1,49 +1,39 @@
+-package com.soloscape.note
++package com.soloscape.home.presentations.write
+ 
+-import android.annotation.SuppressLint
+-import android.net.Uri
++import androidx.compose.runtime.State
+ import androidx.compose.runtime.getValue
+ import androidx.compose.runtime.mutableStateOf
+ import androidx.compose.runtime.setValue
+ import androidx.lifecycle.SavedStateHandle
+ import androidx.lifecycle.ViewModel
+ import androidx.lifecycle.viewModelScope
+-import com.google.firebase.auth.FirebaseAuth
+-import com.google.firebase.auth.ktx.auth
+-import com.google.firebase.ktx.Firebase
+-import com.google.firebase.storage.FirebaseStorage
+-import com.soloscape.mongo.database.ImageToDeleteDao
+-import com.soloscape.mongo.database.ImageToUploadDao
+-import com.soloscape.mongo.database.entity.ImageToUpload
+-import com.soloscape.mongo.repository.MongoDB
+-import com.soloscape.note.model.UiNoteState
+-import com.soloscape.ui.GalleryImage
++import com.soloscape.database.domain.model.Write
++import com.soloscape.database.domain.usecase.WriteUseCases
+ import com.soloscape.ui.GalleryState
+ import com.soloscape.util.Constants.NOTE_SCREEN_ARG_KEY
+-import com.soloscape.util.fetchImagesFromFirebase
+-import com.soloscape.util.model.Mood
+-import com.soloscape.util.model.Report
+-import com.soloscape.util.model.RequestState
+-import com.soloscape.util.toRealmInstant
++import com.soloscape.ui.Mood
+ import dagger.hilt.android.lifecycle.HiltViewModel
+ import kotlinx.coroutines.Dispatchers
+-import kotlinx.coroutines.flow.catch
+ import kotlinx.coroutines.launch
+-import kotlinx.coroutines.withContext
+-import org.mongodb.kbson.ObjectId
+-import java.time.ZonedDateTime
+ import javax.inject.Inject
+ 
+ @HiltViewModel
+ internal class NoteViewModel @Inject constructor(
+     private val savedStateHandle: SavedStateHandle,
+-    private val imagesToUploadDao: ImageToUploadDao,
+-    private val imageToDeleteDao: ImageToDeleteDao,
++    private val writeUseCases: WriteUseCases
+ ) : ViewModel() {
+ 
+-    val galleryState = GalleryState()
++    private val _noteTitle = mutableStateOf(NoteTextFieldState(
++        hint = "Enter title..."
++    ))
++    val noteTitle : State<NoteTextFieldState> = _noteTitle
+ 
+-    var uiState by mutableStateOf(UiNoteState())
++    private val _noteContent = mutableStateOf(NoteTextFieldState(
++        hint = "Enter some content..."
++    ))
++    val noteContent : State<NoteTextFieldState> = _noteContent
++
++    var uiState by mutableStateOf(WriteState())
+         private set
+ 
+     init {
+@@ -51,6 +41,29 @@
+         fetchSelectedReport()
+     }
+ 
++    fun onEvent(event: WriteEvent) {
++        when (event) {
++            is WriteEvent.UpsertWriteItem -> {
++                upsertWriteItem(event.writeItem)
++            }
++
++            is WriteEvent.DeleteWriteItem -> {
++                deleteCartItem(event.writeItem)
++            }
++
++            is WriteEvent.DeleteAllWriteItem -> {
++            }
++        }
++    }
++
++    private fun upsertWriteItem(write: Write) = viewModelScope.launch(Dispatchers.IO) {
++        writeUseCases.addWrite(write = write)
++    }
++
++    private fun deleteCartItem(write: Write) = viewModelScope.launch(Dispatchers.IO) {
++        writeUseCases.deleteWrite(write = write)
++    }
++
+     private fun getReportIdArgument() {
+         uiState = uiState.copy(
+             selectedReportId = savedStateHandle.get<String>(key = NOTE_SCREEN_ARG_KEY),
+@@ -60,29 +73,29 @@
+     private fun fetchSelectedReport() {
+         if (uiState.selectedReportId != null) {
+             viewModelScope.launch(Dispatchers.Main) {
+-                MongoDB.getSelectedNotes(reportId = ObjectId.invoke(uiState.selectedReportId!!))
+-                    .catch {
+-                        emit(RequestState.Error(Exception("Report is already deleted.")))
+-                    }.collect { report ->
+-                        if (report is RequestState.Success) {
+-                            setSelectedReport(report = report.data)
+-                            setTitle(title = report.data.title)
+-                            setDescription(description = report.data.description)
+-                            setMood(mood = Mood.valueOf(report.data.mood))
+-
+-                            fetchImagesFromFirebase(
+-                                remoteImagePaths = report.data.images,
+-                                onImageDownload = { downloadedImage ->
+-                                    galleryState.addImage(
+-                                        GalleryImage(
+-                                            image = downloadedImage,
+-                                            remoteImagePath = extractImagePath(fullImageUrl = downloadedImage.toString()),
+-                                        ),
+-                                    )
+-                                },
+-                            )
+-                        }
+-                    }
++//                MongoDB.getSelectedNotes(reportId = ObjectId.invoke(uiState.selectedReportId!!))
++//                    .catch {
++//                        emit(com.soloscape.model.RequestState.Error(Exception("Report is already deleted.")))
++//                    }.collect { report ->
++//                        if (report is com.soloscape.model.RequestState.Success) {
++//                            setSelectedReport(report = report.data)
++//                            setTitle(title = report.data.title)
++//                            setDescription(description = report.data.description)
++//                            setMood(mood = Mood.valueOf(report.data.mood))
++//
++//                            fetchImagesFromFirebase(
++//                                remoteImagePaths = report.data.images,
++//                                onImageDownload = { downloadedImage ->
++//                                    galleryState.addImage(
++//                                        GalleryImage(
++//                                            image = downloadedImage,
++//                                            remoteImagePath = extractImagePath(fullImageUrl = downloadedImage.toString()),
++//                                        ),
++//                                    )
++//                                },
++//                            )
++//                        }
++//                    }
+             }
+         }
+     }
+@@ -90,7 +103,7 @@
+         fetchSelectedReport()
+     }
+ 
+-    private fun setSelectedReport(report: Report) {
++    private fun setSelectedReport(report: Write) {
+         uiState = uiState.copy(selectedReport = report)
+     }
+ 
+@@ -106,140 +119,92 @@
+         uiState = uiState.copy(mood = mood)
+     }
+ 
+-    @SuppressLint("NewApi")
+-    fun updateDateTime(zonedDateTime: ZonedDateTime) {
+-        uiState = uiState.copy(updatedDateTime = zonedDateTime.toInstant().toRealmInstant())
+-    }
+-
+-    fun insertUpdateNotes(
+-        report: Report,
+-        onSuccess: () -> Unit,
+-        onError: (String) -> Unit,
+-    ) {
+-        viewModelScope.launch(Dispatchers.Main) {
+-            if (uiState.selectedReportId != null) {
+-                updateNotes(report = report, onSuccess = onSuccess, onError = onError)
+-            } else {
+-                insertNotes(report = report, onSuccess = onSuccess, onError = onError)
+-            }
+-        }
+-    }
+-
+-    private suspend fun insertNotes(
+-        report: Report,
+-        onSuccess: () -> Unit,
+-        onError: (String) -> Unit,
+-    ) {
+-        val result = MongoDB.addNewNotes(
+-            report = report.apply {
+-                if (uiState.updatedDateTime != null) {
+-                    date = uiState.updatedDateTime!!
+-                }
+-            },
+-        )
+-        if (result is RequestState.Success) {
+-            uploadImageToFirebase()
+-            withContext(Dispatchers.Main) {
+-                onSuccess()
+-            }
+-        } else if (result is RequestState.Error) {
+-            withContext(Dispatchers.Main) {
+-                onError(result.error.message.toString())
+-            }
+-        }
+-    }
+-
+-    private suspend fun updateNotes(
+-        report: Report,
+-        onSuccess: () -> Unit,
+-        onError: (String) -> Unit,
+-    ) {
+-        val result = MongoDB.updateNotes(
+-            report = report.apply {
+-                _id = ObjectId.invoke(uiState.selectedReportId!!)
+-                date =
+-                    if (uiState.updatedDateTime != null) uiState.updatedDateTime!! else uiState.selectedReport!!.date
+-            },
+-        )
+-        if (result is RequestState.Success) {
+-            uploadImageToFirebase()
+-            deleteImagesFromFirebase(images = uiState.selectedReport?.images)
+-            withContext(Dispatchers.Main) {
+-                onSuccess()
+-            }
+-        } else if (result is RequestState.Error) {
+-            withContext(Dispatchers.Main) {
+-                onError(result.error.message.toString())
+-            }
+-        }
+-    }
++//    @SuppressLint("NewApi")
++//    fun updateDateTime(zonedDateTime: ZonedDateTime) {
++//        uiState = uiState.copy(updatedDateTime = zonedDateTime)
++//    }
+ 
+-    fun deleteNotes(
+-        onSuccess: () -> Unit,
+-        onError: (String) -> Unit,
+-    ) {
+-        viewModelScope.launch(Dispatchers.IO) {
+-            if (uiState.selectedReportId != null) {
+-                val result = MongoDB.deleteNotes(id = ObjectId.invoke(uiState.selectedReportId!!))
+-                if (result is RequestState.Success) {
+-                    withContext(Dispatchers.Main) {
+-                        uiState.selectedReport?.let { deleteImagesFromFirebase(images = it.images) }
+-                        onSuccess()
+-                    }
+-                } else if (result is RequestState.Error) {
+-                    withContext(Dispatchers.Main) {
+-                        onError(result.error.message.toString())
+-                    }
+-                }
+-            }
+-        }
+-    }
++//    fun insertUpdateNotes(
++//        report: Write,
++//        onSuccess: () -> Unit,
++//        onError: (String) -> Unit,
++//    ) {
++//        viewModelScope.launch(Dispatchers.Main) {
++//            if (uiState.selectedReportId != null) {
++//                updateNotes(report = report, onSuccess = onSuccess, onError = onError)
++//            } else {
++//                insertNotes(report = report, onSuccess = onSuccess, onError = onError)
++//            }
++//        }
++//    }
+ 
+-    fun addImage(image: Uri, imageType: String) {
+-        val remoteImagePath = "images/${FirebaseAuth.getInstance().currentUser?.uid}/" +
+-            "${image.lastPathSegment}-${System.currentTimeMillis()}.$imageType"
++//    private suspend fun insertNotes(
++//        report: Write,
++//        onSuccess: () -> Unit,
++//        onError: (String) -> Unit,
++//    ) {
++//        val result = MongoDB.addNewNotes(
++//            report = report.apply {
++//                if (uiState.updatedDateTime != null) {
++//                    date = uiState.updatedDateTime!!
++//                }
++//            },
++//        )
++//        if (result is RequestState.Success) {
++//
++//            withContext(Dispatchers.Main) {
++//                onSuccess()
++//            }
++//        } else if (result is com.soloscape.model.RequestState.Error) {
++//            withContext(Dispatchers.Main) {
++//                onError(result.error.message.toString())
++//            }
++//        }
++//    }
++//
++//    private suspend fun updateNotes(
++//        report: com.soloscape.database.model.Write,
++//        onSuccess: () -> Unit,
++//        onError: (String) -> Unit,
++//    ) {
++//        val result = MongoDB.updateNotes(
++//            report = report.apply {
++//                _id = ObjectId.invoke(uiState.selectedReportId!!)
++//                date =
++//                    if (uiState.updatedDateTime != null) uiState.updatedDateTime!! else uiState.selectedReport!!.date
++//            },
++//        )
++//        if (result is RequestState.Success) {
++//
++//            withContext(Dispatchers.Main) {
++//                onSuccess()
++//            }
++//        } else if (result is RequestState.Error) {
++//            withContext(Dispatchers.Main) {
++//                onError(result.error.message.toString())
++//            }
++//        }
++//    }
++//
++//    fun deleteNotes(
++//        onSuccess: () -> Unit,
++//        onError: (String) -> Unit,
++//    ) {
++//        viewModelScope.launch(Dispatchers.IO) {
++//            if (uiState.selectedReportId != null) {
++//                val result = MongoDB.deleteNotes(id = ObjectId.invoke(uiState.selectedReportId!!))
++//                if (result is com.soloscape.model.RequestState.Success) {
++//                    withContext(Dispatchers.Main) {
++//                        uiState.selectedReport?.let { deleteImagesFromFirebase(images = it.images) }
++//                        onSuccess()
++//                    }
++//                } else if (result is com.soloscape.model.RequestState.Error) {
++//                    withContext(Dispatchers.Main) {
++//                        onError(result.error.message.toString())
++//                    }
++//                }
++//            }
++//        }
++//    }
+ 
+-        galleryState.addImage(
+-            GalleryImage(
+-                image = image,
+-                remoteImagePath = remoteImagePath,
+-            ),
+-        )
+-    }
+-
+-    private fun uploadImageToFirebase() {
+-        val storage = FirebaseStorage.getInstance().reference
+-        galleryState.images.forEach { galleryImage ->
+-            val imagePath = storage.child(galleryImage.remoteImagePath)
+-            imagePath.putFile(galleryImage.image)
+-                .addOnProgressListener {
+-                    val sessionUri = it.uploadSessionUri
+-                    if (sessionUri != null) {
+-                        viewModelScope.launch(Dispatchers.IO) {
+-                            imagesToUploadDao.addImageToUpload(
+-                                ImageToUpload(
+-                                    remoteImagePath = galleryImage.remoteImagePath,
+-                                    imageUri = galleryImage.image.toString(),
+-                                    sessionUri = sessionUri.toString(),
+-                                ),
+-                            )
+-                        }
+-                    }
+-                }
+-        }
+-    }
+-
+-    private fun deleteImagesFromFirebase(images: List<String>? = null) {
+-        val storage = FirebaseStorage.getInstance().reference
+-
+-        images?.forEach { remotePath ->
+-            storage.child(remotePath).delete()
+-        }
+-    }
+-
+-    private fun extractImagePath(fullImageUrl: String): String {
+-        val chunks = fullImageUrl.split("%2F")
+-        val imageName = chunks[2].split("?").first()
+-        return "images/${Firebase.auth.currentUser?.uid}/$imageName"
+-    }
+ }
+Index: feature/note/src/main/java/com/soloscape/note/NoteScreen.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/feature/note/src/main/java/com/soloscape/note/NoteScreen.kt b/feature/home/src/main/java/com/soloscape/home/presentations/write/NoteScreen.kt
+rename from feature/note/src/main/java/com/soloscape/note/NoteScreen.kt
+rename to feature/home/src/main/java/com/soloscape/home/presentations/write/NoteScreen.kt
+--- a/feature/note/src/main/java/com/soloscape/note/NoteScreen.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/feature/home/src/main/java/com/soloscape/home/presentations/write/NoteScreen.kt	(date 1734862327194)
+@@ -1,68 +1,33 @@
+-package com.soloscape.note
++package com.soloscape.home.presentations.write
+ 
+ import android.annotation.SuppressLint
+-import android.net.Uri
+-import androidx.compose.animation.AnimatedVisibility
+-import androidx.compose.foundation.ExperimentalFoundationApi
+-import androidx.compose.foundation.gestures.detectTransformGestures
+-import androidx.compose.foundation.layout.Arrangement
+-import androidx.compose.foundation.layout.Box
+-import androidx.compose.foundation.layout.Row
+-import androidx.compose.foundation.layout.fillMaxSize
+-import androidx.compose.foundation.layout.fillMaxWidth
+-import androidx.compose.foundation.layout.padding
+ import androidx.compose.foundation.pager.PagerState
+-import androidx.compose.material.icons.Icons
+-import androidx.compose.material.icons.filled.Close
+-import androidx.compose.material.icons.filled.Delete
+-import androidx.compose.material3.Button
+-import androidx.compose.material3.Icon
+ import androidx.compose.material3.Scaffold
+-import androidx.compose.material3.Text
+ import androidx.compose.runtime.Composable
+ import androidx.compose.runtime.LaunchedEffect
+ import androidx.compose.runtime.getValue
+-import androidx.compose.runtime.mutableFloatStateOf
+ import androidx.compose.runtime.mutableStateOf
+ import androidx.compose.runtime.remember
+ import androidx.compose.runtime.setValue
+-import androidx.compose.ui.Alignment
+-import androidx.compose.ui.Modifier
+-import androidx.compose.ui.graphics.graphicsLayer
+-import androidx.compose.ui.input.pointer.pointerInput
+-import androidx.compose.ui.layout.ContentScale
+-import androidx.compose.ui.platform.LocalContext
+-import androidx.compose.ui.unit.dp
+-import androidx.compose.ui.window.Dialog
+-import coil.compose.AsyncImage
+-import coil.request.ImageRequest
+-import com.soloscape.note.model.NoteChanges
+-import com.soloscape.note.model.UiNoteState
++import com.soloscape.database.domain.model.Write
++import com.soloscape.home.presentations.write.components.NoteTopBar
++import com.soloscape.home.presentations.write.components.WriteChanges
+ import com.soloscape.ui.GalleryImage
+-import com.soloscape.ui.GalleryState
+-import com.soloscape.util.model.Mood
+-import com.soloscape.util.model.Report
++import com.soloscape.ui.Mood
+ import java.time.ZonedDateTime
+ 
+-@OptIn(ExperimentalFoundationApi::class)
+ @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+ @Composable
+ internal fun NoteScreen(
+     pagerState: PagerState,
+-    onDeleteConfirmed: () -> Unit,
++    onDeleteConfirmed: (Write) -> Unit,
+     onBackPressed: () -> Unit,
+-    uiState: UiNoteState,
+-    onNoteChange: (NoteChanges) -> Unit,
++    uiState: WriteState,
+     moodName: () -> String,
+-    onSaveClicked: (Report) -> Unit,
++    onSaveClicked: (Write) -> Unit,
+     onDateTimeUpdated: (ZonedDateTime) -> Unit,
+-    galleryState: GalleryState,
+-    onImageSelect: (Uri) -> Unit,
+-    onImageDeleteClicked: (GalleryImage) -> Unit,
+ ) {
+-    var selectedGalleryImage by remember { mutableStateOf<GalleryImage?>(null) }
+ 
+-    // update the mood when selecting an existing report
+     LaunchedEffect(key1 = uiState.mood) {
+         pagerState.scrollToPage(Mood.valueOf(uiState.mood.name).ordinal)
+     }
+@@ -70,7 +35,7 @@
+     Scaffold(
+         topBar = {
+             NoteTopBar(
+-                selectedReport = uiState.selectedReport,
++                selectedWrite = uiState.selectedReport,
+                 onDeleteConfirmed = onDeleteConfirmed,
+                 onBackPressed = onBackPressed,
+                 moodName = moodName,
+@@ -80,100 +45,12 @@
+         content = { paddingValues ->
+             NoteContent(
+                 uiState = uiState,
+-                noteChanges = NoteChanges(
+-                    title = uiState.title,
+-                    description = uiState.description,
+-                ),
+-                onNoteChange = { updatedNoteChanges ->
+-                    onNoteChange(updatedNoteChanges)
+-                },
+                 pagerState = pagerState,
+                 paddingValues = paddingValues,
+                 onSaveClicked = onSaveClicked,
+-                galleryState = galleryState,
+-                onImageSelect = onImageSelect,
+-                onImageClicked = { selectedGalleryImage = it },
+             )
+-
+-            AnimatedVisibility(visible = selectedGalleryImage != null) {
+-                Dialog(onDismissRequest = { selectedGalleryImage = null }) {
+-                    if (selectedGalleryImage != null) {
+-                        ZoomableImage(
+-                            selectedGalleryImage = selectedGalleryImage!!,
+-                            onCloseClicked = { selectedGalleryImage = null },
+-                            onDeleteClicked = {
+-                                if (selectedGalleryImage != null) {
+-                                    onImageDeleteClicked(selectedGalleryImage!!)
+-                                    selectedGalleryImage = null
+-                                }
+-                            },
+-                        )
+-                    }
+-                }
+-            }
+         },
+     )
+ }
+-
+-@Composable
+-fun ZoomableImage(
+-    selectedGalleryImage: GalleryImage,
+-    onCloseClicked: () -> Unit,
+-    onDeleteClicked: () -> Unit,
+-) {
+-    var offsetX by remember { mutableFloatStateOf(0f) }
+-    var offsetY by remember { mutableFloatStateOf(0f) }
+-    var scale by remember { mutableFloatStateOf(1f) }
+ 
+-    Box(
+-        modifier = Modifier.pointerInput(Unit) {
+-            detectTransformGestures { _, pan, zoom, _ ->
+-                // maximum zoom is 5
+-                scale = maxOf(1f, minOf(scale * zoom, 5f))
+ 
+-                val maxX = (size.width * (scale - 1)) / 2
+-                val minX = -maxX
+-                offsetX = maxOf(minX, minOf(maxX, offsetX + pan.x))
+-
+-                val maxY = (size.height * (scale - 1)) / 2
+-                val minY = -maxY
+-                offsetY = maxOf(minY, minOf(maxY, offsetY + pan.y))
+-            }
+-        },
+-    ) {
+-        AsyncImage(
+-            modifier = Modifier
+-                .fillMaxSize()
+-                .graphicsLayer(
+-                    scaleX = maxOf(.5f, minOf(3f, scale)),
+-                    scaleY = maxOf(.5f, minOf(3f, scale)),
+-                    translationX = offsetX,
+-                    translationY = offsetY,
+-                ),
+-            model = ImageRequest
+-                .Builder(LocalContext.current)
+-                .data(selectedGalleryImage.image.toString())
+-                .crossfade(true)
+-                .build(),
+-            contentScale = ContentScale.Fit,
+-            contentDescription = "Gallery Image",
+-        )
+-        Row(
+-            modifier = Modifier
+-                .fillMaxWidth()
+-                .padding(horizontal = 24.dp)
+-                .padding(top = 24.dp),
+-            horizontalArrangement = Arrangement.SpaceBetween,
+-            verticalAlignment = Alignment.CenterVertically,
+-        ) {
+-            Button(onClick = onCloseClicked) {
+-                Icon(imageVector = Icons.Default.Close, contentDescription = "Close Icon")
+-                Text(text = "Close")
+-            }
+-            Button(onClick = onDeleteClicked) {
+-                Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete Icon")
+-                Text(text = "Delete")
+-            }
+-        }
+-    }
+-}
+Index: feature/note/src/main/java/com/soloscape/note/NoteTopBar.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/feature/note/src/main/java/com/soloscape/note/NoteTopBar.kt b/feature/home/src/main/java/com/soloscape/home/presentations/write/components/NoteTopBar.kt
+rename from feature/note/src/main/java/com/soloscape/note/NoteTopBar.kt
+rename to feature/home/src/main/java/com/soloscape/home/presentations/write/components/NoteTopBar.kt
+--- a/feature/note/src/main/java/com/soloscape/note/NoteTopBar.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/feature/home/src/main/java/com/soloscape/home/presentations/write/components/NoteTopBar.kt	(date 1734860531396)
+@@ -1,4 +1,4 @@
+-package com.soloscape.note
++package com.soloscape.home.presentations.write.components
+ 
+ import android.annotation.SuppressLint
+ import androidx.compose.foundation.interaction.MutableInteractionSource
+@@ -35,19 +35,18 @@
+ import com.maxkeppeler.sheets.calendar.models.CalendarSelection
+ import com.maxkeppeler.sheets.clock.ClockDialog
+ import com.maxkeppeler.sheets.clock.models.ClockSelection
++import com.soloscape.database.domain.model.Write
+ import com.soloscape.ui.components.DisplayAlertDialog
+ import com.soloscape.ui.theme.MultiModularArchJCTheme
+ import com.soloscape.util.clickableWithoutRipple
+-import com.soloscape.util.model.Mood
+-import com.soloscape.util.model.Report
+-import com.soloscape.util.toInstant
++import com.soloscape.ui.Mood
++
+ import java.text.SimpleDateFormat
+ import java.time.LocalDate
+ import java.time.LocalTime
+ import java.time.ZoneId
+ import java.time.ZonedDateTime
+ import java.time.format.DateTimeFormatter
+-import java.util.Date
+ import java.util.Locale
+ 
+ @SuppressLint("NewApi")
+@@ -55,9 +54,9 @@
+ @Composable
+ internal fun NoteTopBar(
+     moodName: () -> String,
+-    selectedReport: Report?,
++    selectedWrite: Write?,
+     onBackPressed: () -> Unit,
+-    onDeleteConfirmed: () -> Unit,
++    onDeleteConfirmed: (Write) -> Unit,
+     onDateTimeUpdated: (ZonedDateTime) -> Unit,
+ ) {
+     val dateDialog = rememberUseCaseState()
+@@ -77,10 +76,10 @@
+ 
+     var dateTimeUpdated by remember { mutableStateOf(false) }
+ 
+-    val selectedReportDateTime = remember(selectedReport) {
+-        if (selectedReport != null) {
++    val selectedReportDateTime = remember(selectedWrite) {
++        if (selectedWrite != null) {
+             SimpleDateFormat("dd MMM yyyy, hh:mm a", Locale.getDefault())
+-                .format(Date.from(selectedReport.date.toInstant())).uppercase()
++                .format(selectedWrite.date).uppercase()
+         } else {
+             "Unknown"
+         }
+@@ -111,9 +110,9 @@
+ 
+                 Text(
+                     modifier = Modifier.fillMaxWidth(),
+-                    text = if (selectedReport != null && dateTimeUpdated) {
++                    text = if (selectedWrite != null && dateTimeUpdated) {
+                         "$formattedDate $formattedTime"
+-                    } else if (selectedReport != null) {
++                    } else if (selectedWrite != null) {
+                         selectedReportDateTime
+                     } else {
+                         "$formattedDate, $formattedTime"
+@@ -159,10 +158,10 @@
+                 )
+             }
+ 
+-            if (selectedReport != null) {
++            if (selectedWrite != null) {
+                 DeleteReportAction(
+-                    selectedReport = selectedReport,
+-                    onDeleteConfirmed = onDeleteConfirmed,
++                    selectedReport = selectedWrite,
++                    onDeleteConfirmed = { onDeleteConfirmed(selectedWrite) },
+                 )
+             }
+         },
+@@ -196,7 +195,7 @@
+ 
+ @Composable
+ fun DeleteReportAction(
+-    selectedReport: Report?,
++    selectedReport: Write?,
+     onDeleteConfirmed: () -> Unit,
+ ) {
+     var expanded by remember {
+@@ -244,7 +243,7 @@
+     MultiModularArchJCTheme {
+         NoteTopBar(
+             moodName = { Mood.Neutral.name },
+-            selectedReport = null,
++            selectedWrite = null,
+             onBackPressed = {},
+             onDeleteConfirmed = {},
+             onDateTimeUpdated = {},
+Index: feature/note/src/main/java/com/soloscape/note/components/CirclePath.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/feature/note/src/main/java/com/soloscape/note/components/CirclePath.kt b/core/ui/src/main/java/com/soloscape/ui/components/CirclePath.kt
+rename from feature/note/src/main/java/com/soloscape/note/components/CirclePath.kt
+rename to core/ui/src/main/java/com/soloscape/ui/components/CirclePath.kt
+--- a/feature/note/src/main/java/com/soloscape/note/components/CirclePath.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/core/ui/src/main/java/com/soloscape/ui/components/CirclePath.kt	(date 1734836219245)
+@@ -1,4 +1,4 @@
+-package com.soloscape.note.components
++package com.soloscape.ui.components
+ 
+ import androidx.compose.ui.geometry.Offset
+ import androidx.compose.ui.geometry.Rect
+Index: feature/home/src/main/java/com/soloscape/home/presentations/write/WriteState.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/feature/home/src/main/java/com/soloscape/home/presentations/write/WriteState.kt b/feature/home/src/main/java/com/soloscape/home/presentations/write/WriteState.kt
+new file mode 100644
+--- /dev/null	(date 1734859135087)
++++ b/feature/home/src/main/java/com/soloscape/home/presentations/write/WriteState.kt	(date 1734859135087)
+@@ -0,0 +1,13 @@
++package com.soloscape.home.presentations.write
++
++import com.soloscape.database.domain.model.Write
++import com.soloscape.ui.Mood
++
++data class WriteState(
++    val selectedReportId: String? = null,
++    val selectedReport: Write? = null,
++    val title: String = "",
++    val description: String = "",
++    val mood: Mood = Mood.Neutral,
++    val updatedDateTime: Long = 0,
++)
+Index: feature/home/src/main/java/com/soloscape/home/presentations/write/components/WriteChanges.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/feature/home/src/main/java/com/soloscape/home/presentations/write/components/WriteChanges.kt b/feature/home/src/main/java/com/soloscape/home/presentations/write/components/WriteChanges.kt
+new file mode 100644
+--- /dev/null	(date 1734859197961)
++++ b/feature/home/src/main/java/com/soloscape/home/presentations/write/components/WriteChanges.kt	(date 1734859197961)
+@@ -0,0 +1,6 @@
++package com.soloscape.home.presentations.write.components
++
++data class WriteChanges(
++    val title: String,
++    val description: String,
++)
+Index: feature/note/src/main/java/com/soloscape/note/navigation/NoteNavigation.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/feature/note/src/main/java/com/soloscape/note/navigation/NoteNavigation.kt b/feature/home/src/main/java/com/soloscape/home/presentations/write/navigation/NoteNavigation.kt
+rename from feature/note/src/main/java/com/soloscape/note/navigation/NoteNavigation.kt
+rename to feature/home/src/main/java/com/soloscape/home/presentations/write/navigation/NoteNavigation.kt
+--- a/feature/note/src/main/java/com/soloscape/note/navigation/NoteNavigation.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/feature/home/src/main/java/com/soloscape/home/presentations/write/navigation/NoteNavigation.kt	(date 1734862327221)
+@@ -1,7 +1,5 @@
+-package com.soloscape.note.navigation
++package com.soloscape.home.presentations.write.navigation
+ 
+-import android.widget.Toast
+-import androidx.compose.foundation.ExperimentalFoundationApi
+ import androidx.compose.foundation.pager.rememberPagerState
+ import androidx.compose.runtime.derivedStateOf
+ import androidx.compose.runtime.getValue
+@@ -12,13 +10,13 @@
+ import androidx.navigation.NavType
+ import androidx.navigation.compose.composable
+ import androidx.navigation.navArgument
+-import com.soloscape.note.NoteScreen
+-import com.soloscape.note.NoteViewModel
++import com.soloscape.home.presentations.write.NoteScreen
++import com.soloscape.home.presentations.write.NoteViewModel
++import com.soloscape.home.presentations.write.WriteEvent
++import com.soloscape.ui.Mood
+ import com.soloscape.util.Constants.NOTE_SCREEN_ARG_KEY
+ import com.soloscape.util.ScreensRoutes
+-import com.soloscape.util.model.Mood
+ 
+-@OptIn(ExperimentalFoundationApi::class)
+ fun NavGraphBuilder.reportRoute(onBackPressed: () -> Unit) {
+     composable(
+         route = ScreensRoutes.Note.route,
+@@ -34,46 +32,40 @@
+         val uiState = viewModel.uiState
+         val pagerState = rememberPagerState(pageCount = { Mood.values().size })
+         val pageNumber by remember { derivedStateOf { pagerState.currentPage } }
+-        val context = LocalContext.current
+-        val galleryState = viewModel.galleryState
++
+         NoteScreen(
+             onBackPressed = onBackPressed,
+             pagerState = pagerState,
+             uiState = uiState,
+-            onNoteChange = { note ->
+-                viewModel.setTitle(title = note.title)
+-                viewModel.setDescription(description = note.description)
+-            },
+-            moodName = { Mood.values()[pageNumber].name },
+-            onSaveClicked = {
+-                viewModel.insertUpdateNotes(
+-                    report = it.apply { mood = Mood.values()[pageNumber].name },
+-                    onSuccess = { onBackPressed() },
+-                    onError = { message ->
+-                        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+-                    },
+-                )
++            moodName = { Mood.entries[pageNumber].name },
++            onSaveClicked = { write ->
++
++                viewModel.onEvent(WriteEvent.UpsertWriteItem(writeItem = write, onSuccess = onBackPressed))
++//                viewModel.insertUpdateNotes(
++//                    report = it.apply { },
++//                    onSuccess = { onBackPressed() },
++//                    onError = { message ->
++//                        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
++//                    },
++//                )
+             },
+             onDateTimeUpdated = {
+-                viewModel.updateDateTime(zonedDateTime = it)
++               // viewModel.updateDateTime(zonedDateTime = it)
+             },
+-            onDeleteConfirmed = {
+-                viewModel.deleteNotes(
+-                    onSuccess = {
+-                        Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show()
+-                        onBackPressed()
+-                    },
+-                    onError = { message ->
+-                        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+-                    },
++            onDeleteConfirmed = { write ->
++                viewModel.onEvent(
++                    WriteEvent.DeleteWriteItem(writeItem = write, onSuccess = onBackPressed)
+                 )
++//                viewModel.deleteNotes(
++//                    onSuccess = {
++//                        Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show()
++//                        onBackPressed()
++//                    },
++//                    onError = { message ->
++//                        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
++//                    },
++//                )
+             },
+-            galleryState = galleryState,
+-            onImageSelect = {
+-                val type = context.contentResolver.getType(it)?.split("/")?.last() ?: "jpg"
+-                viewModel.addImage(image = it, imageType = type)
+-            },
+-            onImageDeleteClicked = { galleryState.removeImage(it) },
+         )
+     }
+ }
+Index: feature/home/src/main/java/com/soloscape/home/presentations/home/HomeViewModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/feature/home/src/main/java/com/soloscape/home/presentations/home/HomeViewModel.kt b/feature/home/src/main/java/com/soloscape/home/presentations/home/HomeViewModel.kt
+new file mode 100644
+--- /dev/null	(date 1734859135236)
++++ b/feature/home/src/main/java/com/soloscape/home/presentations/home/HomeViewModel.kt	(date 1734859135236)
+@@ -0,0 +1,94 @@
++package com.soloscape.home.presentations.home
++
++import androidx.compose.runtime.getValue
++import androidx.compose.runtime.mutableStateOf
++import androidx.compose.runtime.setValue
++import androidx.lifecycle.ViewModel
++import androidx.lifecycle.viewModelScope
++import com.soloscape.database.domain.usecase.WriteUseCases
++import com.soloscape.util.connectivity.ConnectivityObserver
++import com.soloscape.util.connectivity.NetworkConnectivityObserver
++import dagger.hilt.android.lifecycle.HiltViewModel
++import kotlinx.coroutines.Job
++import kotlinx.coroutines.cancelAndJoin
++import kotlinx.coroutines.flow.MutableStateFlow
++import kotlinx.coroutines.flow.StateFlow
++import kotlinx.coroutines.flow.asStateFlow
++import kotlinx.coroutines.flow.launchIn
++import kotlinx.coroutines.flow.onEach
++import kotlinx.coroutines.flow.update
++import kotlinx.coroutines.launch
++import java.time.ZonedDateTime
++import javax.inject.Inject
++
++@HiltViewModel
++internal class HomeViewModel @Inject constructor(
++    private val connectivity: NetworkConnectivityObserver,
++    private val writeUseCases: WriteUseCases
++) : ViewModel() {
++
++    private lateinit var allReportsJob: Job
++    private lateinit var filteredReportsJob: Job
++    private var network by mutableStateOf(ConnectivityObserver.Status.Unavailable)
++
++    private val _homeState = MutableStateFlow(HomeState())
++    val homeState: StateFlow<HomeState> = _homeState.asStateFlow()
++
++    var dateIsSelected by mutableStateOf(false)
++        private set
++
++    init {
++        getWriteList()
++        viewModelScope.launch {
++            connectivity.observe().collect { network = it }
++        }
++    }
++
++    fun getWrite(zonedDateTime: ZonedDateTime? = null) {
++        dateIsSelected = zonedDateTime != null
++
++        if (dateIsSelected && zonedDateTime != null) {
++            getWriteFilteredList(zonedDateTime = zonedDateTime)
++        } else {
++            getWriteList()
++        }
++    }
++
++    private fun getWriteList() {
++        writeUseCases.getWrite().onEach { write ->
++            _homeState.update { it.copy(writes = write) }
++        }.launchIn(viewModelScope)
++    }
++
++    private fun getWriteFilteredList(zonedDateTime: ZonedDateTime) {
++        writeUseCases.getWriteByFiltered(date = zonedDateTime).onEach { write ->
++            _homeState.update { it.copy(writes = write) }
++        }.launchIn(viewModelScope)
++    }
++
++
++
++
++    private fun observeAllReports() {
++        allReportsJob = viewModelScope.launch {
++            if (::filteredReportsJob.isInitialized) {
++                filteredReportsJob.cancelAndJoin()
++            }
++//            MongoDB.getAllNotes().debounce(2000).collect { result ->
++//                reports.value = result
++//            }
++        }
++    }
++
++    private fun observeFilteredReports(zonedDateTime: ZonedDateTime) {
++        filteredReportsJob = viewModelScope.launch {
++            if (::allReportsJob.isInitialized) {
++                allReportsJob.cancelAndJoin()
++            }
++//            MongoDB.getFilteredNotes(zonedDateTime = zonedDateTime).collect { result ->
++//                reports.value = result
++//            }
++        }
++    }
++
++}
+Index: feature/home/src/main/java/com/soloscape/home/HomeContent.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/feature/home/src/main/java/com/soloscape/home/HomeContent.kt b/feature/home/src/main/java/com/soloscape/home/presentations/home/HomeContent.kt
+rename from feature/home/src/main/java/com/soloscape/home/HomeContent.kt
+rename to feature/home/src/main/java/com/soloscape/home/presentations/home/HomeContent.kt
+--- a/feature/home/src/main/java/com/soloscape/home/HomeContent.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/feature/home/src/main/java/com/soloscape/home/presentations/home/HomeContent.kt	(date 1734862079252)
+@@ -1,14 +1,12 @@
+-package com.soloscape.home
++package com.soloscape.home.presentations.home
+ 
+ import android.annotation.SuppressLint
+ import androidx.compose.foundation.ExperimentalFoundationApi
+ import androidx.compose.foundation.background
+-import androidx.compose.foundation.layout.Arrangement
+ import androidx.compose.foundation.layout.Column
+ import androidx.compose.foundation.layout.PaddingValues
+ import androidx.compose.foundation.layout.Row
+ import androidx.compose.foundation.layout.Spacer
+-import androidx.compose.foundation.layout.fillMaxSize
+ import androidx.compose.foundation.layout.fillMaxWidth
+ import androidx.compose.foundation.layout.navigationBarsPadding
+ import androidx.compose.foundation.layout.padding
+@@ -24,41 +22,46 @@
+ import androidx.compose.ui.text.font.FontWeight
+ import androidx.compose.ui.tooling.preview.Preview
+ import androidx.compose.ui.unit.dp
+-import com.soloscape.util.ReportHolder
+-import com.soloscape.util.model.Report
++import com.soloscape.database.domain.model.Write
++import com.soloscape.home.presentations.home.components.EmptyPage
++import com.soloscape.home.presentations.home.components.ReportHolder
+ import java.time.LocalDate
+ 
+ @OptIn(ExperimentalFoundationApi::class)
+ @Composable
+ internal fun HomeContent(
+     paddingValues: PaddingValues,
+-    reportNotes: Map<LocalDate, List<Report>>,
+-    onClick: (String) -> Unit,
++    writes: Map<LocalDate, List<Write>>? =null,
++    onClick: (Int) -> Unit,
+ ) {
+-    if (reportNotes.isNotEmpty()) {
+-        LazyColumn(
+-            modifier = Modifier
+-                .padding(horizontal = 24.dp)
+-                .navigationBarsPadding()
+-                .padding(top = paddingValues.calculateTopPadding()),
+-        ) {
+-            reportNotes.forEach { (localDate, reports) ->
+-                stickyHeader(key = localDate) {
+-                    DateHeader(localDate = localDate)
+-                }
+-                items(
+-                    items = reports,
+-                    key = { it._id.toString() },
+-                ) {
+-                    ReportHolder(report = it, onClick = onClick)
+-                }
+-            }
+-        }
+-    } else {
+-        EmptyPage()
+-    }
+-}
++    if (writes != null) {
++        if (writes.isNotEmpty()) {
++            LazyColumn(
++                modifier = Modifier
++                    .padding(horizontal = 24.dp)
++                    .navigationBarsPadding()
++                    .padding(top = paddingValues.calculateTopPadding()),
++            ) {
++                writes.forEach { (localDate, write) ->
++                    stickyHeader(key = localDate) {
++                        DateHeader(localDate = localDate)
++                    }
++                    items(
++                        items = write,
++                        key = { localDate.toString() },
++                    ) {
++                        ReportHolder(report = it, onClick = onClick)
++                    }
++                }
++            }
++        } else {
++            EmptyPage()
++        }
++    }
+ 
++}
++
++
+ @SuppressLint("NewApi")
+ @Composable
+ internal fun DateHeader(localDate: LocalDate) {
+@@ -112,34 +115,6 @@
+     }
+ }
+ 
+-@Composable
+-internal fun EmptyPage(
+-    title: String = "Welcome to SoloScape",
+-    subtitle: String = "Write Something",
+-) {
+-    Column(
+-        modifier = Modifier
+-            .fillMaxSize()
+-            .padding(all = 24.dp),
+-        verticalArrangement = Arrangement.Center,
+-        horizontalAlignment = Alignment.CenterHorizontally,
+-    ) {
+-        Text(
+-            text = title,
+-            style = TextStyle(
+-                fontSize = MaterialTheme.typography.titleMedium.fontSize,
+-                fontWeight = FontWeight.Medium,
+-            ),
+-        )
+-        Text(
+-            text = subtitle,
+-            style = TextStyle(
+-                fontSize = MaterialTheme.typography.bodyMedium.fontSize,
+-                fontWeight = FontWeight.Normal,
+-            ),
+-        )
+-    }
+-}
+ 
+ @SuppressLint("NewApi")
+ @Composable
+Index: feature/home/src/main/java/com/soloscape/home/HomeScreen.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/feature/home/src/main/java/com/soloscape/home/HomeScreen.kt b/feature/home/src/main/java/com/soloscape/home/presentations/home/HomeScreen.kt
+rename from feature/home/src/main/java/com/soloscape/home/HomeScreen.kt
+rename to feature/home/src/main/java/com/soloscape/home/presentations/home/HomeScreen.kt
+--- a/feature/home/src/main/java/com/soloscape/home/HomeScreen.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/feature/home/src/main/java/com/soloscape/home/presentations/home/HomeScreen.kt	(date 1734861892175)
+@@ -1,4 +1,4 @@
+-package com.soloscape.home
++package com.soloscape.home.presentations.home
+ 
+ import android.annotation.SuppressLint
+ import androidx.compose.foundation.Image
+@@ -18,7 +18,6 @@
+ import androidx.compose.material.icons.Icons
+ import androidx.compose.material.icons.filled.Delete
+ import androidx.compose.material.icons.filled.Edit
+-import androidx.compose.material3.CircularProgressIndicator
+ import androidx.compose.material3.DrawerState
+ import androidx.compose.material3.ExperimentalMaterial3Api
+ import androidx.compose.material3.FloatingActionButton
+@@ -43,23 +42,23 @@
+ import androidx.compose.ui.tooling.preview.Preview
+ import androidx.compose.ui.unit.LayoutDirection
+ import androidx.compose.ui.unit.dp
+-import com.soloscape.mongo.repository.Reports
++import com.soloscape.home.presentations.home.components.EmptyPage
++import com.soloscape.home.presentations.home.components.HomeTopBar
+ import com.soloscape.ui.R
+ import com.soloscape.ui.components.ThemeSwitcher
+ import com.soloscape.util.getAppVersion
+-import com.soloscape.util.model.RequestState
+ import java.time.ZonedDateTime
+ 
+ @OptIn(ExperimentalMaterial3Api::class)
+ @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+ @Composable
+ internal fun HomeScreen(
+-    reports: Reports,
++    homeState: HomeState,
+     onMenuClicked: () -> Unit,
+     navigateToWrite: () -> Unit,
+     drawerState: DrawerState,
+     onSignOutClicked: () -> Unit,
+-    navigateToWriteWithArgs: (String) -> Unit,
++    navigateToWriteWithArgs: (Int) -> Unit,
+     onDeleteAllClicked: () -> Unit,
+     dateIsSelected: Boolean,
+     onDateSelected: (ZonedDateTime) -> Unit,
+@@ -105,37 +104,16 @@
+             },
+             content = {
+                 padding = it
+-                when (reports) {
+-                    is RequestState.Success -> {
+-                        HomeContent(
+-                            paddingValues = it,
+-                            reportNotes = reports.data,
+-                            onClick = navigateToWriteWithArgs,
+-                        )
+-                    }
+-
+-                    is RequestState.Error -> {
+-                        EmptyPage(
+-                            title = "Error",
+-                            subtitle = "${reports.error.message}",
+-                        )
+-                    }
+-
+-                    is RequestState.Loading -> {
+-                        Box(
+-                            modifier = Modifier.fillMaxSize(),
+-                            contentAlignment = Alignment.Center,
+-                        ) {
+-                            CircularProgressIndicator()
+-                        }
+-                    }
+-
+-                    else -> {}
+-                }
++                HomeContent(
++                    paddingValues = it,
++                    writes = homeState.writes,
++                    onClick = navigateToWriteWithArgs,
++                )
+             },
+         )
+     }
+ }
++
+ 
+ @Composable
+ internal fun NavigationDrawer(
+Index: feature/home/src/main/java/com/soloscape/home/HomeTopBar.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/feature/home/src/main/java/com/soloscape/home/HomeTopBar.kt b/feature/home/src/main/java/com/soloscape/home/presentations/home/components/HomeTopBar.kt
+rename from feature/home/src/main/java/com/soloscape/home/HomeTopBar.kt
+rename to feature/home/src/main/java/com/soloscape/home/presentations/home/components/HomeTopBar.kt
+--- a/feature/home/src/main/java/com/soloscape/home/HomeTopBar.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/feature/home/src/main/java/com/soloscape/home/presentations/home/components/HomeTopBar.kt	(date 1734859135464)
+@@ -1,4 +1,4 @@
+-package com.soloscape.home
++package com.soloscape.home.presentations.home.components
+ 
+ import android.annotation.SuppressLint
+ import androidx.compose.material.icons.Icons
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+--- a/.idea/gradle.xml	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/.idea/gradle.xml	(date 1734852151962)
+@@ -15,6 +15,7 @@
+             </builds>
+           </compositeBuild>
+         </compositeConfiguration>
++        <option name="testRunner" value="CHOOSE_PER_TEST" />
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+         <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
+         <option name="modules">
+@@ -23,14 +24,12 @@
+             <option value="$PROJECT_DIR$/app" />
+             <option value="$PROJECT_DIR$/buildSrc" />
+             <option value="$PROJECT_DIR$/core" />
++            <option value="$PROJECT_DIR$/core/database" />
++            <option value="$PROJECT_DIR$/core/model" />
+             <option value="$PROJECT_DIR$/core/ui" />
+             <option value="$PROJECT_DIR$/core/util" />
+-            <option value="$PROJECT_DIR$/data" />
+-            <option value="$PROJECT_DIR$/data/mongo" />
+             <option value="$PROJECT_DIR$/feature" />
+-            <option value="$PROJECT_DIR$/feature/auth" />
+             <option value="$PROJECT_DIR$/feature/home" />
+-            <option value="$PROJECT_DIR$/feature/note" />
+           </set>
+         </option>
+         <option name="resolveExternalAnnotations" value="false" />
+Index: .idea/migrations.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/migrations.xml b/.idea/migrations.xml
+new file mode 100644
+--- /dev/null	(date 1734775931699)
++++ b/.idea/migrations.xml	(date 1734775931699)
+@@ -0,0 +1,10 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectMigrations">
++    <option name="MigrateToGradleLocalJavaHome">
++      <set>
++        <option value="$PROJECT_DIR$" />
++      </set>
++    </option>
++  </component>
++</project>
+\ No newline at end of file
+Index: feature/auth/build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/feature/auth/build.gradle.kts b/feature/auth/build.gradle.kts
+--- a/feature/auth/build.gradle.kts	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/feature/auth/build.gradle.kts	(date 1734836768271)
+@@ -11,25 +11,21 @@
+         compose = true
+     }
+ 
+-
+-    compileOptions {
+-        sourceCompatibility = JavaVersion.VERSION_1_8
+-        targetCompatibility = JavaVersion.VERSION_1_8
+-    }
+-    kotlinOptions {
+-        jvmTarget = "1.8"
+-    }
+-
+ }
+ 
+ dependencies {
+ 
+-    implementation(libs.activity.compose)
+-    implementation(libs.material3.compose)
++    implementation(platform(libs.androidx.compose.bom))
++    implementation(libs.bundles.bundle.androidx.compose)
+ 
+-    implementation(libs.compose.tooling.preview)
++    implementation(libs.androidx.core.ktx)
++    implementation(libs.androidx.lifecycle.runtime.compose)
++    implementation(libs.androidx.lifecycle.runtime.ktx)
++    implementation(libs.androidx.activity.compose)
+ 
+-    implementation(libs.navigation.compose)
++    implementation(libs.androidx.material3)
++
++    implementation(libs.androidx.compose.navigation)
+ 
+     implementation(libs.message.bar.compose)
+     implementation(libs.one.tap.compose)
+@@ -37,13 +33,13 @@
+     implementation(platform(libs.firebase.bom))
+     implementation(libs.firebase.auth)
+ 
+-    implementation(libs.coroutines.core)
++    implementation (libs.coroutines.core)
+ 
+-    implementation(libs.realm.sync)
+-
+     implementation(projects.core.ui)
++    implementation (projects.core.model)
+     implementation(projects.core.util)
+ 
+-    debugImplementation (libs.androidx.ui.tooling)
+-    debugImplementation (libs.androidx.ui.test.manifest)
++    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
++    debugImplementation(libs.androidx.compose.ui.tooling)
++    debugImplementation(libs.androidx.compose.ui.test.manifest)
+ }
+\ No newline at end of file
+Index: core/ui/build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/ui/build.gradle.kts b/core/ui/build.gradle.kts
+--- a/core/ui/build.gradle.kts	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/core/ui/build.gradle.kts	(date 1734861097744)
+@@ -10,29 +10,22 @@
+     buildFeatures {
+         compose = true
+     }
+-
+-    compileOptions {
+-        sourceCompatibility = JavaVersion.VERSION_1_8
+-        targetCompatibility = JavaVersion.VERSION_1_8
+-    }
+-    kotlinOptions {
+-        jvmTarget = "1.8"
+-    }
+-    packaging {
+-        resources {
+-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+-        }
+-    }
+ }
+ 
+ dependencies {
+-    implementation (libs.activity.compose)
+-    implementation (libs.material3.compose)
+-    implementation (libs.compose.tooling.preview)
+-    implementation (libs.realm.sync)
+-    implementation (libs.coroutines.core)
++    implementation(platform(libs.androidx.compose.bom))
++    implementation(libs.bundles.bundle.androidx.compose)
++
++    implementation(libs.androidx.core.ktx)
++    implementation(libs.androidx.lifecycle.runtime.compose)
++    implementation(libs.androidx.lifecycle.runtime.ktx)
++    implementation(libs.androidx.activity.compose)
++
++    implementation(libs.androidx.material3)
++
++    implementation(libs.bundles.bundle.coil)
++
+     implementation (libs.material.icons.extended)
+ 
+-    debugImplementation (libs.androidx.ui.tooling)
+-    debugImplementation (libs.androidx.ui.test.manifest)
++    implementation(projects.core.model)
+ }
+\ No newline at end of file
+Index: app/src/main/res/values/themes.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/themes.xml b/app/src/main/res/values/themes.xml
+--- a/app/src/main/res/values/themes.xml	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/app/src/main/res/values/themes.xml	(date 1734851879732)
+@@ -2,7 +2,8 @@
+ <resources>
+ 
+     <style name="Theme.MultiModularArchJC" parent="android:Theme.Material.Light.NoActionBar">
+-        <item name="android:windowBackground">@color/black</item>
++        <item name="windowSplashScreenBackground">#FBFCFF</item>
++        <item name="windowSplashScreenAnimatedIcon">@drawable/logo</item>
+     </style>
+ 
+ </resources>
+\ No newline at end of file
+Index: feature/note/build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/feature/note/build.gradle.kts b/feature/note/build.gradle.kts
+--- a/feature/note/build.gradle.kts	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/feature/note/build.gradle.kts	(date 1734836768115)
+@@ -3,8 +3,7 @@
+     alias (libs.plugins.kotlin.android)
+     alias(libs.plugins.compose.compiler)
+     alias (libs.plugins.hilt)
+-    id ("io.realm.kotlin")
+-    id ("com.google.devtools.ksp")
++    alias(libs.plugins.devtool.ksp)
+ }
+ 
+ android {
+@@ -13,48 +12,42 @@
+     buildFeatures {
+         compose = true
+     }
+-
+-    compileOptions {
+-        sourceCompatibility = JavaVersion.VERSION_1_8
+-        targetCompatibility = JavaVersion.VERSION_1_8
+-    }
+-    kotlinOptions {
+-        jvmTarget = "1.8"
+-    }
+-
+ }
+ 
+ dependencies {
+ 
+-    implementation (libs.activity.compose)
+-    implementation (libs.material3.compose)
+-    implementation (libs.navigation.compose)
++    implementation(platform(libs.androidx.compose.bom))
++    implementation(libs.bundles.bundle.androidx.compose)
+ 
+-    implementation (libs.compose.tooling.preview)
++    implementation(libs.androidx.core.ktx)
++    implementation(libs.androidx.lifecycle.runtime.compose)
++    implementation(libs.androidx.lifecycle.runtime.ktx)
++    implementation(libs.androidx.activity.compose)
+ 
+-    implementation (libs.coil)
++    implementation(libs.androidx.material3)
++
++    implementation(libs.bundles.bundle.coil)
+ 
+     implementation (libs.coroutines.core)
+ 
+-    implementation (libs.realm.sync)
+-
+     implementation (libs.date.time.picker)
+     implementation (libs.date.dialog)
+     implementation (libs.time.dialog)
+ 
+-    implementation (libs.hilt.navigation.compose)
+-    implementation (libs.hilt.android)
+-
+-    ksp (libs.hilt.compiler)
++    //Hilt
++    implementation(libs.androidx.hilt.compose.navigation)
++    implementation(libs.hilt)
++    ksp(libs.hilt.compiler)
+ 
+     implementation(platform(libs.firebase.bom))
+     implementation (libs.firebase.auth)
+     implementation (libs.firebase.storage)
+ 
+     implementation (projects.core.ui)
++    implementation (projects.core.model)
+     implementation (projects.core.util)
+-    implementation (projects.data.mongo)
+ 
+-    debugImplementation (libs.androidx.ui.tooling)
+-    debugImplementation (libs.androidx.ui.test.manifest)
++    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
++    debugImplementation(libs.androidx.compose.ui.tooling)
++    debugImplementation(libs.androidx.compose.ui.test.manifest)
+ }
+\ No newline at end of file
+Index: build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build.gradle.kts b/build.gradle.kts
+--- a/build.gradle.kts	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/build.gradle.kts	(date 1734836768318)
+@@ -6,22 +6,15 @@
+ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+ 
+-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+-
+ plugins {
+     alias (libs.plugins.android.application) apply false
+     alias (libs.plugins.android.library) apply false
+     alias (libs.plugins.kotlin.android) apply false
+     alias(libs.plugins.compose.compiler) apply false
+-
+     alias (libs.plugins.devtool.ksp) apply false
+-
+     alias (libs.plugins.hilt) apply false
+-
+     alias (libs.plugins.realm.kotlin) apply false
+-
+     alias (libs.plugins.gms.google.services) apply false
+-
+     alias(libs.plugins.spotless) apply false
+ }
+ 
+@@ -37,25 +30,13 @@
+     defaultConfig {
+         minSdk = ProjectConfig.MIN_SDK
+         targetSdk = ProjectConfig.TARGET_SDK
+-
+-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+-        vectorDrawables {
+-            useSupportLibrary = true
+-        }
+     }
+-
+ 
+     compileOptions {
+-        sourceCompatibility = JavaVersion.VERSION_1_8
+-        targetCompatibility = JavaVersion.VERSION_1_8
+-      //  isCoreLibraryDesugaringEnabled = true
++        sourceCompatibility = JavaVersion.VERSION_17
++        targetCompatibility = JavaVersion.VERSION_17
+     }
+ 
+-    packagingOptions {
+-        resources {
+-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+-        }
+-    }
+ }
+ 
+ 
+@@ -90,7 +71,7 @@
+ 
+     tasks.withType<KotlinCompile> {
+         compilerOptions {
+-            jvmTarget.set(JvmTarget.JVM_1_8)
++            jvmTarget.set(JvmTarget.JVM_17)
+             freeCompilerArgs.addAll(
+                 listOf(
+                     "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
+Index: feature/home/build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/feature/home/build.gradle.kts b/feature/home/build.gradle.kts
+--- a/feature/home/build.gradle.kts	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/feature/home/build.gradle.kts	(date 1734849577360)
+@@ -3,8 +3,7 @@
+     alias (libs.plugins.kotlin.android)
+     alias(libs.plugins.compose.compiler)
+     alias (libs.plugins.hilt)
+-    id ("io.realm.kotlin")
+-    id ("com.google.devtools.ksp")
++    alias(libs.plugins.devtool.ksp)
+ }
+ 
+ android {
+@@ -13,42 +12,44 @@
+     buildFeatures {
+         compose = true
+     }
+-
+-    compileOptions {
+-        sourceCompatibility = JavaVersion.VERSION_1_8
+-        targetCompatibility = JavaVersion.VERSION_1_8
+-    }
+-    kotlinOptions {
+-        jvmTarget = "1.8"
+-    }
+ }
+ 
+ dependencies {
+-    implementation (libs.activity.compose)
+-    implementation (libs.material3.compose)
+-    implementation (libs.navigation.compose)
++    implementation(platform(libs.androidx.compose.bom))
++    implementation(libs.bundles.bundle.androidx.compose)
++
++    implementation(libs.androidx.core.ktx)
++    implementation(libs.androidx.lifecycle.runtime.compose)
++    implementation(libs.androidx.lifecycle.runtime.ktx)
++    implementation(libs.androidx.activity.compose)
++
++    implementation(libs.androidx.material3)
++
+     implementation (libs.coroutines.core)
+ 
+-    implementation (libs.realm.sync)
++    implementation(libs.bundles.bundle.coil)
+ 
+-    implementation (libs.hilt.navigation.compose)
+-    implementation (libs.hilt.android)
+-    ksp (libs.hilt.compiler)
++    //Hilt
++    implementation(libs.androidx.hilt.compose.navigation)
++    implementation(libs.hilt)
++    ksp(libs.hilt.compiler)
+ 
+-    implementation (libs.compose.tooling.preview)
+ 
+     implementation (libs.date.time.picker)
+     implementation (libs.date.dialog)
++    implementation (libs.time.dialog)
+ 
+     implementation(platform(libs.firebase.bom))
+     implementation (libs.firebase.auth)
+     implementation (libs.firebase.storage)
+ 
+     implementation (projects.core.ui)
++    implementation (projects.core.model)
++    implementation (projects.core.database)
+     implementation (projects.core.util)
+-    implementation (projects.data.mongo)
+ 
+-    debugImplementation (libs.androidx.ui.tooling)
+-    debugImplementation (libs.androidx.ui.test.manifest)
++    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
++    debugImplementation(libs.androidx.compose.ui.tooling)
++    debugImplementation(libs.androidx.compose.ui.test.manifest)
+ 
+ }
+\ No newline at end of file
+Index: settings.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/settings.gradle.kts b/settings.gradle.kts
+--- a/settings.gradle.kts	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/settings.gradle.kts	(date 1734850452518)
+@@ -19,12 +19,15 @@
+         maven { setUrl("https://jitpack.io")  }
+     }
+ }
+-rootProject.name = "MultiModularArch-JC"
++rootProject.name = "SoloScape"
++
+ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
++
+ include (":app")
+ include (":core:ui")
+ include (":core:util")
+-include (":data:mongo")
+-include (":feature:auth")
++include (":core:model")
++include (":core:database")
++//include (":feature:auth")
+ include (":feature:home")
+-include (":feature:note")
++//include (":feature:note")
+Index: data/mongo/build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/mongo/build.gradle.kts b/data/mongo/build.gradle.kts
+--- a/data/mongo/build.gradle.kts	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/data/mongo/build.gradle.kts	(date 1734779426825)
+@@ -1,8 +1,7 @@
+ plugins {
+     alias (libs.plugins.android.library)
+     alias (libs.plugins.kotlin.android)
+-
+-    id ("com.google.devtools.ksp")
++    alias(libs.plugins.devtool.ksp)
+     id ("io.realm.kotlin")
+ }
+ 
+@@ -20,13 +19,15 @@
+ 
+ dependencies {
+ 
+-    implementation (libs.core.ktx)
++    implementation(libs.androidx.core.ktx)
+     implementation (libs.coroutines.core)
++
++    implementation (libs.library.base)
+     implementation (libs.realm.sync)
+ 
+-    implementation (libs.room.runtime)
+-    implementation (libs.room.ktx)
+-    ksp (libs.room.compiler)
++    //Room
++    implementation(libs.bundles.bundle.room)
++    ksp(libs.androidx.room.compiler)
+ 
+     //util
+     implementation (projects.core.util)
+Index: .idea/kotlinc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/kotlinc.xml b/.idea/kotlinc.xml
+--- a/.idea/kotlinc.xml	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/.idea/kotlinc.xml	(date 1734776064381)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="KotlinJpsPluginSettings">
+-    <option name="version" value="2.0.0" />
++    <option name="version" value="2.1.0" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: app/src/main/java/com/compose/soloscape/di/DatabaseModule.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/compose/soloscape/di/DatabaseModule.kt b/app/src/main/java/com/compose/soloscape/di/AppModule.kt
+rename from app/src/main/java/com/compose/soloscape/di/DatabaseModule.kt
+rename to app/src/main/java/com/compose/soloscape/di/AppModule.kt
+--- a/app/src/main/java/com/compose/soloscape/di/DatabaseModule.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/app/src/main/java/com/compose/soloscape/di/AppModule.kt	(date 1734850452506)
+@@ -1,9 +1,7 @@
+ package com.compose.soloscape.di
+ 
+ import android.content.Context
+-import androidx.room.Room
+-import com.soloscape.mongo.database.ImagesDatabase
+-import com.soloscape.util.Constants.IMAGES_DATABASE
++
+ import com.soloscape.util.connectivity.NetworkConnectivityObserver
+ import dagger.Module
+ import dagger.Provides
+@@ -14,26 +12,7 @@
+ 
+ @Module
+ @InstallIn(SingletonComponent::class)
+-object DatabaseModule {
+-    @Provides
+-    @Singleton
+-    fun provideDatabase(
+-        @ApplicationContext context: Context,
+-    ): ImagesDatabase {
+-        return Room.databaseBuilder(
+-            context = context,
+-            klass = ImagesDatabase::class.java,
+-            name = IMAGES_DATABASE,
+-        ).build()
+-    }
+-
+-    @Singleton
+-    @Provides
+-    fun provideFirstDao(database: ImagesDatabase) = database.imageToUploadDao()
+-
+-    @Singleton
+-    @Provides
+-    fun provideSecondDao(database: ImagesDatabase) = database.imageToDeleteDao()
++object AppModule {
+ 
+     @Singleton
+     @Provides
+Index: core/ui/src/main/java/com/soloscape/ui/theme/Theme.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/ui/src/main/java/com/soloscape/ui/theme/Theme.kt b/core/ui/src/main/java/com/soloscape/ui/theme/Theme.kt
+--- a/core/ui/src/main/java/com/soloscape/ui/theme/Theme.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/core/ui/src/main/java/com/soloscape/ui/theme/Theme.kt	(date 1734839836087)
+@@ -96,34 +96,6 @@
+         darkTheme -> DarkColors
+         else -> LightColors
+     }
+-    val view = LocalView.current
+-    if (!view.isInEditMode) {
+-        SideEffect {
+-            val window = (view.context as Activity).window
+-            window.statusBarColor = Color.Transparent.toArgb()
+-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+-        }
+-    }
+-
+-    SideEffect {
+-        val context = view.context
+-        if (context is Activity) {
+-            val window = context.window
+-            window.statusBarColor = Color.Transparent.toArgb()
+-            window.navigationBarColor = Color.Transparent.toArgb()
+-
+-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+-                window.isNavigationBarContrastEnforced = false
+-            }
+-
+-            val windowsInsetsController = WindowCompat.getInsetsController(window, view)
+-
+-            windowsInsetsController.let {
+-                it.isAppearanceLightStatusBars = !darkTheme
+-                it.isAppearanceLightNavigationBars = !darkTheme
+-            }
+-        }
+-    }
+ 
+     MaterialTheme(
+         colorScheme = colorScheme,
+Index: feature/auth/src/main/java/com/soloscape/auth/AuthenticationViewModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/feature/auth/src/main/java/com/soloscape/auth/AuthenticationViewModel.kt b/feature/auth/src/main/java/com/soloscape/auth/AuthenticationViewModel.kt
+--- a/feature/auth/src/main/java/com/soloscape/auth/AuthenticationViewModel.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/feature/auth/src/main/java/com/soloscape/auth/AuthenticationViewModel.kt	(date 1734783169981)
+@@ -4,8 +4,7 @@
+ import androidx.lifecycle.ViewModel
+ import androidx.lifecycle.viewModelScope
+ import com.soloscape.util.Constants.APP_ID
+-import io.realm.kotlin.mongodb.App
+-import io.realm.kotlin.mongodb.Credentials
++
+ import kotlinx.coroutines.Dispatchers
+ import kotlinx.coroutines.delay
+ import kotlinx.coroutines.launch
+@@ -27,29 +26,29 @@
+         onSuccess: () -> Unit,
+         onError: (Exception) -> Unit,
+     ) {
+-        viewModelScope.launch {
+-            try {
+-                val result = withContext(Dispatchers.IO) {
+-                    App.create(APP_ID).login(
+-                        Credentials.jwt(tokenId),
+-                        // Credentials.google(tokenId, GoogleAuthType.ID_TOKEN)
+-                    ).loggedIn
+-                }
+-
+-                withContext(Dispatchers.Main) {
+-                    if (result) {
+-                        onSuccess()
+-                        delay(600)
+-                        authenticated.value = true
+-                    } else {
+-                        onError(Exception("User is not logged in."))
+-                    }
+-                }
+-            } catch (e: Exception) {
+-                withContext(Dispatchers.Main) {
+-                    onError(e)
+-                }
+-            }
+-        }
++//        viewModelScope.launch {
++//            try {
++//                val result = withContext(Dispatchers.IO) {
++//                    App.create(APP_ID).login(
++//                        Credentials.jwt(tokenId),
++//                        // Credentials.google(tokenId, GoogleAuthType.ID_TOKEN)
++//                    ).loggedIn
++//                }
++//
++//                withContext(Dispatchers.Main) {
++//                    if (result) {
++//                        onSuccess()
++//                        delay(600)
++//                        authenticated.value = true
++//                    } else {
++//                        onError(Exception("User is not logged in."))
++//                    }
++//                }
++//            } catch (e: Exception) {
++//                withContext(Dispatchers.Main) {
++//                    onError(e)
++//                }
++//            }
++//        }
+     }
+ }
+Index: core/util/build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/util/build.gradle.kts b/core/util/build.gradle.kts
+--- a/core/util/build.gradle.kts	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/core/util/build.gradle.kts	(date 1734836768225)
+@@ -1,8 +1,8 @@
+ plugins {
+-    alias (libs.plugins.android.library)
+-    alias (libs.plugins.kotlin.android)
++    alias(libs.plugins.android.library)
++    alias(libs.plugins.kotlin.android)
+     alias(libs.plugins.compose.compiler)
+-    id ("io.realm.kotlin")
++
+ }
+ 
+ android {
+@@ -11,32 +11,28 @@
+     buildFeatures {
+         compose = true
+     }
+-
+-    compileOptions {
+-        sourceCompatibility = JavaVersion.VERSION_1_8
+-        targetCompatibility = JavaVersion.VERSION_1_8
+-    }
+-
+-    kotlinOptions {
+-        jvmTarget = "1.8"
+-    }
+-
+ }
+ 
+ dependencies {
+ 
+-    implementation (libs.activity.compose)
+-    implementation (libs.material3.compose)
+-    implementation (libs.core.ktx)
++    implementation(libs.androidx.core.ktx)
++    implementation(libs.androidx.lifecycle.runtime.ktx)
++    implementation(libs.androidx.activity.compose)
++
++    implementation(platform(libs.androidx.compose.bom))
++    implementation(libs.bundles.bundle.androidx.compose)
++
++    implementation(libs.material)
++    implementation(libs.androidx.material3)
++
++    implementation(libs.androidx.compose.navigation)
+ 
+     implementation(platform(libs.firebase.bom))
+-    implementation (libs.firebase.storage)
++    implementation(libs.firebase.storage)
+ 
+-    implementation (libs.realm.sync)
+-    implementation (libs.coroutines.core)
+-    implementation (libs.coil)
+-    implementation (libs.compose.tooling.preview)
++    implementation(libs.coroutines.core)
++
++    implementation(libs.bundles.bundle.coil)
+ 
+-    implementation (projects.core.ui)
+-
++    implementation(projects.core.ui)
+ }
+\ No newline at end of file
+Index: feature/auth/src/main/java/com/soloscape/auth/AuthenticationContent.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/feature/auth/src/main/java/com/soloscape/auth/AuthenticationContent.kt b/feature/auth/src/main/java/com/soloscape/auth/AuthenticationContent.kt
+--- a/feature/auth/src/main/java/com/soloscape/auth/AuthenticationContent.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/feature/auth/src/main/java/com/soloscape/auth/AuthenticationContent.kt	(date 1734783169919)
+@@ -1,5 +1,6 @@
+ package com.soloscape.auth
+ 
++
+ import androidx.compose.foundation.Image
+ import androidx.compose.foundation.layout.Arrangement
+ import androidx.compose.foundation.layout.Column
+Index: core/util/src/main/java/com/soloscape/util/ScreensRoutes.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/util/src/main/java/com/soloscape/util/ScreensRoutes.kt b/core/util/src/main/java/com/soloscape/util/ScreensRoutes.kt
+--- a/core/util/src/main/java/com/soloscape/util/ScreensRoutes.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/core/util/src/main/java/com/soloscape/util/ScreensRoutes.kt	(date 1734850129678)
+@@ -3,9 +3,9 @@
+ import com.soloscape.util.Constants.NOTE_SCREEN_ARG_KEY
+ 
+ sealed class ScreensRoutes(val route: String) {
+-    object Authentication : ScreensRoutes(route = "auth_screen")
+-    object Home : ScreensRoutes(route = "home_screen")
+-    object Note : ScreensRoutes(route = "note_screen?$NOTE_SCREEN_ARG_KEY={$NOTE_SCREEN_ARG_KEY}") {
+-        fun passNoteId(noteId: String) = "note_screen?$NOTE_SCREEN_ARG_KEY=$noteId"
++    data object Authentication : ScreensRoutes(route = "auth_screen")
++    data object Home : ScreensRoutes(route = "home_screen")
++    data object Note : ScreensRoutes(route = "note_screen?$NOTE_SCREEN_ARG_KEY={$NOTE_SCREEN_ARG_KEY}") {
++        fun passNoteId(noteId: Int) = "note_screen?$NOTE_SCREEN_ARG_KEY=$noteId"
+     }
+ }
+Index: core/util/src/main/java/com/soloscape/util/UtilFunctions.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/util/src/main/java/com/soloscape/util/UtilFunctions.kt b/core/util/src/main/java/com/soloscape/util/UtilFunctions.kt
+--- a/core/util/src/main/java/com/soloscape/util/UtilFunctions.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/core/util/src/main/java/com/soloscape/util/UtilFunctions.kt	(date 1734782172481)
+@@ -4,63 +4,11 @@
+ import android.content.Context
+ import android.content.pm.PackageInfo
+ import android.content.pm.PackageManager
+-import android.net.Uri
+ import androidx.compose.foundation.clickable
+ import androidx.compose.foundation.interaction.MutableInteractionSource
+ import androidx.compose.ui.Modifier
+ import androidx.compose.ui.composed
+ import androidx.core.content.pm.PackageInfoCompat
+-import com.google.firebase.storage.FirebaseStorage
+-import io.realm.kotlin.types.RealmInstant
+-import java.time.Instant
+-
+-// inside function of fetchImagesFromFirebase with downloadUrl, with this a generated authentication token
+-// will add on image url, with that you will be enable to access the images from firebase
+-fun fetchImagesFromFirebase(
+-    remoteImagePaths: List<String>,
+-    onImageDownload: (Uri) -> Unit,
+-    onImageDownloadFailed: (Exception) -> Unit = {},
+-    onReadyDisplay: () -> Unit = {},
+-) {
+-    if (remoteImagePaths.isNotEmpty()) {
+-        remoteImagePaths.forEachIndexed { index, remoteImagePath ->
+-            if (remoteImagePath.trim().isNotEmpty()) {
+-                FirebaseStorage.getInstance().reference.child(remoteImagePath.trim()).downloadUrl
+-                    .addOnSuccessListener {
+-                        onImageDownload(it)
+-                        if (remoteImagePaths.lastIndexOf(remoteImagePaths.last()) == index) {
+-                            onReadyDisplay()
+-                        }
+-                    }.addOnFailureListener {
+-                        onImageDownloadFailed(it)
+-                    }
+-            }
+-        }
+-    }
+-}
+-
+-@SuppressLint("NewApi")
+-fun RealmInstant.toInstant(): Instant {
+-    val sec: Long = this.epochSeconds
+-    val nano: Int = this.nanosecondsOfSecond
+-
+-    return if (sec >= 0) {
+-        Instant.ofEpochSecond(sec, nano.toLong())
+-    } else {
+-        Instant.ofEpochSecond(sec - 1, 1_000_000 + nano.toLong())
+-    }
+-}
+-
+-@SuppressLint("NewApi")
+-fun Instant.toRealmInstant(): RealmInstant {
+-    val sec: Long = this.epochSecond
+-    val nano: Int = this.nano
+-    return if (sec >= 0) {
+-        RealmInstant.from(sec, nano)
+-    } else {
+-        RealmInstant.from(sec + 1, -1_000_000 + nano)
+-    }
+-}
+ 
+ fun getAppVersion(context: Context): String {
+     return try {
+@@ -68,7 +16,7 @@
+         val packageInfo: PackageInfo = packageManager.getPackageInfo(context.packageName, 0)
+         val versionCode: Long = PackageInfoCompat.getLongVersionCode(packageInfo)
+ 
+-        val versionName: String = packageInfo.versionName
++        val versionName: String = packageInfo.versionName.toString()
+         "v$versionName"
+     } catch (e: PackageManager.NameNotFoundException) {
+         "version N/A"
+Index: core/util/src/main/java/com/soloscape/util/model/Mood.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/util/src/main/java/com/soloscape/util/model/Mood.kt b/core/ui/src/main/java/com/soloscape/ui/Mood.kt
+rename from core/util/src/main/java/com/soloscape/util/model/Mood.kt
+rename to core/ui/src/main/java/com/soloscape/ui/Mood.kt
+--- a/core/util/src/main/java/com/soloscape/util/model/Mood.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/core/ui/src/main/java/com/soloscape/ui/Mood.kt	(date 1734836858312)
+@@ -1,23 +1,7 @@
+-package com.soloscape.util.model
++package com.soloscape.ui
+ 
+ import androidx.compose.ui.graphics.Color
+-import com.soloscape.ui.theme.AngryColor
+-import com.soloscape.ui.theme.AwfulColor
+-import com.soloscape.ui.theme.BoredColor
+-import com.soloscape.ui.theme.CalmColor
+-import com.soloscape.ui.theme.DepressedColor
+-import com.soloscape.ui.theme.DisappointedColor
+-import com.soloscape.ui.theme.HappyColor
+-import com.soloscape.ui.theme.HumorousColor
+-import com.soloscape.ui.theme.LonelyColor
+-import com.soloscape.ui.theme.MysteriousColor
+-import com.soloscape.ui.theme.NeutralColor
+-import com.soloscape.ui.theme.RomanticColor
+-import com.soloscape.ui.theme.ShamefulColor
+-import com.soloscape.ui.theme.SurprisedColor
+-import com.soloscape.ui.theme.SuspiciousColor
+-import com.soloscape.ui.theme.TenseColor
+-import com.soloscape.util.R
++import com.soloscape.ui.theme.*
+ 
+ enum class Mood(
+     val icon: Int,
+Index: core/database/src/main/kotlin/com/soloscape/database/domain/model/Write.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/database/src/main/kotlin/com/soloscape/database/domain/model/Write.kt b/core/database/src/main/kotlin/com/soloscape/database/domain/model/Write.kt
+new file mode 100644
+--- /dev/null	(date 1734846895284)
++++ b/core/database/src/main/kotlin/com/soloscape/database/domain/model/Write.kt	(date 1734846895284)
+@@ -0,0 +1,15 @@
++package com.soloscape.database.domain.model
++
++import androidx.room.Entity
++import androidx.room.PrimaryKey
++
++@Entity
++data class Write(
++
++    @PrimaryKey
++    val id: Int = 0,
++    var mood: String? = null,
++    val title: String? = null,
++    val description: String? = null,
++    val date: Long = 0, // Store as epoch milliseconds
++)
+Index: core/util/src/main/java/com/soloscape/util/model/RequestState.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/util/src/main/java/com/soloscape/util/model/RequestState.kt b/core/model/src/main/kotlin/com/soloscape/model/RequestState.kt
+rename from core/util/src/main/java/com/soloscape/util/model/RequestState.kt
+rename to core/model/src/main/kotlin/com/soloscape/model/RequestState.kt
+--- a/core/util/src/main/java/com/soloscape/util/model/RequestState.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/core/model/src/main/kotlin/com/soloscape/model/RequestState.kt	(date 1734836218900)
+@@ -1,9 +1,9 @@
+-package com.soloscape.util.model
++package com.soloscape.model
+ 
+ sealed class RequestState<out T> {
+ 
+-    object Idle : RequestState<Nothing>()
+-    object Loading : RequestState<Nothing>()
++    data object Idle : RequestState<Nothing>()
++    data object Loading : RequestState<Nothing>()
+     data class Success<T>(val data: T) : RequestState<T>()
+     data class Error(val error: Throwable) : RequestState<Nothing>()
+ }
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/app/src/main/AndroidManifest.xml	(date 1734852049895)
+@@ -13,9 +13,6 @@
+         android:supportsRtl="true"
+         android:theme="@style/Theme.MultiModularArchJC"
+         tools:targetApi="33">
+-        <profileable
+-            android:shell="true"
+-            tools:targetApi="29" />
+ 
+         <activity
+             android:name="com.compose.soloscape.MainActivity"
+Index: feature/home/src/main/java/com/soloscape/home/presentations/home/navigation/HomeNavigation.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/feature/home/src/main/java/com/soloscape/home/presentations/home/navigation/HomeNavigation.kt b/feature/home/src/main/java/com/soloscape/home/presentations/home/navigation/HomeNavigation.kt
+new file mode 100644
+--- /dev/null	(date 1734860328405)
++++ b/feature/home/src/main/java/com/soloscape/home/presentations/home/navigation/HomeNavigation.kt	(date 1734860328405)
+@@ -0,0 +1,91 @@
++package com.soloscape.home.presentations.home.navigation
++
++import androidx.compose.material3.DrawerValue
++import androidx.compose.material3.rememberDrawerState
++import androidx.compose.runtime.LaunchedEffect
++import androidx.compose.runtime.getValue
++import androidx.compose.runtime.mutableStateOf
++import androidx.compose.runtime.remember
++import androidx.compose.runtime.rememberCoroutineScope
++import androidx.compose.runtime.setValue
++import androidx.hilt.navigation.compose.hiltViewModel
++import androidx.lifecycle.compose.collectAsStateWithLifecycle
++import androidx.navigation.NavGraphBuilder
++import androidx.navigation.compose.composable
++import com.soloscape.home.presentations.home.HomeScreen
++import com.soloscape.home.presentations.home.HomeViewModel
++import com.soloscape.ui.components.DisplayAlertDialog
++import com.soloscape.util.ScreensRoutes
++import kotlinx.coroutines.launch
++
++fun NavGraphBuilder.homeRoute(
++    navigationToWrite: () -> Unit,
++    navigateToAuth: () -> Unit,
++    onDataLoaded: () -> Unit,
++    navigateToWriteWithArgs: (Int) -> Unit,
++    darkTheme: Boolean,
++    onThemeUpdated: () -> Unit,
++) {
++    composable(route = ScreensRoutes.Home.route) {
++        val viewModel: HomeViewModel = hiltViewModel()
++        val scope = rememberCoroutineScope()
++        val homeState by viewModel.homeState.collectAsStateWithLifecycle()
++        val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
++        var signOutDialogOpened by remember { mutableStateOf(false) }
++        var deleteAllDialogOpened by remember { mutableStateOf(false) }
++
++        LaunchedEffect(key1 = Unit) {
++            onDataLoaded()
++        }
++        HomeScreen(
++            homeState = homeState,
++            drawerState = drawerState,
++            onMenuClicked = {
++                scope.launch {
++                    drawerState.open()
++                }
++            },
++            navigateToWrite = navigationToWrite,
++            navigateToWriteWithArgs = navigateToWriteWithArgs,
++            onSignOutClicked = {
++                signOutDialogOpened = true
++            },
++            onDeleteAllClicked = {
++                deleteAllDialogOpened = true
++            },
++            dateIsSelected = viewModel.dateIsSelected,
++            onDateSelected = { viewModel.getWrite(zonedDateTime = it) },
++            onDateReset = { viewModel.getWrite() },
++            darkTheme = darkTheme,
++            onThemeUpdated = onThemeUpdated,
++
++            )
++
++        DisplayAlertDialog(
++            title = "Delete all notes",
++            message = "Are you sure you want to delete all notes?",
++            dialogOpened = deleteAllDialogOpened,
++            onCloseDialog = { deleteAllDialogOpened = false },
++            onYesClicked = {
++//                viewModel.deleteAllReports(
++//                    onSuccess = {
++//                        Toast.makeText(context, "All Notes Deleted", Toast.LENGTH_SHORT).show()
++//                        scope.launch {
++//                            drawerState.close()
++//                        }
++//                    },
++//                    onError = {
++//                        Toast.makeText(
++//                            context,
++//                            if (it.message == "No Internet Connection.") "We need internet connection to delete all notes." else it.message,
++//                            Toast.LENGTH_SHORT,
++//                        ).show()
++//                        scope.launch {
++//                            drawerState.close()
++//                        }
++//                    },
++//                )
++            },
++        )
++    }
++}
+Index: buildSrc/src/main/java/ProjectConfig.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/buildSrc/src/main/java/ProjectConfig.kt b/buildSrc/src/main/java/ProjectConfig.kt
+--- a/buildSrc/src/main/java/ProjectConfig.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/buildSrc/src/main/java/ProjectConfig.kt	(date 1734775564552)
+@@ -4,9 +4,9 @@
+ 
+     const val NAMESPACE = "com.compose.soloscape"
+ 
+-    const val COMPILE_SDK = 34
+-    const val MIN_SDK = 24
+-    const val TARGET_SDK = 34
++    const val COMPILE_SDK = 35
++    const val MIN_SDK = 26
++    const val TARGET_SDK = 35
+ 
+     const val VERSION_CODE = 4
+ 
+Index: gradle/libs.versions.toml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/gradle/libs.versions.toml b/gradle/libs.versions.toml
+--- a/gradle/libs.versions.toml	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/gradle/libs.versions.toml	(date 1734779535357)
+@@ -1,75 +1,85 @@
+ [versions]
+-#plugins
+-kotlin = "2.0.0"
+-androidApplication = "8.4.2"
+-androidLibrary = "8.4.2"
++
++agp = "8.7.3"
++kotlin = "2.1.0"
+ 
+-devtoolKsp = "2.0.0-1.0.22"
++devtoolKsp = "2.1.0-1.0.29"
+ 
+-hilt = "2.50"
+-realm = "2.0.0"
++material = "1.7.6"
++material3 = "1.3.1"
++
++hilt = "2.51.1"
++hiltComposeNavigation = "1.2.0"
++
++realm = "2.3.0"
+ googleServices = "4.4.2"
+ 
+-#libraries
+-compose = "1.6.8"
++core-ktx = "1.15.0"
+ 
+-core-ktx = "1.13.1"
++activityCompose = "1.9.3"
++composeBom = "2024.12.01"
+ 
+-activity-compose = "1.9.0"
+-material-icons-extended = "1.6.8"
+-material3-compose = "1.2.1"
++material-icons-extended = "1.7.6"
+ 
+-firebaseBom = "33.1.1"
++
++firebaseBom = "33.7.0"
+ firebase-auth = "23.0.0"
+ firebase-storage = "21.0.0"
+ 
+-navigation-compose = "2.7.7"
+-
+-room = "2.6.1"
++navigation-compose = "2.8.5"
+ 
+ splash = "1.0.1"
+ 
+-kotlin-coroutines-core = "1.7.3"
+-
+-hilt-navigation-compose = "1.2.0"
++kotlin-coroutines-core = "1.8.1"
+ 
+-coil = "2.5.0"
+-
+-leakcanary-android = "2.12"
+-profileinstaller = "1.3.1"
++profileinstaller = "1.4.1"
+ 
+ date-time-picker = "1.2.0"
+ 
+-message-bar-compose = "1.0.5"
++message-bar-compose = "1.0.8"
+ one-tap-compose = "1.0.12"
+ 
+-desugar = "2.0.4"
+-
+ spotless = "6.19.0"
+ 
+ junit = "4.13.2"
+-androidxJunit = "1.1.5"
+-espressoCore = "3.5.1"
++androidx-junit = "1.2.1"
++espresso-core = "3.6.1"
++
++lifecycle-runtime-ktx = "2.8.7"
++lifecycle-runtime-compose = "2.8.7"
+ 
+-ui-tooling = "1.6.8"
++coil = "3.0.2"
++coilNetworkOkhttp = "3.0.2"
++
++roomCompiler = "2.6.1"
++roomKtx = "2.6.1"
++roomRuntime = "2.6.1"
+ 
+ [libraries]
+-core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx"}
++androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
++androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
++androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
++androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
++androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
++androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+ 
+-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose"}
++material = { group = "androidx.compose.material", name = "material", version.ref = "material" }
++androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+ 
+-compose-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose"}
++androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
++androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+ 
+ material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "material-icons-extended" }
+-material3-compose = { module = "androidx.compose.material3:material3", version.ref = "material3-compose"}
++
++androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
++
++androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
++androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso-core" }
++androidx-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-junit" }
++androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
++androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle-runtime-compose" }
+ 
+ junit = { group = "junit", name = "junit", version.ref = "junit" }
+-androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidxJunit" }
+-androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+-androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+-
+-androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "ui-tooling" }
+-androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+ 
+ spotless = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version.ref = "spotless" }
+ 
+@@ -77,26 +87,25 @@
+ firebase-auth = { module = "com.google.firebase:firebase-auth"}
+ firebase-storage = { module = "com.google.firebase:firebase-storage"}
+ 
+-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation-compose" }
+-
+ profileinstaller = { module = "androidx.profileinstaller:profileinstaller", version.ref = "profileinstaller" }
+ 
+-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
++androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
++androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomKtx" }
++androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+ 
+ splash-api = { module = "androidx.core:core-splashscreen", version.ref = "splash"}
+ 
+ coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin-coroutines-core"}
+-
+ realm-sync = { module = "io.realm.kotlin:library-sync", version.ref = "realm"}
++library-base = { module = "io.realm.kotlin:library-base", version.ref = "realm" }
+ 
+-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt"}
+-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt"}
+-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-navigation-compose"}
+-hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
++androidx-hilt-compose-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltComposeNavigation" }
+ 
+-coil = { module = "io.coil-kt:coil-compose", version.ref = "coil"}
++hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
++hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
++
++coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
++coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coilNetworkOkhttp" }
+ 
+ date-time-picker = { module = "com.maxkeppeler.sheets-compose-dialogs:core", version.ref = "date-time-picker"}
+ date-dialog = { module = "com.maxkeppeler.sheets-compose-dialogs:calendar", version.ref = "date-time-picker"}
+@@ -105,23 +114,32 @@
+ message-bar-compose = { module = "com.github.stevdza-san:MessageBarCompose", version.ref = "message-bar-compose"}
+ one-tap-compose = { module = "com.github.stevdza-san:OneTapCompose", version.ref = "one-tap-compose"}
+ 
+-desugar-jdk = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar"}
+-
+-leakcanary-android = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary-android" }
+-
+ [plugins]
+-android-application = { id = "com.android.application", version.ref = "androidApplication" }
+-android-library = { id = "com.android.library", version.ref = "androidLibrary" }
+-
++android-application = { id = "com.android.application", version.ref = "agp" }
++android-library = { id = "com.android.library", version.ref = "agp" }
+ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+-
+ spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+-
+ hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+-
+ realm-kotlin = { id = "io.realm.kotlin", version.ref = "realm" }
+-
+ gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
++devtool-ksp = { id = "com.google.devtools.ksp", version.ref = "devtoolKsp" }
++
++[bundles]
+ 
+-devtool-ksp = { id = "com.google.devtools.ksp", version.ref = "devtoolKsp" }
+\ No newline at end of file
++bundle-androidx-compose = [
++    "androidx-compose-ui",
++    "androidx-compose-ui-graphics",
++    "androidx-compose-ui-tooling",
++    "androidx-compose-ui-tooling-preview",
++]
++
++bundle-room = [
++    "androidx-room-ktx",
++    "androidx-room-runtime"
++]
++
++bundle-coil = [
++    "coil-compose",
++    "coil-network-okhttp"
++]
+\ No newline at end of file
+Index: app/build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle.kts b/app/build.gradle.kts
+--- a/app/build.gradle.kts	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/app/build.gradle.kts	(date 1734849974160)
+@@ -6,9 +6,8 @@
+     alias(libs.plugins.kotlin.android)
+     alias(libs.plugins.compose.compiler)
+     alias(libs.plugins.hilt)
+-    id("com.google.devtools.ksp")
+-    id ("io.realm.kotlin")
+-    id ("com.google.gms.google-services")
++    alias(libs.plugins.devtool.ksp)
++    alias (libs.plugins.gms.google.services)
+ }
+ 
+ val keystoreProperties: Properties by lazy {
+@@ -60,14 +59,7 @@
+             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+         }
+     }
+-    compileOptions {
+-        sourceCompatibility = JavaVersion.VERSION_1_8
+-        targetCompatibility = JavaVersion.VERSION_1_8
+-    }
+ 
+-    kotlinOptions {
+-        jvmTarget = "1.8"
+-    }
+     buildFeatures {
+         compose = true
+         buildConfig = true
+@@ -76,51 +68,44 @@
+ }
+ 
+ dependencies {
+-    // Compose Navigation
+-    implementation (libs.navigation.compose)
++    implementation(platform(libs.androidx.compose.bom))
++    implementation(libs.bundles.bundle.androidx.compose)
++
++    implementation(libs.androidx.core.ktx)
++    implementation(libs.androidx.lifecycle.runtime.compose)
++    implementation(libs.androidx.lifecycle.runtime.ktx)
++    implementation(libs.androidx.activity.compose)
++
++    implementation(libs.androidx.material3)
+ 
+     // Firebase
+     implementation(platform(libs.firebase.bom))
+     implementation (libs.firebase.storage)
+ 
+-    // Room components
+-    implementation (libs.room.runtime)
+-    ksp (libs.room.compiler)
+-    implementation (libs.room.ktx)
++    //Room
++    implementation(libs.bundles.bundle.room)
++    ksp(libs.androidx.room.compiler)
++
++    //Hilt
++    implementation(libs.androidx.hilt.compose.navigation)
++    implementation(libs.hilt)
++    ksp(libs.hilt.compiler)
+ 
+     // Splash API
+     implementation (libs.splash.api)
+ 
+-    // Dagger Hilt
+-    implementation (libs.hilt.android)
+-    ksp (libs.hilt.compiler)
+-
+-    // Mongo DB Realm
+-    implementation (libs.realm.sync)
+-
+-    // Desugar JDK
+-    coreLibraryDesugaring (libs.desugar.jdk)
+-
+-//    //Leak Canary
+-    debugImplementation (libs.leakcanary.android)
++    implementation (libs.coroutines.core)
+ 
+     //Profile Installer
+     implementation (libs.profileinstaller)
+ 
+     implementation (projects.core.ui)
++    implementation (projects.core.model)
++    implementation (projects.core.database)
+     implementation (projects.core.util)
+-    implementation (projects.data.mongo)
+-    implementation (projects.feature.auth)
++
++    //implementation (projects.feature.auth)
+     implementation (projects.feature.home)
+-    implementation (projects.feature.note)
+-
+-    testImplementation (libs.junit)
+-    androidTestImplementation (libs.androidx.junit)
+-    androidTestImplementation (libs.androidx.espresso.core)
++    //implementation (projects.feature.note)
+ 
+-    androidTestImplementation (libs.hilt.android.testing)
+-
+-    androidTestImplementation (libs.androidx.ui.test.junit4)
+-    debugImplementation (libs.androidx.ui.tooling)
+-    debugImplementation (libs.androidx.ui.test.manifest)
+ }
+\ No newline at end of file
+Index: core/util/src/main/java/com/soloscape/util/Gallery.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/util/src/main/java/com/soloscape/util/Gallery.kt b/core/ui/src/main/java/com/soloscape/ui/components/Gallery.kt
+rename from core/util/src/main/java/com/soloscape/util/Gallery.kt
+rename to core/ui/src/main/java/com/soloscape/ui/components/Gallery.kt
+--- a/core/util/src/main/java/com/soloscape/util/Gallery.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/core/ui/src/main/java/com/soloscape/ui/components/Gallery.kt	(date 1734835695362)
+@@ -1,4 +1,4 @@
+-package com.soloscape.util
++package com.soloscape.ui.components
+ 
+ import android.net.Uri
+ import androidx.activity.compose.rememberLauncherForActivityResult
+@@ -34,8 +34,9 @@
+ import androidx.compose.ui.text.font.FontWeight
+ import androidx.compose.ui.unit.Dp
+ import androidx.compose.ui.unit.dp
+-import coil.compose.AsyncImage
+-import coil.request.ImageRequest
++import coil3.compose.AsyncImage
++import coil3.request.ImageRequest
++import coil3.request.crossfade
+ import com.soloscape.ui.GalleryImage
+ import com.soloscape.ui.GalleryState
+ import com.soloscape.ui.theme.Elevation
+Index: app/src/main/java/com/compose/soloscape/navigation/NavGraph.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/compose/soloscape/navigation/NavGraph.kt b/app/src/main/java/com/compose/soloscape/navigation/NavGraph.kt
+--- a/app/src/main/java/com/compose/soloscape/navigation/NavGraph.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/app/src/main/java/com/compose/soloscape/navigation/NavGraph.kt	(date 1734860328400)
+@@ -3,9 +3,8 @@
+ import androidx.compose.runtime.Composable
+ import androidx.navigation.NavHostController
+ import androidx.navigation.compose.NavHost
+-import com.soloscape.auth.navigation.authenticationRoute
+-import com.soloscape.home.navigation.homeRoute
+-import com.soloscape.note.navigation.reportRoute
++import com.soloscape.home.presentations.home.navigation.homeRoute
++import com.soloscape.home.presentations.write.navigation.reportRoute
+ import com.soloscape.util.ScreensRoutes
+ 
+ @Composable
+@@ -20,13 +19,13 @@
+         navController = navHostController,
+         startDestination = startDestination,
+     ) {
+-        authenticationRoute(
+-            navigateToHome = {
+-                navHostController.popBackStack()
+-                navHostController.navigate(ScreensRoutes.Home.route)
+-            },
+-            onDataLoaded = onDataLoaded,
+-        )
++//        authenticationRoute(
++//            navigateToHome = {
++//                navHostController.popBackStack()
++//                navHostController.navigate(ScreensRoutes.Home.route)
++//            },
++//            onDataLoaded = onDataLoaded,
++//        )
+         homeRoute(
+             darkTheme = darkTheme,
+             onThemeUpdated = onThemeUpdated,
+Index: .idea/inspectionProfiles/Project_Default.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/inspectionProfiles/Project_Default.xml b/.idea/inspectionProfiles/Project_Default.xml
+--- a/.idea/inspectionProfiles/Project_Default.xml	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/.idea/inspectionProfiles/Project_Default.xml	(date 1734835734910)
+@@ -1,35 +1,51 @@
+ <component name="InspectionProjectProfileManager">
+   <profile version="1.0">
+     <option name="myName" value="Project Default" />
+-    <inspection_tool class="PreviewAnnotationInFunctionWithParameters" enabled="true" level="ERROR" enabled_by_default="true">
++    <inspection_tool class="ComposePreviewDimensionRespectsLimit" enabled="true" level="WARNING" enabled_by_default="true">
++      <option name="composableFile" value="true" />
++      <option name="previewFile" value="true" />
++    </inspection_tool>
++    <inspection_tool class="ComposePreviewMustBeTopLevelFunction" enabled="true" level="ERROR" enabled_by_default="true">
+       <option name="composableFile" value="true" />
+       <option name="previewFile" value="true" />
+     </inspection_tool>
+-    <inspection_tool class="PreviewApiLevelMustBeValid" enabled="true" level="ERROR" enabled_by_default="true">
++    <inspection_tool class="ComposePreviewNeedsComposableAnnotation" enabled="true" level="ERROR" enabled_by_default="true">
+       <option name="composableFile" value="true" />
+       <option name="previewFile" value="true" />
+     </inspection_tool>
+-    <inspection_tool class="PreviewDimensionRespectsLimit" enabled="true" level="WARNING" enabled_by_default="true">
++    <inspection_tool class="ComposePreviewNotSupportedInUnitTestFiles" enabled="true" level="ERROR" enabled_by_default="true">
+       <option name="composableFile" value="true" />
+       <option name="previewFile" value="true" />
+     </inspection_tool>
+-    <inspection_tool class="PreviewFontScaleMustBeGreaterThanZero" enabled="true" level="ERROR" enabled_by_default="true">
++    <inspection_tool class="GlancePreviewDimensionRespectsLimit" enabled="true" level="WARNING" enabled_by_default="true">
++      <option name="composableFile" value="true" />
++    </inspection_tool>
++    <inspection_tool class="GlancePreviewMustBeTopLevelFunction" enabled="true" level="ERROR" enabled_by_default="true">
++      <option name="composableFile" value="true" />
++    </inspection_tool>
++    <inspection_tool class="GlancePreviewNeedsComposableAnnotation" enabled="true" level="ERROR" enabled_by_default="true">
++      <option name="composableFile" value="true" />
++    </inspection_tool>
++    <inspection_tool class="GlancePreviewNotSupportedInUnitTestFiles" enabled="true" level="ERROR" enabled_by_default="true">
++      <option name="composableFile" value="true" />
++    </inspection_tool>
++    <inspection_tool class="PreviewAnnotationInFunctionWithParameters" enabled="true" level="ERROR" enabled_by_default="true">
+       <option name="composableFile" value="true" />
+       <option name="previewFile" value="true" />
+     </inspection_tool>
+-    <inspection_tool class="PreviewMultipleParameterProviders" enabled="true" level="ERROR" enabled_by_default="true">
++    <inspection_tool class="PreviewApiLevelMustBeValid" enabled="true" level="ERROR" enabled_by_default="true">
+       <option name="composableFile" value="true" />
+       <option name="previewFile" value="true" />
+     </inspection_tool>
+-    <inspection_tool class="PreviewMustBeTopLevelFunction" enabled="true" level="ERROR" enabled_by_default="true">
++    <inspection_tool class="PreviewDeviceShouldUseNewSpec" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+       <option name="composableFile" value="true" />
+       <option name="previewFile" value="true" />
+     </inspection_tool>
+-    <inspection_tool class="PreviewNeedsComposableAnnotation" enabled="true" level="ERROR" enabled_by_default="true">
++    <inspection_tool class="PreviewFontScaleMustBeGreaterThanZero" enabled="true" level="ERROR" enabled_by_default="true">
+       <option name="composableFile" value="true" />
+       <option name="previewFile" value="true" />
+     </inspection_tool>
+-    <inspection_tool class="PreviewNotSupportedInUnitTestFiles" enabled="true" level="ERROR" enabled_by_default="true">
++    <inspection_tool class="PreviewMultipleParameterProviders" enabled="true" level="ERROR" enabled_by_default="true">
+       <option name="composableFile" value="true" />
+       <option name="previewFile" value="true" />
+     </inspection_tool>
+Index: core/util/src/main/java/com/soloscape/util/NoteHolder.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/util/src/main/java/com/soloscape/util/NoteHolder.kt b/feature/home/src/main/java/com/soloscape/home/presentations/home/components/NoteHolder.kt
+rename from core/util/src/main/java/com/soloscape/util/NoteHolder.kt
+rename to feature/home/src/main/java/com/soloscape/home/presentations/home/components/NoteHolder.kt
+--- a/core/util/src/main/java/com/soloscape/util/NoteHolder.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/feature/home/src/main/java/com/soloscape/home/presentations/home/components/NoteHolder.kt	(date 1734848330623)
+@@ -1,8 +1,7 @@
+-package com.soloscape.util
++package com.soloscape.home.presentations.home.components
+ 
+ import android.annotation.SuppressLint
+ import android.net.Uri
+-import android.widget.Toast
+ import androidx.compose.animation.AnimatedVisibility
+ import androidx.compose.animation.core.Spring
+ import androidx.compose.animation.core.spring
+@@ -44,17 +43,15 @@
+ import androidx.compose.ui.text.style.TextOverflow
+ import androidx.compose.ui.tooling.preview.Preview
+ import androidx.compose.ui.unit.dp
++import com.soloscape.database.domain.model.Write
++import com.soloscape.ui.Mood
+ import com.soloscape.ui.theme.Elevation
+-import com.soloscape.util.model.Mood
+-import com.soloscape.util.model.Report
+-import io.realm.kotlin.ext.realmListOf
+ import java.text.SimpleDateFormat
+-import java.time.Instant
+-import java.util.Date
+ import java.util.Locale
++import com.soloscape.ui.components.Gallery
+ 
+ @Composable
+-fun ReportHolder(report: Report, onClick: (String) -> Unit) {
++fun ReportHolder(report: Write, onClick: (Int) -> Unit) {
+     val context = LocalContext.current
+     val localDensity = LocalDensity.current
+     var componentHeight by remember { mutableStateOf(0.dp) }
+@@ -65,24 +62,7 @@
+     LaunchedEffect(key1 = galleryOpened) {
+         if (galleryOpened && downloadedImages.isEmpty()) {
+             galleryLoading = true
+-            fetchImagesFromFirebase(
+-                remoteImagePaths = report.images,
+-                onImageDownload = { images -> downloadedImages.add(images) },
+-                onImageDownloadFailed = {
+-                    Toast.makeText(
+-                        context,
+-                        "Images not uploaded yet." +
+-                            "Wait a little bit, or try uploading again.",
+-                        Toast.LENGTH_SHORT,
+-                    ).show()
+-                    galleryLoading = false
+-                    galleryOpened = false
+-                },
+-                onReadyDisplay = {
+-                    galleryLoading = false
+-                    galleryOpened = true
+-                },
+-            )
++
+         }
+     }
+     Row(
+@@ -92,7 +72,7 @@
+                 MutableInteractionSource()
+             },
+         ) {
+-            onClick(report._id.toHexString())
++            onClick(report.id)
+         },
+     ) {
+         Spacer(modifier = Modifier.width(14.dp))
+@@ -114,25 +94,25 @@
+             tonalElevation = Elevation.level1,
+         ) {
+             Column(modifier = Modifier.fillMaxWidth()) {
+-                ReportHeader(moodName = report.mood, time = report.date.toInstant())
++                ReportHeader(moodName = report.mood.orEmpty(), time = report.date)
+ 
+                 Text(
+                     modifier = Modifier.padding(all = 14.dp),
+-                    text = report.description,
++                    text = report.description.orEmpty(),
+                     style = TextStyle(fontSize = MaterialTheme.typography.bodyLarge.fontSize),
+                     maxLines = 4,
+                     overflow = TextOverflow.Ellipsis,
+                 )
+ 
+-                if (report.images.isNotEmpty()) {
+-                    ShowGalleryButton(
+-                        galleryLoading = galleryLoading,
+-                        galleryOpened = galleryOpened,
+-                        onClick = {
+-                            galleryOpened = !galleryOpened
+-                        },
+-                    )
+-                }
++//                if (report.images.isNotEmpty()) {
++//                    ShowGalleryButton(
++//                        galleryLoading = galleryLoading,
++//                        galleryOpened = galleryOpened,
++//                        onClick = {
++//                            galleryOpened = !galleryOpened
++//                        },
++//                    )
++//                }
+ 
+                 AnimatedVisibility(
+                     visible = galleryOpened && !galleryLoading,
+@@ -154,7 +134,7 @@
+ 
+ @SuppressLint("NewApi")
+ @Composable
+-fun ReportHeader(moodName: String, time: Instant) {
++fun ReportHeader(moodName: String, time: Long) {
+     val mood by remember { mutableStateOf(Mood.valueOf(moodName)) }
+ 
+     Row(
+@@ -182,7 +162,7 @@
+         Text(
+             style = TextStyle(fontSize = MaterialTheme.typography.bodyMedium.fontSize),
+             color = mood.contentColor,
+-            text = SimpleDateFormat("hh:mm a", Locale.US).format(Date.from(time)),
++            text = SimpleDateFormat("hh:mm a", Locale.US).format(time),
+         )
+     }
+ }
+@@ -209,13 +189,13 @@
+ @Preview(showBackground = true)
+ fun ReportHolderPreview() {
+     ReportHolder(
+-        report = Report().apply {
+-            title = "My Report"
+-            description =
+-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur"
+-            mood = Mood.Happy.name
+-            images = realmListOf("", "")
+-        },
++        report = Write(
++            title = "My Write",
++            description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. " +
++                    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
++            mood = Mood.Happy.name,
++            date = 0
++        ),
+         onClick = {},
+     )
+ }
+Index: app/src/main/java/com/compose/soloscape/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/compose/soloscape/MainActivity.kt b/app/src/main/java/com/compose/soloscape/MainActivity.kt
+--- a/app/src/main/java/com/compose/soloscape/MainActivity.kt	(revision a50e3d4eec13ffc071634091fb2218b4b7c962f0)
++++ b/app/src/main/java/com/compose/soloscape/MainActivity.kt	(date 1734852149032)
+@@ -1,47 +1,33 @@
+ package com.compose.soloscape
+ 
++import android.graphics.Color
+ import android.os.Bundle
+ import androidx.activity.ComponentActivity
++import androidx.activity.SystemBarStyle
+ import androidx.activity.compose.setContent
++import androidx.activity.enableEdgeToEdge
+ import androidx.compose.runtime.getValue
+ import androidx.compose.runtime.mutableStateOf
+ import androidx.compose.runtime.remember
+ import androidx.compose.runtime.setValue
+-import androidx.core.net.toUri
+ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+ import androidx.core.view.WindowCompat
+ import androidx.navigation.compose.rememberNavController
+ import com.compose.soloscape.navigation.SetupNavGraph
+ import com.google.firebase.FirebaseApp
+-import com.google.firebase.storage.FirebaseStorage
+-import com.google.firebase.storage.ktx.storageMetadata
+-import com.soloscape.mongo.database.ImageToDeleteDao
+-import com.soloscape.mongo.database.ImageToUploadDao
+-import com.soloscape.mongo.database.entity.ImageToDelete
+-import com.soloscape.mongo.database.entity.ImageToUpload
+ import com.soloscape.ui.theme.MultiModularArchJCTheme
+-import com.soloscape.util.Constants.APP_ID
+ import com.soloscape.util.ScreensRoutes
+ import dagger.hilt.android.AndroidEntryPoint
+-import io.realm.kotlin.mongodb.App
+-import kotlinx.coroutines.CoroutineScope
+-import kotlinx.coroutines.Dispatchers
+-import kotlinx.coroutines.launch
+-import javax.inject.Inject
+ 
+ @AndroidEntryPoint
+ class MainActivity : ComponentActivity() {
+ 
+-    @Inject
+-    lateinit var imageToUploadDao: ImageToUploadDao
+-
+-    @Inject
+-    lateinit var imageToDeleteDao: ImageToDeleteDao
+-    var keepSplashOpened = true
++    private var keepSplashOpened = true
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+         installSplashScreen().setKeepOnScreenCondition { keepSplashOpened }
+-        WindowCompat.setDecorFitsSystemWindows(window, false)
++        enableEdgeToEdge()
++
+         FirebaseApp.initializeApp(this)
+         setContent {
+             var darkTheme by remember { mutableStateOf(false) }
+@@ -52,7 +38,7 @@
+             ) {
+                 val navController = rememberNavController()
+                 SetupNavGraph(
+-                    startDestination = getStartDestination(),
++                    startDestination = ScreensRoutes.Home.route,
+                     navHostController = navController,
+                     onDataLoaded = {
+                         keepSplashOpened = false
+@@ -64,69 +50,9 @@
+                 )
+             }
+         }
+-//        cleanUpCheck(
+-//            scope = lifecycleScope,
+-//            imageToUploadDao = imageToUploadDao,
+-//            imageToDeleteDao = imageToDeleteDao
+-//        )
+     }
+ }
+ 
+-private fun cleanUpCheck(
+-    scope: CoroutineScope,
+-    imageToUploadDao: ImageToUploadDao,
+-    imageToDeleteDao: ImageToDeleteDao,
+-) {
+-    scope.launch(Dispatchers.IO) {
+-        val result = imageToUploadDao.getAllImages()
+-        result.forEach { imageToUpload ->
+-            retryUploadingImageToFirebase(
+-                imageToUpload = imageToUpload,
+-                onSuccess = {
+-                    scope.launch(Dispatchers.IO) {
+-                        imageToUploadDao.cleanUpImage(imageId = imageToUpload.id)
+-                    }
+-                },
+-            )
+-        }
+-        val result2 = imageToDeleteDao.getAllImages()
+-        result2.forEach { imageToDelete ->
+-            retryDeletingImageFromFirebase(
+-                imageToDelete = imageToDelete,
+-                onSuccess = {
+-                    scope.launch(Dispatchers.IO) {
+-                        imageToDeleteDao.cleanupImage(imageId = imageToDelete.id)
+-                    }
+-                },
+-            )
+-        }
+-    }
+-}
+ 
+-private fun getStartDestination(): String {
+-    val user = App.create(APP_ID).currentUser
+-    return if (user != null && user.loggedIn) {
+-        ScreensRoutes.Home.route
+-    } else ScreensRoutes.Authentication.route
+-}
+ 
+-fun retryUploadingImageToFirebase(
+-    imageToUpload: ImageToUpload,
+-    onSuccess: () -> Unit,
+-) {
+-    val storage = FirebaseStorage.getInstance().reference
+-    storage.child(imageToUpload.remoteImagePath).putFile(
+-        imageToUpload.imageUri.toUri(),
+-        storageMetadata { },
+-        imageToUpload.sessionUri.toUri(),
+-    ).addOnSuccessListener { onSuccess() }
+-}
+ 
+-fun retryDeletingImageFromFirebase(
+-    imageToDelete: ImageToDelete,
+-    onSuccess: () -> Unit,
+-) {
+-    val storage = FirebaseStorage.getInstance().reference
+-    storage.child(imageToDelete.remoteImagePath).delete()
+-        .addOnSuccessListener { onSuccess() }
+-}
+diff --git a/core/ui/consumer-rules.pro b/core/ui/consumer-rules.pro
+deleted file mode 100644
+diff --git a/core/util/consumer-rules.pro b/core/util/consumer-rules.pro
+deleted file mode 100644
+diff --git a/feature/auth/consumer-rules.pro b/feature/auth/consumer-rules.pro
+deleted file mode 100644
+diff --git a/feature/note/consumer-rules.pro b/feature/note/consumer-rules.pro
+deleted file mode 100644
+diff --git a/feature/home/consumer-rules.pro b/feature/home/consumer-rules.pro
+deleted file mode 100644
+diff --git a/core/util/src/main/res/drawable/angry.xml b/core/ui/src/main/res/drawable/angry.xml
+rename from core/util/src/main/res/drawable/angry.xml
+rename to core/ui/src/main/res/drawable/angry.xml
+diff --git a/core/util/src/main/res/drawable/awful.xml b/core/ui/src/main/res/drawable/awful.xml
+rename from core/util/src/main/res/drawable/awful.xml
+rename to core/ui/src/main/res/drawable/awful.xml
+diff --git a/core/util/src/main/res/drawable/bored.xml b/core/ui/src/main/res/drawable/bored.xml
+rename from core/util/src/main/res/drawable/bored.xml
+rename to core/ui/src/main/res/drawable/bored.xml
+diff --git a/core/util/src/main/res/drawable/calm.xml b/core/ui/src/main/res/drawable/calm.xml
+rename from core/util/src/main/res/drawable/calm.xml
+rename to core/ui/src/main/res/drawable/calm.xml
+diff --git a/core/util/src/main/res/drawable/depressed.xml b/core/ui/src/main/res/drawable/depressed.xml
+rename from core/util/src/main/res/drawable/depressed.xml
+rename to core/ui/src/main/res/drawable/depressed.xml
+diff --git a/core/util/src/main/res/drawable/disappointed.xml b/core/ui/src/main/res/drawable/disappointed.xml
+rename from core/util/src/main/res/drawable/disappointed.xml
+rename to core/ui/src/main/res/drawable/disappointed.xml
+diff --git a/core/util/src/main/res/drawable/happy.xml b/core/ui/src/main/res/drawable/happy.xml
+rename from core/util/src/main/res/drawable/happy.xml
+rename to core/ui/src/main/res/drawable/happy.xml
+diff --git a/core/util/src/main/res/drawable/humorous.xml b/core/ui/src/main/res/drawable/humorous.xml
+rename from core/util/src/main/res/drawable/humorous.xml
+rename to core/ui/src/main/res/drawable/humorous.xml
+diff --git a/core/util/src/main/res/drawable/lonely.xml b/core/ui/src/main/res/drawable/lonely.xml
+rename from core/util/src/main/res/drawable/lonely.xml
+rename to core/ui/src/main/res/drawable/lonely.xml
+diff --git a/core/util/src/main/res/drawable/mysterious.xml b/core/ui/src/main/res/drawable/mysterious.xml
+rename from core/util/src/main/res/drawable/mysterious.xml
+rename to core/ui/src/main/res/drawable/mysterious.xml
+diff --git a/core/util/src/main/res/drawable/neutral.xml b/core/ui/src/main/res/drawable/neutral.xml
+rename from core/util/src/main/res/drawable/neutral.xml
+rename to core/ui/src/main/res/drawable/neutral.xml
+diff --git a/core/util/src/main/res/drawable/romantic.xml b/core/ui/src/main/res/drawable/romantic.xml
+rename from core/util/src/main/res/drawable/romantic.xml
+rename to core/ui/src/main/res/drawable/romantic.xml
+diff --git a/core/util/src/main/res/drawable/shameful.xml b/core/ui/src/main/res/drawable/shameful.xml
+rename from core/util/src/main/res/drawable/shameful.xml
+rename to core/ui/src/main/res/drawable/shameful.xml
+diff --git a/core/util/src/main/res/drawable/surprised.xml b/core/ui/src/main/res/drawable/surprised.xml
+rename from core/util/src/main/res/drawable/surprised.xml
+rename to core/ui/src/main/res/drawable/surprised.xml
+diff --git a/core/util/src/main/res/drawable/suspicious.xml b/core/ui/src/main/res/drawable/suspicious.xml
+rename from core/util/src/main/res/drawable/suspicious.xml
+rename to core/ui/src/main/res/drawable/suspicious.xml
+diff --git a/core/util/src/main/res/drawable/tense.xml b/core/ui/src/main/res/drawable/tense.xml
+rename from core/util/src/main/res/drawable/tense.xml
+rename to core/ui/src/main/res/drawable/tense.xml
+diff --git a/.idea/.name b/.idea/.name
+deleted file mode 100644
+index 8d3ed8bbdafdbc8fdb20eb5efc54b6d581402a95..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/core/ui/src/main/res/drawable/dubai.jpg b/core/ui/src/main/res/drawable/dubai.jpg
+deleted file mode 100644
+index 7a696002585c4872cd0b12e73c75350a2dc78a15..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/core/ui/src/main/res/drawable/kazan.jpg b/core/ui/src/main/res/drawable/kazan.jpg
+deleted file mode 100644
+index 334ad2563f44a489d79aee6ed9530be972a1b54a..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/core/ui/src/main/res/drawable/london.jpg b/core/ui/src/main/res/drawable/london.jpg
+deleted file mode 100644
+index d1b37a47b89560db6f18b87ff32d36bde6bf3ad4..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/core/ui/src/main/res/drawable/los_angeles.jpg b/core/ui/src/main/res/drawable/los_angeles.jpg
+deleted file mode 100644
+index 892b4c087b6079551c0b73f51419e57b08a0bc87..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/core/ui/src/main/res/drawable/paris.jpg b/core/ui/src/main/res/drawable/paris.jpg
+deleted file mode 100644
+index cbd2b5780bf7fab5c829e63f75b264dfdb1972b9..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/core/ui/src/main/res/drawable/sweden.jpg b/core/ui/src/main/res/drawable/sweden.jpg
+deleted file mode 100644
+index f40e2bfc9927c263b5cfc45ea239321f144b54ed..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/core/ui/src/main/res/drawable/tabriz.jpg b/core/ui/src/main/res/drawable/tabriz.jpg
+deleted file mode 100644
+index 31c746ebd63c87cb7c0a2fede4be8f5344f5ec5d..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+

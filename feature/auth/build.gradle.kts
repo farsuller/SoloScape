@@ -11,25 +11,21 @@ android {
         compose = true
     }
 
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-
 }
 
 dependencies {
 
-    implementation(libs.activity.compose)
-    implementation(libs.material3.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.bundles.bundle.androidx.compose)
 
-    implementation(libs.compose.tooling.preview)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
 
-    implementation(libs.navigation.compose)
+    implementation(libs.androidx.material3)
+
+    implementation(libs.androidx.compose.navigation)
 
     implementation(libs.message.bar.compose)
     implementation(libs.one.tap.compose)
@@ -37,13 +33,13 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth)
 
-    implementation(libs.coroutines.core)
-
-    implementation(libs.realm.sync)
+    implementation (libs.coroutines.core)
 
     implementation(projects.core.ui)
+    implementation (projects.core.model)
     implementation(projects.core.util)
 
-    debugImplementation (libs.androidx.ui.tooling)
-    debugImplementation (libs.androidx.ui.test.manifest)
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
 }

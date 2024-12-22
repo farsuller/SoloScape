@@ -3,8 +3,7 @@ plugins {
     alias (libs.plugins.kotlin.android)
     alias(libs.plugins.compose.compiler)
     alias (libs.plugins.hilt)
-    id ("io.realm.kotlin")
-    id ("com.google.devtools.ksp")
+    alias(libs.plugins.devtool.ksp)
 }
 
 android {
@@ -13,42 +12,44 @@ android {
     buildFeatures {
         compose = true
     }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
 }
 
 dependencies {
-    implementation (libs.activity.compose)
-    implementation (libs.material3.compose)
-    implementation (libs.navigation.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.bundles.bundle.androidx.compose)
+
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
+
+    implementation(libs.androidx.material3)
+
     implementation (libs.coroutines.core)
 
-    implementation (libs.realm.sync)
+    implementation(libs.bundles.bundle.coil)
 
-    implementation (libs.hilt.navigation.compose)
-    implementation (libs.hilt.android)
-    ksp (libs.hilt.compiler)
+    //Hilt
+    implementation(libs.androidx.hilt.compose.navigation)
+    implementation(libs.hilt)
+    ksp(libs.hilt.compiler)
 
-    implementation (libs.compose.tooling.preview)
 
     implementation (libs.date.time.picker)
     implementation (libs.date.dialog)
+    implementation (libs.time.dialog)
 
     implementation(platform(libs.firebase.bom))
     implementation (libs.firebase.auth)
     implementation (libs.firebase.storage)
 
     implementation (projects.core.ui)
+    implementation (projects.core.model)
+    implementation (projects.core.database)
     implementation (projects.core.util)
-    implementation (projects.data.mongo)
 
-    debugImplementation (libs.androidx.ui.tooling)
-    debugImplementation (libs.androidx.ui.test.manifest)
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
 
 }

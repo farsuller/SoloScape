@@ -1,5 +1,6 @@
 package com.soloscape.auth
 
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

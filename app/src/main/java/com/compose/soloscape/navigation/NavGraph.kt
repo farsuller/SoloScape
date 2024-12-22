@@ -3,9 +3,8 @@ package com.compose.soloscape.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.soloscape.auth.navigation.authenticationRoute
-import com.soloscape.home.navigation.homeRoute
-import com.soloscape.note.navigation.reportRoute
+import com.soloscape.home.presentations.home.navigation.homeRoute
+import com.soloscape.home.presentations.write.navigation.reportRoute
 import com.soloscape.util.ScreensRoutes
 
 @Composable
@@ -20,13 +19,13 @@ fun SetupNavGraph(
         navController = navHostController,
         startDestination = startDestination,
     ) {
-        authenticationRoute(
-            navigateToHome = {
-                navHostController.popBackStack()
-                navHostController.navigate(ScreensRoutes.Home.route)
-            },
-            onDataLoaded = onDataLoaded,
-        )
+//        authenticationRoute(
+//            navigateToHome = {
+//                navHostController.popBackStack()
+//                navHostController.navigate(ScreensRoutes.Home.route)
+//            },
+//            onDataLoaded = onDataLoaded,
+//        )
         homeRoute(
             darkTheme = darkTheme,
             onThemeUpdated = onThemeUpdated,

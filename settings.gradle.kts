@@ -19,12 +19,15 @@ dependencyResolutionManagement {
         maven { setUrl("https://jitpack.io")  }
     }
 }
-rootProject.name = "MultiModularArch-JC"
+rootProject.name = "SoloScape"
+
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 include (":app")
 include (":core:ui")
 include (":core:util")
-include (":data:mongo")
-include (":feature:auth")
+include (":core:model")
+include (":core:database")
+//include (":feature:auth")
 include (":feature:home")
-include (":feature:note")
+//include (":feature:note")
