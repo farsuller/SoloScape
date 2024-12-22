@@ -4,10 +4,11 @@ import com.soloscape.database.domain.model.Write
 import com.soloscape.ui.Mood
 
 data class WriteState(
-    val selectedReportId: String? = null,
-    val selectedReport: Write? = null,
+    val selectedWrite: Write? = null,
     val title: String = "",
-    val description: String = "",
+    val content: String = "",
+    val hint : String = "",
+    val isHintVisible : Boolean = true,
     val mood: Mood = Mood.Neutral,
     val updatedDateTime: Long = 0,
 )

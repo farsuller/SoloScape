@@ -9,7 +9,7 @@ data class Write(
     @PrimaryKey
     val id: Int = 0,
     var mood: String? = null,
-    val title: String? = null,
-    val description: String? = null,
+    val title: String = "",
+    val content: String = "",
     val date: Long = 0, // Store as epoch milliseconds
 )

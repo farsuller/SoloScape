@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -31,6 +32,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
@@ -39,24 +41,24 @@ import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
 import com.soloscape.database.domain.model.Write
+import com.soloscape.home.presentations.write.components.TransparentTextField
 import com.soloscape.home.presentations.write.components.WriteChanges
 import com.soloscape.ui.Mood
 import kotlinx.coroutines.launch
 
 @Composable
 internal fun NoteContent(
-    uiState: WriteState,
+    writeState: WriteState,
     pagerState: PagerState,
     paddingValues: PaddingValues,
-    onSaveClicked: (Write) -> Unit,
+    onValueChangeTitle : (String) -> Unit,
+    onFocusChangeTitle : (FocusState) -> Unit,
+    onValueChangeContent : (String) -> Unit,
+    onFocusChangeContent : (FocusState) -> Unit,
+    noteTitle : String,
+    noteContent : String
 ) {
-    val scope = rememberCoroutineScope()
     val scrollState = rememberScrollState()
-    val context = LocalContext.current
-    val focusManager = LocalFocusManager.current
-
-    val titleEmpty = uiState.title.isEmpty()
-    val descriptionEmpty = uiState.description.isEmpty()
 
     LaunchedEffect(key1 = scrollState.maxValue) {
         scrollState.scrollTo(scrollState.maxValue)
@@ -95,116 +97,29 @@ internal fun NoteContent(
             }
             Spacer(modifier = Modifier.height(30.dp))
 
-            OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
-                value = noteChanges.title,
-                onValueChange = {
-                    onNoteChange(
-                        WriteChanges(
-                            title = it,
-                            description = uiState.description,
-                        ),
-                    )
-                },
-                placeholder = {
-                    Text(
-                        text = "Title",
-                        color = MaterialTheme.colorScheme.secondary,
-                    )
-                },
-                colors = OutlinedTextFieldDefaults.colors(
-                    unfocusedBorderColor = MaterialTheme.colorScheme.secondary,
-                    errorBorderColor = MaterialTheme.colorScheme.secondary,
-                    errorLabelColor = MaterialTheme.colorScheme.onSurface,
-                ),
-                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
-                keyboardActions = KeyboardActions(
-                    onNext = {
-                        scope.launch {
-                            scrollState.animateScrollTo(Int.MAX_VALUE)
-                            focusManager.moveFocus(FocusDirection.Down)
-                        }
-                    },
-                ),
-                maxLines = 1,
-                singleLine = true,
-            )
-            Spacer(modifier = Modifier.height(12.dp))
-
-            OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
-                value = noteChanges.description,
-                onValueChange = {
-                    onNoteChange(
-                        WriteChanges(
-                            title = uiState.title,
-                            description = it,
-                        ),
-                    )
-                },
-                placeholder = {
-                    Text(
-                        text = "How was your day?",
-                        color = MaterialTheme.colorScheme.secondary,
-                    )
-                },
-                colors = OutlinedTextFieldDefaults.colors(
-                    unfocusedBorderColor = MaterialTheme.colorScheme.secondary,
-                    errorBorderColor = MaterialTheme.colorScheme.secondary,
-                    errorLabelColor = MaterialTheme.colorScheme.onSurface,
-                ),
-                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
-                keyboardActions = KeyboardActions(
-                    onNext = {
-                        focusManager.clearFocus()
-                    },
-                ),
-            )
-        }
-
-        Column(
-            verticalArrangement = Arrangement.Bottom,
-        ) {
-            Spacer(modifier = Modifier.height(12.dp))
-
-            Spacer(modifier = Modifier.height(12.dp))
-            Button(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(54.dp),
-                onClick = {
-                    when {
-                        !titleEmpty && !descriptionEmpty -> {
-                            onSaveClicked(
-                                Write(
-                                    title = uiState.title,
-                                    description = uiState.description
-                                ),
-                            )
-                        }
-
-                        titleEmpty && !descriptionEmpty -> Toast.makeText(
-                            context,
-                            "Title cannot be empty.",
-                            Toast.LENGTH_SHORT,
-                        ).show()
-
-                        !titleEmpty && descriptionEmpty -> Toast.makeText(
-                            context,
-                            "Description cannot be empty.",
-                            Toast.LENGTH_SHORT,
-                        ).show()
-
-                        else -> Toast.makeText(
-                            context,
-                            "Fields cannot be empty.",
-                            Toast.LENGTH_SHORT,
-                        ).show()
-                    }
-                },
-                shape = Shapes().small,
+            Column(
+                modifier = Modifier.padding(start = 10.dp, end = 10.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Text(text = "Save")
+                TransparentTextField(
+                    text = writeState.title,
+                    hint = writeState.hint,
+                    onValueChange = onValueChangeTitle,
+                    onFocusChange = onFocusChangeTitle,
+                    isHintVisible = writeState.isHintVisible,
+                    singleLine = true,
+                    textStyle = MaterialTheme.typography.headlineMedium
+                )
+
+                TransparentTextField(
+                    modifier = Modifier.fillMaxHeight(),
+                    text = writeState.content,
+                    hint = writeState.hint,
+                    onValueChange = onValueChangeContent,
+                    onFocusChange = onFocusChangeContent,
+                    isHintVisible = writeState.isHintVisible,
+                    textStyle = MaterialTheme.typography.bodyMedium
+                )
             }
         }
     }

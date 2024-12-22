@@ -9,9 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.soloscape.database.domain.model.Write
 import com.soloscape.database.domain.usecase.WriteUseCases
-import com.soloscape.ui.GalleryState
 import com.soloscape.util.Constants.NOTE_SCREEN_ARG_KEY
-import com.soloscape.ui.Mood
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,22 +21,23 @@ internal class NoteViewModel @Inject constructor(
     private val writeUseCases: WriteUseCases
 ) : ViewModel() {
 
-    private val _noteTitle = mutableStateOf(NoteTextFieldState(
+    private val _noteTitle = mutableStateOf(WriteState(
         hint = "Enter title..."
     ))
-    val noteTitle : State<NoteTextFieldState> = _noteTitle
+    val noteTitle : State<WriteState> = _noteTitle
 
-    private val _noteContent = mutableStateOf(NoteTextFieldState(
+    private val _noteContent = mutableStateOf(WriteState(
         hint = "Enter some content..."
     ))
-    val noteContent : State<NoteTextFieldState> = _noteContent
+    val noteContent : State<WriteState> = _noteContent
+
+    private var currentNoteId : Int? = null
 
     var uiState by mutableStateOf(WriteState())
         private set
 
     init {
-        getReportIdArgument()
-        fetchSelectedReport()
+        getSelectedWriteById()
     }
 
     fun onEvent(event: WriteEvent) {
@@ -53,6 +52,30 @@ internal class NoteViewModel @Inject constructor(
 
             is WriteEvent.DeleteAllWriteItem -> {
             }
+
+            is WriteEvent.EnteredTitle -> {
+                _noteTitle.value = noteTitle.value.copy(
+                    title = event.value
+                )
+            }
+            is WriteEvent.ChangeTitleFocus -> {
+                _noteTitle.value = noteTitle.value.copy(
+                    isHintVisible = !event.focusState.isFocused &&
+                            noteTitle.value.title.isBlank()
+                )
+            }
+
+            is WriteEvent.EnteredContent -> {
+                _noteContent.value = noteContent.value.copy(
+                    content = event.value
+                )
+            }
+            is WriteEvent.ChangeContentFocus -> {
+                _noteContent.value = noteContent.value.copy(
+                    isHintVisible = !event.focusState.isFocused &&
+                            noteContent.value.content.isBlank()
+                )
+            }
         }
     }
 
@@ -64,60 +87,27 @@ internal class NoteViewModel @Inject constructor(
         writeUseCases.deleteWrite(write = write)
     }
 
-    private fun getReportIdArgument() {
-        uiState = uiState.copy(
-            selectedReportId = savedStateHandle.get<String>(key = NOTE_SCREEN_ARG_KEY),
-        )
-    }
-
-    private fun fetchSelectedReport() {
-        if (uiState.selectedReportId != null) {
-            viewModelScope.launch(Dispatchers.Main) {
-//                MongoDB.getSelectedNotes(reportId = ObjectId.invoke(uiState.selectedReportId!!))
-//                    .catch {
-//                        emit(com.soloscape.model.RequestState.Error(Exception("Report is already deleted.")))
-//                    }.collect { report ->
-//                        if (report is com.soloscape.model.RequestState.Success) {
-//                            setSelectedReport(report = report.data)
-//                            setTitle(title = report.data.title)
-//                            setDescription(description = report.data.description)
-//                            setMood(mood = Mood.valueOf(report.data.mood))
-//
-//                            fetchImagesFromFirebase(
-//                                remoteImagePaths = report.data.images,
-//                                onImageDownload = { downloadedImage ->
-//                                    galleryState.addImage(
-//                                        GalleryImage(
-//                                            image = downloadedImage,
-//                                            remoteImagePath = extractImagePath(fullImageUrl = downloadedImage.toString()),
-//                                        ),
-//                                    )
-//                                },
-//                            )
-//                        }
-//                    }
+    private fun getSelectedWriteById() {
+        savedStateHandle.get<Int>("noteId")?.let { writeId ->
+            if (writeId != -1) {
+                viewModelScope.launch {
+                    writeUseCases.getWriteById(writeId)?.also { note ->
+                        currentNoteId = note.id
+                        _noteTitle.value = noteTitle.value.copy(
+                            title = note.title,
+                            isHintVisible = false
+                        )
+                        _noteContent.value = noteContent.value.copy(
+                            content = note.content,
+                            isHintVisible = false
+                        )
+                    }
+                }
             }
         }
-    }
-    fun refreshView() {
-        fetchSelectedReport()
+
     }
 
-    private fun setSelectedReport(report: Write) {
-        uiState = uiState.copy(selectedReport = report)
-    }
-
-    fun setTitle(title: String) {
-        uiState = uiState.copy(title = title)
-    }
-
-    fun setDescription(description: String) {
-        uiState = uiState.copy(description = description)
-    }
-
-    fun setMood(mood: Mood) {
-        uiState = uiState.copy(mood = mood)
-    }
 
 //    @SuppressLint("NewApi")
 //    fun updateDateTime(zonedDateTime: ZonedDateTime) {

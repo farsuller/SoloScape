@@ -98,7 +98,7 @@ fun ReportHolder(report: Write, onClick: (Int) -> Unit) {
 
                 Text(
                     modifier = Modifier.padding(all = 14.dp),
-                    text = report.description.orEmpty(),
+                    text = report.content.orEmpty(),
                     style = TextStyle(fontSize = MaterialTheme.typography.bodyLarge.fontSize),
                     maxLines = 4,
                     overflow = TextOverflow.Ellipsis,
@@ -191,7 +191,7 @@ fun ReportHolderPreview() {
     ReportHolder(
         report = Write(
             title = "My Write",
-            description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. " +
+            content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. " +
                     "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
             mood = Mood.Happy.name,
             date = 0
