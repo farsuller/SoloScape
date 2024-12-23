@@ -51,7 +51,7 @@ import java.util.Locale
 import com.soloscape.ui.components.Gallery
 
 @Composable
-fun ReportHolder(report: Write, onClick: (Int) -> Unit) {
+fun ReportHolder(report: Write, onClick: (Int?) -> Unit) {
     val context = LocalContext.current
     val localDensity = LocalDensity.current
     var componentHeight by remember { mutableStateOf(0.dp) }

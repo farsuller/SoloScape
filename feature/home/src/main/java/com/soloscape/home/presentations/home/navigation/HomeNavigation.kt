@@ -22,7 +22,7 @@ fun NavGraphBuilder.homeRoute(
     navigationToWrite: () -> Unit,
     navigateToAuth: () -> Unit,
     onDataLoaded: () -> Unit,
-    navigateToWriteWithArgs: (Int) -> Unit,
+    navigateToWriteWithArgs: (Int?) -> Unit,
     darkTheme: Boolean,
     onThemeUpdated: () -> Unit,
 ) {

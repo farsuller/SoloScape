@@ -1,6 +1,5 @@
 package com.soloscape.home.presentations.write
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,48 +16,38 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
-import androidx.compose.material3.Shapes
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
-import com.soloscape.database.domain.model.Write
 import com.soloscape.home.presentations.write.components.TransparentTextField
-import com.soloscape.home.presentations.write.components.WriteChanges
+import com.soloscape.home.presentations.write.components.WriteTextFieldState
 import com.soloscape.ui.Mood
-import kotlinx.coroutines.launch
 
 @Composable
 internal fun NoteContent(
-    writeState: WriteState,
+    writeState: WriteTextFieldState,
     pagerState: PagerState,
     paddingValues: PaddingValues,
     onValueChangeTitle : (String) -> Unit,
     onFocusChangeTitle : (FocusState) -> Unit,
     onValueChangeContent : (String) -> Unit,
     onFocusChangeContent : (FocusState) -> Unit,
-    noteTitle : String,
-    noteContent : String
+    noteTitleState : State<WriteTextFieldState>,
+    noteContentState : State<WriteTextFieldState>
 ) {
     val scrollState = rememberScrollState()
+
+
 
     LaunchedEffect(key1 = scrollState.maxValue) {
         scrollState.scrollTo(scrollState.maxValue)
@@ -102,22 +91,22 @@ internal fun NoteContent(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 TransparentTextField(
-                    text = writeState.title,
-                    hint = writeState.hint,
+                    text = noteTitleState.value.text,
+                    hint = noteTitleState.value.hint,
                     onValueChange = onValueChangeTitle,
                     onFocusChange = onFocusChangeTitle,
-                    isHintVisible = writeState.isHintVisible,
+                    isHintVisible = noteTitleState.value.isHintVisible,
                     singleLine = true,
                     textStyle = MaterialTheme.typography.headlineMedium
                 )
 
                 TransparentTextField(
                     modifier = Modifier.fillMaxHeight(),
-                    text = writeState.content,
-                    hint = writeState.hint,
+                    text = noteContentState.value.text,
+                    hint = noteContentState.value.hint,
                     onValueChange = onValueChangeContent,
                     onFocusChange = onFocusChangeContent,
-                    isHintVisible = writeState.isHintVisible,
+                    isHintVisible = noteContentState.value.isHintVisible,
                     textStyle = MaterialTheme.typography.bodyMedium
                 )
             }

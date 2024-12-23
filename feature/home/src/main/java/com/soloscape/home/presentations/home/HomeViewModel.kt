@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.soloscape.database.domain.usecase.WriteUseCases
+import com.soloscape.home.presentations.home.components.HomeState
 import com.soloscape.util.connectivity.ConnectivityObserver
 import com.soloscape.util.connectivity.NetworkConnectivityObserver
 import dagger.hilt.android.lifecycle.HiltViewModel

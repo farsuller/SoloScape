@@ -1,4 +1,4 @@
-package com.soloscape.home.presentations.home
+package com.soloscape.home.presentations.home.components
 
 import com.soloscape.database.domain.model.Write
 import java.time.LocalDate

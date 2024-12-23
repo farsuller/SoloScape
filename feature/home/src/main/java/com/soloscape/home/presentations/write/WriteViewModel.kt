@@ -9,41 +9,64 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.soloscape.database.domain.model.Write
 import com.soloscape.database.domain.usecase.WriteUseCases
-import com.soloscape.util.Constants.NOTE_SCREEN_ARG_KEY
+import com.soloscape.home.presentations.write.components.WriteEvent
+import com.soloscape.home.presentations.write.components.WriteTextFieldState
+import com.soloscape.ui.Mood
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-internal class NoteViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle,
+internal class WriteViewModel @Inject constructor(
+    savedStateHandle: SavedStateHandle,
     private val writeUseCases: WriteUseCases
 ) : ViewModel() {
 
-    private val _noteTitle = mutableStateOf(WriteState(
+    private val _noteTitle = mutableStateOf(
+        WriteTextFieldState(
         hint = "Enter title..."
-    ))
-    val noteTitle : State<WriteState> = _noteTitle
+    )
+    )
+    val noteTitle : State<WriteTextFieldState> = _noteTitle
 
-    private val _noteContent = mutableStateOf(WriteState(
+    private val _noteContent = mutableStateOf(
+        WriteTextFieldState(
         hint = "Enter some content..."
-    ))
-    val noteContent : State<WriteState> = _noteContent
+    )
+    )
+    val noteContent : State<WriteTextFieldState> = _noteContent
 
     private var currentNoteId : Int? = null
 
-    var uiState by mutableStateOf(WriteState())
+    var uiState by mutableStateOf(WriteTextFieldState())
         private set
 
     init {
-        getSelectedWriteById()
+        savedStateHandle.get<Int>("noteId")?.let { writeId ->
+            if (writeId != -1) {
+                viewModelScope.launch {
+                    writeUseCases.getWriteById(writeId)?.also { note ->
+                        currentNoteId = note.id
+                        _noteTitle.value = noteTitle.value.copy(
+                            text = note.title,
+                            isHintVisible = false
+                        )
+                        _noteContent.value = noteContent.value.copy(
+                            text = note.content,
+                            isHintVisible = false
+                        )
+                    }
+                }
+            }
+        }
     }
 
     fun onEvent(event: WriteEvent) {
         when (event) {
             is WriteEvent.UpsertWriteItem -> {
-                upsertWriteItem(event.writeItem)
+                upsertWriteItem(event.onSuccess)
             }
 
             is WriteEvent.DeleteWriteItem -> {
@@ -55,57 +78,38 @@ internal class NoteViewModel @Inject constructor(
 
             is WriteEvent.EnteredTitle -> {
                 _noteTitle.value = noteTitle.value.copy(
-                    title = event.value
+                    text = event.value
                 )
             }
             is WriteEvent.ChangeTitleFocus -> {
                 _noteTitle.value = noteTitle.value.copy(
-                    isHintVisible = !event.focusState.isFocused &&
-                            noteTitle.value.title.isBlank()
+                    isHintVisible = !event.focusState.isFocused && noteTitle.value.text.isBlank()
                 )
             }
 
             is WriteEvent.EnteredContent -> {
-                _noteContent.value = noteContent.value.copy(
-                    content = event.value
-                )
+                _noteContent.value = noteContent.value.copy(text = event.value)
             }
             is WriteEvent.ChangeContentFocus -> {
-                _noteContent.value = noteContent.value.copy(
-                    isHintVisible = !event.focusState.isFocused &&
-                            noteContent.value.content.isBlank()
-                )
+                _noteContent.value = noteContent.value.copy(isHintVisible = !event.focusState.isFocused && noteContent.value.text.isBlank())
             }
         }
     }
 
-    private fun upsertWriteItem(write: Write) = viewModelScope.launch(Dispatchers.IO) {
-        writeUseCases.addWrite(write = write)
+    private fun upsertWriteItem(onSuccess :() -> Unit) = viewModelScope.launch(Dispatchers.IO) {
+        writeUseCases.addWrite(write = Write(
+            title = noteTitle.value.text,
+            content = noteContent.value.text,
+            mood = Mood.Happy.name,
+            id = currentNoteId,))
+
+        withContext(Dispatchers.Main){
+            onSuccess()
+        }
     }
 
     private fun deleteCartItem(write: Write) = viewModelScope.launch(Dispatchers.IO) {
         writeUseCases.deleteWrite(write = write)
-    }
-
-    private fun getSelectedWriteById() {
-        savedStateHandle.get<Int>("noteId")?.let { writeId ->
-            if (writeId != -1) {
-                viewModelScope.launch {
-                    writeUseCases.getWriteById(writeId)?.also { note ->
-                        currentNoteId = note.id
-                        _noteTitle.value = noteTitle.value.copy(
-                            title = note.title,
-                            isHintVisible = false
-                        )
-                        _noteContent.value = noteContent.value.copy(
-                            content = note.content,
-                            isHintVisible = false
-                        )
-                    }
-                }
-            }
-        }
-
     }
 
 

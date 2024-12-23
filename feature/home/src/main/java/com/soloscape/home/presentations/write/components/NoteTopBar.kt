@@ -54,7 +54,7 @@ import java.util.Locale
 @Composable
 internal fun NoteTopBar(
     moodName: () -> String,
-    selectedWrite: Write?,
+    selectedWrite: Write? = null,
     onBackPressed: () -> Unit,
     onDeleteConfirmed: (Write) -> Unit,
     onDateTimeUpdated: (ZonedDateTime) -> Unit,

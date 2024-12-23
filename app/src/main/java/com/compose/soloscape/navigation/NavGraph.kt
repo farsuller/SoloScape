@@ -33,7 +33,7 @@ fun SetupNavGraph(
                 navHostController.navigate(ScreensRoutes.Note.route)
             },
             navigateToWriteWithArgs = {
-                navHostController.navigate(ScreensRoutes.Note.passNoteId(noteId = it))
+                navHostController.navigate(ScreensRoutes.Note.passNoteId(noteId = it ?: -1))
             },
             navigateToAuth = {
                 navHostController.popBackStack()

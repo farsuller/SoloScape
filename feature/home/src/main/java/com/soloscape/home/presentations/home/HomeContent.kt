@@ -32,7 +32,7 @@ import java.time.LocalDate
 internal fun HomeContent(
     paddingValues: PaddingValues,
     writes: Map<LocalDate, List<Write>>? =null,
-    onClick: (Int) -> Unit,
+    onClick: (Int?) -> Unit,
 ) {
     if (writes != null) {
         if (writes.isNotEmpty()) {
@@ -48,7 +48,6 @@ internal fun HomeContent(
                     }
                     items(
                         items = write,
-                        key = { localDate.toString() },
                     ) {
                         ReportHolder(report = it, onClick = onClick)
                     }

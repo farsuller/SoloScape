@@ -42,7 +42,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import com.soloscape.home.presentations.home.components.EmptyPage
+import com.soloscape.home.presentations.home.components.HomeState
 import com.soloscape.home.presentations.home.components.HomeTopBar
 import com.soloscape.ui.R
 import com.soloscape.ui.components.ThemeSwitcher
@@ -58,7 +58,7 @@ internal fun HomeScreen(
     navigateToWrite: () -> Unit,
     drawerState: DrawerState,
     onSignOutClicked: () -> Unit,
-    navigateToWriteWithArgs: (Int) -> Unit,
+    navigateToWriteWithArgs: (Int?) -> Unit,
     onDeleteAllClicked: () -> Unit,
     dateIsSelected: Boolean,
     onDateSelected: (ZonedDateTime) -> Unit,
