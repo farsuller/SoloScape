@@ -57,7 +57,7 @@ fun NavGraphBuilder.homeRoute(
             onDateSelected = { viewModel.getWrite(zonedDateTime = it) },
             onDateReset = { viewModel.getWrite() },
             darkTheme = darkTheme,
-            onThemeUpdated = onThemeUpdated
+            onThemeUpdated = onThemeUpdated,
         )
 
         DisplayAlertDialog(

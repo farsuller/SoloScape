@@ -58,7 +58,6 @@ fun NavGraphBuilder.homeRoute(
             onDateReset = { viewModel.getWrite() },
             darkTheme = darkTheme,
             onThemeUpdated = onThemeUpdated,
-
         )
 
         DisplayAlertDialog(

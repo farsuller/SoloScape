@@ -18,7 +18,7 @@ import com.soloscape.util.Constants.NOTE_SCREEN_ARG_KEY
 import com.soloscape.util.routes.ScreensRoutes
 import com.soloscape.util.toEpochMilliOrNull
 
-fun NavGraphBuilder.reportRoute(onBackPressed: () -> Unit) {
+fun NavGraphBuilder.writeRoute(onBackPressed: () -> Unit) {
     composable(
         route = ScreensRoutes.Note.route,
         arguments = listOf(
@@ -42,15 +42,14 @@ fun NavGraphBuilder.reportRoute(onBackPressed: () -> Unit) {
                 viewModel.onEvent(WriteEvent.UpsertWriteItem(onSuccess = onBackPressed))
             },
             onDateTimeUpdated = {
-                // viewModel.updateDateTime(zonedDateTime = it)
-                viewModel.onEvent(
-                    WriteEvent.SelectedDateTime(date = it.toEpochMilliOrNull()),
-                )
-                println("Time: $it")
+                viewModel.onEvent(WriteEvent.SelectedDateTime(date = it.toEpochMilliOrNull()))
             },
             onDeleteConfirmed = { write ->
                 viewModel.onEvent(
-                    WriteEvent.DeleteWriteItem(writeItem = write, onSuccess = onBackPressed),
+                    WriteEvent.DeleteWriteItem(
+                        writeItem = write,
+                        onSuccess = onBackPressed,
+                    ),
                 )
             },
             writeState = writeState,

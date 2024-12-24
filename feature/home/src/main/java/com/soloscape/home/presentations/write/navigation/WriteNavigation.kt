@@ -48,8 +48,8 @@ fun NavGraphBuilder.writeRoute(onBackPressed: () -> Unit) {
                 viewModel.onEvent(
                     WriteEvent.DeleteWriteItem(
                         writeItem = write,
-                        onSuccess = onBackPressed
-                    )
+                        onSuccess = onBackPressed,
+                    ),
                 )
             },
             writeState = writeState,

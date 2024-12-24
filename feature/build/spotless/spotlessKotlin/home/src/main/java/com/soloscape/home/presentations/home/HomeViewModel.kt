@@ -10,8 +10,6 @@ import com.soloscape.home.presentations.home.components.HomeState
 import com.soloscape.util.connectivity.ConnectivityObserver
 import com.soloscape.util.connectivity.NetworkConnectivityObserver
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -28,8 +26,6 @@ internal class HomeViewModel @Inject constructor(
     private val writeUseCases: WriteUseCases,
 ) : ViewModel() {
 
-    private lateinit var allReportsJob: Job
-    private lateinit var filteredReportsJob: Job
     private var network by mutableStateOf(ConnectivityObserver.Status.Unavailable)
 
     private val _homeState = MutableStateFlow(HomeState())
@@ -65,27 +61,5 @@ internal class HomeViewModel @Inject constructor(
         writeUseCases.getWriteByFiltered(date = zonedDateTime).onEach { write ->
             _homeState.update { it.copy(writes = write) }
         }.launchIn(viewModelScope)
-    }
-
-    private fun observeAllReports() {
-        allReportsJob = viewModelScope.launch {
-            if (::filteredReportsJob.isInitialized) {
-                filteredReportsJob.cancelAndJoin()
-            }
-//            MongoDB.getAllNotes().debounce(2000).collect { result ->
-//                reports.value = result
-//            }
-        }
-    }
-
-    private fun observeFilteredReports(zonedDateTime: ZonedDateTime) {
-        filteredReportsJob = viewModelScope.launch {
-            if (::allReportsJob.isInitialized) {
-                allReportsJob.cancelAndJoin()
-            }
-//            MongoDB.getFilteredNotes(zonedDateTime = zonedDateTime).collect { result ->
-//                reports.value = result
-//            }
-        }
     }
 }
