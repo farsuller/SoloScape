@@ -15,7 +15,7 @@ import androidx.navigation.compose.composable
 import com.soloscape.home.presentations.home.HomeScreen
 import com.soloscape.home.presentations.home.HomeViewModel
 import com.soloscape.ui.components.DisplayAlertDialog
-import com.soloscape.util.ScreensRoutes
+import com.soloscape.util.routes.ScreensRoutes
 import kotlinx.coroutines.launch
 
 fun NavGraphBuilder.homeRoute(
@@ -57,9 +57,8 @@ fun NavGraphBuilder.homeRoute(
             onDateSelected = { viewModel.getWrite(zonedDateTime = it) },
             onDateReset = { viewModel.getWrite() },
             darkTheme = darkTheme,
-            onThemeUpdated = onThemeUpdated,
-
-            )
+            onThemeUpdated = onThemeUpdated
+        )
 
         DisplayAlertDialog(
             title = "Delete all notes",

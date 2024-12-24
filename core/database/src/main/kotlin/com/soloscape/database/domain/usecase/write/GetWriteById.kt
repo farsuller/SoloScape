@@ -1,10 +1,10 @@
-package com.soloscape.database.domain.usecase
+package com.soloscape.database.domain.usecase.write
 
 import com.soloscape.database.domain.model.Write
 import com.soloscape.database.domain.repository.WriteRepository
 
 class GetWriteById(
-    private val repository: WriteRepository
+    private val repository: WriteRepository,
 ) {
     suspend operator fun invoke(id: Int): Write? = repository.getWriteById(id)
 }

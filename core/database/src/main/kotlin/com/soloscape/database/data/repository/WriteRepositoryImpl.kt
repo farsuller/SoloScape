@@ -1,14 +1,15 @@
 package com.soloscape.database.data.repository
 
-
 import com.soloscape.database.data.local.WriteDao
 import com.soloscape.database.domain.model.Write
 import com.soloscape.database.domain.repository.WriteRepository
 import com.soloscape.database.domain.repository.Writes
+import com.soloscape.util.toLocalDateOrNull
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import java.time.Instant
-
+import java.time.LocalDate
 import java.time.ZoneId
 import java.time.ZonedDateTime
 
@@ -40,15 +41,17 @@ class WriteRepositoryImpl(private val dao: WriteDao) : WriteRepository {
     }
 
     override fun getFilteredWrite(date: ZonedDateTime): Flow<Writes> {
-        val startOfDay = date.toLocalDate().atStartOfDay(date.zone).toEpochSecond()
-        val endOfDay = date.toLocalDate().plusDays(1).atStartOfDay(date.zone).toEpochSecond()
+        val startOfDayMillis = date.toLocalDate().atStartOfDay(date.zone).toEpochSecond() * 1000
+        val endOfDayMillis = date.toLocalDate().plusDays(1).atStartOfDay(date.zone).toEpochSecond() * 1000
 
-        return dao.getWritesFiltered(startOfDay, endOfDay).map { writes ->
-            writes.groupBy { write ->
-                Instant.ofEpochMilli(write.date)
-                    .atZone(ZoneId.systemDefault())
-                    .toLocalDate()
+        return dao.getWritesFiltered(startOfDayMillis, endOfDayMillis)
+            .map { writes ->
+                writes.groupBy { write ->
+                    write.date.toLocalDateOrNull() ?: LocalDate.MIN
+                }
             }
-        }
+            .catch {
+                emit(emptyMap())
+            }
     }
 }

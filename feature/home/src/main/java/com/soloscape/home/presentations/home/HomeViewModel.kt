@@ -25,11 +25,9 @@ import javax.inject.Inject
 @HiltViewModel
 internal class HomeViewModel @Inject constructor(
     private val connectivity: NetworkConnectivityObserver,
-    private val writeUseCases: WriteUseCases
+    private val writeUseCases: WriteUseCases,
 ) : ViewModel() {
 
-    private lateinit var allReportsJob: Job
-    private lateinit var filteredReportsJob: Job
     private var network by mutableStateOf(ConnectivityObserver.Status.Unavailable)
 
     private val _homeState = MutableStateFlow(HomeState())
@@ -66,30 +64,4 @@ internal class HomeViewModel @Inject constructor(
             _homeState.update { it.copy(writes = write) }
         }.launchIn(viewModelScope)
     }
-
-
-
-
-    private fun observeAllReports() {
-        allReportsJob = viewModelScope.launch {
-            if (::filteredReportsJob.isInitialized) {
-                filteredReportsJob.cancelAndJoin()
-            }
-//            MongoDB.getAllNotes().debounce(2000).collect { result ->
-//                reports.value = result
-//            }
-        }
-    }
-
-    private fun observeFilteredReports(zonedDateTime: ZonedDateTime) {
-        filteredReportsJob = viewModelScope.launch {
-            if (::allReportsJob.isInitialized) {
-                allReportsJob.cancelAndJoin()
-            }
-//            MongoDB.getFilteredNotes(zonedDateTime = zonedDateTime).collect { result ->
-//                reports.value = result
-//            }
-        }
-    }
-
 }

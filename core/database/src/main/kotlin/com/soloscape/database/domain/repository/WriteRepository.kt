@@ -9,7 +9,7 @@ typealias Writes = Map<LocalDate, List<Write>>
 
 interface WriteRepository {
 
-    fun getWrites() : Flow<Writes>
+    fun getWrites(): Flow<Writes>
     fun getFilteredWrite(date: ZonedDateTime): Flow<Writes>
     suspend fun getWriteById(id: Int): Write?
     suspend fun addWrite(write: Write)

@@ -1,17 +1,17 @@
 package com.soloscape.database.di
 
-import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import com.soloscape.database.data.local.ScapeDatabase
 import com.soloscape.database.data.repository.WriteRepositoryImpl
 import com.soloscape.database.domain.repository.WriteRepository
-import com.soloscape.database.domain.usecase.AddWrite
-import com.soloscape.database.domain.usecase.DeleteWrite
-import com.soloscape.database.domain.usecase.GetWriteByFiltered
-import com.soloscape.database.domain.usecase.GetWriteById
-import com.soloscape.database.domain.usecase.GetWrites
+import com.soloscape.database.domain.usecase.write.AddWrite
+import com.soloscape.database.domain.usecase.write.DeleteWrite
+import com.soloscape.database.domain.usecase.write.GetWriteByFiltered
+import com.soloscape.database.domain.usecase.write.GetWriteById
+import com.soloscape.database.domain.usecase.write.GetWrites
 import com.soloscape.database.domain.usecase.WriteUseCases
+import com.soloscape.database.domain.usecase.write.DeleteAllWrite
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,11 +24,11 @@ import javax.inject.Singleton
 object DatabaseModule {
     @Provides
     @Singleton
-    fun provideScapeDatabase(@ApplicationContext context: Context,): ScapeDatabase {
+    fun provideScapeDatabase(@ApplicationContext context: Context): ScapeDatabase {
         return Room.databaseBuilder(
             context = context,
             klass = ScapeDatabase::class.java,
-            name = ScapeDatabase.DATABASE_NAME
+            name = ScapeDatabase.DATABASE_NAME,
         ).fallbackToDestructiveMigration()
             .build()
     }
@@ -47,7 +47,8 @@ object DatabaseModule {
             getWriteById = GetWriteById(repository = repository),
             getWriteByFiltered = GetWriteByFiltered(repository = repository),
             addWrite = AddWrite(repository = repository),
-            deleteWrite = DeleteWrite(repository = repository)
+            deleteWrite = DeleteWrite(repository = repository),
+            deleteAllWrite = DeleteAllWrite(repository = repository)
         )
     }
 }

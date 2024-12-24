@@ -1,7 +1,6 @@
 package com.soloscape.home.presentations.home
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -24,14 +23,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.soloscape.database.domain.model.Write
 import com.soloscape.home.presentations.home.components.EmptyPage
-import com.soloscape.home.presentations.home.components.ReportHolder
+import com.soloscape.home.presentations.home.components.WriteCard
 import java.time.LocalDate
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun HomeContent(
     paddingValues: PaddingValues,
-    writes: Map<LocalDate, List<Write>>? =null,
+    writes: Map<LocalDate, List<Write>>? = null,
     onClick: (Int?) -> Unit,
 ) {
     if (writes != null) {
@@ -43,13 +41,9 @@ internal fun HomeContent(
                     .padding(top = paddingValues.calculateTopPadding()),
             ) {
                 writes.forEach { (localDate, write) ->
-                    stickyHeader(key = localDate) {
-                        DateHeader(localDate = localDate)
-                    }
-                    items(
-                        items = write,
-                    ) {
-                        ReportHolder(report = it, onClick = onClick)
+                    stickyHeader(key = localDate) { DateHeader(localDate = localDate) }
+                    items(items = write, key = { w -> w.id.toString() }) {
+                        WriteCard(write = it, onClick = onClick)
                     }
                 }
             }
@@ -57,11 +51,8 @@ internal fun HomeContent(
             EmptyPage()
         }
     }
-
 }
 
-
-@SuppressLint("NewApi")
 @Composable
 internal fun DateHeader(localDate: LocalDate) {
     Row(
@@ -113,7 +104,6 @@ internal fun DateHeader(localDate: LocalDate) {
         }
     }
 }
-
 
 @SuppressLint("NewApi")
 @Composable

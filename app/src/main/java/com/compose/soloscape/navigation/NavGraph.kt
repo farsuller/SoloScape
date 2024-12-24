@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.soloscape.home.presentations.home.navigation.homeRoute
-import com.soloscape.home.presentations.write.navigation.reportRoute
-import com.soloscape.util.ScreensRoutes
+import com.soloscape.home.presentations.write.navigation.writeRoute
+import com.soloscape.util.routes.ScreensRoutes
 
 @Composable
 fun SetupNavGraph(
@@ -41,7 +41,7 @@ fun SetupNavGraph(
             },
             onDataLoaded = onDataLoaded,
         )
-        reportRoute(
+        writeRoute(
             onBackPressed = {
                 navHostController.popBackStack()
             },

@@ -1,4 +1,4 @@
-package com.soloscape.database.domain.usecase
+package com.soloscape.database.domain.usecase.write
 
 import com.soloscape.database.domain.repository.WriteRepository
 import com.soloscape.database.domain.repository.Writes
@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 import java.time.ZonedDateTime
 
 class GetWriteByFiltered(
-    private val repository: WriteRepository
+    private val repository: WriteRepository,
 ) {
     operator fun invoke(date: ZonedDateTime): Flow<Writes> = repository.getFilteredWrite(date)
 }

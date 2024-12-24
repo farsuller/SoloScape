@@ -11,14 +11,14 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface WriteDao {
 
-    @Query("SELECT * FROM write")
+    @Query("SELECT * FROM write ORDER BY date DESC")
     fun getWrites(): Flow<List<Write>>
 
     @Query("SELECT * FROM write WHERE id = :id")
     suspend fun getWriteById(id: Int): Write?
 
-    @Query("SELECT * FROM write WHERE date BETWEEN :start AND :end")
-    fun getWritesFiltered(start: Long, end: Long): Flow<List<Write>>
+    @Query("SELECT * FROM write WHERE date BETWEEN :startEpoch AND :endEpoch")
+    fun getWritesFiltered(startEpoch: Long, endEpoch: Long): Flow<List<Write>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addWrite(write: Write)
@@ -28,5 +28,4 @@ interface WriteDao {
 
     @Query("DELETE FROM write")
     suspend fun deleteAllWrites()
-
 }

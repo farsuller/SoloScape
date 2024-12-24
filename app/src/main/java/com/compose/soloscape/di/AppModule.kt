@@ -1,7 +1,6 @@
 package com.compose.soloscape.di
 
 import android.content.Context
-
 import com.soloscape.util.connectivity.NetworkConnectivityObserver
 import dagger.Module
 import dagger.Provides

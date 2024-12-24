@@ -1,7 +1,22 @@
 package com.soloscape.ui
 
 import androidx.compose.ui.graphics.Color
-import com.soloscape.ui.theme.*
+import com.soloscape.ui.theme.AngryColor
+import com.soloscape.ui.theme.AwfulColor
+import com.soloscape.ui.theme.BoredColor
+import com.soloscape.ui.theme.CalmColor
+import com.soloscape.ui.theme.DepressedColor
+import com.soloscape.ui.theme.DisappointedColor
+import com.soloscape.ui.theme.HappyColor
+import com.soloscape.ui.theme.HumorousColor
+import com.soloscape.ui.theme.LonelyColor
+import com.soloscape.ui.theme.MysteriousColor
+import com.soloscape.ui.theme.NeutralColor
+import com.soloscape.ui.theme.RomanticColor
+import com.soloscape.ui.theme.ShamefulColor
+import com.soloscape.ui.theme.SurprisedColor
+import com.soloscape.ui.theme.SuspiciousColor
+import com.soloscape.ui.theme.TenseColor
 
 enum class Mood(
     val icon: Int,

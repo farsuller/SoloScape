@@ -1,7 +1,6 @@
 package com.soloscape.home.presentations.write.components
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -36,18 +35,16 @@ import com.maxkeppeler.sheets.calendar.models.CalendarSelection
 import com.maxkeppeler.sheets.clock.ClockDialog
 import com.maxkeppeler.sheets.clock.models.ClockSelection
 import com.soloscape.database.domain.model.Write
+import com.soloscape.ui.Mood
 import com.soloscape.ui.components.DisplayAlertDialog
 import com.soloscape.ui.theme.MultiModularArchJCTheme
 import com.soloscape.util.clickableWithoutRipple
-import com.soloscape.ui.Mood
-
-import java.text.SimpleDateFormat
+import com.soloscape.util.toZonedDateTimeOrNull
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
-import java.util.Locale
 
 @SuppressLint("NewApi")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -77,12 +74,11 @@ internal fun NoteTopBar(
     var dateTimeUpdated by remember { mutableStateOf(false) }
 
     val selectedReportDateTime = remember(selectedWrite) {
-        if (selectedWrite != null) {
-            SimpleDateFormat("dd MMM yyyy, hh:mm a", Locale.getDefault())
-                .format(selectedWrite.date).uppercase()
-        } else {
-            "Unknown"
-        }
+        selectedWrite?.date?.toZonedDateTimeOrNull()?.let { zonedDateTime ->
+            DateTimeFormatter.ofPattern("dd MMM yyyy, hh:mm a")
+                .format(zonedDateTime)
+                .uppercase()
+        } ?: "Unknown"
     }
 
     TopAppBar(
@@ -149,7 +145,6 @@ internal fun NoteTopBar(
                     modifier = Modifier
                         .padding(end = 10.dp)
                         .clickableWithoutRipple(
-                            interactionSource = remember { MutableInteractionSource() },
                             onClick = { dateDialog.show() },
                         ),
                     imageVector = Icons.Default.DateRange,
@@ -226,7 +221,6 @@ fun DeleteReportAction(
         modifier = Modifier
             .padding(end = 5.dp)
             .clickableWithoutRipple(
-                interactionSource = remember { MutableInteractionSource() },
                 onClick = {
                     expanded = !expanded
                 },

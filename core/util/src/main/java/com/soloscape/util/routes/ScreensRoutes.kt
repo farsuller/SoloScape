@@ -1,4 +1,4 @@
-package com.soloscape.util
+package com.soloscape.util.routes
 
 import com.soloscape.util.Constants.NOTE_SCREEN_ARG_KEY
 

@@ -21,4 +21,5 @@ dependencies {
     ksp(libs.hilt.compiler)
 
     implementation (projects.core.model)
+    implementation(projects.core.util)
 }
