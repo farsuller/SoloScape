@@ -1,8 +1,8 @@
 plugins {
-    alias (libs.plugins.android.library)
-    alias (libs.plugins.kotlin.android)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose.compiler)
-    alias (libs.plugins.hilt)
+    alias(libs.plugins.hilt)
     alias(libs.plugins.devtool.ksp)
 }
 
@@ -25,9 +25,9 @@ dependencies {
 
     implementation(libs.androidx.material3)
 
-    implementation (libs.material.icons.extended)
+    implementation(libs.material.icons.extended)
 
-    implementation (libs.coroutines.core)
+    implementation(libs.coroutines.core)
 
     implementation(libs.bundles.bundle.coil)
 
@@ -37,18 +37,19 @@ dependencies {
     ksp(libs.hilt.compiler)
 
 
-    implementation (libs.date.time.picker)
-    implementation (libs.date.dialog)
-    implementation (libs.time.dialog)
+    implementation(libs.date.time.picker)
+    implementation(libs.date.dialog)
+    implementation(libs.time.dialog)
 
     implementation(platform(libs.firebase.bom))
-    implementation (libs.firebase.auth)
-    implementation (libs.firebase.storage)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.storage)
 
-    implementation (projects.core.ui)
-    implementation (projects.core.model)
-    implementation (projects.core.database)
-    implementation (projects.core.util)
+    implementation(projects.core.ui)
+    implementation(projects.core.model)
+    implementation(projects.core.database)
+    implementation(projects.core.util)
+    implementation(projects.core.messagebar)
 
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)

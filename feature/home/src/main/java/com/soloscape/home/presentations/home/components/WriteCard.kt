@@ -32,7 +32,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.soloscape.database.domain.model.Write
-import com.soloscape.ui.Mood
+import com.soloscape.ui.Reaction
 import com.soloscape.ui.theme.Elevation
 import com.soloscape.util.clickableWithoutRipple
 import java.text.SimpleDateFormat
@@ -81,7 +81,7 @@ fun WriteCard(write: Write, onClick: (Int?) -> Unit) {
 
 @Composable
 fun WriteHeader(write: Write) {
-    val reaction by remember { mutableStateOf(Mood.valueOf(write.mood.orEmpty())) }
+    val reaction by remember { mutableStateOf(Reaction.valueOf(write.mood.orEmpty())) }
 
     Box(
         modifier = Modifier
@@ -135,7 +135,7 @@ fun WriteCardPreview() {
             title = "My Write",
             content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. " +
                 "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-            mood = Mood.Happy.name,
+            mood = Reaction.Happy.name,
             date = 0,
         ),
         onClick = {},

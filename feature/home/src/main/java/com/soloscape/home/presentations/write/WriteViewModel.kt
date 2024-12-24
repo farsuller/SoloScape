@@ -7,7 +7,7 @@ import com.soloscape.database.domain.model.Write
 import com.soloscape.database.domain.usecase.WriteUseCases
 import com.soloscape.home.presentations.write.components.WriteEvent
 import com.soloscape.home.presentations.write.components.WriteState
-import com.soloscape.ui.Mood
+import com.soloscape.ui.Reaction
 import com.soloscape.util.Constants.NOTE_SCREEN_ARG_KEY
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -33,14 +33,17 @@ internal class WriteViewModel @Inject constructor(
             if (writeId != -1) {
                 viewModelScope.launch {
                     writeUseCases.getWriteById(writeId)?.also { write ->
-                        _writeState.value = writeState.value.copy(
-                            title = write.title,
-                            titleHintVisible = false,
-                            content = write.content,
-                            contentHintVisible = false,
-                            date = write.date,
-                            id = write.id,
-                        )
+                        _writeState.update {
+                            it.copy(
+                                id = write.id,
+                                title = write.title,
+                                titleHintVisible = false,
+                                content = write.content,
+                                contentHintVisible = false,
+                                date = write.date,
+                                reaction = Reaction.valueOf(write.mood ?: Reaction.Neutral.name)
+                            )
+                        }
                     }
                 }
             }
@@ -51,6 +54,7 @@ internal class WriteViewModel @Inject constructor(
         when (event) {
             is WriteEvent.UpsertWriteItem -> {
                 upsertWriteItem(onSuccess = event.onSuccess)
+                _writeState.update { it.copy(reaction = event.reaction) }
             }
 
             is WriteEvent.DeleteWriteItem -> {
@@ -86,7 +90,7 @@ internal class WriteViewModel @Inject constructor(
                 id = state.id,
                 title = state.title,
                 content = state.content,
-                mood = Mood.Happy.name,
+                mood = state.reaction.name,
                 date = state.date,
             ),
         )

@@ -1,6 +1,7 @@
 package com.soloscape.home.presentations.write.components
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -17,12 +18,14 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -35,7 +38,7 @@ import com.maxkeppeler.sheets.calendar.models.CalendarSelection
 import com.maxkeppeler.sheets.clock.ClockDialog
 import com.maxkeppeler.sheets.clock.models.ClockSelection
 import com.soloscape.database.domain.model.Write
-import com.soloscape.ui.Mood
+import com.soloscape.ui.Reaction
 import com.soloscape.ui.components.DisplayAlertDialog
 import com.soloscape.ui.theme.MultiModularArchJCTheme
 import com.soloscape.util.clickableWithoutRipple
@@ -49,8 +52,8 @@ import java.time.format.DateTimeFormatter
 @SuppressLint("NewApi")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun NoteTopBar(
-    moodName: () -> String,
+internal fun WriteTopBar(
+    reaction: Reaction,
     selectedWrite: Write? = null,
     onBackPressed: () -> Unit,
     onDeleteConfirmed: (Write) -> Unit,
@@ -82,11 +85,13 @@ internal fun NoteTopBar(
     }
 
     TopAppBar(
+        colors = TopAppBarDefaults.topAppBarColors(containerColor = reaction.containerColor),
         navigationIcon = {
             IconButton(onClick = onBackPressed) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = "Back Arrow Icon",
+                    tint = reaction.contentColor
                 )
             }
         },
@@ -96,12 +101,13 @@ internal fun NoteTopBar(
             ) {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
-                    text = moodName(),
+                    text = reaction.name,
                     style = TextStyle(
                         fontSize = MaterialTheme.typography.titleLarge.fontSize,
                         fontWeight = FontWeight.Bold,
                     ),
                     textAlign = TextAlign.Center,
+                    color = reaction.contentColor
                 )
 
                 Text(
@@ -117,6 +123,7 @@ internal fun NoteTopBar(
                         fontSize = MaterialTheme.typography.bodySmall.fontSize,
                     ),
                     textAlign = TextAlign.Center,
+                    color = reaction.contentColor
                 )
             }
         },
@@ -137,7 +144,7 @@ internal fun NoteTopBar(
                     Icon(
                         imageVector = Icons.Default.Close,
                         contentDescription = "Close Icon",
-                        tint = MaterialTheme.colorScheme.onSurface,
+                        tint = reaction.contentColor,
                     )
                 }
             } else {
@@ -149,7 +156,7 @@ internal fun NoteTopBar(
                         ),
                     imageVector = Icons.Default.DateRange,
                     contentDescription = "Date Icon",
-                    tint = MaterialTheme.colorScheme.onSurface,
+                    tint = reaction.contentColor,
                 )
             }
 
@@ -235,9 +242,9 @@ fun DeleteReportAction(
 @Composable
 fun NoteTopBarPreview() {
     MultiModularArchJCTheme {
-        NoteTopBar(
-            moodName = { Mood.Neutral.name },
+        WriteTopBar(
             selectedWrite = null,
+            reaction = Reaction.Neutral,
             onBackPressed = {},
             onDeleteConfirmed = {},
             onDateTimeUpdated = {},

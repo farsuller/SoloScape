@@ -25,6 +25,8 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.material3)
 
+    implementation(libs.androidx.animation)
+
     implementation(libs.androidx.compose.navigation)
 
     implementation(platform(libs.firebase.bom))

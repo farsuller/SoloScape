@@ -35,7 +35,7 @@ import coil3.request.ImageRequest
 import coil3.request.crossfade
 import com.soloscape.home.presentations.write.components.TransparentTextField
 import com.soloscape.home.presentations.write.components.WriteState
-import com.soloscape.ui.Mood
+import com.soloscape.ui.Reaction
 
 @Composable
 internal fun WriteContent(
@@ -78,7 +78,7 @@ internal fun WriteContent(
                         modifier = Modifier.size(120.dp),
                         model = ImageRequest
                             .Builder(LocalContext.current)
-                            .data(Mood.entries[page].icon)
+                            .data(Reaction.entries[page].icon)
                             .crossfade(true)
                             .build(),
                         contentDescription = "Mood Image",

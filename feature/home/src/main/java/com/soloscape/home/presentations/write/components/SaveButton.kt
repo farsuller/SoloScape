@@ -22,7 +22,7 @@ fun SaveButton(
         containerColor = color,
     ) {
         Icon(
-            modifier = Modifier.size(30.dp),
+            modifier = Modifier.size(25.dp),
             painter = painterResource(id = R.drawable.ic_write),
             contentDescription = "Save note",
             tint = Color.White,

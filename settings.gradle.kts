@@ -28,6 +28,6 @@ include (":core:ui")
 include (":core:util")
 include (":core:model")
 include (":core:database")
-//include (":feature:auth")
+include (":core:messagebar")
 include (":feature:home")
-//include (":feature:note")
+
