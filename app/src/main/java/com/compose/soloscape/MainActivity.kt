@@ -12,7 +12,8 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
 import com.compose.soloscape.navigation.SetupNavGraph
 import com.google.firebase.FirebaseApp
-import com.soloscape.ui.theme.MultiModularArchJCTheme
+import com.soloscape.dashboard.presentation.dashboard.DashboardScreen
+import com.soloscape.ui.theme.SoloScapeTheme
 import com.soloscape.util.routes.ScreensRoutes
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,22 +30,24 @@ class MainActivity : ComponentActivity() {
         setContent {
             var darkTheme by remember { mutableStateOf(false) }
 
-            MultiModularArchJCTheme(
+            SoloScapeTheme(
                 darkTheme = darkTheme,
                 dynamicColor = false,
             ) {
                 val navController = rememberNavController()
-                SetupNavGraph(
-                    startDestination = ScreensRoutes.Home.route,
-                    navHostController = navController,
-                    onDataLoaded = {
-                        keepSplashOpened = false
-                    },
-                    darkTheme = darkTheme,
-                    onThemeUpdated = {
-                        darkTheme = !darkTheme
-                    },
-                )
+//                SetupNavGraph(
+//                    startDestination = ScreensRoutes.Home.route,
+//                    navHostController = navController,
+//                    onDataLoaded = {
+//                        keepSplashOpened = false
+//                    },
+//                    darkTheme = darkTheme,
+//                    onThemeUpdated = {
+//                        darkTheme = !darkTheme
+//                    },
+//                )
+                DashboardScreen()
+                keepSplashOpened = false
             }
         }
     }

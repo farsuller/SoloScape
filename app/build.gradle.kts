@@ -104,7 +104,7 @@ dependencies {
     implementation (projects.core.database)
     implementation (projects.core.util)
 
-    //implementation (projects.feature.auth)
+    implementation (projects.feature.dashboard)
     implementation (projects.feature.home)
     //implementation (projects.feature.note)
 

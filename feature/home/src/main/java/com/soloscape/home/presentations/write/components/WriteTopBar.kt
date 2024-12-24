@@ -1,7 +1,6 @@
 package com.soloscape.home.presentations.write.components
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -25,7 +24,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -40,7 +38,7 @@ import com.maxkeppeler.sheets.clock.models.ClockSelection
 import com.soloscape.database.domain.model.Write
 import com.soloscape.ui.Reaction
 import com.soloscape.ui.components.DisplayAlertDialog
-import com.soloscape.ui.theme.MultiModularArchJCTheme
+import com.soloscape.ui.theme.SoloScapeTheme
 import com.soloscape.util.clickableWithoutRipple
 import com.soloscape.util.toZonedDateTimeOrNull
 import java.time.LocalDate
@@ -241,7 +239,7 @@ fun DeleteReportAction(
 @Preview(showBackground = true)
 @Composable
 fun NoteTopBarPreview() {
-    MultiModularArchJCTheme {
+    SoloScapeTheme {
         WriteTopBar(
             selectedWrite = null,
             reaction = Reaction.Neutral,
