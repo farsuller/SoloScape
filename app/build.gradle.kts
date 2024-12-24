@@ -6,9 +6,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.hilt)
-    id("com.google.devtools.ksp")
-    id ("io.realm.kotlin")
-    id ("com.google.gms.google-services")
+    alias(libs.plugins.devtool.ksp)
+    alias (libs.plugins.gms.google.services)
 }
 
 val keystoreProperties: Properties by lazy {
@@ -60,14 +59,7 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
 
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
     buildFeatures {
         compose = true
         buildConfig = true
@@ -76,51 +68,44 @@ android {
 }
 
 dependencies {
-    // Compose Navigation
-    implementation (libs.navigation.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.bundles.bundle.androidx.compose)
+
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
+
+    implementation(libs.androidx.material3)
 
     // Firebase
     implementation(platform(libs.firebase.bom))
     implementation (libs.firebase.storage)
 
-    // Room components
-    implementation (libs.room.runtime)
-    ksp (libs.room.compiler)
-    implementation (libs.room.ktx)
+    //Room
+    implementation(libs.bundles.bundle.room)
+    ksp(libs.androidx.room.compiler)
+
+    //Hilt
+    implementation(libs.androidx.hilt.compose.navigation)
+    implementation(libs.hilt)
+    ksp(libs.hilt.compiler)
 
     // Splash API
     implementation (libs.splash.api)
 
-    // Dagger Hilt
-    implementation (libs.hilt.android)
-    ksp (libs.hilt.compiler)
-
-    // Mongo DB Realm
-    implementation (libs.realm.sync)
-
-    // Desugar JDK
-    coreLibraryDesugaring (libs.desugar.jdk)
-
-//    //Leak Canary
-    debugImplementation (libs.leakcanary.android)
+    implementation (libs.coroutines.core)
 
     //Profile Installer
     implementation (libs.profileinstaller)
 
     implementation (projects.core.ui)
+    implementation (projects.core.model)
+    implementation (projects.core.database)
     implementation (projects.core.util)
-    implementation (projects.data.mongo)
-    implementation (projects.feature.auth)
+
+    //implementation (projects.feature.auth)
     implementation (projects.feature.home)
-    implementation (projects.feature.note)
+    //implementation (projects.feature.note)
 
-    testImplementation (libs.junit)
-    androidTestImplementation (libs.androidx.junit)
-    androidTestImplementation (libs.androidx.espresso.core)
-
-    androidTestImplementation (libs.hilt.android.testing)
-
-    androidTestImplementation (libs.androidx.ui.test.junit4)
-    debugImplementation (libs.androidx.ui.tooling)
-    debugImplementation (libs.androidx.ui.test.manifest)
 }

@@ -1,8 +1,8 @@
 plugins {
-    alias (libs.plugins.android.library)
-    alias (libs.plugins.kotlin.android)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose.compiler)
-    id ("io.realm.kotlin")
+
 }
 
 android {
@@ -11,32 +11,30 @@ android {
     buildFeatures {
         compose = true
     }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-
 }
 
 dependencies {
 
-    implementation (libs.activity.compose)
-    implementation (libs.material3.compose)
-    implementation (libs.core.ktx)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
+
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.bundles.bundle.androidx.compose)
+
+    implementation(libs.material)
+    implementation(libs.androidx.material3)
+
+    implementation(libs.androidx.animation)
+
+    implementation(libs.androidx.compose.navigation)
 
     implementation(platform(libs.firebase.bom))
-    implementation (libs.firebase.storage)
+    implementation(libs.firebase.storage)
 
-    implementation (libs.realm.sync)
-    implementation (libs.coroutines.core)
-    implementation (libs.coil)
-    implementation (libs.compose.tooling.preview)
+    implementation(libs.coroutines.core)
 
-    implementation (projects.core.ui)
+    implementation(libs.bundles.bundle.coil)
 
+    implementation(projects.core.ui)
 }

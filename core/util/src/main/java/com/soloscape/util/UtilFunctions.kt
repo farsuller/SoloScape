@@ -1,65 +1,60 @@
 package com.soloscape.util
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
-import android.net.Uri
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.composed
 import androidx.core.content.pm.PackageInfoCompat
-import com.google.firebase.storage.FirebaseStorage
-import io.realm.kotlin.types.RealmInstant
 import java.time.Instant
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.ZonedDateTime
 
-// inside function of fetchImagesFromFirebase with downloadUrl, with this a generated authentication token
-// will add on image url, with that you will be enable to access the images from firebase
-fun fetchImagesFromFirebase(
-    remoteImagePaths: List<String>,
-    onImageDownload: (Uri) -> Unit,
-    onImageDownloadFailed: (Exception) -> Unit = {},
-    onReadyDisplay: () -> Unit = {},
-) {
-    if (remoteImagePaths.isNotEmpty()) {
-        remoteImagePaths.forEachIndexed { index, remoteImagePath ->
-            if (remoteImagePath.trim().isNotEmpty()) {
-                FirebaseStorage.getInstance().reference.child(remoteImagePath.trim()).downloadUrl
-                    .addOnSuccessListener {
-                        onImageDownload(it)
-                        if (remoteImagePaths.lastIndexOf(remoteImagePaths.last()) == index) {
-                            onReadyDisplay()
-                        }
-                    }.addOnFailureListener {
-                        onImageDownloadFailed(it)
-                    }
-            }
-        }
-    }
+fun Long.toLocalDateOrNull(zone: ZoneId = ZoneId.systemDefault()): LocalDate? {
+    return runCatching {
+        Instant.ofEpochMilli(this).atZone(zone).toLocalDate()
+    }.getOrNull()
 }
 
-@SuppressLint("NewApi")
-fun RealmInstant.toInstant(): Instant {
-    val sec: Long = this.epochSeconds
-    val nano: Int = this.nanosecondsOfSecond
+// Convert Long to ZonedDateTime
+fun Long?.toZonedDateTimeOrNull(): ZonedDateTime? =
+    this?.let { Instant.ofEpochMilli(it).atZone(ZoneId.systemDefault()) }
 
-    return if (sec >= 0) {
-        Instant.ofEpochSecond(sec, nano.toLong())
-    } else {
-        Instant.ofEpochSecond(sec - 1, 1_000_000 + nano.toLong())
-    }
+// Convert ZonedDateTime to Long
+fun ZonedDateTime?.toEpochMilliOrNull(): Long? =
+    this?.toInstant()?.toEpochMilli()
+
+fun scaleIntoContainer(
+    direction: ScaleTransitionDirection = ScaleTransitionDirection.INWARDS,
+    initialScale: Float = if (direction == ScaleTransitionDirection.OUTWARDS) 0.9f else 1.1f
+): EnterTransition {
+    return scaleIn(
+        animationSpec = tween(220, delayMillis = 90),
+        initialScale = initialScale
+    ) + fadeIn(animationSpec = tween(220, delayMillis = 90))
 }
 
-@SuppressLint("NewApi")
-fun Instant.toRealmInstant(): RealmInstant {
-    val sec: Long = this.epochSecond
-    val nano: Int = this.nano
-    return if (sec >= 0) {
-        RealmInstant.from(sec, nano)
-    } else {
-        RealmInstant.from(sec + 1, -1_000_000 + nano)
-    }
+fun scaleOutOfContainer(
+    direction: ScaleTransitionDirection = ScaleTransitionDirection.OUTWARDS,
+    targetScale: Float = if (direction == ScaleTransitionDirection.INWARDS) 0.9f else 1.1f
+): ExitTransition {
+    return scaleOut(
+        animationSpec = tween(
+            durationMillis = 220,
+            delayMillis = 90
+        ), targetScale = targetScale
+    ) + fadeOut(tween(delayMillis = 90))
 }
 
 fun getAppVersion(context: Context): String {
@@ -68,25 +63,23 @@ fun getAppVersion(context: Context): String {
         val packageInfo: PackageInfo = packageManager.getPackageInfo(context.packageName, 0)
         val versionCode: Long = PackageInfoCompat.getLongVersionCode(packageInfo)
 
-        val versionName: String = packageInfo.versionName
+        val versionName: String = packageInfo.versionName.toString()
         "v$versionName"
     } catch (e: PackageManager.NameNotFoundException) {
         "version N/A"
     }
 }
 
-@SuppressLint("UnnecessaryComposedModifier")
+@Composable
 fun Modifier.clickableWithoutRipple(
-    interactionSource: MutableInteractionSource,
     onClick: () -> Unit,
-) = composed(
-    factory = {
-        this.then(
-            Modifier.clickable(
-                interactionSource = interactionSource,
-                indication = null,
-                onClick = { onClick() },
-            ),
-        )
-    },
-)
+): Modifier {
+    val interactionSource = remember { MutableInteractionSource() }
+    return this.then(
+        Modifier.clickable(
+            interactionSource = interactionSource,
+            indication = null,
+            onClick = onClick,
+        ),
+    )
+}
