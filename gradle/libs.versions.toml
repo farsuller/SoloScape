@@ -86,6 +86,8 @@ androidx-compose-ui-test = { module = "androidx.compose.ui:ui-test-junit4"}
 
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 
+androidx-ui-text-google-fonts = { module = "androidx.compose.ui:ui-text-google-fonts" }
+
 spotless = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version.ref = "spotless" }
 
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
