@@ -27,7 +27,7 @@ import java.lang.Exception
 
 fun NavGraphBuilder.writeRoute(onBackPressed: () -> Unit) {
     composable(
-        route = ScreensRoutes.Note.route,
+        route = ScreensRoutes.WriteFeltRoute.route,
         arguments = listOf(
             navArgument(name = NOTE_SCREEN_ARG_KEY) {
                 type = NavType.IntType

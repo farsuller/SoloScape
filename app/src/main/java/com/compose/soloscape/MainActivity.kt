@@ -35,19 +35,15 @@ class MainActivity : ComponentActivity() {
                 dynamicColor = false,
             ) {
                 val navController = rememberNavController()
-//                SetupNavGraph(
-//                    startDestination = ScreensRoutes.Home.route,
-//                    navHostController = navController,
-//                    onDataLoaded = {
-//                        keepSplashOpened = false
-//                    },
-//                    darkTheme = darkTheme,
-//                    onThemeUpdated = {
-//                        darkTheme = !darkTheme
-//                    },
-//                )
-                DashboardScreen()
-                keepSplashOpened = false
+                SetupNavGraph(
+                    startDestination = ScreensRoutes.DashboardRoute.route,
+                    navHostController = navController,
+                    onDataLoaded = { keepSplashOpened = it },
+                    darkTheme = darkTheme,
+                    onThemeUpdated = {
+                        darkTheme = !darkTheme
+                    },
+                )
             }
         }
     }

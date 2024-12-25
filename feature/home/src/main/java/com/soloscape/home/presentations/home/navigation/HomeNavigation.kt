@@ -2,7 +2,6 @@ package com.soloscape.home.presentations.home.navigation
 
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.rememberDrawerState
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -20,13 +19,11 @@ import kotlinx.coroutines.launch
 
 fun NavGraphBuilder.homeRoute(
     navigationToWrite: () -> Unit,
-    navigateToAuth: () -> Unit,
-    onDataLoaded: () -> Unit,
     navigateToWriteWithArgs: (Int?) -> Unit,
     darkTheme: Boolean,
     onThemeUpdated: () -> Unit,
 ) {
-    composable(route = ScreensRoutes.Home.route) {
+    composable(route = ScreensRoutes.FeltRoute.route) {
         val viewModel: HomeViewModel = hiltViewModel()
         val scope = rememberCoroutineScope()
         val homeState by viewModel.homeState.collectAsStateWithLifecycle()
@@ -34,9 +31,6 @@ fun NavGraphBuilder.homeRoute(
         var signOutDialogOpened by remember { mutableStateOf(false) }
         var deleteAllDialogOpened by remember { mutableStateOf(false) }
 
-        LaunchedEffect(key1 = Unit) {
-            onDataLoaded()
-        }
         HomeScreen(
             homeState = homeState,
             drawerState = drawerState,

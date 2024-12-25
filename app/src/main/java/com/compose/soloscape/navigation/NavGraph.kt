@@ -3,6 +3,7 @@ package com.compose.soloscape.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import com.soloscape.dashboard.navigation.dashboardRoute
 import com.soloscape.home.presentations.home.navigation.homeRoute
 import com.soloscape.home.presentations.write.navigation.writeRoute
 import com.soloscape.util.routes.ScreensRoutes
@@ -11,7 +12,7 @@ import com.soloscape.util.routes.ScreensRoutes
 fun SetupNavGraph(
     startDestination: String,
     navHostController: NavHostController,
-    onDataLoaded: () -> Unit,
+    onDataLoaded: (Boolean) -> Unit,
     darkTheme: Boolean,
     onThemeUpdated: () -> Unit,
 ) {
@@ -19,27 +20,28 @@ fun SetupNavGraph(
         navController = navHostController,
         startDestination = startDestination,
     ) {
-//        authenticationRoute(
-//            navigateToHome = {
-//                navHostController.popBackStack()
-//                navHostController.navigate(ScreensRoutes.Home.route)
-//            },
-//            onDataLoaded = onDataLoaded,
-//        )
+
+        dashboardRoute(
+            onDataLoaded = onDataLoaded,
+            navigationToFelt = { navHostController.navigate(ScreensRoutes.FeltRoute.route) },
+            navigationToIdea = {
+
+            },
+        )
+
         homeRoute(
             darkTheme = darkTheme,
             onThemeUpdated = onThemeUpdated,
             navigationToWrite = {
-                navHostController.navigate(ScreensRoutes.Note.route)
+                navHostController.navigate(ScreensRoutes.WriteFeltRoute.route)
             },
             navigateToWriteWithArgs = {
-                navHostController.navigate(ScreensRoutes.Note.passNoteId(noteId = it ?: -1))
+                navHostController.navigate(
+                    ScreensRoutes.WriteFeltRoute.passWriteId(
+                        noteId = it ?: -1
+                    )
+                )
             },
-            navigateToAuth = {
-                navHostController.popBackStack()
-                navHostController.navigate(ScreensRoutes.Authentication.route)
-            },
-            onDataLoaded = onDataLoaded,
         )
         writeRoute(
             onBackPressed = {

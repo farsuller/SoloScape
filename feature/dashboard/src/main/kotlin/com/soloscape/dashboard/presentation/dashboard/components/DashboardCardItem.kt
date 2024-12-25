@@ -3,6 +3,7 @@ package com.soloscape.dashboard.presentation.dashboard.components
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -32,6 +33,7 @@ import com.soloscape.ui.R
 import com.soloscape.ui.theme.MossGreenColor
 import com.soloscape.ui.theme.NyanzaColor
 import com.soloscape.ui.theme.SoloScapeTheme
+import com.soloscape.util.clickableWithoutRipple
 
 @Composable
 fun DashboardCardItem(
@@ -41,10 +43,11 @@ fun DashboardCardItem(
     textDescription: String,
     bgIconColor: Color,
     @DrawableRes iconImage: Int,
-    @DrawableRes imageBottom: Int
+    @DrawableRes imageBottom: Int,
+    onClick: () -> Unit = {},
 ) {
     Box(
-        modifier = modifier,
+        modifier = modifier.clickableWithoutRipple { onClick() },
         contentAlignment = Alignment.BottomCenter
     ) {
         Image(

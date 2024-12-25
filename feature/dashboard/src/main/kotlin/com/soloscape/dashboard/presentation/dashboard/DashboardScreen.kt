@@ -30,7 +30,10 @@ import com.soloscape.ui.theme.NyanzaColor
 import com.soloscape.ui.theme.PhilippineBronzeColor
 
 @Composable
-fun DashboardScreen() {
+fun DashboardScreen(
+    navigationToFelt: () -> Unit,
+    navigationToIdea: () -> Unit,
+) {
     Scaffold(modifier = Modifier.fillMaxSize()) { padding ->
         Column(
             modifier = Modifier
@@ -101,7 +104,8 @@ fun DashboardScreen() {
                         textDescription = "A notepad to capture your ideas, plans, and creative sparks.",
                         bgIconColor = MossGreenColor,
                         iconImage = R.drawable.ic_idea,
-                        imageBottom = R.drawable.svg_idea
+                        imageBottom = R.drawable.svg_idea,
+                        onClick = navigationToIdea
                     )
 
                     DashboardCardItem(
@@ -121,10 +125,10 @@ fun DashboardScreen() {
                         textDescription = "A journal designed to help you articulate and process your feelings.",
                         bgIconColor = PhilippineBronzeColor,
                         iconImage = R.drawable.ic_feeling,
-                        imageBottom = R.drawable.svg_felt
+                        imageBottom = R.drawable.svg_felt,
+                        onClick = navigationToFelt
                     )
                 }
-
             }
         }
     }
