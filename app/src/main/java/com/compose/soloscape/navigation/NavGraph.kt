@@ -4,8 +4,10 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.soloscape.dashboard.navigation.dashboardRoute
-import com.soloscape.home.presentations.home.navigation.homeRoute
-import com.soloscape.home.presentations.write.navigation.writeRoute
+import com.soloscape.felt.navigations.feltRoute
+import com.soloscape.felt.navigations.writeRoute
+import com.soloscape.idea.navigations.ideaRoute
+import com.soloscape.idea.navigations.noteIdeaRoute
 import com.soloscape.util.routes.ScreensRoutes
 
 @Composable
@@ -24,23 +26,17 @@ fun SetupNavGraph(
         dashboardRoute(
             onDataLoaded = onDataLoaded,
             navigationToFelt = { navHostController.navigate(ScreensRoutes.FeltRoute.route) },
-            navigationToIdea = {
-
-            },
+            navigationToIdea = { navHostController.navigate(ScreensRoutes.IdeaRoute.route) },
         )
 
-        homeRoute(
+        feltRoute(
             darkTheme = darkTheme,
             onThemeUpdated = onThemeUpdated,
             navigationToWrite = {
                 navHostController.navigate(ScreensRoutes.WriteFeltRoute.route)
             },
             navigateToWriteWithArgs = {
-                navHostController.navigate(
-                    ScreensRoutes.WriteFeltRoute.passWriteId(
-                        noteId = it ?: -1
-                    )
-                )
+                navHostController.navigate(ScreensRoutes.WriteFeltRoute.passWriteId(writeId = it ?: -1))
             },
         )
         writeRoute(
@@ -48,5 +44,9 @@ fun SetupNavGraph(
                 navHostController.popBackStack()
             },
         )
+
+        ideaRoute(navController = navHostController)
+
+        noteIdeaRoute(navController = navHostController)
     }
 }
