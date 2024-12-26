@@ -33,9 +33,9 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
-import com.soloscape.felt.presentations.write.components.TransparentTextField
 import com.soloscape.felt.presentations.write.components.WriteState
 import com.soloscape.ui.Reaction
+import com.soloscape.ui.components.TransparentTextField
 
 @Composable
 internal fun WriteContent(
@@ -100,7 +100,6 @@ internal fun WriteContent(
                     onFocusChange = onFocusChangeTitle,
                     isHintVisible = writeState.titleHintVisible,
                     singleLine = true,
-
                     keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
                     keyboardActions = KeyboardActions(
                         onNext = {

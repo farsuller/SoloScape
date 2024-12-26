@@ -1,58 +1,55 @@
 package com.soloscape.ui.theme
 
 import androidx.compose.material3.Typography
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.googlefonts.Font
-
-import androidx.compose.ui.text.googlefonts.GoogleFont
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.text.font.Font
 import com.soloscape.ui.R
 
 val robotoThinFontFamily = FontFamily(
-    Font(R.font.roboto_thin)
+    Font(R.font.roboto_thin),
 )
 
 val robotoThinItalicFontFamily = FontFamily(
-    Font(R.font.roboto_thin_italic)
+    Font(R.font.roboto_thin_italic),
 )
 
 val robotoRegularFontFamily = FontFamily(
-    Font(R.font.roboto_regular)
+    Font(R.font.roboto_regular),
 )
 
 val robotoMediumFontFamily = FontFamily(
-    Font(R.font.roboto_medium)
+    Font(R.font.roboto_medium),
 )
 
 val robotoMediumItalicFontFamily = FontFamily(
-    Font(R.font.roboto_medium_italic)
+    Font(R.font.roboto_medium_italic),
 )
 
 val robotoLightItalicFontFamily = FontFamily(
-    Font(R.font.roboto_light_italic)
+    Font(R.font.roboto_light_italic),
 )
 
 val robotoLightFontFamily = FontFamily(
-    Font(R.font.roboto_light)
+    Font(R.font.roboto_light),
 )
 
 val robotoItalicFontFamily = FontFamily(
-    Font(R.font.roboto_italic)
+    Font(R.font.roboto_italic),
 )
 
 val robotoBoldFontFamily = FontFamily(
-    Font(R.font.roboto_bold)
+    Font(R.font.roboto_bold),
 )
 
 val robotoBlackFontFamily = FontFamily(
-    Font(R.font.roboto_black, FontWeight.Normal)
+    Font(R.font.roboto_black, FontWeight.Normal),
 )
 
 val robotoBlackItalicFontFamily = FontFamily(
-    Font(R.font.roboto_black_italic, FontWeight.Normal)
+    Font(R.font.roboto_black_italic, FontWeight.Normal),
 )
 
 val baseline = Typography()

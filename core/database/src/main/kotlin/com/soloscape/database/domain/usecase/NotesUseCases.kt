@@ -5,9 +5,9 @@ import com.soloscape.database.domain.usecase.note.DeleteNote
 import com.soloscape.database.domain.usecase.note.GetNote
 import com.soloscape.database.domain.usecase.note.GetNotes
 
-data class NotesUseCases (
+data class NotesUseCases(
     val getNotes: GetNotes,
     val deleteNote: DeleteNote,
     val addNote: AddNote,
-    val getNote: GetNote
+    val getNote: GetNote,
 )

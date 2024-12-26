@@ -61,7 +61,7 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideNoteRepository(db : ScapeDatabase) : NoteRepository {
+    fun provideNoteRepository(db: ScapeDatabase): NoteRepository {
         return NoteRepositoryImpl(db.noteDao)
     }
 
@@ -71,8 +71,8 @@ object DatabaseModule {
         return NotesUseCases(
             getNotes = GetNotes(repository = repository),
             deleteNote = DeleteNote(repository = repository),
-            addNote =  AddNote(repository = repository),
-            getNote = GetNote(repository = repository)
+            addNote = AddNote(repository = repository),
+            getNote = GetNote(repository = repository),
         )
     }
 }

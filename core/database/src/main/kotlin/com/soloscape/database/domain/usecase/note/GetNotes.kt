@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class GetNotes(
-    private val repository: NoteRepository
+    private val repository: NoteRepository,
 ) {
     operator fun invoke(noteOrder: NoteOrder = NoteOrder.Date(OrderType.Descending)): Flow<List<Note>> =
         repository.getNotes().map { notes ->
