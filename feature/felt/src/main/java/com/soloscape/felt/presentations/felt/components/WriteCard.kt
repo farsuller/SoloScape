@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import com.soloscape.database.domain.model.Write
 import com.soloscape.ui.Reaction
 import com.soloscape.ui.theme.Elevation
+import com.soloscape.ui.theme.robotoBoldFontFamily
 import com.soloscape.util.clickableWithoutRipple
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -70,7 +71,11 @@ fun WriteCard(write: Write, onClick: (Int?) -> Unit) {
                 Text(
                     modifier = Modifier.padding(all = 14.dp),
                     text = write.content,
-                    style = TextStyle(fontSize = MaterialTheme.typography.bodyLarge.fontSize),
+                    style = TextStyle(
+                        fontFamily = MaterialTheme.typography.labelMedium.fontFamily,
+                        fontSize = MaterialTheme.typography.labelMedium.fontSize,
+                        fontWeight = MaterialTheme.typography.labelMedium.fontWeight
+                    ),
                     maxLines = 4,
                     overflow = TextOverflow.Ellipsis,
                 )
@@ -105,12 +110,20 @@ fun WriteHeader(write: Write) {
                     Text(
                         text = reaction.name,
                         color = reaction.contentColor,
-                        style = TextStyle(fontSize = MaterialTheme.typography.bodyMedium.fontSize),
+                        style = TextStyle(
+                            fontFamily = MaterialTheme.typography.labelMedium.fontFamily,
+                            fontSize = MaterialTheme.typography.labelMedium.fontSize,
+                            fontWeight = MaterialTheme.typography.labelMedium.fontWeight
+                        ),
                     )
                 }
 
                 Text(
-                    style = TextStyle(fontSize = MaterialTheme.typography.bodyMedium.fontSize),
+                    style = TextStyle(
+                        fontFamily = MaterialTheme.typography.labelMedium.fontFamily,
+                        fontSize = MaterialTheme.typography.labelMedium.fontSize,
+                        fontWeight = MaterialTheme.typography.labelMedium.fontWeight
+                    ),
                     color = reaction.contentColor,
                     text = SimpleDateFormat("hh:mm a", Locale.US).format(write.date),
                 )
@@ -120,8 +133,11 @@ fun WriteHeader(write: Write) {
                 modifier = Modifier.padding(top = 5.dp),
                 text = write.title,
                 color = reaction.contentColor,
-                fontWeight = MaterialTheme.typography.bodyLarge.fontWeight,
-                style = TextStyle(fontSize = MaterialTheme.typography.bodyLarge.fontSize),
+                style = TextStyle(
+                    fontFamily = robotoBoldFontFamily,
+                    fontSize = MaterialTheme.typography.labelLarge.fontSize,
+                    fontWeight = MaterialTheme.typography.labelLarge.fontWeight
+                ),
             )
         }
     }

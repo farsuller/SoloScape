@@ -66,7 +66,7 @@ val AppTypography = Typography(
     headlineMedium = baseline.headlineMedium.copy(fontFamily = robotoLightFontFamily, fontSize = 40.sp),
     headlineSmall = baseline.headlineSmall.copy(fontFamily = robotoRegularFontFamily),
 
-    titleLarge = baseline.titleLarge.copy(fontFamily = robotoBoldFontFamily, fontSize = 40.sp),
+    titleLarge = baseline.titleLarge.copy(fontFamily = robotoBoldFontFamily),
     titleMedium = baseline.titleMedium.copy(fontFamily = robotoMediumFontFamily),
     titleSmall = baseline.titleSmall.copy(fontFamily = robotoRegularFontFamily),
 
@@ -74,7 +74,7 @@ val AppTypography = Typography(
     bodyMedium = baseline.bodyMedium.copy(fontFamily = robotoLightFontFamily, fontSize = 20.sp),
     bodySmall = baseline.bodySmall.copy(fontFamily = robotoThinFontFamily, fontSize = 16.sp),
 
-    labelLarge = baseline.labelLarge.copy(fontFamily = robotoRegularFontFamily),
-    labelMedium = baseline.labelMedium.copy(fontFamily = robotoRegularFontFamily),
-    labelSmall = baseline.labelSmall.copy(fontFamily = robotoRegularFontFamily),
+    labelLarge = baseline.labelLarge.copy(fontFamily = robotoRegularFontFamily, fontSize = 16.sp),
+    labelMedium = baseline.labelMedium.copy(fontFamily = robotoRegularFontFamily, fontSize = 14.sp),
+    labelSmall = baseline.labelSmall.copy(fontFamily = robotoRegularFontFamily, fontSize = 12.sp),
 )

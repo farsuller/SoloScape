@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.soloscape.database.domain.usecase.WriteUseCases
+import com.soloscape.felt.presentations.felt.components.FeltEvent
 import com.soloscape.felt.presentations.felt.components.FeltState
 import com.soloscape.util.connectivity.ConnectivityObserver
 import com.soloscape.util.connectivity.NetworkConnectivityObserver
@@ -16,7 +17,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 import java.time.ZonedDateTime
 import javax.inject.Inject
 
@@ -36,28 +36,28 @@ internal class FeltViewModel @Inject constructor(
 
     init {
         getWriteList()
-        viewModelScope.launch {
-            connectivity.observe().collect { network = it }
-        }
     }
 
-    fun getWrite(zonedDateTime: ZonedDateTime? = null) {
-        dateIsSelected = zonedDateTime != null
-
-        if (dateIsSelected && zonedDateTime != null) {
-            getWriteFilteredList(zonedDateTime = zonedDateTime)
-        } else {
-            getWriteList()
+    fun onEvent(event: FeltEvent) {
+        when (event) {
+            is FeltEvent.DisplayAllDate -> getWriteList()
+            is FeltEvent.FilterBySelectedDate -> {
+                getWriteFilteredList(zonedDateTime = event.dateTime)
+            }
         }
     }
 
     private fun getWriteList() {
+        dateIsSelected = false
+
         writeUseCases.getWrite().onEach { write ->
             _homeState.update { it.copy(writes = write) }
         }.launchIn(viewModelScope)
     }
 
     private fun getWriteFilteredList(zonedDateTime: ZonedDateTime) {
+        dateIsSelected = true
+
         writeUseCases.getWriteByFiltered(date = zonedDateTime).onEach { write ->
             _homeState.update { it.copy(writes = write) }
         }.launchIn(viewModelScope)

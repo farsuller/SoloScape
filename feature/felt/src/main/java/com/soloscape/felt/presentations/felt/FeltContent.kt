@@ -18,16 +18,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.soloscape.database.domain.model.Write
 import com.soloscape.felt.presentations.felt.components.EmptyPage
 import com.soloscape.felt.presentations.felt.components.WriteCard
 import java.time.LocalDate
 
 @Composable
-internal fun HomeContent(
+internal fun FeltContent(
     paddingValues: PaddingValues,
     writes: Map<LocalDate, List<Write>>? = null,
     onClick: (Int?) -> Unit,
@@ -66,16 +66,18 @@ internal fun DateHeader(localDate: LocalDate) {
             Text(
                 style =
                 TextStyle(
-                    fontSize = MaterialTheme.typography.titleLarge.fontSize,
-                    fontWeight = FontWeight.Light,
+                    fontFamily = MaterialTheme.typography.bodyMedium.fontFamily,
+                    fontSize = 25.sp,
+                    fontWeight = MaterialTheme.typography.bodyMedium.fontWeight
                 ),
                 text = String.format("%02d", localDate.dayOfMonth),
             )
 
             Text(
                 style = TextStyle(
-                    fontSize = MaterialTheme.typography.bodySmall.fontSize,
-                    fontWeight = FontWeight.Light,
+                    fontFamily = MaterialTheme.typography.labelMedium.fontFamily,
+                    fontSize = MaterialTheme.typography.labelMedium.fontSize,
+                    fontWeight = MaterialTheme.typography.labelMedium.fontWeight
                 ),
                 text = localDate.dayOfWeek.toString().take(3),
             )
@@ -85,18 +87,19 @@ internal fun DateHeader(localDate: LocalDate) {
 
         Column(horizontalAlignment = Alignment.Start) {
             Text(
-                style =
-                TextStyle(
-                    fontSize = MaterialTheme.typography.titleLarge.fontSize,
-                    fontWeight = FontWeight.Light,
+                style = TextStyle(
+                    fontFamily = MaterialTheme.typography.labelMedium.fontFamily,
+                    fontSize = MaterialTheme.typography.labelMedium.fontSize,
+                    fontWeight = MaterialTheme.typography.labelMedium.fontWeight
                 ),
                 text = localDate.month.toString().lowercase().replaceFirstChar { it.titlecase() },
             )
 
             Text(
                 style = TextStyle(
-                    fontSize = MaterialTheme.typography.bodySmall.fontSize,
-                    fontWeight = FontWeight.Light,
+                    fontFamily = MaterialTheme.typography.labelMedium.fontFamily,
+                    fontSize = MaterialTheme.typography.labelMedium.fontSize,
+                    fontWeight = MaterialTheme.typography.labelMedium.fontWeight
                 ),
                 text = "${localDate.year}",
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),

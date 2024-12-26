@@ -28,21 +28,14 @@ class MainActivity : ComponentActivity() {
 
         FirebaseApp.initializeApp(this)
         setContent {
-            var darkTheme by remember { mutableStateOf(false) }
-
             SoloScapeTheme(
-                darkTheme = darkTheme,
                 dynamicColor = false,
             ) {
                 val navController = rememberNavController()
                 SetupNavGraph(
                     startDestination = ScreensRoutes.DashboardRoute.route,
                     navHostController = navController,
-                    onDataLoaded = { keepSplashOpened = it },
-                    darkTheme = darkTheme,
-                    onThemeUpdated = {
-                        darkTheme = !darkTheme
-                    },
+                    onDataLoaded = { keepSplashOpened = it }
                 )
             }
         }

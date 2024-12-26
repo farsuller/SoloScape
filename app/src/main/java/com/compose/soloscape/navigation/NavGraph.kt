@@ -15,14 +15,11 @@ fun SetupNavGraph(
     startDestination: String,
     navHostController: NavHostController,
     onDataLoaded: (Boolean) -> Unit,
-    darkTheme: Boolean,
-    onThemeUpdated: () -> Unit,
 ) {
     NavHost(
         navController = navHostController,
         startDestination = startDestination,
     ) {
-
         dashboardRoute(
             onDataLoaded = onDataLoaded,
             navigationToFelt = { navHostController.navigate(ScreensRoutes.FeltRoute.route) },
@@ -30,14 +27,15 @@ fun SetupNavGraph(
         )
 
         feltRoute(
-            darkTheme = darkTheme,
-            onThemeUpdated = onThemeUpdated,
             navigationToWrite = {
                 navHostController.navigate(ScreensRoutes.WriteFeltRoute.route)
             },
             navigateToWriteWithArgs = {
                 navHostController.navigate(ScreensRoutes.WriteFeltRoute.passWriteId(writeId = it ?: -1))
             },
+            onBackPressed = {
+                navHostController.popBackStack()
+            }
         )
         writeRoute(
             onBackPressed = {

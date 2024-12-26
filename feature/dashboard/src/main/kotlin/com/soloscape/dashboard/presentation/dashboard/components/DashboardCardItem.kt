@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -24,6 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -33,6 +35,7 @@ import com.soloscape.ui.R
 import com.soloscape.ui.theme.MossGreenColor
 import com.soloscape.ui.theme.NyanzaColor
 import com.soloscape.ui.theme.SoloScapeTheme
+import com.soloscape.ui.theme.robotoMediumItalicFontFamily
 import com.soloscape.util.clickableWithoutRipple
 
 @Composable
@@ -61,10 +64,11 @@ fun DashboardCardItem(
 
         Icon(
             modifier = Modifier
-                .size(45.dp)
-                .padding(end = 10.dp, bottom = 20.dp)
-                .align(Alignment.BottomEnd),
-            painter = painterResource(R.drawable.ic_open),
+                .size(35.dp)
+                .offset(x = (-20).dp, y = (-30).dp)
+                .align(Alignment.BottomEnd)
+                .rotate(90F),
+            painter = painterResource(R.drawable.ic_chevron),
             contentDescription = null,
             tint = MaterialTheme.colorScheme.onSurface
         )
@@ -108,7 +112,7 @@ fun DashboardCardItem(
                     color = MaterialTheme.colorScheme.onSurface,
                     text = textTitle,
                     style = TextStyle(
-                        fontFamily = MaterialTheme.typography.bodyLarge.fontFamily,
+                        fontFamily = robotoMediumItalicFontFamily,
                         fontSize = MaterialTheme.typography.bodyLarge.fontSize,
                         fontWeight = MaterialTheme.typography.bodyLarge.fontWeight
                     )
