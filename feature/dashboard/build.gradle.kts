@@ -43,9 +43,11 @@ dependencies {
     implementation (libs.firebase.auth)
     implementation (libs.firebase.storage)
 
-    implementation (projects.core.ui)
-    implementation (projects.core.model)
-    implementation (projects.core.util)
+    implementation(projects.core.ui)
+    implementation(projects.core.model)
+    implementation(projects.core.database)
+    implementation(projects.core.util)
+    implementation(projects.core.messagebar)
 
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     testImplementation (libs.junit)
