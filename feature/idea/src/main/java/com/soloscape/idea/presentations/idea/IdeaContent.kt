@@ -11,16 +11,20 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.items
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.soloscape.database.domain.model.Note
 import com.soloscape.idea.presentations.idea.components.IdeaState
 import com.soloscape.idea.presentations.idea.components.NoteItemCard
 import com.soloscape.idea.presentations.note.components.NoteIdColor
+import com.soloscape.ui.components.EmptyListContainer
 import com.soloscape.util.clickableWithoutRipple
 
 @Composable
@@ -28,7 +32,6 @@ fun IdeaContent(
     innerPadding: PaddingValues,
     ideaState: IdeaState,
     navigateToNoteWithArgs: (NoteIdColor) -> Unit,
-    snackBarHostState: SnackbarHostState,
     onDeleteClick: (Note) -> Unit,
 ) {
     Column(
@@ -41,12 +44,7 @@ fun IdeaContent(
             .padding(16.dp),
     ) {
         if (ideaState.notes.isEmpty()) {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center,
-            ) {
-                Text(text = "Take note what's on your mind.")
-            }
+            EmptyListContainer(title = "Got an idea?", subtitle = "Note it down!")
         } else {
             LazyVerticalStaggeredGrid(
                 columns = StaggeredGridCells.Fixed(2),

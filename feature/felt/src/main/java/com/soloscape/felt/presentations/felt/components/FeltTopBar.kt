@@ -21,6 +21,7 @@ import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
 import com.maxkeppeler.sheets.calendar.CalendarDialog
 import com.maxkeppeler.sheets.calendar.models.CalendarConfig
 import com.maxkeppeler.sheets.calendar.models.CalendarSelection
+import com.soloscape.felt.presentations.common.MoreVertAction
 import com.soloscape.util.clickableWithoutRipple
 import java.time.LocalDate
 import java.time.LocalTime
@@ -34,6 +35,7 @@ internal fun FeltTopBar(
     onDateSelected: (ZonedDateTime) -> Unit,
     onDateReset: () -> Unit,
     onBackPressed: () -> Unit,
+    onDeleteAllConfirmed: () -> Unit,
 ) {
     val dateDialog = rememberUseCaseState()
     var pickedDate by remember { mutableStateOf(LocalDate.now()) }
@@ -45,7 +47,7 @@ internal fun FeltTopBar(
                     .padding(10.dp)
                     .clickableWithoutRipple { onBackPressed() },
                 imageVector = Icons.AutoMirrored.Filled.ArrowBackIos,
-                contentDescription = "Close Icon",
+                contentDescription = "Back Icon",
                 tint = MaterialTheme.colorScheme.onSurface,
             )
         },
@@ -60,13 +62,8 @@ internal fun FeltTopBar(
                 tint = MaterialTheme.colorScheme.onSurface,
             )
 
-            Icon(
-                modifier = Modifier
-                    .padding(10.dp)
-                    .clickableWithoutRipple { },
-                imageVector = Icons.Default.MoreVert,
-                contentDescription = "Close Icon",
-                tint = MaterialTheme.colorScheme.onSurface,
+            MoreVertAction(
+                onDeleteConfirmed = onDeleteAllConfirmed,
             )
         },
     )

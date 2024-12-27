@@ -11,12 +11,14 @@ import com.soloscape.felt.presentations.felt.components.FeltState
 import com.soloscape.util.connectivity.ConnectivityObserver
 import com.soloscape.util.connectivity.NetworkConnectivityObserver
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import java.time.ZonedDateTime
 import javax.inject.Inject
 
@@ -44,6 +46,7 @@ internal class FeltViewModel @Inject constructor(
             is FeltEvent.FilterBySelectedDate -> {
                 getWriteFilteredList(zonedDateTime = event.dateTime)
             }
+            FeltEvent.DeleteAll -> deleteAllWrite()
         }
     }
 
@@ -61,5 +64,9 @@ internal class FeltViewModel @Inject constructor(
         writeUseCases.getWriteByFiltered(date = zonedDateTime).onEach { write ->
             _homeState.update { it.copy(writes = write) }
         }.launchIn(viewModelScope)
+    }
+
+    private fun deleteAllWrite() = viewModelScope.launch(Dispatchers.IO) {
+        writeUseCases.deleteAllWrite()
     }
 }

@@ -7,7 +7,7 @@ import com.soloscape.database.domain.model.Write
 
 @Database(
     entities = [Write::class, Note::class],
-    version = 1,
+    version = 2,
     exportSchema = true,
 )
 abstract class ScapeDatabase : RoomDatabase() {

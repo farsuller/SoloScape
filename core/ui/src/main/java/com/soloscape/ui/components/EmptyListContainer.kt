@@ -1,4 +1,4 @@
-package com.soloscape.felt.presentations.felt.components
+package com.soloscape.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,9 +14,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun EmptyPage(
-    title: String = "Welcome to SoloScape",
-    subtitle: String = "Write Something",
+fun EmptyListContainer(
+    title: String = "",
+    subtitle: String = "",
 ) {
     Column(
         modifier = Modifier
@@ -31,6 +31,7 @@ fun EmptyPage(
                 fontSize = MaterialTheme.typography.titleMedium.fontSize,
                 fontWeight = FontWeight.Medium,
             ),
+            color = MaterialTheme.colorScheme.onSurface
         )
         Text(
             text = subtitle,
@@ -38,6 +39,7 @@ fun EmptyPage(
                 fontSize = MaterialTheme.typography.bodyMedium.fontSize,
                 fontWeight = FontWeight.Normal,
             ),
+            color = MaterialTheme.colorScheme.onSurface
         )
     }
 }

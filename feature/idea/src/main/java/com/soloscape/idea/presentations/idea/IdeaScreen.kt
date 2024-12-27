@@ -49,7 +49,6 @@ fun IdeaScreen(
             innerPadding = innerPadding,
             ideaState = ideaState,
             navigateToNoteWithArgs = navigateToNoteWithArgs,
-            snackBarHostState = snackBarHostState,
             onDeleteClick = {
                 onDeleteClick(it)
             },

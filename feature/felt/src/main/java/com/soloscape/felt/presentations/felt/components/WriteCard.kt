@@ -40,12 +40,12 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 
 @Composable
-fun WriteCard(write: Write, onClick: (Int?) -> Unit) {
+fun WriteCard(write: Write, onClickCard: (Int?) -> Unit) {
     val localDensity = LocalDensity.current
     var componentHeight by remember { mutableStateOf(0.dp) }
 
     Row(
-        modifier = Modifier.clickableWithoutRipple { onClick(write.id) },
+        modifier = Modifier.clickableWithoutRipple { onClickCard(write.id) },
     ) {
         Spacer(modifier = Modifier.width(14.dp))
         Surface(
@@ -154,6 +154,6 @@ fun WriteCardPreview() {
             mood = Reaction.Happy.name,
             date = 0,
         ),
-        onClick = {},
+        onClickCard = {},
     )
 }

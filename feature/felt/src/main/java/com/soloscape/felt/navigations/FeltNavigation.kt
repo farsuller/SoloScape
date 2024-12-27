@@ -33,6 +33,7 @@ fun NavGraphBuilder.feltRoute(
             onDateSelected = { viewModel.onEvent(FeltEvent.FilterBySelectedDate(dateTime = it)) },
             onDateReset = { viewModel.onEvent(FeltEvent.DisplayAllDate) },
             onBackPressed = onBackPressed,
+            onDeleteAllConfirmed = { viewModel.onEvent(FeltEvent.DeleteAll) }
         )
 
         DisplayAlertDialog(

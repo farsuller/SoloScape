@@ -1,6 +1,5 @@
 package com.soloscape.felt.presentations.write.components
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -8,10 +7,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -25,7 +20,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -36,9 +30,10 @@ import com.maxkeppeler.sheets.calendar.models.CalendarSelection
 import com.maxkeppeler.sheets.clock.ClockDialog
 import com.maxkeppeler.sheets.clock.models.ClockSelection
 import com.soloscape.database.domain.model.Write
+import com.soloscape.felt.presentations.common.MoreVertAction
 import com.soloscape.ui.Reaction
-import com.soloscape.ui.components.DisplayAlertDialog
 import com.soloscape.ui.theme.SoloScapeTheme
+import com.soloscape.ui.theme.robotoBoldFontFamily
 import com.soloscape.util.clickableWithoutRipple
 import com.soloscape.util.toZonedDateTimeOrNull
 import java.time.LocalDate
@@ -47,8 +42,6 @@ import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 
-@SuppressLint("NewApi")
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun WriteTopBar(
     reaction: Reaction,
@@ -101,8 +94,9 @@ internal fun WriteTopBar(
                     modifier = Modifier.fillMaxWidth(),
                     text = reaction.name,
                     style = TextStyle(
+                        fontFamily = robotoBoldFontFamily,
                         fontSize = MaterialTheme.typography.titleLarge.fontSize,
-                        fontWeight = FontWeight.Bold,
+                        fontWeight = MaterialTheme.typography.labelLarge.fontWeight,
                     ),
                     textAlign = TextAlign.Center,
                     color = reaction.contentColor,
@@ -118,7 +112,9 @@ internal fun WriteTopBar(
                         "$formattedDate, $formattedTime"
                     },
                     style = TextStyle(
-                        fontSize = MaterialTheme.typography.bodySmall.fontSize,
+                        fontFamily = MaterialTheme.typography.labelMedium.fontFamily,
+                        fontSize = MaterialTheme.typography.labelMedium.fontSize,
+                        fontWeight = MaterialTheme.typography.labelMedium.fontWeight,
                     ),
                     textAlign = TextAlign.Center,
                     color = reaction.contentColor,
@@ -159,8 +155,8 @@ internal fun WriteTopBar(
             }
 
             if (selectedWrite != null) {
-                DeleteReportAction(
-                    selectedReport = selectedWrite,
+                MoreVertAction(
+                    selectedWrite = selectedWrite,
                     onDeleteConfirmed = { onDeleteConfirmed(selectedWrite) },
                 )
             }
@@ -193,52 +189,9 @@ internal fun WriteTopBar(
     )
 }
 
-@Composable
-fun DeleteReportAction(
-    selectedReport: Write?,
-    onDeleteConfirmed: () -> Unit,
-) {
-    var expanded by remember {
-        mutableStateOf(false)
-    }
-    var openDialog by remember {
-        mutableStateOf(false)
-    }
-
-    DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
-        DropdownMenuItem(text = {
-            Text(text = "Delete")
-        }, onClick = {
-            openDialog = true
-            expanded = false
-        })
-    }
-
-    DisplayAlertDialog(
-        title = "Delete",
-        message = "Are you sure you want to delete this? '${selectedReport?.title}'?",
-        dialogOpened = openDialog,
-        onCloseDialog = { openDialog = false },
-        onYesClicked = onDeleteConfirmed,
-    )
-
-    Icon(
-        modifier = Modifier
-            .padding(end = 5.dp)
-            .clickableWithoutRipple(
-                onClick = {
-                    expanded = !expanded
-                },
-            ),
-        imageVector = Icons.Default.MoreVert,
-        contentDescription = "Overflow Menu Icon",
-        tint = MaterialTheme.colorScheme.onSurface,
-    )
-}
-
 @Preview(showBackground = true)
 @Composable
-fun NoteTopBarPreview() {
+fun WriteTopBarPreview() {
     SoloScapeTheme {
         WriteTopBar(
             selectedWrite = null,

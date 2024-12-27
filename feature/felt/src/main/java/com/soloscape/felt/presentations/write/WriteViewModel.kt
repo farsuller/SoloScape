@@ -42,6 +42,7 @@ internal class WriteViewModel @Inject constructor(
                                 contentHintVisible = false,
                                 date = write.date,
                                 reaction = Reaction.valueOf(write.mood ?: Reaction.Neutral.name),
+                                writeItem = write
                             )
                         }
                     }

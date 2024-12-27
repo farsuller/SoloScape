@@ -36,6 +36,7 @@ internal fun WriteScreen(
     Scaffold(
         topBar = {
             WriteTopBar(
+                selectedWrite = writeState.writeItem,
                 onDeleteConfirmed = onDeleteConfirmed,
                 onBackPressed = onBackPressed,
                 reaction = reaction,
