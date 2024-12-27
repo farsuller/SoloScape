@@ -1,4 +1,4 @@
-package com.soloscape.idea.presentations.idea
+package com.soloscape.idea.presentations.idea.components
 
 import com.soloscape.database.domain.model.Note
 import com.soloscape.util.NoteOrder

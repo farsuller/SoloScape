@@ -216,7 +216,7 @@ fun DeleteReportAction(
 
     DisplayAlertDialog(
         title = "Delete",
-        message = "Are you sure you want to delete this note? '${selectedReport?.title}'?",
+        message = "Are you sure you want to delete this? '${selectedReport?.title}'?",
         dialogOpened = openDialog,
         onCloseDialog = { openDialog = false },
         onYesClicked = onDeleteConfirmed,

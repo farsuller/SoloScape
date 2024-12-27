@@ -58,7 +58,7 @@ internal class WriteViewModel @Inject constructor(
             }
 
             is WriteEvent.DeleteWriteItem -> {
-                deleteCartItem(write = event.writeItem, onSuccess = event.onSuccess)
+                deleteWriteItem(write = event.writeItem, onSuccess = event.onSuccess)
             }
 
             is WriteEvent.EnteredTitle -> {
@@ -100,7 +100,7 @@ internal class WriteViewModel @Inject constructor(
         }
     }
 
-    private fun deleteCartItem(write: Write, onSuccess: () -> Unit) = viewModelScope.launch(Dispatchers.IO) {
+    private fun deleteWriteItem(write: Write, onSuccess: () -> Unit) = viewModelScope.launch(Dispatchers.IO) {
         writeUseCases.deleteWrite(write = write)
 
         withContext(Dispatchers.Main) {

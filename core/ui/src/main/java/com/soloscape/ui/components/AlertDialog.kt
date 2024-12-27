@@ -6,7 +6,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.TextStyle
+import com.soloscape.ui.theme.robotoBoldFontFamily
 
 @Composable
 fun DisplayAlertDialog(
@@ -21,28 +22,52 @@ fun DisplayAlertDialog(
             title = {
                 Text(
                     text = title,
-                    fontSize = MaterialTheme.typography.headlineSmall.fontSize,
-                    fontWeight = FontWeight.Bold,
+                    style = TextStyle(
+                        fontFamily = robotoBoldFontFamily,
+                        fontSize = MaterialTheme.typography.labelLarge.fontSize,
+                        fontWeight = MaterialTheme.typography.labelLarge.fontWeight,
+                    ),
                 )
             },
             text = {
                 Text(
                     text = message,
-                    fontSize = MaterialTheme.typography.bodyMedium.fontSize,
-                    fontWeight = FontWeight.Normal,
+                    style = TextStyle(
+                        fontFamily = MaterialTheme.typography.labelMedium.fontFamily,
+                        fontSize = MaterialTheme.typography.labelMedium.fontSize,
+                        fontWeight = MaterialTheme.typography.labelMedium.fontWeight,
+                    ),
                 )
             },
             confirmButton = {
-                Button(onClick = {
-                    onYesClicked()
-                    onCloseDialog()
-                }) {
-                    Text(text = "Yes")
+                Button(
+                    onClick = {
+                        onYesClicked()
+                        onCloseDialog()
+                    },
+                ) {
+                    Text(
+                        text = "Yes",
+                        style = TextStyle(
+                            fontFamily = MaterialTheme.typography.labelMedium.fontFamily,
+                            fontSize = MaterialTheme.typography.labelMedium.fontSize,
+                            fontWeight = MaterialTheme.typography.labelMedium.fontWeight,
+                        ),
+                    )
                 }
             },
             dismissButton = {
-                OutlinedButton(onClick = onCloseDialog) {
-                    Text(text = "No")
+                OutlinedButton(
+                    onClick = onCloseDialog,
+                ) {
+                    Text(
+                        text = "No",
+                        style = TextStyle(
+                            fontFamily = MaterialTheme.typography.labelMedium.fontFamily,
+                            fontSize = MaterialTheme.typography.labelMedium.fontSize,
+                            fontWeight = MaterialTheme.typography.labelMedium.fontWeight,
+                        ),
+                    )
                 }
             },
             onDismissRequest = onCloseDialog,

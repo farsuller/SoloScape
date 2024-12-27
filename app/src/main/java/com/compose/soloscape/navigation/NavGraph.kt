@@ -43,8 +43,20 @@ fun SetupNavGraph(
             },
         )
 
-        ideaRoute(navController = navHostController)
+        ideaRoute(
+            navigateToNoteWithArgs = { note ->
+                navHostController.navigate(ScreensRoutes.NoteIdeaRoute.passNoteId(noteId = note.noteId, noteColor = note.noteColor))
+            },
+            navigateToNote = {
+                navHostController.navigate(ScreensRoutes.NoteIdeaRoute.route)
+            },
+            onBackPressed = {
+                navHostController.popBackStack()
+            },
+        )
 
-        noteIdeaRoute(navController = navHostController)
+        noteIdeaRoute(onBackPressed = {
+            navHostController.popBackStack()
+        })
     }
 }

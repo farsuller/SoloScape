@@ -1,8 +1,9 @@
-package com.soloscape.felt.presentations.write.components
+package com.soloscape.idea.presentations.note.components
 
-import com.soloscape.ui.Reaction
+import androidx.compose.ui.graphics.toArgb
+import com.soloscape.database.domain.model.Note
 
-data class WriteState(
+data class NoteState(
     val id: Int? = null,
     val title: String = "",
     val titleHint: String = "Enter title...",
@@ -10,6 +11,5 @@ data class WriteState(
     val content: String = "",
     val contentHint: String = "Enter some content...",
     val contentHintVisible: Boolean = true,
-    val reaction: Reaction = Reaction.Neutral,
-    val date: Long = System.currentTimeMillis(),
+    val noteColor: Int = Note.noteColors.random().toArgb(),
 )

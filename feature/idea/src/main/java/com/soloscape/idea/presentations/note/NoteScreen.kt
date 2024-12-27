@@ -13,50 +13,56 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Save
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.SuggestionChipDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.soloscape.database.domain.model.Note
-import com.soloscape.idea.presentations.idea.components.MindPadFab
+import com.soloscape.idea.presentations.note.components.NoteState
+import com.soloscape.ui.components.SaveButton
 import com.soloscape.ui.components.TransparentTextField
 import com.soloscape.util.Constants.TestTags.CONTENT_TEXT_FIELD
 import com.soloscape.util.Constants.TestTags.TITLE_TEXT_FIELD
 import kotlinx.coroutines.launch
 
 @Composable
-fun AddEditNoteScreen(
-    navController: NavController,
+fun NoteScreen(
     noteColor: Int,
-    viewModel: AddEditNoteViewModel = hiltViewModel(),
     onBackPressed: () -> Unit = {},
+    onSaveClicked: () -> Unit = {},
+    onChangeColor: (Int) -> Unit,
+    onValueChangeTitle: (String) -> Unit,
+    onFocusChangeTitle: (FocusState) -> Unit,
+    onValueChangeContent: (String) -> Unit,
+    onFocusChangeContent: (FocusState) -> Unit,
+    noteState: NoteState,
 ) {
-    val noteTitleState = viewModel.noteTitle.value
-    val noteContentState = viewModel.noteContent.value
+    val focusManager = LocalFocusManager.current
 
     val noteBackgroundAnimatable = remember {
         Animatable(
-            initialValue = Color(if (noteColor != -1) noteColor else viewModel.noteColor.value),
+            initialValue = Color(if (noteColor != -1) noteColor else noteState.noteColor ?: 0),
         )
     }
 
@@ -65,33 +71,12 @@ fun AddEditNoteScreen(
         SnackbarHostState()
     }
 
-    LaunchedEffect(key1 = true) {
-        viewModel.eventFlow.collect { event ->
-            when (event) {
-                is AddEditNoteViewModel.UiEvent.SaveNote -> {
-                    navController.navigateUp()
-                }
-
-                is AddEditNoteViewModel.UiEvent.ShowSnackBar -> {
-                    snackBarHostState.showSnackbar(
-                        message = event.message,
-                        duration = SnackbarDuration.Short,
-                    )
-                }
-            }
-        }
-    }
-
     Scaffold(
         snackbarHost = { SnackbarHost(hostState = snackBarHostState) },
         floatingActionButton = {
-            MindPadFab(
-                modifier = Modifier.testTag("Save"),
-                onClick = {
-                    viewModel.onEvent(AddEditNoteEvent.SaveNote)
-                },
-                color = MaterialTheme.colorScheme.tertiary,
-                imageVector = Icons.Filled.Save,
+            SaveButton(
+                onClick = onSaveClicked,
+                color = MaterialTheme.colorScheme.primary,
             )
         },
     ) { innerPadding ->
@@ -123,6 +108,7 @@ fun AddEditNoteScreen(
                         val noteColors = Note.noteColors[it].toArgb()
                         SuggestionChip(
                             onClick = {
+                                onChangeColor(noteColors)
                                 scope.launch {
                                     noteBackgroundAnimatable.animateTo(
                                         targetValue = Color(noteColors),
@@ -131,10 +117,9 @@ fun AddEditNoteScreen(
                                         ),
                                     )
                                 }
-                                viewModel.onEvent(AddEditNoteEvent.ChangeColor(noteColors))
                             },
                             chipColor = Note.noteColors[it].toArgb(),
-                            isSelected = viewModel.noteColor.value == noteColors,
+                            isSelected = noteState.noteColor == noteColors,
                         )
                     }
                 }
@@ -145,33 +130,32 @@ fun AddEditNoteScreen(
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 TransparentTextField(
-                    text = noteTitleState.text,
-                    hint = noteTitleState.hint,
-                    onValueChange = {
-                        viewModel.onEvent(AddEditNoteEvent.EnteredTitle(it))
-                    },
-                    onFocusChange = {
-                        viewModel.onEvent(AddEditNoteEvent.ChangeTitleFocus(it))
-                    },
-                    isHintVisible = noteTitleState.isHintVisible,
-                    singleLine = true,
+                    text = "${noteState.title}",
+                    hint = noteState.titleHint,
+                    onValueChange = onValueChangeTitle,
+                    onFocusChange = onFocusChangeTitle,
+                    isHintVisible = noteState.titleHintVisible,
                     textStyle = MaterialTheme.typography.headlineMedium,
+                    keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
+                    keyboardActions = KeyboardActions(
+                        onNext = {
+                            focusManager.moveFocus(FocusDirection.Down)
+                        },
+                    ),
                     testTag = TITLE_TEXT_FIELD,
                 )
 
                 TransparentTextField(
                     modifier = Modifier
                         .fillMaxHeight(),
-                    text = noteContentState.text,
-                    hint = noteContentState.hint,
-                    onValueChange = {
-                        viewModel.onEvent(AddEditNoteEvent.EnteredContent(it))
-                    },
-                    onFocusChange = {
-                        viewModel.onEvent(AddEditNoteEvent.ChangeContentFocus(it))
-                    },
-                    isHintVisible = noteContentState.isHintVisible,
+                    text = "${noteState.content}",
+                    hint = noteState.contentHint,
+                    onValueChange = onValueChangeContent,
+                    onFocusChange = onFocusChangeContent,
+                    isHintVisible = noteState.contentHintVisible,
                     textStyle = MaterialTheme.typography.bodyMedium,
+                    keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
+                    keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
                     testTag = CONTENT_TEXT_FIELD,
                 )
             }

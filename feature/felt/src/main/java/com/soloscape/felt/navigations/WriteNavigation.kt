@@ -69,14 +69,7 @@ fun NavGraphBuilder.writeRoute(onBackPressed: () -> Unit) {
                 reaction = reaction,
                 onSaveClicked = {
                     when {
-                        !titleEmpty && !contentEmpty -> {
-                            viewModel.onEvent(
-                                WriteEvent.UpsertWriteItem(
-                                    reaction = reaction,
-                                    onSuccess = onBackPressed,
-                                ),
-                            )
-                        }
+                        !titleEmpty && !contentEmpty -> { viewModel.onEvent(WriteEvent.UpsertWriteItem(reaction = reaction, onSuccess = onBackPressed)) }
                         titleEmpty && !contentEmpty -> messageBarState.addError(Exception("Title cannot be empty"))
                         !titleEmpty && contentEmpty -> messageBarState.addError(Exception("Content cannot be empty."))
                         else -> messageBarState.addError(Exception("Fields cannot be empty."))

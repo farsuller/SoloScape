@@ -8,10 +8,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.focus.FocusState
 import com.soloscape.database.domain.model.Write
-import com.soloscape.felt.presentations.write.components.SaveButton
 import com.soloscape.felt.presentations.write.components.WriteState
 import com.soloscape.felt.presentations.write.components.WriteTopBar
 import com.soloscape.ui.Reaction
+import com.soloscape.ui.components.SaveButton
 import java.time.ZonedDateTime
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
