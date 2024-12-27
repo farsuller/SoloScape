@@ -130,7 +130,7 @@ fun NoteScreen(
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 TransparentTextField(
-                    text = "${noteState.title}",
+                    text = noteState.title,
                     hint = noteState.titleHint,
                     onValueChange = onValueChangeTitle,
                     onFocusChange = onFocusChangeTitle,
@@ -148,7 +148,7 @@ fun NoteScreen(
                 TransparentTextField(
                     modifier = Modifier
                         .fillMaxHeight(),
-                    text = "${noteState.content}",
+                    text = noteState.content,
                     hint = noteState.contentHint,
                     onValueChange = onValueChangeContent,
                     onFocusChange = onFocusChangeContent,

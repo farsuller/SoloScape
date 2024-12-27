@@ -59,8 +59,7 @@ internal fun WriteContent(
             .imePadding()
             .navigationBarsPadding()
             .padding(top = paddingValues.calculateTopPadding())
-            .padding(bottom = 24.dp)
-            .padding(horizontal = 24.dp),
+            .padding(bottom = 24.dp),
         verticalArrangement = Arrangement.SpaceBetween,
     ) {
         Column(
@@ -99,7 +98,6 @@ internal fun WriteContent(
                     onValueChange = onValueChangeTitle,
                     onFocusChange = onFocusChangeTitle,
                     isHintVisible = writeState.titleHintVisible,
-                    singleLine = true,
                     keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
                     keyboardActions = KeyboardActions(
                         onNext = {
