@@ -1,4 +1,4 @@
-package com.soloscape.dashboard.presentation.dashboard.components
+package com.soloscape.dashboard.presentation.dashboard
 
 data class YourNameState(
     val text: String = "",

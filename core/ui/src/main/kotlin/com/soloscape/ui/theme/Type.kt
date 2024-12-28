@@ -69,7 +69,7 @@ val AppTypography = Typography(
 
     bodyLarge = baseline.bodyLarge.copy(fontFamily = robotoMediumFontFamily, fontSize = 30.sp),
     bodyMedium = baseline.bodyMedium.copy(fontFamily = robotoLightFontFamily, fontSize = 20.sp),
-    bodySmall = baseline.bodySmall.copy(fontFamily = robotoThinFontFamily, fontSize = 16.sp),
+    bodySmall = baseline.bodySmall.copy(fontFamily = robotoThinFontFamily, fontSize = 18.sp),
 
     labelLarge = baseline.labelLarge.copy(fontFamily = robotoRegularFontFamily, fontSize = 16.sp),
     labelMedium = baseline.labelMedium.copy(fontFamily = robotoRegularFontFamily, fontSize = 14.sp),

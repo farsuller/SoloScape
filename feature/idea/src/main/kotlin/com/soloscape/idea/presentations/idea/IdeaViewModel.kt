@@ -36,20 +36,20 @@ class IdeaViewModel @Inject constructor(
 
     fun onEvent(event: IdeaEvent) {
         when (event) {
-            is IdeaEvent.DeleteNote -> {
-                viewModelScope.launch(Dispatchers.IO) {
-                    notesUseCases.deleteNote(event.note)
-                    recentlyDeletedNote = event.note
-                }
-            }
+            is IdeaEvent.DeleteNote -> deleteNote(event.note)
 
-            is IdeaEvent.RestoreNote -> {
-                viewModelScope.launch(Dispatchers.IO) {
-                    notesUseCases.addNote(recentlyDeletedNote ?: return@launch)
-                    recentlyDeletedNote = null
-                }
-            }
+            is IdeaEvent.RestoreNote -> restoreNote(recentlyDeletedNote)
         }
+    }
+
+    private fun restoreNote(note: Note?) = viewModelScope.launch(Dispatchers.IO) {
+        notesUseCases.addNote(note ?: return@launch)
+        recentlyDeletedNote = null
+    }
+
+    private fun deleteNote(note: Note) = viewModelScope.launch(Dispatchers.IO) {
+        notesUseCases.deleteNote(note)
+        recentlyDeletedNote = note
     }
 
     private fun getNotes() {

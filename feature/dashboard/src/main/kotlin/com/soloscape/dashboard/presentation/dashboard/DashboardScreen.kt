@@ -25,13 +25,14 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.soloscape.dashboard.presentation.dashboard.components.DashboardCardItem
-import com.soloscape.dashboard.presentation.dashboard.components.YourNameState
+import com.soloscape.dashboard.presentation.dashboard.components.DashboardStaggeredHorizontalGrid
 import com.soloscape.ui.R
 import com.soloscape.ui.components.TransparentTextField
 import com.soloscape.ui.theme.MistyRoseColor
 import com.soloscape.ui.theme.MossGreenColor
 import com.soloscape.ui.theme.NyanzaColor
 import com.soloscape.ui.theme.PhilippineBronzeColor
+import com.soloscape.ui.theme.robotoThinFontFamily
 import com.soloscape.util.Constants.TestTags.TITLE_TEXT_FIELD
 
 @Composable
@@ -40,7 +41,10 @@ fun DashboardScreen(
     navigationToIdea: () -> Unit,
     onValueChange: (String) -> Unit,
     onFocusChange: (FocusState) -> Unit,
+    onNoteClick: () -> Unit = {},
+    onJournalClick: () -> Unit = {},
     yourNameState: YourNameState,
+    journalNoteState: JournalNoteState,
 ) {
     val focusManager = LocalFocusManager.current
 
@@ -56,17 +60,17 @@ fun DashboardScreen(
         ) {
             Box(
                 modifier = Modifier
-                    .width(300.dp)
-                    .padding(10.dp),
+                    .width(330.dp)
+                    .padding(start = 10.dp),
                 contentAlignment = Alignment.CenterStart,
             ) {
-                Column(Modifier.padding(10.dp)) {
+                Column {
                     Text(
                         text = "Hi..",
                         color = MaterialTheme.colorScheme.onSurface,
                         style = TextStyle(
-                            fontFamily = MaterialTheme.typography.headlineLarge.fontFamily,
-                            fontSize = MaterialTheme.typography.headlineLarge.fontSize,
+                            fontFamily = robotoThinFontFamily,
+                            fontSize = MaterialTheme.typography.bodyLarge.fontSize,
                             fontWeight = MaterialTheme.typography.headlineLarge.fontWeight,
                         ),
                     )
@@ -78,7 +82,7 @@ fun DashboardScreen(
                         onFocusChange = onFocusChange,
                         isHintVisible = yourNameState.isHintVisible,
                         singleLine = true,
-                        textStyle = MaterialTheme.typography.headlineMedium,
+                        textStyle = MaterialTheme.typography.bodyLarge,
                         testTag = TITLE_TEXT_FIELD,
                         keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
                         keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
@@ -86,42 +90,47 @@ fun DashboardScreen(
                     )
                 }
             }
-            Box(modifier = Modifier.fillMaxWidth()) {
-                Column(
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 10.dp, end = 10.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(10.dp),
+            ) {
+                DashboardCardItem(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(10.dp),
-                    verticalArrangement = Arrangement.spacedBy(10.dp),
-                ) {
-                    DashboardCardItem(
-                        modifier = Modifier
-                            .height(height = 180.dp)
-                            .clip(RoundedCornerShape(12.dp))
-                            .background(NyanzaColor),
-                        textTitle = "Idea",
-                        textBody = "Note down thoughts and inspirations.",
-                        textDescription = "A notepad to capture your ideas, plans, and creative sparks.",
-                        bgIconColor = MossGreenColor,
-                        iconImage = R.drawable.lightbulb,
-                        imageBottom = R.drawable.svg_idea,
-                        onClick = navigationToIdea,
-                    )
+                        .height(height = 160.dp)
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(NyanzaColor),
+                    textTitle = "Idea",
+                    textBody = "Note down thoughts and inspirations.",
+                    textDescription = "A notepad to capture your ideas, plans, and creative sparks.",
+                    bgIconColor = MossGreenColor,
+                    iconImage = R.drawable.lightbulb,
+                    imageBottom = R.drawable.svg_idea,
+                    onClick = navigationToIdea,
+                )
 
-                    DashboardCardItem(
-                        modifier = Modifier
-                            .height(height = 180.dp)
-                            .clip(RoundedCornerShape(12.dp))
-                            .background(MistyRoseColor),
-                        textTitle = "Felt",
-                        textBody = "Express and reflect on your emotions.",
-                        textDescription = "A journal designed to help you articulate and process your feelings.",
-                        bgIconColor = PhilippineBronzeColor,
-                        iconImage = R.drawable.heart,
-                        imageBottom = R.drawable.svg_felt,
-                        onClick = navigationToFelt,
-                    )
-                }
+                DashboardCardItem(
+                    modifier = Modifier
+                        .height(height = 160.dp)
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(MistyRoseColor),
+                    textTitle = "Felt",
+                    textBody = "Express and reflect on your emotions.",
+                    textDescription = "A journal designed to help you articulate and process your feelings.",
+                    bgIconColor = PhilippineBronzeColor,
+                    iconImage = R.drawable.heart,
+                    imageBottom = R.drawable.svg_felt,
+                    onClick = navigationToFelt,
+                )
             }
+
+            DashboardStaggeredHorizontalGrid(
+                onNoteClick = onNoteClick,
+                onJournalClick = onJournalClick,
+                combinedList = journalNoteState.combinedList ?: emptyList(),
+            )
         }
     }
 }

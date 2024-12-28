@@ -5,7 +5,6 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Write(
-
     @PrimaryKey
     val id: Int? = null,
     var mood: String? = null,

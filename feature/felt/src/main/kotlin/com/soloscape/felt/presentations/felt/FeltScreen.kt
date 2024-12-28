@@ -7,7 +7,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import com.soloscape.database.domain.model.Write
 import com.soloscape.felt.presentations.felt.components.FeltState
 import com.soloscape.felt.presentations.felt.components.FeltTopBar
 import com.soloscape.ui.components.GenericFloatingActionButton
@@ -34,7 +33,7 @@ internal fun FeltScreen(
                 onDateSelected = onDateSelected,
                 dateIsSelected = dateIsSelected,
                 onBackPressed = onBackPressed,
-                onDeleteAllConfirmed = onDeleteAllConfirmed
+                onDeleteAllConfirmed = onDeleteAllConfirmed,
             )
         },
         floatingActionButton = {
@@ -44,7 +43,7 @@ internal fun FeltScreen(
             FeltContent(
                 paddingValues = it,
                 writes = homeState.writes,
-                onClickCard = navigateToWriteWithArgs
+                onClickCard = navigateToWriteWithArgs,
             )
         },
     )

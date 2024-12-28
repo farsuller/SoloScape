@@ -8,7 +8,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.soloscape.dashboard.presentation.dashboard.DashboardScreen
 import com.soloscape.dashboard.presentation.dashboard.DashboardViewModel
-import com.soloscape.dashboard.presentation.dashboard.components.YourNameEvent
+import com.soloscape.dashboard.presentation.dashboard.YourNameEvent
 import com.soloscape.util.routes.ScreensRoutes
 
 fun NavGraphBuilder.dashboardRoute(
@@ -19,17 +19,24 @@ fun NavGraphBuilder.dashboardRoute(
     composable(route = ScreensRoutes.DashboardRoute.route) {
         val viewModel: DashboardViewModel = hiltViewModel()
         val yourNameState by viewModel.yourNameState.collectAsStateWithLifecycle()
+        val journalNoteState by viewModel.journalNoteState.collectAsStateWithLifecycle()
 
         LaunchedEffect(key1 = Unit) {
             onDataLoaded(false)
+            println("journalNoteState notesList ${journalNoteState.notesList} ")
+            println("journalNoteState journalList ${journalNoteState.journalList} ")
+            println("journalNoteState combinedList ${journalNoteState.combinedList} ")
         }
 
         DashboardScreen(
             navigationToFelt = navigationToFelt,
             navigationToIdea = navigationToIdea,
             yourNameState = yourNameState,
+            journalNoteState = journalNoteState,
             onValueChange = { viewModel.onEvent(YourNameEvent.EnteredYourName(it)) },
             onFocusChange = { viewModel.onEvent(YourNameEvent.ChangeTextFocus(it)) },
+            onJournalClick = navigationToFelt,
+            onNoteClick = navigationToIdea,
         )
     }
 }

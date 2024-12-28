@@ -1,4 +1,4 @@
-package com.soloscape.dashboard.presentation.dashboard.components
+package com.soloscape.dashboard.presentation.dashboard
 
 import androidx.compose.ui.focus.FocusState
 

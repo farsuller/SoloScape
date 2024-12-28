@@ -35,18 +35,15 @@ import com.soloscape.database.domain.model.Write
 import com.soloscape.ui.Reaction
 import com.soloscape.ui.theme.Elevation
 import com.soloscape.ui.theme.robotoBoldFontFamily
-import com.soloscape.util.clickableWithoutRipple
 import java.text.SimpleDateFormat
 import java.util.Locale
 
 @Composable
-fun WriteCard(write: Write, onClickCard: (Int?) -> Unit) {
+fun JournalCard(write: Write, modifier: Modifier = Modifier) {
     val localDensity = LocalDensity.current
     var componentHeight by remember { mutableStateOf(0.dp) }
 
-    Row(
-        modifier = Modifier.clickableWithoutRipple { onClickCard(write.id) },
-    ) {
+    Row(modifier = modifier) {
         Spacer(modifier = Modifier.width(14.dp))
         Surface(
             modifier = Modifier
@@ -66,7 +63,7 @@ fun WriteCard(write: Write, onClickCard: (Int?) -> Unit) {
             tonalElevation = Elevation.level1,
         ) {
             Column(modifier = Modifier.fillMaxWidth()) {
-                WriteHeader(write = write)
+                JournalHeader(write = write)
 
                 Text(
                     modifier = Modifier.padding(all = 14.dp),
@@ -85,7 +82,7 @@ fun WriteCard(write: Write, onClickCard: (Int?) -> Unit) {
 }
 
 @Composable
-fun WriteHeader(write: Write) {
+fun JournalHeader(write: Write) {
     val reaction by remember { mutableStateOf(Reaction.valueOf(write.mood.orEmpty())) }
 
     Box(
@@ -146,7 +143,7 @@ fun WriteHeader(write: Write) {
 @Composable
 @Preview(showBackground = true)
 fun WriteCardPreview() {
-    WriteCard(
+    JournalCard(
         write = Write(
             title = "My Write",
             content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. " +
@@ -154,6 +151,5 @@ fun WriteCardPreview() {
             mood = Reaction.Happy.name,
             date = 0,
         ),
-        onClickCard = {},
     )
 }

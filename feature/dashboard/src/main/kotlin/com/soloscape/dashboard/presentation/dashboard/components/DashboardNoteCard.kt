@@ -1,23 +1,17 @@
-package com.soloscape.idea.presentations.idea.components
+package com.soloscape.dashboard.presentation.dashboard.components
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material3.Icon
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
@@ -38,15 +32,18 @@ import com.soloscape.util.Constants.TestTags.NOTE_ITEM
 import com.soloscape.util.clickableWithoutRipple
 
 @Composable
-fun NoteItemCard(
-    modifier: Modifier = Modifier,
+fun DashboardNoteCard(
     note: Note,
     cornerRadius: Dp = 10.dp,
     cutCornerSize: Dp = 30.dp,
-    onDeleteClick: () -> Unit,
+    onNoteClick: () -> Unit = {},
 ) {
     Box(
-        modifier = modifier.testTag(NOTE_ITEM),
+        modifier = Modifier
+            .width(200.dp)
+            .wrapContentHeight()
+            .clickableWithoutRipple { onNoteClick() }
+            .testTag(NOTE_ITEM),
     ) {
         Canvas(
             modifier = Modifier.matchParentSize(),
@@ -99,20 +96,9 @@ fun NoteItemCard(
                 ),
                 color = MaterialTheme.colorScheme.onSurface,
                 overflow = TextOverflow.Ellipsis,
+                maxLines = 3,
             )
         }
-
-        Icon(
-            modifier = Modifier
-                .size(25.dp)
-                .offset((-10).dp, 7.dp)
-                .rotate(-45F)
-                .clickableWithoutRipple(onClick = { onDeleteClick() })
-                .align(Alignment.TopEnd),
-            imageVector = Icons.Filled.MoreVert,
-            contentDescription = "Delete note",
-            tint = MaterialTheme.colorScheme.onSurface,
-        )
     }
 }
 
@@ -121,7 +107,7 @@ fun NoteItemCard(
 fun NoteItemPreview() {
     SoloScapeTheme {
         Surface {
-            NoteItemCard(
+            DashboardNoteCard(
                 note = Note(
                     title = "Test",
                     content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. " +
@@ -129,7 +115,6 @@ fun NoteItemPreview() {
                     timestamp = 0,
                     color = 0,
                 ),
-                onDeleteClick = {},
             )
         }
     }

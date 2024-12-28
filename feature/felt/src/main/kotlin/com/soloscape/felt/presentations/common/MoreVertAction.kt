@@ -41,8 +41,8 @@ fun MoreVertAction(
                 style = TextStyle(
                     fontFamily = robotoBoldFontFamily,
                     fontSize = MaterialTheme.typography.labelMedium.fontSize,
-                    fontWeight = MaterialTheme.typography.labelMedium.fontWeight
-                )
+                    fontWeight = MaterialTheme.typography.labelMedium.fontWeight,
+                ),
             )
         }, onClick = {
             openDialog = true

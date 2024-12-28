@@ -89,11 +89,9 @@ fun DashboardCardItem(
         )
 
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(top = 10.dp),
+            modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.Start,
-            verticalArrangement = Arrangement.spacedBy(5.dp),
+            verticalArrangement = Arrangement.Top,
         ) {
             Row(
                 modifier = Modifier
@@ -139,7 +137,7 @@ fun DashboardCardItem(
                 color = MaterialTheme.colorScheme.onSurface,
                 style = TextStyle(
                     fontFamily = MaterialTheme.typography.bodyMedium.fontFamily,
-                    fontSize = MaterialTheme.typography.bodyMedium.fontSize,
+                    fontSize = MaterialTheme.typography.bodySmall.fontSize,
                     fontWeight = MaterialTheme.typography.bodyMedium.fontWeight,
                 ),
             )
@@ -147,13 +145,13 @@ fun DashboardCardItem(
             Text(
                 modifier = Modifier
                     .width(300.dp)
-                    .padding(start = 10.dp),
+                    .padding(start = 10.dp, top = 5.dp),
                 text = textDescription,
                 color = MaterialTheme.colorScheme.onSurface,
                 style = TextStyle(
-                    fontFamily = MaterialTheme.typography.bodySmall.fontFamily,
-                    fontSize = MaterialTheme.typography.bodySmall.fontSize,
-                    fontWeight = MaterialTheme.typography.bodySmall.fontWeight,
+                    fontFamily = MaterialTheme.typography.labelMedium.fontFamily,
+                    fontSize = MaterialTheme.typography.labelMedium.fontSize,
+                    fontWeight = MaterialTheme.typography.labelMedium.fontWeight,
                 ),
             )
         }
@@ -167,7 +165,7 @@ internal fun DashboardScreenPreview() {
         Surface {
             DashboardCardItem(
                 modifier = Modifier
-                    .height(height = 180.dp)
+                    .height(height = 160.dp)
                     .clip(
                         RoundedCornerShape(12.dp),
                     )
