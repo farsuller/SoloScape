@@ -73,10 +73,10 @@ internal fun FeltContent(
                         AnimatedVisibility(
                             visible = visibleHeaders.contains(localDate),
                             enter = fadeIn(animationSpec = tween(durationMillis = 1000)) +
-                                    slideInVertically(
-                                        initialOffsetY = { -it }, // Slide in from above
-                                        animationSpec = tween(durationMillis = 1200), // Adjust the duration as needed
-                                    ),
+                                slideInVertically(
+                                    initialOffsetY = { -it }, // Slide in from above
+                                    animationSpec = tween(durationMillis = 1200), // Adjust the duration as needed
+                                ),
                         ) {
                             DateHeader(localDate = localDate)
                         }
@@ -85,15 +85,15 @@ internal fun FeltContent(
                         AnimatedVisibility(
                             visible = index in visibleItems,
                             enter = fadeIn(animationSpec = tween(durationMillis = 600)) +
-                                    slideInHorizontally(
-                                        initialOffsetX = { it }, // Start from the right edge
-                                        animationSpec = tween(durationMillis = 600), // Adjust duration
-                                    ),
+                                slideInHorizontally(
+                                    initialOffsetX = { it }, // Start from the right edge
+                                    animationSpec = tween(durationMillis = 600), // Adjust duration
+                                ),
                             exit = fadeOut(animationSpec = tween(durationMillis = 600)) +
-                                    slideOutHorizontally(
-                                        targetOffsetX = { it }, // Exit to the right edge
-                                        animationSpec = tween(durationMillis = 600),
-                                    ),
+                                slideOutHorizontally(
+                                    targetOffsetX = { it }, // Exit to the right edge
+                                    animationSpec = tween(durationMillis = 600),
+                                ),
                         ) {
                             JournalCard(
                                 write = item,
@@ -106,7 +106,7 @@ internal fun FeltContent(
         } else {
             EmptyListContainer(
                 title = stringResource(R.string.feeling_something_title),
-                subtitle = stringResource(R.string.feeling_something_subtitle)
+                subtitle = stringResource(R.string.feeling_something_subtitle),
             )
         }
     }
