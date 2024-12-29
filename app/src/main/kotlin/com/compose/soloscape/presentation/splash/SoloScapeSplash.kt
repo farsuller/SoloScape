@@ -23,7 +23,7 @@ fun SoloScapeSplash(
     isUpdateAvailable: Boolean,
 ) {
     LaunchedEffect(!isUpdateAvailable) {
-        delay(2000)
+        delay(600)
         if (!isUpdateAvailable) onNavigateToDashboard()
     }
 

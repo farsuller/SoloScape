@@ -43,11 +43,12 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         FirebaseApp.initializeApp(this)
+
         setContent {
             SoloScapeTheme {
                 val navController = rememberNavController()
                 SetupNavGraph(
-                    startDestination = ScreensRoutes.DashboardRoute.route,
+                    startDestination = ScreensRoutes.SplashRoute.route,
                     navHostController = navController,
                     isUpdateAvailable = isUpdateAvailable,
                 )
