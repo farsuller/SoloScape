@@ -1,12 +1,3 @@
 Release 2.0.0
- - Home UI Update
- - Cart UI Update
- - Menu UI Update
- - Account UI Update
- - Products UI Update
- - Login/SignUp Fix
- - Refactoring
- - Gradle Global Setup
- - Clean Architecture
- - Ktor
- - Room
+ - New Added Dashboard UI
+   & Features and Migrations

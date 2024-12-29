@@ -30,7 +30,9 @@
             <option value="$PROJECT_DIR$/core/ui" />
             <option value="$PROJECT_DIR$/core/util" />
             <option value="$PROJECT_DIR$/feature" />
-            <option value="$PROJECT_DIR$/feature/home" />
+            <option value="$PROJECT_DIR$/feature/dashboard" />
+            <option value="$PROJECT_DIR$/feature/felt" />
+            <option value="$PROJECT_DIR$/feature/idea" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

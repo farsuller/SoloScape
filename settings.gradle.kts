@@ -29,5 +29,7 @@ include (":core:util")
 include (":core:model")
 include (":core:database")
 include (":core:messagebar")
-include (":feature:home")
+include (":feature:felt")
+include (":feature:dashboard")
+include (":feature:idea")
 

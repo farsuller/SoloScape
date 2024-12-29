@@ -22,25 +22,39 @@ val keystoreProperties: Properties by lazy {
     properties
 }
 
+val isGenerateBuild = ProjectConfig.GENERATE_LOCAL_ARCHIVE
+val configVersionCode = ProjectConfig.VERSION_CODE
+val configMajorVersion = ProjectConfig.MAJOR_VERSION
+val configMinorVersion = ProjectConfig.MINOR_VERSION
+val configPatchVersion = ProjectConfig.PATCH_VERSION
+val appName = ProjectConfig.APP_FILE_NAME
+
 android {
     namespace = ProjectConfig.NAMESPACE
 
     defaultConfig {
         applicationId = ProjectConfig.APPLICATION_ID
-        versionCode = ProjectConfig.VERSION_CODE
-        versionName = "${ProjectConfig.MAJOR_VERSION}.${ProjectConfig.MINOR_VERSION}.${ProjectConfig.PATCH_VERSION}"
+        versionCode = 10
+        versionName = "2.0.0"
+
+        if (isGenerateBuild) {
+            versionCode = configVersionCode
+            versionName = "${configMajorVersion}.${configMinorVersion}.${configPatchVersion}"
+
+            applicationVariants.all {
+                base.archivesName.set("$appName-${buildType.name}-$versionCode-$versionName")
+            }
+        }
     }
 
-    applicationVariants.all {
-        base.archivesName.set("${ProjectConfig.APP_FILE_NAME}-${buildType.name}-$versionCode-$versionName")
-    }
-
-    signingConfigs {
-        register("release") {
-            storeFile = file("keystore/soloscape.jks")
-            storePassword = keystoreProperties["releaseStorePassword"].toString()
-            keyAlias = keystoreProperties["releaseKeyAlias"].toString()
-            keyPassword = keystoreProperties["releaseKeyPassword"].toString()
+    if (isGenerateBuild) {
+        signingConfigs {
+            register("release") {
+                storeFile = file("keystore/soloscape.jks")
+                storePassword = keystoreProperties["releaseStorePassword"].toString()
+                keyAlias = keystoreProperties["releaseKeyAlias"].toString()
+                keyPassword = keystoreProperties["releaseKeyPassword"].toString()
+            }
         }
     }
 
@@ -53,18 +67,16 @@ android {
         }
 
         release {
-            signingConfig = signingConfigs.getByName("release")
+            if (isGenerateBuild) signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
             isDebuggable = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-
     buildFeatures {
         compose = true
         buildConfig = true
     }
-
 }
 
 dependencies {
@@ -94,6 +106,9 @@ dependencies {
     // Splash API
     implementation (libs.splash.api)
 
+    //App Updates
+    implementation(libs.bundles.bundle.app.updates)
+
     implementation (libs.coroutines.core)
 
     //Profile Installer
@@ -104,8 +119,8 @@ dependencies {
     implementation (projects.core.database)
     implementation (projects.core.util)
 
-    //implementation (projects.feature.auth)
-    implementation (projects.feature.home)
-    //implementation (projects.feature.note)
+    implementation (projects.feature.dashboard)
+    implementation (projects.feature.felt)
+    implementation (projects.feature.idea)
 
 }

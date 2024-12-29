@@ -25,6 +25,8 @@ dependencies {
 
     implementation(libs.bundles.bundle.coil)
 
+    implementation(libs.androidx.ui.text.google.fonts)
+
     implementation (libs.material.icons.extended)
 
     implementation(projects.core.model)
