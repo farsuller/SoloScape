@@ -32,7 +32,6 @@ dependencies {
     implementation(libs.androidx.compose.navigation)
 
     implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.storage)
 
     implementation(libs.coroutines.core)
 

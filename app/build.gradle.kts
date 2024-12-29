@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.devtool.ksp)
     alias (libs.plugins.gms.google.services)
+    alias (libs.plugins.firebase.crashlytics)
 }
 
 val keystoreProperties: Properties by lazy {
@@ -92,7 +93,7 @@ dependencies {
 
     // Firebase
     implementation(platform(libs.firebase.bom))
-    implementation (libs.firebase.storage)
+    implementation(libs.firebase.crashlytics)
 
     //Room
     implementation(libs.bundles.bundle.room)

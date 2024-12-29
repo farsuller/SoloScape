@@ -1,6 +1,5 @@
 package com.soloscape.dashboard.presentation.dashboard.components
 
-import android.os.Build.VERSION.SDK_INT
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -33,10 +32,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil3.ImageLoader
 import coil3.compose.rememberAsyncImagePainter
-import coil3.gif.AnimatedImageDecoder
-import coil3.gif.GifDecoder
 import com.soloscape.ui.R
 import com.soloscape.ui.theme.MossGreenColor
 import com.soloscape.ui.theme.NyanzaColor

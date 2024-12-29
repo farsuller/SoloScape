@@ -21,10 +21,8 @@ composeBom = "2024.12.01"
 
 material-icons-extended = "1.7.6"
 
-
 firebaseBom = "33.7.0"
-firebase-auth = "23.0.0"
-firebase-storage = "21.0.0"
+crashlytics = "3.0.2"
 
 navigation-compose = "2.8.5"
 
@@ -94,8 +92,7 @@ androidx-ui-text-google-fonts = { module = "androidx.compose.ui:ui-text-google-f
 spotless = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version.ref = "spotless" }
 
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
-firebase-auth = { module = "com.google.firebase:firebase-auth"}
-firebase-storage = { module = "com.google.firebase:firebase-storage"}
+firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
 
 profileinstaller = { module = "androidx.profileinstaller:profileinstaller", version.ref = "profileinstaller" }
 
@@ -139,6 +136,7 @@ hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 realm-kotlin = { id = "io.realm.kotlin", version.ref = "realm" }
 gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
 devtool-ksp = { id = "com.google.devtools.ksp", version.ref = "devtoolKsp" }
+firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlytics"}
 
 [bundles]
 

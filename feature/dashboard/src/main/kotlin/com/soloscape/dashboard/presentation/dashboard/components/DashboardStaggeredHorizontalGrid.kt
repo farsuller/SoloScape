@@ -46,7 +46,6 @@ fun DashboardStaggeredHorizontalGrid(
     onNoteClick: () -> Unit = {},
     onJournalClick: () -> Unit = {},
 ) {
-
     val visibleItems = remember { mutableStateListOf<Int>() }
 
     LaunchedEffect(combinedList) {
@@ -102,15 +101,15 @@ fun DashboardStaggeredHorizontalGrid(
                     AnimatedVisibility(
                         visible = index in visibleItems,
                         enter = fadeIn(animationSpec = tween(durationMillis = 600)) +
-                                slideInHorizontally(
-                                    initialOffsetX = { it }, // Start from the right edge
-                                    animationSpec = tween(durationMillis = 600), // Adjust duration
-                                ),
+                            slideInHorizontally(
+                                initialOffsetX = { it }, // Start from the right edge
+                                animationSpec = tween(durationMillis = 600), // Adjust duration
+                            ),
                         exit = fadeOut(animationSpec = tween(durationMillis = 600)) +
-                                slideOutHorizontally(
-                                    targetOffsetX = { it }, // Exit to the right edge
-                                    animationSpec = tween(durationMillis = 600),
-                                ),
+                            slideOutHorizontally(
+                                targetOffsetX = { it }, // Exit to the right edge
+                                animationSpec = tween(durationMillis = 600),
+                            ),
                     ) {
                         when (item) {
                             is JournalNoteItem.NoteItem -> DashboardNoteCard(
@@ -124,11 +123,9 @@ fun DashboardStaggeredHorizontalGrid(
                             )
                         }
                     }
-
                 }
             }
         } else {
-
             Spacer(modifier = Modifier.height(10.dp))
 
             Box(

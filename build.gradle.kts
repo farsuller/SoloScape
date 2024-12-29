@@ -15,6 +15,7 @@ plugins {
     alias (libs.plugins.hilt) apply false
     alias (libs.plugins.realm.kotlin) apply false
     alias (libs.plugins.gms.google.services) apply false
+    alias(libs.plugins.firebase.crashlytics) apply false
     alias(libs.plugins.spotless) apply false
 }
 
@@ -78,7 +79,6 @@ subprojects {
                     "-opt-in=androidx.compose.material.ExperimentalMaterialApi",
                     "-opt-in=androidx.compose.foundation.ExperimentalFoundationApi",
                     "-opt-in=androidx.compose.animation.ExperimentalAnimationApi"
-
                 )
             )
         }
