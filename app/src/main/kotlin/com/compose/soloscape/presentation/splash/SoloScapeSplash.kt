@@ -18,14 +18,7 @@ import com.soloscape.ui.R
 import kotlinx.coroutines.delay
 
 @Composable
-fun SoloScapeSplash(
-    onNavigateToDashboard: () -> Unit,
-    isUpdateAvailable: Boolean,
-) {
-    LaunchedEffect(!isUpdateAvailable) {
-        delay(600)
-        if (!isUpdateAvailable) onNavigateToDashboard()
-    }
+fun SoloScapeSplash() {
 
     Column(
         modifier = Modifier
@@ -45,5 +38,5 @@ fun SoloScapeSplash(
 @Preview
 @Composable
 fun SoloScapeSplashPreview() {
-    SoloScapeSplash(onNavigateToDashboard = {}, isUpdateAvailable = false)
+    SoloScapeSplash()
 }
