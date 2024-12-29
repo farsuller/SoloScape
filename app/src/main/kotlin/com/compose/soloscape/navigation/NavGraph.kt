@@ -14,14 +14,24 @@ import com.soloscape.util.routes.ScreensRoutes
 fun SetupNavGraph(
     startDestination: String,
     navHostController: NavHostController,
-    onDataLoaded: (Boolean) -> Unit,
+    isUpdateAvailable: Boolean,
 ) {
     NavHost(
         navController = navHostController,
         startDestination = startDestination,
     ) {
+        splashRoute(
+            onNavigateToDashboard = {
+                navHostController.navigate(ScreensRoutes.DashboardRoute.route) {
+                    popUpTo(ScreensRoutes.SplashRoute.route) {
+                        inclusive = true
+                    }
+                }
+            },
+            isUpdateAvailable = isUpdateAvailable,
+        )
+
         dashboardRoute(
-            onDataLoaded = onDataLoaded,
             navigationToFelt = { navHostController.navigate(ScreensRoutes.FeltRoute.route) },
             navigationToIdea = { navHostController.navigate(ScreensRoutes.IdeaRoute.route) },
         )
@@ -45,7 +55,12 @@ fun SetupNavGraph(
 
         ideaRoute(
             navigateToNoteWithArgs = { note ->
-                navHostController.navigate(ScreensRoutes.NoteIdeaRoute.passNoteId(noteId = note.noteId, noteColor = note.noteColor))
+                navHostController.navigate(
+                    ScreensRoutes.NoteIdeaRoute.passNoteId(
+                        noteId = note.noteId,
+                        noteColor = note.noteColor,
+                    ),
+                )
             },
             navigateToNote = {
                 navHostController.navigate(ScreensRoutes.NoteIdeaRoute.route)

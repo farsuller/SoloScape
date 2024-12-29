@@ -64,15 +64,15 @@ class DashboardViewModel @Inject constructor(
     }
 
     private fun combineNotesAndJournals() {
-        val notes = _journalNoteState.value.notesList?.map { JournalNoteItem.NoteItem(it) } ?: emptyList()
-        val journals = _journalNoteState.value.journalList?.map { JournalNoteItem.WriteItem(it) } ?: emptyList()
+        val notes = _journalNoteState.value.notesList?.map { JournalNoteItem.NoteItem(it) }?.take(5) ?: emptyList()
+        val journals = _journalNoteState.value.journalList?.map { JournalNoteItem.WriteItem(it) }?.take(5) ?: emptyList()
 
         val combinedList = (notes + journals).sortedBy {
             when (it) {
                 is JournalNoteItem.NoteItem -> it.note.timestamp
                 is JournalNoteItem.WriteItem -> it.write.date
             }
-        }.shuffled() // Shuffle once
+        }.shuffled()
 
         _journalNoteState.update { it.copy(combinedList = combinedList) }
     }

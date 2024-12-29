@@ -3,6 +3,7 @@ package com.soloscape.util
 import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
+import android.os.Build.VERSION.SDK_INT
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.tween
@@ -16,10 +17,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.core.content.pm.PackageInfoCompat
+import coil3.ImageLoader
+import coil3.gif.AnimatedImageDecoder
+import coil3.gif.GifDecoder
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 import java.time.ZonedDateTime
+
+fun provideImageLoader(context: Context): ImageLoader {
+    return ImageLoader.Builder(context)
+        .components {
+            if (SDK_INT >= 28) {
+                add(AnimatedImageDecoder.Factory())
+            } else {
+                add(GifDecoder.Factory())
+            }
+        }
+        .build()
+}
 
 fun Long.toLocalDateOrNull(zone: ZoneId = ZoneId.systemDefault()): LocalDate? {
     return runCatching {

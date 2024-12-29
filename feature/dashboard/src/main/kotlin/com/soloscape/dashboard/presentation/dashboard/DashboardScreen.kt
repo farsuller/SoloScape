@@ -4,14 +4,17 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -55,7 +58,8 @@ fun DashboardScreen(
                 .padding(
                     top = padding.calculateTopPadding(),
                     bottom = padding.calculateBottomPadding(),
-                ),
+                )
+                .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
             Box(
@@ -107,7 +111,7 @@ fun DashboardScreen(
                     textDescription = "A notepad to capture your ideas, plans, and creative sparks.",
                     bgIconColor = MossGreenColor,
                     iconImage = R.drawable.lightbulb,
-                    imageBottom = R.drawable.svg_idea,
+                    imageRight = R.drawable.svg_idea,
                     onClick = navigationToIdea,
                 )
 
@@ -121,10 +125,12 @@ fun DashboardScreen(
                     textDescription = "A journal designed to help you articulate and process your feelings.",
                     bgIconColor = PhilippineBronzeColor,
                     iconImage = R.drawable.heart,
-                    imageBottom = R.drawable.svg_felt,
+                    imageRight = R.drawable.svg_felt,
                     onClick = navigationToFelt,
                 )
             }
+
+            Spacer(modifier = Modifier.height(10.dp))
 
             DashboardStaggeredHorizontalGrid(
                 onNoteClick = onNoteClick,

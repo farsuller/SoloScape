@@ -13,6 +13,7 @@ object Constants {
         const val NOTE_IDEA_ROUTE = "note_route"
 
         const val DASHBOARD_ROUTE = "dashboard_route"
+        const val SPLASH_ROUTE = "splash_route"
     }
 
     object TestTags {

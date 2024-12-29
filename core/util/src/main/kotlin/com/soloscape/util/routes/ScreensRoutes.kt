@@ -6,10 +6,12 @@ import com.soloscape.util.Constants.Routes.IDEA_ROUTE
 import com.soloscape.util.Constants.Routes.NOTE_COLOR_ARG_KEY
 import com.soloscape.util.Constants.Routes.NOTE_IDEA_ROUTE
 import com.soloscape.util.Constants.Routes.NOTE_ID_ARG_KEY
+import com.soloscape.util.Constants.Routes.SPLASH_ROUTE
 import com.soloscape.util.Constants.Routes.WRITE_FELT_ROUTE
 import com.soloscape.util.Constants.Routes.WRITE_ID_ARG_KEY
 
 sealed class ScreensRoutes(val route: String) {
+    data object SplashRoute : ScreensRoutes(route = SPLASH_ROUTE)
     data object DashboardRoute : ScreensRoutes(route = DASHBOARD_ROUTE)
 
     data object FeltRoute : ScreensRoutes(route = FELT_ROUTE)

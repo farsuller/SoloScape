@@ -54,8 +54,11 @@ coilNetworkOkhttp = "3.0.2"
 roomCompiler = "2.6.1"
 roomKtx = "2.6.1"
 roomRuntime = "2.6.1"
+
 animation = "1.7.6"
 junitKtx = "1.2.1"
+
+appUpdate = "2.1.0"
 
 [libraries]
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
@@ -123,6 +126,9 @@ message-bar-compose = { module = "com.github.stevdza-san:MessageBarCompose", ver
 one-tap-compose = { module = "com.github.stevdza-san:OneTapCompose", version.ref = "one-tap-compose"}
 androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitKtx" }
 
+app-update = { module = "com.google.android.play:app-update", version.ref = "appUpdate" }
+app-update-ktx = { module = "com.google.android.play:app-update-ktx", version.ref = "appUpdate" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
@@ -153,3 +159,5 @@ bundle-coil = [
     "coil-network-okhttp",
     "coil-gif"
 ]
+
+bundle-app-updates = ["app-update","app-update-ktx"]

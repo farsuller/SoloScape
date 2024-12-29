@@ -26,6 +26,8 @@ dependencies {
     implementation(libs.androidx.material3)
 
     implementation(libs.androidx.animation)
+    
+    implementation(libs.bundles.bundle.coil)
 
     implementation(libs.androidx.compose.navigation)
 

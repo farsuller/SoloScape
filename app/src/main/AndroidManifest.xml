@@ -15,7 +15,7 @@
         tools:targetApi="33">
 
         <activity
-            android:name="com.compose.soloscape.MainActivity"
+            android:name="com.compose.soloscape.presentation.MainActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true"
             android:theme="@style/Theme.MultiModularArchJC.MySplash"

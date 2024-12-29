@@ -106,6 +106,9 @@ dependencies {
     // Splash API
     implementation (libs.splash.api)
 
+    //App Updates
+    implementation(libs.bundles.bundle.app.updates)
+
     implementation (libs.coroutines.core)
 
     //Profile Installer

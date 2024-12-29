@@ -1,6 +1,5 @@
 package com.soloscape.dashboard.navigation
 
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -12,7 +11,6 @@ import com.soloscape.dashboard.presentation.dashboard.YourNameEvent
 import com.soloscape.util.routes.ScreensRoutes
 
 fun NavGraphBuilder.dashboardRoute(
-    onDataLoaded: (Boolean) -> Unit,
     navigationToFelt: () -> Unit,
     navigationToIdea: () -> Unit,
 ) {
@@ -20,13 +18,6 @@ fun NavGraphBuilder.dashboardRoute(
         val viewModel: DashboardViewModel = hiltViewModel()
         val yourNameState by viewModel.yourNameState.collectAsStateWithLifecycle()
         val journalNoteState by viewModel.journalNoteState.collectAsStateWithLifecycle()
-
-        LaunchedEffect(key1 = Unit) {
-            onDataLoaded(false)
-            println("journalNoteState notesList ${journalNoteState.notesList} ")
-            println("journalNoteState journalList ${journalNoteState.journalList} ")
-            println("journalNoteState combinedList ${journalNoteState.combinedList} ")
-        }
 
         DashboardScreen(
             navigationToFelt = navigationToFelt,

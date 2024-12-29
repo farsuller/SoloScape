@@ -22,6 +22,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -42,6 +43,7 @@ import com.soloscape.ui.theme.NyanzaColor
 import com.soloscape.ui.theme.SoloScapeTheme
 import com.soloscape.ui.theme.robotoMediumItalicFontFamily
 import com.soloscape.util.clickableWithoutRipple
+import com.soloscape.util.provideImageLoader
 
 @Composable
 fun DashboardCardItem(
@@ -51,19 +53,16 @@ fun DashboardCardItem(
     textDescription: String,
     bgIconColor: Color,
     @DrawableRes iconImage: Int,
-    @DrawableRes imageBottom: Int,
+    @DrawableRes imageRight: Int,
     onClick: () -> Unit = {},
 ) {
     val context = LocalContext.current
-    val imageLoader = ImageLoader.Builder(context)
-        .components {
-            if (SDK_INT >= 28) {
-                add(AnimatedImageDecoder.Factory())
-            } else {
-                add(GifDecoder.Factory())
-            }
-        }
-        .build()
+    val imageLoader = remember { provideImageLoader(context) }
+
+    val painter = rememberAsyncImagePainter(
+        model = iconImage,
+        imageLoader = imageLoader,
+    )
 
     Box(
         modifier = modifier.clickableWithoutRipple { onClick() },
@@ -74,9 +73,10 @@ fun DashboardCardItem(
                 .size(120.dp)
                 .padding(top = 10.dp, end = 10.dp)
                 .align(Alignment.TopEnd),
-            painter = painterResource(imageBottom),
+            painter = painterResource(imageRight),
             contentDescription = null,
         )
+
         Icon(
             modifier = Modifier
                 .size(25.dp)
@@ -117,11 +117,6 @@ fun DashboardCardItem(
                         .background(bgIconColor),
                     contentAlignment = Alignment.Center,
                 ) {
-                    val painter = rememberAsyncImagePainter(
-                        model = iconImage,
-                        imageLoader = imageLoader,
-                    )
-
                     Image(
                         painter = painter,
                         contentDescription = null,
@@ -175,7 +170,7 @@ internal fun DashboardScreenPreview() {
                 textDescription = "A notepad to capture your ideas, plans, and creative sparks.",
                 bgIconColor = MossGreenColor,
                 iconImage = R.drawable.ic_idea,
-                imageBottom = R.drawable.svg_idea,
+                imageRight = R.drawable.svg_idea,
             )
         }
     }
