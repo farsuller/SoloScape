@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
@@ -70,7 +71,7 @@ fun DashboardScreen(
             ) {
                 Column {
                     Text(
-                        text = "Hi..",
+                        text = stringResource(R.string.hi),
                         color = MaterialTheme.colorScheme.onSurface,
                         style = TextStyle(
                             fontFamily = robotoThinFontFamily,
@@ -106,9 +107,9 @@ fun DashboardScreen(
                         .height(height = 160.dp)
                         .clip(RoundedCornerShape(12.dp))
                         .background(NyanzaColor),
-                    textTitle = "Idea",
-                    textBody = "Note down thoughts and inspirations.",
-                    textDescription = "A notepad to capture your ideas, plans, and creative sparks.",
+                    textTitle = stringResource(R.string.idea_title),
+                    textBody = stringResource(R.string.idea_content_1),
+                    textDescription = stringResource(R.string.idea_content_2),
                     bgIconColor = MossGreenColor,
                     iconImage = R.drawable.lightbulb,
                     imageRight = R.drawable.svg_idea,
@@ -120,9 +121,9 @@ fun DashboardScreen(
                         .height(height = 160.dp)
                         .clip(RoundedCornerShape(12.dp))
                         .background(MistyRoseColor),
-                    textTitle = "Felt",
-                    textBody = "Express and reflect on your emotions.",
-                    textDescription = "A journal designed to help you articulate and process your feelings.",
+                    textTitle = stringResource(R.string.felt_title),
+                    textBody = stringResource(R.string.felt_content_1),
+                    textDescription = stringResource(R.string.felt_content_2),
                     bgIconColor = PhilippineBronzeColor,
                     iconImage = R.drawable.heart,
                     imageRight = R.drawable.svg_felt,

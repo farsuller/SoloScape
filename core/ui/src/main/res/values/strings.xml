@@ -1,0 +1,18 @@
+<resources>
+    <string name="hi">Hi…</string>
+    <string name="idea_title">Idea</string>
+    <string name="idea_content_1">Note down thoughts and inspirations.</string>
+    <string name="idea_content_2">A notepad to capture your ideas, plans, and creative sparks.</string>
+    <string name="felt_title">Felt</string>
+    <string name="felt_content_1">Express and reflect on your emotions.</string>
+    <string name="felt_content_2">A journal designed to help you articulate and process your feelings.</string>
+    <string name="organize_your_day_title">Organize Your Day</string>
+    <string name="organize_your_day_subtitle">All your notes and journals in one place.</string>
+
+    <string name="feeling_something_title">Feeling something?</string>
+    <string name="feeling_something_subtitle">Write it down!</string>
+
+    <string name="got_idea_title">Got an idea?</string>
+    <string name="got_idea_subtitle">Note it down!</string>
+
+</resources>

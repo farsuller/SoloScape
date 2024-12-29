@@ -26,12 +26,14 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.soloscape.database.domain.model.Write
 import com.soloscape.felt.presentations.felt.components.JournalCard
+import com.soloscape.ui.R
 import com.soloscape.ui.components.EmptyListContainer
 import com.soloscape.util.clickableWithoutRipple
 import kotlinx.coroutines.delay
@@ -71,10 +73,10 @@ internal fun FeltContent(
                         AnimatedVisibility(
                             visible = visibleHeaders.contains(localDate),
                             enter = fadeIn(animationSpec = tween(durationMillis = 1000)) +
-                                slideInVertically(
-                                    initialOffsetY = { -it }, // Slide in from above
-                                    animationSpec = tween(durationMillis = 1200), // Adjust the duration as needed
-                                ),
+                                    slideInVertically(
+                                        initialOffsetY = { -it }, // Slide in from above
+                                        animationSpec = tween(durationMillis = 1200), // Adjust the duration as needed
+                                    ),
                         ) {
                             DateHeader(localDate = localDate)
                         }
@@ -83,15 +85,15 @@ internal fun FeltContent(
                         AnimatedVisibility(
                             visible = index in visibleItems,
                             enter = fadeIn(animationSpec = tween(durationMillis = 600)) +
-                                slideInHorizontally(
-                                    initialOffsetX = { it }, // Start from the right edge
-                                    animationSpec = tween(durationMillis = 600), // Adjust duration
-                                ),
+                                    slideInHorizontally(
+                                        initialOffsetX = { it }, // Start from the right edge
+                                        animationSpec = tween(durationMillis = 600), // Adjust duration
+                                    ),
                             exit = fadeOut(animationSpec = tween(durationMillis = 600)) +
-                                slideOutHorizontally(
-                                    targetOffsetX = { it }, // Exit to the right edge
-                                    animationSpec = tween(durationMillis = 600),
-                                ),
+                                    slideOutHorizontally(
+                                        targetOffsetX = { it }, // Exit to the right edge
+                                        animationSpec = tween(durationMillis = 600),
+                                    ),
                         ) {
                             JournalCard(
                                 write = item,
@@ -102,7 +104,10 @@ internal fun FeltContent(
                 }
             }
         } else {
-            EmptyListContainer(title = "Feeling something?", subtitle = "Write it down!")
+            EmptyListContainer(
+                title = stringResource(R.string.feeling_something_title),
+                subtitle = stringResource(R.string.feeling_something_subtitle)
+            )
         }
     }
 }

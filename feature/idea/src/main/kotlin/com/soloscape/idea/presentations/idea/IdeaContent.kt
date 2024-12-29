@@ -23,11 +23,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.soloscape.database.domain.model.Note
 import com.soloscape.idea.presentations.idea.components.IdeaState
 import com.soloscape.idea.presentations.idea.components.NoteItemCard
 import com.soloscape.idea.presentations.note.components.NoteIdColor
+import com.soloscape.ui.R
 import com.soloscape.ui.components.EmptyListContainer
 import com.soloscape.util.clickableWithoutRipple
 import kotlinx.coroutines.delay
@@ -102,7 +104,7 @@ fun IdeaContent(
                 modifier = Modifier.fillMaxSize(),
             )
         } else {
-            EmptyListContainer(title = "Got an idea?", subtitle = "Note it down!")
+            EmptyListContainer(title = stringResource(R.string.got_idea_title), subtitle = stringResource(R.string.got_idea_subtitle))
         }
     }
 }
