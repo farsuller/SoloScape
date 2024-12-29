@@ -37,7 +37,7 @@ fun SoloScapeSplash(
         Image(
             modifier = Modifier.clip(CircleShape),
             painter = painterResource(id = R.drawable.logo),
-            contentDescription = "animeloom",
+            contentDescription = "soloscape",
         )
     }
 }
