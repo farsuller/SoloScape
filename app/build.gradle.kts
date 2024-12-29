@@ -35,7 +35,7 @@ android {
 
     defaultConfig {
         applicationId = ProjectConfig.APPLICATION_ID
-        versionCode = 9
+        versionCode = 10
         versionName = "2.0.0"
 
         if (isGenerateBuild) {
@@ -90,6 +90,8 @@ dependencies {
     implementation(libs.androidx.activity.compose)
 
     implementation(libs.androidx.material3)
+
+    implementation(libs.androidx.compose.navigation)
 
     // Firebase
     implementation(platform(libs.firebase.bom))

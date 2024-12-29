@@ -129,29 +129,35 @@ fun DashboardStaggeredHorizontalGrid(
         } else {
             Spacer(modifier = Modifier.height(10.dp))
 
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(300.dp),
-                contentAlignment = Alignment.Center,
+            AnimatedVisibility(
+                visible = combinedList.isEmpty(),
+                enter = fadeIn(animationSpec = tween(durationMillis = 600)),
+                exit = fadeOut(animationSpec = tween(durationMillis = 600)),
             ) {
-                Image(
+                Box(
                     modifier = Modifier
-                        .size(190.dp)
-                        .padding(10.dp)
-                        .align(Alignment.TopStart),
-                    painter = painterResource(R.drawable.svg_notes),
-                    contentDescription = null,
-                )
-                Image(
-                    modifier = Modifier
-                        .size(170.dp)
-                        .padding(10.dp)
-                        .graphicsLayer(scaleX = -1f)
-                        .align(Alignment.BottomEnd),
-                    painter = painterResource(R.drawable.svg_journal),
-                    contentDescription = null,
-                )
+                        .fillMaxWidth()
+                        .height(300.dp),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Image(
+                        modifier = Modifier
+                            .size(190.dp)
+                            .padding(10.dp)
+                            .align(Alignment.TopStart),
+                        painter = painterResource(R.drawable.svg_notes),
+                        contentDescription = null,
+                    )
+                    Image(
+                        modifier = Modifier
+                            .size(170.dp)
+                            .padding(10.dp)
+                            .graphicsLayer(scaleX = -1f)
+                            .align(Alignment.BottomEnd),
+                        painter = painterResource(R.drawable.svg_journal),
+                        contentDescription = null,
+                    )
+                }
             }
         }
     }

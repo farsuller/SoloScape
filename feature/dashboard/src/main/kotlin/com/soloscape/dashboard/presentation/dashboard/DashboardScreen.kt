@@ -1,5 +1,9 @@
 package com.soloscape.dashboard.presentation.dashboard
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,6 +23,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -51,93 +60,105 @@ fun DashboardScreen(
     journalNoteState: JournalNoteState,
 ) {
     val focusManager = LocalFocusManager.current
+    var isVisible by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        isVisible = true
+    }
 
     Scaffold(modifier = Modifier.fillMaxSize()) { padding ->
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(
-                    top = padding.calculateTopPadding(),
-                    bottom = padding.calculateBottomPadding(),
-                )
-                .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(10.dp),
+        AnimatedVisibility(
+            visible = isVisible,
+            enter = fadeIn(animationSpec = tween(durationMillis = 500)),
+            exit = fadeOut(animationSpec = tween(durationMillis = 500)),
         ) {
-            Box(
-                modifier = Modifier
-                    .width(330.dp)
-                    .padding(start = 10.dp),
-                contentAlignment = Alignment.CenterStart,
-            ) {
-                Column {
-                    Text(
-                        text = stringResource(R.string.hi),
-                        color = MaterialTheme.colorScheme.onSurface,
-                        style = TextStyle(
-                            fontFamily = robotoThinFontFamily,
-                            fontSize = MaterialTheme.typography.bodyLarge.fontSize,
-                            fontWeight = MaterialTheme.typography.headlineLarge.fontWeight,
-                        ),
-                    )
-
-                    TransparentTextField(
-                        text = yourNameState.text,
-                        hint = yourNameState.hint,
-                        onValueChange = onValueChange,
-                        onFocusChange = onFocusChange,
-                        isHintVisible = yourNameState.isHintVisible,
-                        singleLine = true,
-                        textStyle = MaterialTheme.typography.bodyLarge,
-                        testTag = TITLE_TEXT_FIELD,
-                        keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
-                        keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
-                        characterLimit = 10,
-                    )
-                }
-            }
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 10.dp, end = 10.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
+                    .padding(
+                        top = padding.calculateTopPadding(),
+                        bottom = padding.calculateBottomPadding(),
+                    )
+                    .verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.spacedBy(10.dp),
             ) {
-                DashboardCardItem(
+                Box(
                     modifier = Modifier
-                        .height(height = 160.dp)
-                        .clip(RoundedCornerShape(12.dp))
-                        .background(NyanzaColor),
-                    textTitle = stringResource(R.string.idea_title),
-                    textBody = stringResource(R.string.idea_content_1),
-                    textDescription = stringResource(R.string.idea_content_2),
-                    bgIconColor = MossGreenColor,
-                    iconImage = R.drawable.lightbulb,
-                    imageRight = R.drawable.svg_idea,
-                    onClick = navigationToIdea,
-                )
+                        .width(330.dp)
+                        .padding(start = 10.dp),
+                    contentAlignment = Alignment.CenterStart,
+                ) {
+                    Column {
+                        Text(
+                            text = stringResource(R.string.hi),
+                            color = MaterialTheme.colorScheme.onSurface,
+                            style = TextStyle(
+                                fontFamily = robotoThinFontFamily,
+                                fontSize = MaterialTheme.typography.bodyLarge.fontSize,
+                                fontWeight = MaterialTheme.typography.headlineLarge.fontWeight,
+                            ),
+                        )
 
-                DashboardCardItem(
+                        TransparentTextField(
+                            text = yourNameState.text,
+                            hint = yourNameState.hint,
+                            onValueChange = onValueChange,
+                            onFocusChange = onFocusChange,
+                            isHintVisible = yourNameState.isHintVisible,
+                            singleLine = true,
+                            textStyle = MaterialTheme.typography.bodyLarge,
+                            testTag = TITLE_TEXT_FIELD,
+                            keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
+                            keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
+                            characterLimit = 10,
+                        )
+                    }
+                }
+                Column(
                     modifier = Modifier
-                        .height(height = 160.dp)
-                        .clip(RoundedCornerShape(12.dp))
-                        .background(MistyRoseColor),
-                    textTitle = stringResource(R.string.felt_title),
-                    textBody = stringResource(R.string.felt_content_1),
-                    textDescription = stringResource(R.string.felt_content_2),
-                    bgIconColor = PhilippineBronzeColor,
-                    iconImage = R.drawable.heart,
-                    imageRight = R.drawable.svg_felt,
-                    onClick = navigationToFelt,
+                        .fillMaxWidth()
+                        .padding(start = 10.dp, end = 10.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(10.dp),
+                ) {
+                    DashboardCardItem(
+                        modifier = Modifier
+                            .height(height = 160.dp)
+                            .clip(RoundedCornerShape(12.dp))
+                            .background(NyanzaColor),
+                        textTitle = stringResource(R.string.idea_title),
+                        textBody = stringResource(R.string.idea_content_1),
+                        textDescription = stringResource(R.string.idea_content_2),
+                        bgIconColor = MossGreenColor,
+                        iconImage = R.drawable.lightbulb,
+                        imageRight = R.drawable.svg_idea,
+                        onClick = navigationToIdea,
+                    )
+
+                    DashboardCardItem(
+                        modifier = Modifier
+                            .height(height = 160.dp)
+                            .clip(RoundedCornerShape(12.dp))
+                            .background(MistyRoseColor),
+                        textTitle = stringResource(R.string.felt_title),
+                        textBody = stringResource(R.string.felt_content_1),
+                        textDescription = stringResource(R.string.felt_content_2),
+                        bgIconColor = PhilippineBronzeColor,
+                        iconImage = R.drawable.heart,
+                        imageRight = R.drawable.svg_felt,
+                        onClick = navigationToFelt,
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                DashboardStaggeredHorizontalGrid(
+                    onNoteClick = onNoteClick,
+                    onJournalClick = onJournalClick,
+                    combinedList = journalNoteState.combinedList ?: emptyList(),
                 )
             }
-
-            Spacer(modifier = Modifier.height(10.dp))
-
-            DashboardStaggeredHorizontalGrid(
-                onNoteClick = onNoteClick,
-                onJournalClick = onJournalClick,
-                combinedList = journalNoteState.combinedList ?: emptyList(),
-            )
         }
+
     }
 }
