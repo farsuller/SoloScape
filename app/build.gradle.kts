@@ -116,7 +116,6 @@ dependencies {
     implementation (libs.profileinstaller)
 
     implementation (projects.core.ui)
-    implementation (projects.core.model)
     implementation (projects.core.database)
     implementation (projects.core.util)
 

@@ -44,7 +44,6 @@ dependencies {
     implementation(platform(libs.firebase.bom))
 
     implementation(projects.core.ui)
-    implementation(projects.core.model)
     implementation(projects.core.database)
     implementation(projects.core.util)
     implementation(projects.core.messagebar)

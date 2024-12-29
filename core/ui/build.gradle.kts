@@ -29,5 +29,4 @@ dependencies {
 
     implementation (libs.material.icons.extended)
 
-    implementation(projects.core.model)
 }

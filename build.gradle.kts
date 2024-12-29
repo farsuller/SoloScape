@@ -13,7 +13,6 @@ plugins {
     alias(libs.plugins.compose.compiler) apply false
     alias (libs.plugins.devtool.ksp) apply false
     alias (libs.plugins.hilt) apply false
-    alias (libs.plugins.realm.kotlin) apply false
     alias (libs.plugins.gms.google.services) apply false
     alias(libs.plugins.firebase.crashlytics) apply false
     alias(libs.plugins.spotless) apply false
@@ -62,7 +61,6 @@ fun PluginContainer.applyDefaultConfig(project: Project) {
         }
     }
 }
-
 
 subprojects {
     project.plugins.applyDefaultConfig(project)
