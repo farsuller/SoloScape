@@ -15,4 +15,6 @@
     <string name="got_idea_title">Got an idea?</string>
     <string name="got_idea_subtitle">Note it down!</string>
 
+    <string name="delete_title">Delete all journal</string>
+    <string name="delete_content">Are you sure you want to delete all your journals?</string>
 </resources>

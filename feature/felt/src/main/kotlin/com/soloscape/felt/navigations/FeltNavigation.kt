@@ -4,6 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
@@ -13,6 +14,7 @@ import com.soloscape.felt.presentations.felt.FeltViewModel
 import com.soloscape.felt.presentations.felt.components.FeltEvent
 import com.soloscape.ui.components.DisplayAlertDialog
 import com.soloscape.util.routes.ScreensRoutes
+import com.soloscape.ui.R
 
 fun NavGraphBuilder.feltRoute(
     navigationToWrite: () -> Unit,
@@ -37,8 +39,8 @@ fun NavGraphBuilder.feltRoute(
         )
 
         DisplayAlertDialog(
-            title = "Delete all journal",
-            message = "Are you sure you want to delete all your journals?",
+            title = stringResource(R.string.delete_title),
+            message = stringResource(R.string.delete_content),
             dialogOpened = deleteAllDialogOpened,
             onCloseDialog = { deleteAllDialogOpened = false },
             onYesClicked = {
