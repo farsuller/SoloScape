@@ -15,7 +15,7 @@ fun NavGraphBuilder.splashRoute(
 
         LaunchedEffect(!isUpdateAvailable) {
             delay(2000)
-            if (!isUpdateAvailable) onNavigateToDashboard()
+            if (isUpdateAvailable) return@LaunchedEffect else onNavigateToDashboard()
         }
 
         SoloScapeSplash()

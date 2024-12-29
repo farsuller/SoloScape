@@ -39,7 +39,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        installSplashScreen().setKeepOnScreenCondition { isUpdateAvailable }
+        installSplashScreen()
         enableEdgeToEdge()
 
         FirebaseApp.initializeApp(this)
