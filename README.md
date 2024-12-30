@@ -5,7 +5,8 @@
 ---
 
 ## **Overview**
-SoloScape 2.0.0 introduces a streamlined experience, allowing users to focus entirely on capturing their ideas and journaling without the hassle of login. Built with simplicity in mind, it ensures your thoughts and stories are just a tap away.
+SoloScape 2.0.0 introduces a streamlined experience, allowing users to focus entirely on capturing their ideas and journaling. 
+Built with simplicity in mind, it ensures your thoughts and stories are just a tap away.
 
 ## **How to Download**
 Get started with **SoloScape 2.0.0** today!  
