@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
             if (result.resultCode != RESULT_OK) {
                 Toast.makeText(
                     this,
-                    "Update Failed! Result Code:${result.resultCode}",
+                    "Please proceed with the app update. Thank you.",
                     Toast.LENGTH_SHORT,
                 ).show()
                 isUpdateAvailable.value = true
