@@ -8,6 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.runtime.mutableStateOf
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
 import com.compose.soloscape.navigation.SetupNavGraph
@@ -23,7 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    private var isUpdateAvailable = false
+    private val isUpdateAvailable = mutableStateOf(false)
 
     private val activityResultLauncher =
         registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { result: ActivityResult ->
@@ -33,7 +34,7 @@ class MainActivity : ComponentActivity() {
                     "Update Failed! Result Code:${result.resultCode}",
                     Toast.LENGTH_SHORT,
                 ).show()
-                isUpdateAvailable = true
+                isUpdateAvailable.value = true
             }
         }
 
@@ -60,7 +61,7 @@ class MainActivity : ComponentActivity() {
             this,
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                    isUpdateAvailable = true
+                    isUpdateAvailable.value = true
                     onBackPressedDispatcher.onBackPressed()
                 }
             },
@@ -80,8 +81,8 @@ class MainActivity : ComponentActivity() {
                     activityResultLauncher,
                     AppUpdateOptions.newBuilder(AppUpdateType.IMMEDIATE).build(),
                 )
-                isUpdateAvailable = true
-            } else isUpdateAvailable = false
+                isUpdateAvailable.value = true
+            } else isUpdateAvailable.value= false
         }
     }
 }

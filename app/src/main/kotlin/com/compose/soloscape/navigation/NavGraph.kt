@@ -1,6 +1,7 @@
 package com.compose.soloscape.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.soloscape.dashboard.navigation.dashboardRoute
@@ -14,7 +15,7 @@ import com.soloscape.util.routes.ScreensRoutes
 fun SetupNavGraph(
     startDestination: String,
     navHostController: NavHostController,
-    isUpdateAvailable: Boolean,
+    isUpdateAvailable: State<Boolean>,
 ) {
     NavHost(
         navController = navHostController,
