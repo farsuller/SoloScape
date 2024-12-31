@@ -1,4 +1,4 @@
-package com.soloscape.dashboard
+package com.compose.soloscape
 
 import androidx.activity.ComponentActivity
 import dagger.hilt.android.AndroidEntryPoint

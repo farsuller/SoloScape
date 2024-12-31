@@ -46,6 +46,8 @@ android {
                 base.archivesName.set("$appName-${buildType.name}-$versionCode-$versionName")
             }
         }
+
+        testInstrumentationRunner = "com.compose.soloscape.HiltTestRunner"
     }
 
     if (isGenerateBuild) {
@@ -124,5 +126,17 @@ dependencies {
     implementation (projects.feature.dashboard)
     implementation (projects.feature.felt)
     implementation (projects.feature.idea)
+
+    androidTestImplementation (libs.androidx.runner)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.junit.ktx)
+    androidTestImplementation(libs.hilt.android.testing)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    testImplementation (libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
 
 }

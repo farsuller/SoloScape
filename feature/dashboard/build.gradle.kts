@@ -45,13 +45,4 @@ dependencies {
     implementation(projects.core.database)
     implementation(projects.core.util)
     implementation(projects.core.messagebar)
-
-    androidTestImplementation(libs.hilt.android.testing)
-    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
-    testImplementation (libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(libs.androidx.compose.ui.test)
-    debugImplementation(libs.androidx.compose.ui.tooling)
-    debugImplementation(libs.androidx.compose.ui.test.manifest)
 }

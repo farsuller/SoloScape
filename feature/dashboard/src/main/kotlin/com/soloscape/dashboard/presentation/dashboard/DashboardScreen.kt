@@ -37,6 +37,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.soloscape.dashboard.presentation.dashboard.components.DashboardCardItem
 import com.soloscape.dashboard.presentation.dashboard.components.DashboardStaggeredHorizontalGrid
@@ -104,7 +105,6 @@ fun DashboardScreen(
                         )
 
                         TransparentTextField(
-                            modifier = Modifier.testTag(YOUR_NAME_TEXT_FIELD),
                             text = yourNameState.text,
                             hint = yourNameState.hint,
                             onValueChange = onValueChange,
@@ -112,7 +112,7 @@ fun DashboardScreen(
                             isHintVisible = yourNameState.isHintVisible,
                             singleLine = true,
                             textStyle = MaterialTheme.typography.bodyLarge,
-                            testTag = TITLE_TEXT_FIELD,
+                            testTag = YOUR_NAME_TEXT_FIELD,
                             keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
                             keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
                             characterLimit = 10,
@@ -165,4 +165,9 @@ fun DashboardScreen(
             }
         }
     }
+}
+@Preview
+@Composable
+fun DashboardScreenPreview(){
+    DashboardScreen(yourNameState = YourNameState(), journalNoteState = JournalNoteState())
 }
