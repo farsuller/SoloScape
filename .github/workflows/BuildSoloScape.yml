@@ -57,7 +57,7 @@ jobs:
             echo '${{ secrets.GOOGLE_SERVICES }}' > app/src/debug/google-services.json
 
       - name: Run unit tests
-        run: ./gradlew clean test
+        run: ./gradlew clean :app:testDebugUnitTest
 
   distribute:
     name: Distribute bundle to Google Play
