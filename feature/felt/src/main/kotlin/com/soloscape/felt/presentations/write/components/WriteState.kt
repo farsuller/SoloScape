@@ -1,6 +1,6 @@
 package com.soloscape.felt.presentations.write.components
 
-import com.soloscape.database.domain.model.Write
+import com.soloscape.database.domain.model.Journal
 import com.soloscape.ui.Reaction
 
 data class WriteState(
@@ -13,5 +13,5 @@ data class WriteState(
     val contentHintVisible: Boolean = true,
     val reaction: Reaction = Reaction.Neutral,
     val date: Long = System.currentTimeMillis(),
-    val writeItem: Write? = null,
+    val writeItem: Journal? = null,
 )

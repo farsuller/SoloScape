@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.soloscape.database.domain.usecase.WriteUseCases
+import com.soloscape.database.domain.usecase.JournalUseCases
 import com.soloscape.felt.presentations.felt.components.FeltEvent
 import com.soloscape.felt.presentations.felt.components.FeltState
 import com.soloscape.util.connectivity.ConnectivityObserver
@@ -25,7 +25,7 @@ import javax.inject.Inject
 @HiltViewModel
 internal class FeltViewModel @Inject constructor(
     private val connectivity: NetworkConnectivityObserver,
-    private val writeUseCases: WriteUseCases,
+    private val writeUseCases: JournalUseCases,
 ) : ViewModel() {
 
     private var network by mutableStateOf(ConnectivityObserver.Status.Unavailable)

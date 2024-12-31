@@ -2,10 +2,10 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "19e5025e02241c6641bac194a8cfa147",
+    "identityHash": "943dfe9f65b665ed6e33a838fa67cba1",
     "entities": [
       {
-        "tableName": "Write",
+        "tableName": "Journal",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER, `mood` TEXT, `title` TEXT NOT NULL, `content` TEXT NOT NULL, `date` INTEGER NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
@@ -96,7 +96,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '19e5025e02241c6641bac194a8cfa147')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '943dfe9f65b665ed6e33a838fa67cba1')"
     ]
   }
 }

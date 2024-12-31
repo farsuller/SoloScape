@@ -3,22 +3,22 @@ package com.soloscape.database.di
 import android.content.Context
 import androidx.room.Room
 import com.soloscape.database.data.local.ScapeDatabase
+import com.soloscape.database.data.repository.JournalRepositoryImpl
 import com.soloscape.database.data.repository.NoteRepositoryImpl
-import com.soloscape.database.data.repository.WriteRepositoryImpl
+import com.soloscape.database.domain.repository.JournalRepository
 import com.soloscape.database.domain.repository.NoteRepository
-import com.soloscape.database.domain.repository.WriteRepository
+import com.soloscape.database.domain.usecase.JournalUseCases
 import com.soloscape.database.domain.usecase.NotesUseCases
-import com.soloscape.database.domain.usecase.WriteUseCases
+import com.soloscape.database.domain.usecase.journal.AddJournal
+import com.soloscape.database.domain.usecase.journal.DeleteAllJournal
+import com.soloscape.database.domain.usecase.journal.DeleteJournal
+import com.soloscape.database.domain.usecase.journal.GetJournalByFiltered
+import com.soloscape.database.domain.usecase.journal.GetJournalById
+import com.soloscape.database.domain.usecase.journal.GetJournals
 import com.soloscape.database.domain.usecase.note.AddNote
 import com.soloscape.database.domain.usecase.note.DeleteNote
 import com.soloscape.database.domain.usecase.note.GetNote
 import com.soloscape.database.domain.usecase.note.GetNotes
-import com.soloscape.database.domain.usecase.write.AddWrite
-import com.soloscape.database.domain.usecase.write.DeleteAllWrite
-import com.soloscape.database.domain.usecase.write.DeleteWrite
-import com.soloscape.database.domain.usecase.write.GetWriteByFiltered
-import com.soloscape.database.domain.usecase.write.GetWriteById
-import com.soloscape.database.domain.usecase.write.GetWrites
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -42,20 +42,20 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideWriteRepository(db: ScapeDatabase): WriteRepository {
-        return WriteRepositoryImpl(db.writeDao)
+    fun provideWriteRepository(db: ScapeDatabase): JournalRepository {
+        return JournalRepositoryImpl(db.journalDao)
     }
 
     @Provides
     @Singleton
-    fun provideWriteUseCases(repository: WriteRepository): WriteUseCases {
-        return WriteUseCases(
-            getWrite = GetWrites(repository = repository),
-            getWriteById = GetWriteById(repository = repository),
-            getWriteByFiltered = GetWriteByFiltered(repository = repository),
-            addWrite = AddWrite(repository = repository),
-            deleteWrite = DeleteWrite(repository = repository),
-            deleteAllWrite = DeleteAllWrite(repository = repository),
+    fun provideWriteUseCases(repository: JournalRepository): JournalUseCases {
+        return JournalUseCases(
+            getWrite = GetJournals(repository = repository),
+            getWriteById = GetJournalById(repository = repository),
+            getWriteByFiltered = GetJournalByFiltered(repository = repository),
+            addWrite = AddJournal(repository = repository),
+            deleteWrite = DeleteJournal(repository = repository),
+            deleteAllWrite = DeleteAllJournal(repository = repository),
         )
     }
 

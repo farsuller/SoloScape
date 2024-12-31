@@ -4,14 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.soloscape.dashboard.model.JournalNoteItem
 import com.soloscape.database.data.local.YourNameManager
+import com.soloscape.database.domain.usecase.JournalUseCases
 import com.soloscape.database.domain.usecase.NotesUseCases
-import com.soloscape.database.domain.usecase.WriteUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
@@ -19,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DashboardViewModel @Inject constructor(
     private val yourNameManager: YourNameManager,
-    private val writeUseCases: WriteUseCases,
+    private val writeUseCases: JournalUseCases,
     private val notesUseCases: NotesUseCases,
 ) : ViewModel() {
 

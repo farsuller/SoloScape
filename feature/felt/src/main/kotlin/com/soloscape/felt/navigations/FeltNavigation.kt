@@ -12,9 +12,9 @@ import androidx.navigation.compose.composable
 import com.soloscape.felt.presentations.felt.FeltScreen
 import com.soloscape.felt.presentations.felt.FeltViewModel
 import com.soloscape.felt.presentations.felt.components.FeltEvent
+import com.soloscape.ui.R
 import com.soloscape.ui.components.DisplayAlertDialog
 import com.soloscape.util.routes.ScreensRoutes
-import com.soloscape.ui.R
 
 fun NavGraphBuilder.feltRoute(
     navigationToWrite: () -> Unit,

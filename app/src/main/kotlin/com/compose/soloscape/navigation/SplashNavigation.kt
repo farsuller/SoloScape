@@ -13,7 +13,6 @@ fun NavGraphBuilder.splashRoute(
     isUpdateAvailable: State<Boolean>,
 ) {
     composable(route = ScreensRoutes.SplashRoute.route) {
-
         LaunchedEffect(isUpdateAvailable.value) {
             if (!isUpdateAvailable.value) {
                 delay(2000)

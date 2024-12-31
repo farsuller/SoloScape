@@ -7,7 +7,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.focus.FocusState
-import com.soloscape.database.domain.model.Write
+import com.soloscape.database.domain.model.Journal
 import com.soloscape.felt.presentations.write.components.WriteState
 import com.soloscape.felt.presentations.write.components.WriteTopBar
 import com.soloscape.ui.Reaction
@@ -18,7 +18,7 @@ import java.time.ZonedDateTime
 @Composable
 internal fun WriteScreen(
     pagerState: PagerState,
-    onDeleteConfirmed: (Write) -> Unit,
+    onDeleteConfirmed: (Journal) -> Unit,
     onBackPressed: () -> Unit,
     reaction: Reaction,
     onSaveClicked: () -> Unit,

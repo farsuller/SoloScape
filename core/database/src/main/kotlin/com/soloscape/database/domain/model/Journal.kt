@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class Write(
+data class Journal(
     @PrimaryKey
     val id: Int? = null,
     var mood: String? = null,
@@ -12,3 +12,5 @@ data class Write(
     val content: String = "",
     val date: Long = 0,
 )
+
+class InvalidJournalException(message: String) : Exception(message)

@@ -27,14 +27,14 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.soloscape.database.domain.model.Write
+import com.soloscape.database.domain.model.Journal
 import com.soloscape.ui.Reaction
 import com.soloscape.ui.theme.Elevation
 import com.soloscape.ui.theme.robotoBoldFontFamily
 import com.soloscape.util.clickableWithoutRipple
 
 @Composable
-fun DashboardJournalCard(write: Write, onJournalClick: () -> Unit = {}) {
+fun DashboardJournalCard(write: Journal, onJournalClick: () -> Unit = {}) {
     Surface(
         modifier = Modifier
             .width(220.dp)
@@ -64,7 +64,7 @@ fun DashboardJournalCard(write: Write, onJournalClick: () -> Unit = {}) {
 }
 
 @Composable
-fun JournalHeader(write: Write) {
+fun JournalHeader(write: Journal) {
     val reaction by remember { mutableStateOf(Reaction.valueOf(write.mood.orEmpty())) }
 
     Box(
@@ -113,7 +113,7 @@ fun JournalHeader(write: Write) {
 @Preview(showBackground = true)
 fun JournalCardPreview() {
     DashboardJournalCard(
-        write = Write(
+        write = Journal(
             id = 0,
             title = "My Write",
             content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. " +

@@ -3,8 +3,8 @@ package com.soloscape.felt.presentations.write
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.soloscape.database.domain.model.Write
-import com.soloscape.database.domain.usecase.WriteUseCases
+import com.soloscape.database.domain.model.Journal
+import com.soloscape.database.domain.usecase.JournalUseCases
 import com.soloscape.felt.presentations.write.components.WriteEvent
 import com.soloscape.felt.presentations.write.components.WriteState
 import com.soloscape.ui.Reaction
@@ -22,7 +22,7 @@ import javax.inject.Inject
 @HiltViewModel
 internal class WriteViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    private val writeUseCases: WriteUseCases,
+    private val writeUseCases: JournalUseCases,
 ) : ViewModel() {
 
     private val _writeState = MutableStateFlow(WriteState())
@@ -87,7 +87,7 @@ internal class WriteViewModel @Inject constructor(
     private fun upsertWriteItem(onSuccess: () -> Unit) = viewModelScope.launch(Dispatchers.IO) {
         val state = writeState.value
         writeUseCases.addWrite(
-            write = Write(
+            write = Journal(
                 id = state.id,
                 title = state.title,
                 content = state.content,
@@ -101,7 +101,7 @@ internal class WriteViewModel @Inject constructor(
         }
     }
 
-    private fun deleteWriteItem(write: Write, onSuccess: () -> Unit) = viewModelScope.launch(Dispatchers.IO) {
+    private fun deleteWriteItem(write: Journal, onSuccess: () -> Unit) = viewModelScope.launch(Dispatchers.IO) {
         writeUseCases.deleteWrite(write = write)
 
         withContext(Dispatchers.Main) {

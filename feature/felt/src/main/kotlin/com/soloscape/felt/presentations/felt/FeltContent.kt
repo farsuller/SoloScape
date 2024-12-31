@@ -31,7 +31,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.soloscape.database.domain.model.Write
+import com.soloscape.database.domain.model.Journal
 import com.soloscape.felt.presentations.felt.components.JournalCard
 import com.soloscape.ui.R
 import com.soloscape.ui.components.EmptyListContainer
@@ -42,7 +42,7 @@ import java.time.LocalDate
 @Composable
 internal fun FeltContent(
     paddingValues: PaddingValues,
-    writes: Map<LocalDate, List<Write>>? = null,
+    writes: Map<LocalDate, List<Journal>>? = null,
     onClickCard: (Int?) -> Unit,
 ) {
     val visibleHeaders = remember { mutableStateListOf<LocalDate>() }

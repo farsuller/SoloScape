@@ -82,7 +82,7 @@ class MainActivity : ComponentActivity() {
                     AppUpdateOptions.newBuilder(AppUpdateType.IMMEDIATE).build(),
                 )
                 isUpdateAvailable.value = true
-            } else isUpdateAvailable.value= false
+            } else isUpdateAvailable.value = false
         }
     }
 }

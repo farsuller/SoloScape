@@ -1,12 +1,12 @@
 package com.soloscape.dashboard.model
 
+import com.soloscape.database.domain.model.Journal
 import com.soloscape.database.domain.model.Note
-import com.soloscape.database.domain.model.Write
 import com.soloscape.ui.Reaction
 
 sealed class JournalNoteItem {
     data class NoteItem(val note: Note) : JournalNoteItem()
-    data class WriteItem(val write: Write) : JournalNoteItem()
+    data class WriteItem(val write: Journal) : JournalNoteItem()
 }
 
 val sampleCombinedList: List<JournalNoteItem> = listOf(
@@ -20,7 +20,7 @@ val sampleCombinedList: List<JournalNoteItem> = listOf(
         ),
     ),
     JournalNoteItem.WriteItem(
-        write = Write(
+        write = Journal(
             id = 1,
             mood = Reaction.Happy.name,
             title = "Weekend Trip",
@@ -38,7 +38,7 @@ val sampleCombinedList: List<JournalNoteItem> = listOf(
         ),
     ),
     JournalNoteItem.WriteItem(
-        write = Write(
+        write = Journal(
             id = 2,
             mood = Reaction.Angry.name,
             title = "Daily Reflection",

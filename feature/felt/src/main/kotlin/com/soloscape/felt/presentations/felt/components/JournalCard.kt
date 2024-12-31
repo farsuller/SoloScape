@@ -31,7 +31,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.soloscape.database.domain.model.Write
+import com.soloscape.database.domain.model.Journal
 import com.soloscape.ui.Reaction
 import com.soloscape.ui.theme.Elevation
 import com.soloscape.ui.theme.robotoBoldFontFamily
@@ -39,7 +39,7 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 
 @Composable
-fun JournalCard(write: Write, modifier: Modifier = Modifier) {
+fun JournalCard(write: Journal, modifier: Modifier = Modifier) {
     val localDensity = LocalDensity.current
     var componentHeight by remember { mutableStateOf(0.dp) }
 
@@ -82,7 +82,7 @@ fun JournalCard(write: Write, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun JournalHeader(write: Write) {
+fun JournalHeader(write: Journal) {
     val reaction by remember { mutableStateOf(Reaction.valueOf(write.mood.orEmpty())) }
 
     Box(
@@ -144,7 +144,7 @@ fun JournalHeader(write: Write) {
 @Preview(showBackground = true)
 fun WriteCardPreview() {
     JournalCard(
-        write = Write(
+        write = Journal(
             title = "My Write",
             content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. " +
                 "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",

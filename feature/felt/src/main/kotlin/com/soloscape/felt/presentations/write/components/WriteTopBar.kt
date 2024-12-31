@@ -29,7 +29,7 @@ import com.maxkeppeler.sheets.calendar.models.CalendarConfig
 import com.maxkeppeler.sheets.calendar.models.CalendarSelection
 import com.maxkeppeler.sheets.clock.ClockDialog
 import com.maxkeppeler.sheets.clock.models.ClockSelection
-import com.soloscape.database.domain.model.Write
+import com.soloscape.database.domain.model.Journal
 import com.soloscape.felt.presentations.common.MoreVertAction
 import com.soloscape.ui.Reaction
 import com.soloscape.ui.theme.SoloScapeTheme
@@ -45,9 +45,9 @@ import java.time.format.DateTimeFormatter
 @Composable
 internal fun WriteTopBar(
     reaction: Reaction,
-    selectedWrite: Write? = null,
+    selectedWrite: Journal? = null,
     onBackPressed: () -> Unit,
-    onDeleteConfirmed: (Write) -> Unit,
+    onDeleteConfirmed: (Journal) -> Unit,
     onDateTimeUpdated: (ZonedDateTime) -> Unit,
 ) {
     val dateDialog = rememberUseCaseState()

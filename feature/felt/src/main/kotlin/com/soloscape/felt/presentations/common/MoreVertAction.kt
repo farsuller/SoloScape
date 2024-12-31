@@ -16,14 +16,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import com.soloscape.database.domain.model.Write
+import com.soloscape.database.domain.model.Journal
 import com.soloscape.ui.components.DisplayAlertDialog
 import com.soloscape.ui.theme.robotoBoldFontFamily
 import com.soloscape.util.clickableWithoutRipple
 
 @Composable
 fun MoreVertAction(
-    selectedWrite: Write? = null,
+    selectedWrite: Journal? = null,
     onDeleteConfirmed: () -> Unit,
 ) {
     var expanded by remember {
