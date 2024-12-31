@@ -35,7 +35,7 @@ dependencies {
     implementation (libs.time.dialog)
 
     //Hilt
-    implementation(libs.androidx.hilt.compose.navigation)
+    implementation(libs.hilt.compose.navigation)
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
 
@@ -46,6 +46,7 @@ dependencies {
     implementation(projects.core.util)
     implementation(projects.core.messagebar)
 
+    androidTestImplementation(libs.hilt.android.testing)
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     testImplementation (libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -17,6 +17,10 @@ object Constants {
     }
 
     object TestTags {
+        const val HI = "HI"
+        const val YOUR_NAME_TEXT_FIELD = "YOUR_NAME_TEXT_FIELD"
+        const val NOTE_CARD = "NOTE_CARD"
+        const val JOURNAL_CARD = "JOURNAL_CARD"
         const val TITLE_TEXT_FIELD = "TITLE_TEXT_FIELD"
         const val CONTENT_TEXT_FIELD = "CONTENT_TEXT_FIELD"
         const val NOTE_ITEM = "NOTE_ITEM"

@@ -20,7 +20,6 @@ dependencies {
     implementation(libs.bundles.bundle.room)
     ksp(libs.androidx.room.compiler)
 
-    implementation(libs.androidx.hilt.compose.navigation)
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
 

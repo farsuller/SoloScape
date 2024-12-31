@@ -33,6 +33,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
@@ -46,14 +47,16 @@ import com.soloscape.ui.theme.MossGreenColor
 import com.soloscape.ui.theme.NyanzaColor
 import com.soloscape.ui.theme.PhilippineBronzeColor
 import com.soloscape.ui.theme.robotoThinFontFamily
+import com.soloscape.util.Constants.TestTags.HI
 import com.soloscape.util.Constants.TestTags.TITLE_TEXT_FIELD
+import com.soloscape.util.Constants.TestTags.YOUR_NAME_TEXT_FIELD
 
 @Composable
 fun DashboardScreen(
-    navigationToFelt: () -> Unit,
-    navigationToIdea: () -> Unit,
-    onValueChange: (String) -> Unit,
-    onFocusChange: (FocusState) -> Unit,
+    navigationToFelt: () -> Unit = {},
+    navigationToIdea: () -> Unit = {},
+    onValueChange: (String) -> Unit = {},
+    onFocusChange: (FocusState) -> Unit = {},
     onNoteClick: () -> Unit = {},
     onJournalClick: () -> Unit = {},
     yourNameState: YourNameState,
@@ -90,6 +93,7 @@ fun DashboardScreen(
                 ) {
                     Column {
                         Text(
+                            modifier = Modifier.testTag(HI),
                             text = stringResource(R.string.hi),
                             color = MaterialTheme.colorScheme.onSurface,
                             style = TextStyle(
@@ -100,6 +104,7 @@ fun DashboardScreen(
                         )
 
                         TransparentTextField(
+                            modifier = Modifier.testTag(YOUR_NAME_TEXT_FIELD),
                             text = yourNameState.text,
                             hint = yourNameState.hint,
                             onValueChange = onValueChange,

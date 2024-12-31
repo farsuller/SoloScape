@@ -102,7 +102,7 @@ dependencies {
     ksp(libs.androidx.room.compiler)
 
     //Hilt
-    implementation(libs.androidx.hilt.compose.navigation)
+    implementation(libs.hilt.compose.navigation)
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
 
