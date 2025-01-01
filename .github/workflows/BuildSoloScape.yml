@@ -86,18 +86,17 @@ jobs:
           api-level: 30
           build-tools: 30.0.3
 
-      - name: Install Emulator and System Image
-        run: |
-          sdkmanager --install "system-images;android-30;google_apis;x86_64" "emulator"
+      - name: Run UI tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          script: ./gradlew connectedAndroidTest
 
-      - name: Create and Start Emulator
-        run: |
-         echo "no" | avdmanager create avd -n test -k "system-images;android-30;google_apis;x86_64" --force
-         emulator -avd test -no-window -no-audio -no-boot-anim &
-         adb wait-for-device
-
-      - name: Run UI Tests
-        run: ./gradlew connectedAndroidTest --stacktrace
+      - name: Upload test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: app/build/reports/androidTests/connected/
 
 #  distribute:
 #    name: Distribute bundle to Google Play
