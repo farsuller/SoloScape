@@ -83,14 +83,11 @@ jobs:
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
-        with:
-         api-level: 30
-         build-tools: 30.0.3
 
-      - name: Start Android Emulator
+      - name: Start Android Emulator and
         uses: reactivecircus/android-emulator-runner@v2
         with:
-         api-level: 33
+         api-level: 26
          target: default
          arch: x86_64
          profile: Nexus 4
