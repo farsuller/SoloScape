@@ -36,9 +36,11 @@ import coil3.request.crossfade
 import com.soloscape.felt.presentations.write.components.WriteState
 import com.soloscape.ui.Reaction
 import com.soloscape.ui.components.TransparentTextField
+import com.soloscape.util.Constants.TestTags.CONTENT_TEXT_FIELD
+import com.soloscape.util.Constants.TestTags.TITLE_TEXT_FIELD
 
 @Composable
-internal fun WriteContent(
+fun WriteContent(
     pagerState: PagerState,
     paddingValues: PaddingValues,
     onValueChangeTitle: (String) -> Unit,
@@ -104,6 +106,7 @@ internal fun WriteContent(
                             focusManager.moveFocus(FocusDirection.Down)
                         },
                     ),
+                    testTag = TITLE_TEXT_FIELD,
                 )
 
                 TransparentTextField(
@@ -116,7 +119,7 @@ internal fun WriteContent(
                     isHintVisible = writeState.contentHintVisible,
                     keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
                     keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
-
+                    testTag = CONTENT_TEXT_FIELD,
                 )
             }
         }

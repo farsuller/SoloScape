@@ -30,8 +30,8 @@ internal class FeltViewModel @Inject constructor(
 
     private var network by mutableStateOf(ConnectivityObserver.Status.Unavailable)
 
-    private val _homeState = MutableStateFlow(FeltState())
-    val homeState: StateFlow<FeltState> = _homeState.asStateFlow()
+    private val _journalState = MutableStateFlow(FeltState())
+    val journalState: StateFlow<FeltState> = _journalState.asStateFlow()
 
     var dateIsSelected by mutableStateOf(false)
         private set
@@ -54,7 +54,7 @@ internal class FeltViewModel @Inject constructor(
         dateIsSelected = false
 
         writeUseCases.getWrite().onEach { write ->
-            _homeState.update { it.copy(writes = write) }
+            _journalState.update { it.copy(writes = write) }
         }.launchIn(viewModelScope)
     }
 
@@ -62,7 +62,7 @@ internal class FeltViewModel @Inject constructor(
         dateIsSelected = true
 
         writeUseCases.getWriteByFiltered(date = zonedDateTime).onEach { write ->
-            _homeState.update { it.copy(writes = write) }
+            _journalState.update { it.copy(writes = write) }
         }.launchIn(viewModelScope)
     }
 

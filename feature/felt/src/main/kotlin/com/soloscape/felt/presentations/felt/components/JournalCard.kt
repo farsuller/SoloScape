@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
@@ -35,6 +36,7 @@ import com.soloscape.database.domain.model.Journal
 import com.soloscape.ui.Reaction
 import com.soloscape.ui.theme.Elevation
 import com.soloscape.ui.theme.robotoBoldFontFamily
+import com.soloscape.util.Constants.TestTags.JOURNAL_ITEM
 import java.text.SimpleDateFormat
 import java.util.Locale
 

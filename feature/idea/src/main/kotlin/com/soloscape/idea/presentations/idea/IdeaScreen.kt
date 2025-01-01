@@ -7,6 +7,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import com.soloscape.database.domain.model.Note
 import com.soloscape.idea.presentations.idea.components.IdeaState
@@ -14,16 +15,18 @@ import com.soloscape.idea.presentations.note.components.NoteIdColor
 import com.soloscape.ui.components.GenericFloatingActionButton
 import com.soloscape.ui.components.GenericSnackBar
 import com.soloscape.ui.components.GenericTopAppBar
+import com.soloscape.util.Constants.TestTags.BACK_PRESSED
+import com.soloscape.util.Constants.TestTags.GENERIC_FAB_NAVIGATE
 import com.soloscape.util.clickableWithoutRipple
 
 @Composable
 fun IdeaScreen(
-    navigateToNoteWithArgs: (NoteIdColor) -> Unit,
-    navigateToNote: () -> Unit,
-    onBackPressed: () -> Unit,
-    onDeleteClick: (Note) -> Unit,
+    navigateToNoteWithArgs: (NoteIdColor) -> Unit = {},
+    navigateToNote: () -> Unit = {},
+    onBackPressed: () -> Unit = {},
+    onDeleteClick: (Note) -> Unit = {},
     ideaState: IdeaState,
-    snackBarHostState: SnackbarHostState,
+    snackBarHostState: SnackbarHostState = SnackbarHostState(),
 ) {
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
 
@@ -37,11 +40,15 @@ fun IdeaScreen(
                 scrollBehavior = scrollBehavior,
                 iconModifier = Modifier
                     .padding(10.dp)
-                    .clickableWithoutRipple { onBackPressed() },
+                    .clickableWithoutRipple { onBackPressed() }
+                    .testTag(BACK_PRESSED),
             )
         },
         floatingActionButton = {
-            GenericFloatingActionButton(onClick = navigateToNote)
+            GenericFloatingActionButton(
+                onClick = navigateToNote,
+                testTag = GENERIC_FAB_NAVIGATE
+            )
         },
     ) { innerPadding ->
 

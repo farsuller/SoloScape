@@ -26,6 +26,7 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,21 +35,23 @@ import androidx.compose.ui.unit.sp
 import com.soloscape.database.domain.model.Journal
 import com.soloscape.felt.presentations.felt.components.JournalCard
 import com.soloscape.ui.R
+import com.soloscape.ui.Reaction
 import com.soloscape.ui.components.EmptyListContainer
+import com.soloscape.util.Constants.TestTags.JOURNAL_ITEM
 import com.soloscape.util.clickableWithoutRipple
 import kotlinx.coroutines.delay
 import java.time.LocalDate
 
 @Composable
-internal fun FeltContent(
+fun FeltContent(
     paddingValues: PaddingValues,
-    writes: Map<LocalDate, List<Journal>>? = null,
+    writes: Map<LocalDate, List<Journal>>,
     onClickCard: (Int?) -> Unit,
 ) {
     val visibleHeaders = remember { mutableStateListOf<LocalDate>() }
     val visibleItems = remember { mutableStateListOf<Int>() }
 
-    if (writes != null) {
+
         LaunchedEffect(writes) {
             writes.keys.forEachIndexed { index, localDate ->
                 delay(30L * index)
@@ -97,7 +100,9 @@ internal fun FeltContent(
                         ) {
                             JournalCard(
                                 write = item,
-                                modifier = Modifier.clickableWithoutRipple { onClickCard(item.id) },
+                                modifier = Modifier
+                                    .clickableWithoutRipple { onClickCard(item.id) }
+                                    .testTag(JOURNAL_ITEM),
                             )
                         }
                     }
@@ -109,7 +114,7 @@ internal fun FeltContent(
                 subtitle = stringResource(R.string.feeling_something_subtitle),
             )
         }
-    }
+
 }
 
 @Composable
@@ -164,6 +169,12 @@ internal fun DateHeader(localDate: LocalDate) {
             )
         }
     }
+}
+
+@Composable
+@Preview(showBackground = true)
+internal fun JournalCardPreview() {
+    JournalCard(write = Journal(1, Reaction.Happy.name, "Title", "Content", 0))
 }
 
 @Composable

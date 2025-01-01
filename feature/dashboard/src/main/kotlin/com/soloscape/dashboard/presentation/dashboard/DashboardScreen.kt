@@ -49,7 +49,8 @@ import com.soloscape.ui.theme.NyanzaColor
 import com.soloscape.ui.theme.PhilippineBronzeColor
 import com.soloscape.ui.theme.robotoThinFontFamily
 import com.soloscape.util.Constants.TestTags.HI
-import com.soloscape.util.Constants.TestTags.TITLE_TEXT_FIELD
+import com.soloscape.util.Constants.TestTags.JOURNAL_CARD
+import com.soloscape.util.Constants.TestTags.NOTE_CARD
 import com.soloscape.util.Constants.TestTags.YOUR_NAME_TEXT_FIELD
 
 @Composable
@@ -130,7 +131,8 @@ fun DashboardScreen(
                         modifier = Modifier
                             .height(height = 160.dp)
                             .clip(RoundedCornerShape(12.dp))
-                            .background(NyanzaColor),
+                            .background(NyanzaColor)
+                            .testTag(NOTE_CARD),
                         textTitle = stringResource(R.string.idea_title),
                         textBody = stringResource(R.string.idea_content_1),
                         textDescription = stringResource(R.string.idea_content_2),
@@ -144,7 +146,8 @@ fun DashboardScreen(
                         modifier = Modifier
                             .height(height = 160.dp)
                             .clip(RoundedCornerShape(12.dp))
-                            .background(MistyRoseColor),
+                            .background(MistyRoseColor)
+                            .testTag(JOURNAL_CARD),
                         textTitle = stringResource(R.string.felt_title),
                         textBody = stringResource(R.string.felt_content_1),
                         textDescription = stringResource(R.string.felt_content_2),

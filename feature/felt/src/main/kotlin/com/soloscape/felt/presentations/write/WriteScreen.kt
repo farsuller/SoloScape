@@ -6,17 +6,20 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusState
+import androidx.compose.ui.platform.testTag
 import com.soloscape.database.domain.model.Journal
 import com.soloscape.felt.presentations.write.components.WriteState
 import com.soloscape.felt.presentations.write.components.WriteTopBar
 import com.soloscape.ui.Reaction
 import com.soloscape.ui.components.SaveButton
+import com.soloscape.util.Constants.TestTags.GENERIC_FAB_ADD
 import java.time.ZonedDateTime
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-internal fun WriteScreen(
+fun WriteScreen(
     pagerState: PagerState,
     onDeleteConfirmed: (Journal) -> Unit,
     onBackPressed: () -> Unit,
@@ -47,6 +50,7 @@ internal fun WriteScreen(
             SaveButton(
                 onClick = onSaveClicked,
                 color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.testTag(GENERIC_FAB_ADD)
             )
         },
         content = { paddingValues ->

@@ -23,12 +23,12 @@ fun NavGraphBuilder.feltRoute(
 ) {
     composable(route = ScreensRoutes.FeltRoute.route) {
         val viewModel: FeltViewModel = hiltViewModel()
-        val homeState by viewModel.homeState.collectAsStateWithLifecycle()
+        val homeState by viewModel.journalState.collectAsStateWithLifecycle()
 
         var deleteAllDialogOpened by remember { mutableStateOf(false) }
 
         FeltScreen(
-            homeState = homeState,
+            journalState = homeState,
             navigateToWrite = navigationToWrite,
             navigateToWriteWithArgs = navigateToWriteWithArgs,
             dateIsSelected = viewModel.dateIsSelected,

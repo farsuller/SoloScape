@@ -1,9 +1,9 @@
 name: BuildAnimeLoom
 on:
   pull_request :
-    branches : [ main ]
+    branches : [ test-case-ui ]
   push :
-    branches: [ main ]
+    branches: [ test-case-ui ]
 
 jobs:
 

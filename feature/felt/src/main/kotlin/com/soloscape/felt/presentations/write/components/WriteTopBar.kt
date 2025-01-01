@@ -19,6 +19,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,6 +35,7 @@ import com.soloscape.felt.presentations.common.MoreVertAction
 import com.soloscape.ui.Reaction
 import com.soloscape.ui.theme.SoloScapeTheme
 import com.soloscape.ui.theme.robotoBoldFontFamily
+import com.soloscape.util.Constants.TestTags.BACK_PRESSED
 import com.soloscape.util.clickableWithoutRipple
 import com.soloscape.util.toZonedDateTimeOrNull
 import java.time.LocalDate
@@ -78,7 +80,9 @@ internal fun WriteTopBar(
     TopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(containerColor = reaction.containerColor),
         navigationIcon = {
-            IconButton(onClick = onBackPressed) {
+            IconButton(
+                modifier = Modifier.testTag(BACK_PRESSED),
+                onClick = onBackPressed) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = "Back Arrow Icon",

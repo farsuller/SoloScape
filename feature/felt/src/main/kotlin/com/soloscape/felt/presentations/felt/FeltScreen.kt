@@ -3,25 +3,25 @@ package com.soloscape.felt.presentations.felt
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.testTag
 import com.soloscape.felt.presentations.felt.components.FeltState
 import com.soloscape.felt.presentations.felt.components.FeltTopBar
 import com.soloscape.ui.components.GenericFloatingActionButton
+import com.soloscape.util.Constants.TestTags.GENERIC_FAB_NAVIGATE
 import java.time.ZonedDateTime
 
 @Composable
-internal fun FeltScreen(
-    homeState: FeltState,
-    navigateToWrite: () -> Unit,
-    navigateToWriteWithArgs: (Int?) -> Unit,
-    dateIsSelected: Boolean,
-    onDateSelected: (ZonedDateTime) -> Unit,
-    onDateReset: () -> Unit,
-    onBackPressed: () -> Unit,
-    onDeleteAllConfirmed: () -> Unit,
+fun FeltScreen(
+    journalState: FeltState,
+    navigateToWrite: () -> Unit = {},
+    navigateToWriteWithArgs: (Int?) -> Unit = {},
+    dateIsSelected: Boolean = false,
+    onDateSelected: (ZonedDateTime) -> Unit = {},
+    onDateReset: () -> Unit = {},
+    onBackPressed: () -> Unit = {},
+    onDeleteAllConfirmed: () -> Unit = {},
 ) {
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     Scaffold(
@@ -37,12 +37,15 @@ internal fun FeltScreen(
             )
         },
         floatingActionButton = {
-            GenericFloatingActionButton(onClick = navigateToWrite)
+            GenericFloatingActionButton(
+                onClick = navigateToWrite,
+                testTag = GENERIC_FAB_NAVIGATE
+            )
         },
         content = {
             FeltContent(
                 paddingValues = it,
-                writes = homeState.writes,
+                writes = journalState.writes,
                 onClickCard = navigateToWriteWithArgs,
             )
         },

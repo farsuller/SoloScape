@@ -13,16 +13,19 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="DashboardScreenTest">
+      <SelectionState runConfigName="onClickedNavigateToJournal()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="DashboardScreenTest (1)">
+      <SelectionState runConfigName="onClickedNavigateToWrite()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="TestActivity">
+      <SelectionState runConfigName="onClickNavigateToWriteWithArgs()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="TestActivity (1)">
+      <SelectionState runConfigName="onTextInputTitleAndContentJournal()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="onSelectJournalWithArgs()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
