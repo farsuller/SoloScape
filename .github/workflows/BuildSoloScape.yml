@@ -59,6 +59,51 @@ jobs:
       - name: Run unit tests
         run: ./gradlew clean :app:testDebugUnitTest
 
+  ui_tests:
+    name: UI Tests
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 17
+          cache: 'gradle'
+
+      - name: Grant execute permissions for gradlew
+        run: chmod +x gradlew
+
+      - name: Create local.properties
+        run: echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
+
+      - name: Setup Android SDK
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget unzip
+          wget https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip
+          unzip commandlinetools-linux-7583922_latest.zip
+          mkdir -p ~/android-sdk/cmdline-tools
+          mv cmdline-tools ~/android-sdk/cmdline-tools/latest
+          export ANDROID_HOME=$HOME/android-sdk
+          export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH
+
+      - name: Install SDK components
+        run: |
+          yes | sdkmanager --licenses
+          sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3" "emulator" "system-images;android-30;google_apis;x86_64" "tools"
+
+      - name: Start Android Emulator
+        run: |
+          emulator -avd Pixel_3_API_30 -no-window -no-audio -no-boot-anim &
+          adb wait-for-device
+
+      - name: Run UI Tests
+        run: ./gradlew connectedAndroidTest --stacktrace
+
 #  distribute:
 #    name: Distribute bundle to Google Play
 #    needs: test
