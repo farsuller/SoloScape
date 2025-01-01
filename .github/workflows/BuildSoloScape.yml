@@ -86,11 +86,15 @@ jobs:
           api-level: 30
           build-tools: 30.0.3
 
-      - name: Start Android Emulator
+      - name: Install Emulator and System Image
         run: |
-          adb start-server
-          emulator -avd Pixel_3_API_30 -no-window -no-audio -no-boot-anim &
-          adb wait-for-device
+          sdkmanager --install "system-images;android-30;google_apis;x86_64" "emulator"
+
+      - name: Create and Start Emulator
+        run: |
+         echo "no" | avdmanager create avd -n test -k "system-images;android-30;google_apis;x86_64" --force
+         emulator -avd test -no-window -no-audio -no-boot-anim &
+         adb wait-for-device
 
       - name: Run UI Tests
         run: ./gradlew connectedAndroidTest --stacktrace
