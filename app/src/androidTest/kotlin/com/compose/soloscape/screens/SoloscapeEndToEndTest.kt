@@ -56,7 +56,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-
 @HiltAndroidTest
 class SoloscapeEndToEndTest {
 
@@ -79,13 +78,12 @@ class SoloscapeEndToEndTest {
     fun setUp() {
         hiltRule.inject()
 
-
         composeRule.setContent {
             SoloScapeTheme {
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
-                    startDestination = ScreensRoutes.DashboardRoute.route
+                    startDestination = ScreensRoutes.DashboardRoute.route,
                 ) {
                     composable(route = ScreensRoutes.DashboardRoute.route) {
                         DashboardScreen(
@@ -94,12 +92,13 @@ class SoloscapeEndToEndTest {
                             onValueChange = { yourNameState = yourNameState.copy(text = it) },
                             onFocusChange = {
                                 yourNameState = yourNameState.copy(
-                                    isHintVisible = !it.isFocused && yourNameState.text.isBlank()
+                                    isHintVisible = !it.isFocused && yourNameState.text.isBlank(),
                                 )
                             },
                             onNoteClick = { navController.navigate(ScreensRoutes.IdeaRoute.route) },
                             onJournalClick = { navController.navigate(ScreensRoutes.FeltRoute.route) },
-                            yourNameState = yourNameState, journalNoteState = JournalNoteState(),
+                            yourNameState = yourNameState,
+                            journalNoteState = JournalNoteState(),
                         )
                     }
 
@@ -112,8 +111,8 @@ class SoloscapeEndToEndTest {
                             navigateToWriteWithArgs = {
                                 navController.navigate(
                                     ScreensRoutes.WriteFeltRoute.passWriteId(
-                                        writeId = it ?: -1
-                                    )
+                                        writeId = it ?: -1,
+                                    ),
                                 )
                             },
                             dateIsSelected = false,
@@ -124,13 +123,15 @@ class SoloscapeEndToEndTest {
                         )
                     }
 
-                    composable(route = ScreensRoutes.WriteFeltRoute.route,
+                    composable(
+                        route = ScreensRoutes.WriteFeltRoute.route,
                         arguments = listOf(
-                        navArgument(name = WRITE_ID_ARG_KEY) {
-                            type = NavType.IntType
-                            defaultValue = -1
-                        }
-                    )) {
+                            navArgument(name = WRITE_ID_ARG_KEY) {
+                                type = NavType.IntType
+                                defaultValue = -1
+                            },
+                        ),
+                    ) {
                         val pagerState = rememberPagerState(pageCount = { Reaction.entries.size })
                         val pageNumber by remember { derivedStateOf { pagerState.currentPage } }
                         val reaction = Reaction.entries[pageNumber]
@@ -178,7 +179,8 @@ class SoloscapeEndToEndTest {
                         )
                     }
 
-                    composable(route = ScreensRoutes.NoteIdeaRoute.route,
+                    composable(
+                        route = ScreensRoutes.NoteIdeaRoute.route,
                         arguments = listOf(
                             navArgument(name = NOTE_ID_ARG_KEY) {
                                 type = NavType.IntType
@@ -187,8 +189,9 @@ class SoloscapeEndToEndTest {
                             navArgument(name = NOTE_COLOR_ARG_KEY) {
                                 type = NavType.IntType
                                 defaultValue = -1
-                            }
-                        )) {
+                            },
+                        ),
+                    ) {
                         val color = it.arguments?.getInt(NOTE_COLOR_ARG_KEY) ?: -1
 
                         NoteScreen(

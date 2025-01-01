@@ -34,7 +34,5 @@ object Constants {
         const val JOURNAL_ITEM = "JOURNAL_ITEM"
 
         const val BACK_PRESSED = "BACK_PRESSED"
-
-
     }
 }

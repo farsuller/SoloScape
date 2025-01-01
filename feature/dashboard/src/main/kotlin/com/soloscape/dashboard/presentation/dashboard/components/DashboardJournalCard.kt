@@ -33,7 +33,6 @@ import com.soloscape.ui.Reaction
 import com.soloscape.ui.theme.Elevation
 import com.soloscape.ui.theme.robotoBoldFontFamily
 import com.soloscape.util.Constants.TestTags.JOURNAL_ITEM
-import com.soloscape.util.Constants.TestTags.NOTE_ITEM
 import com.soloscape.util.clickableWithoutRipple
 
 @Composable

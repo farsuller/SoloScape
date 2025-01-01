@@ -47,7 +47,7 @@ fun IdeaScreen(
         floatingActionButton = {
             GenericFloatingActionButton(
                 onClick = navigateToNote,
-                testTag = GENERIC_FAB_NAVIGATE
+                testTag = GENERIC_FAB_NAVIGATE,
             )
         },
     ) { innerPadding ->

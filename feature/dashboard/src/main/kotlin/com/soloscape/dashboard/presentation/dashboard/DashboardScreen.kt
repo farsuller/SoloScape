@@ -169,8 +169,9 @@ fun DashboardScreen(
         }
     }
 }
+
 @Preview
 @Composable
-fun DashboardScreenPreview(){
+fun DashboardScreenPreview() {
     DashboardScreen(yourNameState = YourNameState(), journalNoteState = JournalNoteState())
 }

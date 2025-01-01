@@ -39,7 +39,7 @@ fun FeltScreen(
         floatingActionButton = {
             GenericFloatingActionButton(
                 onClick = navigateToWrite,
-                testTag = GENERIC_FAB_NAVIGATE
+                testTag = GENERIC_FAB_NAVIGATE,
             )
         },
         content = {

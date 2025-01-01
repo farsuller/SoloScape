@@ -82,7 +82,8 @@ internal fun WriteTopBar(
         navigationIcon = {
             IconButton(
                 modifier = Modifier.testTag(BACK_PRESSED),
-                onClick = onBackPressed) {
+                onClick = onBackPressed,
+            ) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = "Back Arrow Icon",

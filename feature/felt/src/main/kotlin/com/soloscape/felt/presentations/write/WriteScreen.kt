@@ -50,7 +50,7 @@ fun WriteScreen(
             SaveButton(
                 onClick = onSaveClicked,
                 color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.testTag(GENERIC_FAB_ADD)
+                modifier = Modifier.testTag(GENERIC_FAB_ADD),
             )
         },
         content = { paddingValues ->

@@ -15,7 +15,7 @@ import com.soloscape.ui.R
 fun SaveButton(
     onClick: () -> Unit,
     color: Color = MaterialTheme.colorScheme.primary,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     FloatingActionButton(
         modifier = modifier.size(55.dp),

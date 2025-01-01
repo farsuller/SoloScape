@@ -79,7 +79,7 @@ fun NoteScreen(
             SaveButton(
                 onClick = onSaveClicked,
                 color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.testTag(GENERIC_FAB_ADD)
+                modifier = Modifier.testTag(GENERIC_FAB_ADD),
             )
         },
     ) { innerPadding ->
@@ -99,7 +99,8 @@ fun NoteScreen(
             ) {
                 IconButton(
                     modifier = Modifier.testTag(BACK_PRESSED),
-                    onClick = onBackPressed) {
+                    onClick = onBackPressed,
+                ) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = "Back Arrow Icon",
