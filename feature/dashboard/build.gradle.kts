@@ -1,3 +1,6 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompilerOptions
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
+
 plugins {
     alias (libs.plugins.android.library)
     alias (libs.plugins.kotlin.android)
@@ -8,6 +11,10 @@ plugins {
 
 android {
     namespace = "com.soloscape.dashboard"
+
+    defaultConfig{
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
 
     buildFeatures {
         compose = true
@@ -24,6 +31,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
 
+    implementation(libs.material)
     implementation(libs.androidx.material3)
 
     implementation(libs.bundles.bundle.coil)
@@ -45,4 +53,10 @@ dependencies {
     implementation(projects.core.database)
     implementation(projects.core.util)
     implementation(projects.core.messagebar)
+
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    androidTestImplementation(libs.androidx.compose.ui.test.manifest)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.junit.ktx)
 }

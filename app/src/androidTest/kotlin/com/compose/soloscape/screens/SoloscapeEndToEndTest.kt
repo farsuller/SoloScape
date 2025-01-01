@@ -1,5 +1,6 @@
 package com.compose.soloscape.screens
 
+import androidx.activity.ComponentActivity
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.derivedStateOf
@@ -7,6 +8,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
@@ -20,11 +22,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.compose.soloscape.TestActivity
-import com.compose.soloscape.data.dummyNotes
-import com.compose.soloscape.data.journals
 import com.soloscape.dashboard.presentation.dashboard.DashboardScreen
 import com.soloscape.dashboard.presentation.dashboard.JournalNoteState
 import com.soloscape.dashboard.presentation.dashboard.YourNameState
+import com.soloscape.database.domain.model.Journal
+import com.soloscape.database.domain.model.Note
+import com.soloscape.database.domain.model.Note.Companion.noteColors
 import com.soloscape.felt.presentations.felt.FeltScreen
 import com.soloscape.felt.presentations.felt.components.FeltState
 import com.soloscape.felt.presentations.write.WriteScreen
@@ -55,6 +58,7 @@ import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import java.time.LocalDate
 
 @HiltAndroidTest
 class SoloscapeEndToEndTest {
@@ -72,6 +76,60 @@ class SoloscapeEndToEndTest {
 
     private var ideaState by mutableStateOf(IdeaState())
     private var noteState by mutableStateOf(NoteState())
+
+    private val dummyNotes = listOf(
+        Note(
+            id = 1,
+            title = "Note 1",
+            content = "Note Content 1",
+            timestamp = LocalDate.of(2025, 1, 1).toEpochDay(),
+            color = noteColors.random().toArgb(),
+        ),
+        Note(
+            id = 2,
+            title = "Note 2",
+            content = "Note Content 2",
+            timestamp = LocalDate.of(2025, 1, 1).toEpochDay(),
+            color = noteColors.random().toArgb(),
+        ),
+        Note(
+            id = 3,
+            title = "Note 3",
+            content = "Note Content 3",
+            timestamp = LocalDate.of(2025, 1, 1).toEpochDay(),
+            color = noteColors.random().toArgb(),
+        ),
+    )
+
+    private val dummyJournals = listOf(
+        Journal(
+            id = 1,
+            mood = "Happy",
+            title = "A Wonderful Day",
+            content = "Today was an amazing day! I went hiking and enjoyed the fresh air.",
+            date = LocalDate.of(2025, 1, 1).toEpochDay(),
+        ),
+        Journal(
+            id = 2,
+            mood = "Calm",
+            title = "Reflections",
+            content = "Spent some time thinking about the year ahead and setting goals.",
+            date = LocalDate.of(2025, 1, 2).toEpochDay(),
+        ),
+        Journal(
+            id = 3,
+            mood = "Neutral",
+            title = "New Beginnings",
+            content = "Started a new project today, and I can't wait to see where it leads!",
+            date = LocalDate.of(2025, 1, 3).toEpochDay(),
+        ),
+    )
+
+    val journals = mapOf(
+        LocalDate.of(2025, 1, 1) to listOf(dummyJournals[0]),
+        LocalDate.of(2025, 1, 2) to listOf(dummyJournals[1]),
+        LocalDate.of(2025, 1, 3) to listOf(dummyJournals[2]),
+    )
 
     @ExperimentalAnimationApi
     @Before
@@ -221,17 +279,6 @@ class SoloscapeEndToEndTest {
                 }
             }
         }
-    }
-
-    @Test
-    fun greetingsAndYourNameIsDisplayed() {
-        val testInput = "Test Name"
-        composeRule.onNodeWithTag(HI).assertIsDisplayed()
-        composeRule.waitForIdle()
-        composeRule.onNodeWithTag(YOUR_NAME_TEXT_FIELD).performTextInput(testInput)
-        composeRule.waitForIdle()
-        composeRule.onNodeWithTag(YOUR_NAME_TEXT_FIELD).assertTextEquals(testInput)
-        composeRule.waitForIdle()
     }
 
     @Test

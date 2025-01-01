@@ -81,6 +81,11 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
+      - name: Setup Google Services
+        run: |
+           mkdir -p app/src/debug
+           echo '${{ secrets.GOOGLE_SERVICES }}' > app/src/debug/google-services.json
+
       - name: Start Android Emulator and Run UI Test
         uses: reactivecircus/android-emulator-runner@v2
         with:

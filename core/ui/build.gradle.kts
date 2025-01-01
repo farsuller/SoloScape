@@ -21,6 +21,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
 
+    implementation(libs.material)
     implementation(libs.androidx.material3)
 
     implementation(libs.bundles.bundle.coil)

@@ -22,10 +22,10 @@
       <SelectionState runConfigName="onClickedNavigateToNote()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="onNavigateTitleAndContentNote()">
+      <SelectionState runConfigName="onNavigateTitleAndContentJournal()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="onNavigateTitleAndContentJournal()">
+      <SelectionState runConfigName="DashboardScreenTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
