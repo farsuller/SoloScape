@@ -87,7 +87,7 @@ jobs:
           build-tools: 30.0.3
 
       - name: Run UI tests
-        uses: reactivecircus/android-emulator-runner@v2
+        uses: reactivecircus/android-emulator-runner@v3
         with:
           api-level: 29
           script: ./gradlew connectedAndroidTest
