@@ -16,16 +16,16 @@
       <SelectionState runConfigName="onClickedNavigateToJournal()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="onClickedNavigateToWrite()">
+      <SelectionState runConfigName="SoloscapeEndToEndTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="onClickNavigateToWriteWithArgs()">
+      <SelectionState runConfigName="onClickedNavigateToNote()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="onTextInputTitleAndContentJournal()">
+      <SelectionState runConfigName="onNavigateTitleAndContentNote()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="onSelectJournalWithArgs()">
+      <SelectionState runConfigName="onNavigateTitleAndContentJournal()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
