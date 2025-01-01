@@ -84,21 +84,21 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
         with:
-          api-level: 30
-          build-tools: 30.0.3
+         api-level: 30
+         build-tools: 30.0.3
 
       - name: Start Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 33
-          target: default
-          arch: x86_64
-          profile: Nexus 4
-          emulator-options: -no-window -no-boot-anim -no-audio -no-snapshot-load
-          script: |
-              adb wait-for-device
-              adb shell input keyevent 82
-            ./gradlew connectedAndroidTest --continue
+         api-level: 33
+         target: default
+         arch: x86_64
+         profile: Nexus 4
+         emulator-options: -no-window -no-boot-anim -no-audio -no-snapshot-load
+         script: |
+          adb wait-for-device
+          adb shell input keyevent 82
+          ./gradlew connectedAndroidTest --continue
 
       - name: Upload Test Reports
         if: failure()
