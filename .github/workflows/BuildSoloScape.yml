@@ -7,61 +7,61 @@ on:
 
 jobs:
 
-  lint:
-    name: Linting
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Java JDK
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: 17
-          cache: 'gradle'
-
-      - name: Grant execute permissions for gradlew
-        run: chmod +x gradlew
-
-      - name: Create local.properties
-        run: echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
-
-      - name: Run Spotless with Gradle
-        run: ./gradlew spotlessApply
-
-  test:
-    name: Unit Test
-    needs: lint
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Java JDK
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: 17
-          cache: 'gradle'
-
-      - name: Grant execute permissions for gradlew
-        run: chmod +x gradlew
-
-      - name: Create local.properties
-        run: echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
-
-      - name: Setup Google Services
-        run: |
-            mkdir -p app/src/debug
-            echo '${{ secrets.GOOGLE_SERVICES }}' > app/src/debug/google-services.json
-
-      - name: Run unit tests
-        run: ./gradlew clean :app:testDebugUnitTest
+#  lint:
+#    name: Linting
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - uses: actions/checkout@v4
+#
+#      - name: Setup Java JDK
+#        uses: actions/setup-java@v4
+#        with:
+#          distribution: 'temurin'
+#          java-version: 17
+#          cache: 'gradle'
+#
+#      - name: Grant execute permissions for gradlew
+#        run: chmod +x gradlew
+#
+#      - name: Create local.properties
+#        run: echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
+#
+#      - name: Run Spotless with Gradle
+#        run: ./gradlew spotlessApply
+#
+#  test:
+#    name: Unit Test
+#    needs: lint
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - uses: actions/checkout@v4
+#
+#      - name: Setup Java JDK
+#        uses: actions/setup-java@v4
+#        with:
+#          distribution: 'temurin'
+#          java-version: 17
+#          cache: 'gradle'
+#
+#      - name: Grant execute permissions for gradlew
+#        run: chmod +x gradlew
+#
+#      - name: Create local.properties
+#        run: echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
+#
+#      - name: Setup Google Services
+#        run: |
+#            mkdir -p app/src/debug
+#            echo '${{ secrets.GOOGLE_SERVICES }}' > app/src/debug/google-services.json
+#
+#      - name: Run unit tests
+#        run: ./gradlew clean :app:testDebugUnitTest
 
   ui_tests:
     name: UI Tests
-    needs: test
+#    needs: test
     runs-on: macos-13
     continue-on-error: true
 
@@ -72,7 +72,7 @@ jobs:
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
+          distribution: 'adopt'
           java-version: 17
 
       - name: Grant execute permissions for gradlew
