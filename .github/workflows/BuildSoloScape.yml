@@ -9,7 +9,7 @@ jobs:
 
   lint:
     name: Linting
-    runs-on: macos-13
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -33,7 +33,7 @@ jobs:
   test:
     name: Unit Test
     needs: lint
-    runs-on: macos-13
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -62,7 +62,7 @@ jobs:
   ui_tests:
     name: UI Tests
     needs: test
-    runs-on: macos-13
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
