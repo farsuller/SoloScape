@@ -28,6 +28,7 @@ import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
@@ -37,6 +38,7 @@ import com.soloscape.felt.presentations.write.components.WriteState
 import com.soloscape.ui.Reaction
 import com.soloscape.ui.components.TransparentTextField
 import com.soloscape.util.Constants.TestTags.CONTENT_TEXT_FIELD
+import com.soloscape.util.Constants.TestTags.HORIZONTAL_PAGER
 import com.soloscape.util.Constants.TestTags.TITLE_TEXT_FIELD
 
 @Composable
@@ -70,7 +72,10 @@ fun WriteContent(
                 .verticalScroll(state = scrollState),
         ) {
             Spacer(modifier = Modifier.height(30.dp))
-            HorizontalPager(state = pagerState) { page ->
+            HorizontalPager(
+                modifier = Modifier.testTag(HORIZONTAL_PAGER),
+                state = pagerState,
+            ) { page ->
                 Box(
                     modifier = Modifier.fillMaxWidth(),
                     contentAlignment = Alignment.Center,
@@ -101,11 +106,7 @@ fun WriteContent(
                     onFocusChange = onFocusChangeTitle,
                     isHintVisible = writeState.titleHintVisible,
                     keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
-                    keyboardActions = KeyboardActions(
-                        onNext = {
-                            focusManager.moveFocus(FocusDirection.Down)
-                        },
-                    ),
+                    keyboardActions = KeyboardActions(onNext = { focusManager.moveFocus(FocusDirection.Down) }),
                     testTag = TITLE_TEXT_FIELD,
                 )
 

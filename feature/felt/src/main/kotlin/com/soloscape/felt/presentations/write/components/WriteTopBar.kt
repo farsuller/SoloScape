@@ -45,7 +45,7 @@ import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 
 @Composable
-internal fun WriteTopBar(
+fun WriteTopBar(
     reaction: Reaction,
     selectedWrite: Journal? = null,
     onBackPressed: () -> Unit,

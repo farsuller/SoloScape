@@ -13,10 +13,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
-import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.foundation.lazy.staggeredgrid.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -31,6 +29,7 @@ import com.soloscape.idea.presentations.idea.components.NoteItemCard
 import com.soloscape.idea.presentations.note.components.NoteIdColor
 import com.soloscape.ui.R
 import com.soloscape.ui.components.EmptyListContainer
+import com.soloscape.util.Constants.TestTags.EMPTY_CONTENT
 import com.soloscape.util.clickableWithoutRipple
 import kotlinx.coroutines.delay
 
@@ -104,7 +103,11 @@ fun IdeaContent(
                 modifier = Modifier.fillMaxSize(),
             )
         } else {
-            EmptyListContainer(title = stringResource(R.string.got_idea_title), subtitle = stringResource(R.string.got_idea_subtitle))
+            EmptyListContainer(
+                title = stringResource(R.string.got_idea_title),
+                subtitle = stringResource(R.string.got_idea_subtitle),
+                testTag = EMPTY_CONTENT,
+            )
         }
     }
 }

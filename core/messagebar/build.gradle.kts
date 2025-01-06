@@ -7,6 +7,10 @@ plugins {
 android {
     namespace = "com.stevdzasan.messagebar"
 
+    defaultConfig {
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
     buildFeatures {
         compose = true
     }
@@ -31,4 +35,5 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+    androidTestImplementation(libs.androidx.runner)
 }

@@ -13,19 +13,19 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="onClickedNavigateToJournal()">
+      <SelectionState runConfigName="addJournalItemThenClickSaveThenDeleteItem()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="SoloscapeEndToEndTest">
+      <SelectionState runConfigName="editSwipeReactionsThenAddJournalItemThenSave()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="onClickedNavigateToNote()">
+      <SelectionState runConfigName="MessageBarTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="onNavigateTitleAndContentJournal()">
+      <SelectionState runConfigName="clickAddButtonThenClickBack()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="DashboardScreenTest">
+      <SelectionState runConfigName="addNoteItemEditJournalThenClickSave()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

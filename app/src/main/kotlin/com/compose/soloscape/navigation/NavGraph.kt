@@ -5,7 +5,7 @@ import androidx.compose.runtime.State
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.soloscape.dashboard.navigation.dashboardRoute
-import com.soloscape.felt.navigations.feltRoute
+import com.soloscape.felt.navigations.journalRoute
 import com.soloscape.felt.navigations.writeRoute
 import com.soloscape.idea.navigations.ideaRoute
 import com.soloscape.idea.navigations.noteIdeaRoute
@@ -37,7 +37,7 @@ fun SetupNavGraph(
             navigationToIdea = { navHostController.navigate(ScreensRoutes.IdeaRoute.route) },
         )
 
-        feltRoute(
+        journalRoute(
             navigationToWrite = {
                 navHostController.navigate(ScreensRoutes.WriteFeltRoute.route)
             },

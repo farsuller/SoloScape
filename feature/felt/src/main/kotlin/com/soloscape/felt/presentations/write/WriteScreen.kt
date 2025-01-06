@@ -6,7 +6,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.platform.testTag
 import com.soloscape.database.domain.model.Journal
@@ -21,15 +20,15 @@ import java.time.ZonedDateTime
 @Composable
 fun WriteScreen(
     pagerState: PagerState,
-    onDeleteConfirmed: (Journal) -> Unit,
-    onBackPressed: () -> Unit,
+    onDeleteConfirmed: (Journal) -> Unit = {},
+    onBackPressed: () -> Unit = {},
     reaction: Reaction,
-    onSaveClicked: () -> Unit,
-    onDateTimeUpdated: (ZonedDateTime) -> Unit,
-    onValueChangeTitle: (String) -> Unit,
-    onFocusChangeTitle: (FocusState) -> Unit,
-    onValueChangeContent: (String) -> Unit,
-    onFocusChangeContent: (FocusState) -> Unit,
+    onSaveClicked: () -> Unit = {},
+    onDateTimeUpdated: (ZonedDateTime) -> Unit = {},
+    onValueChangeTitle: (String) -> Unit = {},
+    onFocusChangeTitle: (FocusState) -> Unit = {},
+    onValueChangeContent: (String) -> Unit = {},
+    onFocusChangeContent: (FocusState) -> Unit = {},
     writeState: WriteState,
 ) {
     LaunchedEffect(key1 = writeState.reaction) {
@@ -50,7 +49,7 @@ fun WriteScreen(
             SaveButton(
                 onClick = onSaveClicked,
                 color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.testTag(GENERIC_FAB_ADD),
+                testTag = GENERIC_FAB_ADD,
             )
         },
         content = { paddingValues ->

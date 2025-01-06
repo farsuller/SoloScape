@@ -14,17 +14,22 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.soloscape.database.domain.model.Journal
 import com.soloscape.ui.components.DisplayAlertDialog
 import com.soloscape.ui.theme.robotoBoldFontFamily
+import com.soloscape.util.Constants.TestTags.DELETE
+import com.soloscape.util.Constants.TestTags.DELETE_YES_DIALOG
+import com.soloscape.util.Constants.TestTags.MORE_VERT_CLICKED
 import com.soloscape.util.clickableWithoutRipple
 
 @Composable
 fun MoreVertAction(
     selectedWrite: Journal? = null,
     onDeleteConfirmed: () -> Unit,
+
 ) {
     var expanded by remember {
         mutableStateOf(false)
@@ -35,19 +40,23 @@ fun MoreVertAction(
     val deleteItem = selectedWrite?.title ?: "All"
 
     DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
-        DropdownMenuItem(text = {
-            Text(
-                text = "Delete",
-                style = TextStyle(
-                    fontFamily = robotoBoldFontFamily,
-                    fontSize = MaterialTheme.typography.labelMedium.fontSize,
-                    fontWeight = MaterialTheme.typography.labelMedium.fontWeight,
-                ),
-            )
-        }, onClick = {
-            openDialog = true
-            expanded = false
-        })
+        DropdownMenuItem(
+            modifier = Modifier.testTag(DELETE),
+            text = {
+                Text(
+                    text = "Delete",
+                    style = TextStyle(
+                        fontFamily = robotoBoldFontFamily,
+                        fontSize = MaterialTheme.typography.labelMedium.fontSize,
+                        fontWeight = MaterialTheme.typography.labelMedium.fontWeight,
+                    ),
+                )
+            },
+            onClick = {
+                openDialog = true
+                expanded = false
+            },
+        )
     }
 
     DisplayAlertDialog(
@@ -56,11 +65,13 @@ fun MoreVertAction(
         dialogOpened = openDialog,
         onCloseDialog = { openDialog = false },
         onYesClicked = onDeleteConfirmed,
+        testTagYes = DELETE_YES_DIALOG,
     )
 
     Icon(
         modifier = Modifier
             .padding(end = 5.dp)
+            .testTag(MORE_VERT_CLICKED)
             .clickableWithoutRipple(
                 onClick = { expanded = !expanded },
             ),

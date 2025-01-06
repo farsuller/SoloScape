@@ -49,7 +49,7 @@ class DashboardViewModel @Inject constructor(
     }
 
     private fun getJournalList() {
-        writeUseCases.getWrite().onEach { write ->
+        writeUseCases.getJournals().onEach { write ->
             _journalNoteState.update { it.copy(journalList = write.values.flatten()) }
             combineNotesAndJournals()
         }.launchIn(viewModelScope)

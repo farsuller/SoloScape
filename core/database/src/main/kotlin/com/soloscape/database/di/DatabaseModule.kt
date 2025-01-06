@@ -31,48 +31,40 @@ import javax.inject.Singleton
 object DatabaseModule {
     @Provides
     @Singleton
-    fun provideScapeDatabase(@ApplicationContext context: Context): ScapeDatabase {
-        return Room.databaseBuilder(
+    fun provideScapeDatabase(@ApplicationContext context: Context): ScapeDatabase =
+        Room.databaseBuilder(
             context = context,
             klass = ScapeDatabase::class.java,
             name = ScapeDatabase.DATABASE_NAME,
         ).fallbackToDestructiveMigration()
             .build()
-    }
 
     @Provides
     @Singleton
-    fun provideWriteRepository(db: ScapeDatabase): JournalRepository {
-        return JournalRepositoryImpl(db.journalDao)
-    }
+    fun provideJournalRepository(db: ScapeDatabase): JournalRepository =
+        JournalRepositoryImpl(db.journalDao)
 
     @Provides
     @Singleton
-    fun provideWriteUseCases(repository: JournalRepository): JournalUseCases {
-        return JournalUseCases(
-            getWrite = GetJournals(repository = repository),
-            getWriteById = GetJournalById(repository = repository),
-            getWriteByFiltered = GetJournalByFiltered(repository = repository),
-            addWrite = AddJournal(repository = repository),
-            deleteWrite = DeleteJournal(repository = repository),
-            deleteAllWrite = DeleteAllJournal(repository = repository),
-        )
-    }
+    fun provideJournalUseCases(repository: JournalRepository): JournalUseCases = JournalUseCases(
+        getJournals = GetJournals(repository = repository),
+        getJournalById = GetJournalById(repository = repository),
+        getJournalByFiltered = GetJournalByFiltered(repository = repository),
+        addJournal = AddJournal(repository = repository),
+        deleteJournal = DeleteJournal(repository = repository),
+        deleteAllJournal = DeleteAllJournal(repository = repository),
+    )
 
     @Provides
     @Singleton
-    fun provideNoteRepository(db: ScapeDatabase): NoteRepository {
-        return NoteRepositoryImpl(db.noteDao)
-    }
+    fun provideNoteRepository(db: ScapeDatabase): NoteRepository = NoteRepositoryImpl(db.noteDao)
 
     @Provides
     @Singleton
-    fun provideNoteUseCases(repository: NoteRepository): NotesUseCases {
-        return NotesUseCases(
-            getNotes = GetNotes(repository = repository),
-            deleteNote = DeleteNote(repository = repository),
-            addNote = AddNote(repository = repository),
-            getNote = GetNote(repository = repository),
-        )
-    }
+    fun provideNoteUseCases(repository: NoteRepository): NotesUseCases = NotesUseCases(
+        getNotes = GetNotes(repository = repository),
+        deleteNote = DeleteNote(repository = repository),
+        addNote = AddNote(repository = repository),
+        getNote = GetNote(repository = repository),
+    )
 }

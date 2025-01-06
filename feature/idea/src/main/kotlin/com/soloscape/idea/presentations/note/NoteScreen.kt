@@ -79,7 +79,7 @@ fun NoteScreen(
             SaveButton(
                 onClick = onSaveClicked,
                 color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.testTag(GENERIC_FAB_ADD),
+                testTag = GENERIC_FAB_ADD,
             )
         },
     ) { innerPadding ->

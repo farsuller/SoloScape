@@ -8,10 +8,10 @@ import com.soloscape.database.domain.usecase.journal.GetJournalById
 import com.soloscape.database.domain.usecase.journal.GetJournals
 
 data class JournalUseCases(
-    val getWrite: GetJournals,
-    val getWriteById: GetJournalById,
-    val getWriteByFiltered: GetJournalByFiltered,
-    val addWrite: AddJournal,
-    val deleteWrite: DeleteJournal,
-    val deleteAllWrite: DeleteAllJournal,
+    val getJournals: GetJournals,
+    val getJournalById: GetJournalById,
+    val getJournalByFiltered: GetJournalByFiltered,
+    val addJournal: AddJournal,
+    val deleteJournal: DeleteJournal,
+    val deleteAllJournal: DeleteAllJournal,
 )

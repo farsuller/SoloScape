@@ -30,7 +30,7 @@ import java.time.ZoneId
 import java.time.ZonedDateTime
 
 @Composable
-internal fun FeltTopBar(
+internal fun JournalTopBar(
     scrollBehavior: TopAppBarScrollBehavior,
     dateIsSelected: Boolean,
     onDateSelected: (ZonedDateTime) -> Unit,

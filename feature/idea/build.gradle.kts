@@ -9,6 +9,10 @@ plugins {
 android {
     namespace = "com.soloscape.idea"
 
+    defaultConfig {
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
     buildFeatures {
         compose = true
     }
@@ -37,6 +41,9 @@ dependencies {
     implementation (libs.date.dialog)
     implementation (libs.time.dialog)
 
+    implementation(libs.bundles.bundle.room)
+    ksp(libs.androidx.room.compiler)
+
     //Hilt
     implementation(libs.hilt.compose.navigation)
     implementation(libs.hilt)
@@ -49,11 +56,11 @@ dependencies {
     implementation(projects.core.util)
     implementation(projects.core.messagebar)
 
+    androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
-    androidTestImplementation(libs.hilt.android.testing)
-    testImplementation (libs.junit)
+    androidTestImplementation(libs.androidx.compose.ui.test.manifest)
     androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    debugImplementation(libs.androidx.compose.ui.tooling)
-    debugImplementation(libs.androidx.compose.ui.test.manifest)
+    androidTestImplementation(libs.androidx.junit.ktx)
+    androidTestImplementation(libs.hilt.android.testing)
+    androidTestImplementation(libs.androidx.runner)
 }

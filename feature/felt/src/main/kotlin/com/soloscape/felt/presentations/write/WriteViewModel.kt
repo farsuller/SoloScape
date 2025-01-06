@@ -20,7 +20,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-internal class WriteViewModel @Inject constructor(
+class WriteViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val writeUseCases: JournalUseCases,
 ) : ViewModel() {
@@ -32,7 +32,7 @@ internal class WriteViewModel @Inject constructor(
         savedStateHandle.get<Int>(WRITE_ID_ARG_KEY)?.let { writeId ->
             if (writeId != -1) {
                 viewModelScope.launch {
-                    writeUseCases.getWriteById(writeId)?.also { write ->
+                    writeUseCases.getJournalById(writeId)?.also { write ->
                         _writeState.update {
                             it.copy(
                                 id = write.id,
@@ -86,7 +86,7 @@ internal class WriteViewModel @Inject constructor(
 
     private fun upsertWriteItem(onSuccess: () -> Unit) = viewModelScope.launch(Dispatchers.IO) {
         val state = writeState.value
-        writeUseCases.addWrite(
+        writeUseCases.addJournal(
             write = Journal(
                 id = state.id,
                 title = state.title,
@@ -102,7 +102,7 @@ internal class WriteViewModel @Inject constructor(
     }
 
     private fun deleteWriteItem(write: Journal, onSuccess: () -> Unit) = viewModelScope.launch(Dispatchers.IO) {
-        writeUseCases.deleteWrite(write = write)
+        writeUseCases.deleteJournal(write = write)
 
         withContext(Dispatchers.Main) {
             onSuccess()

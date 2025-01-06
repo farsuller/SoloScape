@@ -5,16 +5,15 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.platform.testTag
-import com.soloscape.felt.presentations.felt.components.FeltState
-import com.soloscape.felt.presentations.felt.components.FeltTopBar
+import com.soloscape.felt.presentations.felt.components.JournalState
+import com.soloscape.felt.presentations.felt.components.JournalTopBar
 import com.soloscape.ui.components.GenericFloatingActionButton
 import com.soloscape.util.Constants.TestTags.GENERIC_FAB_NAVIGATE
 import java.time.ZonedDateTime
 
 @Composable
-fun FeltScreen(
-    journalState: FeltState,
+fun JournalScreen(
+    journalState: JournalState,
     navigateToWrite: () -> Unit = {},
     navigateToWriteWithArgs: (Int?) -> Unit = {},
     dateIsSelected: Boolean = false,
@@ -27,7 +26,7 @@ fun FeltScreen(
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
-            FeltTopBar(
+            JournalTopBar(
                 scrollBehavior = scrollBehavior,
                 onDateReset = onDateReset,
                 onDateSelected = onDateSelected,
@@ -43,7 +42,7 @@ fun FeltScreen(
             )
         },
         content = {
-            FeltContent(
+            JournalContent(
                 paddingValues = it,
                 writes = journalState.writes,
                 onClickCard = navigateToWriteWithArgs,

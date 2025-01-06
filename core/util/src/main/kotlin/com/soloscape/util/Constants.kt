@@ -34,5 +34,14 @@ object Constants {
         const val JOURNAL_ITEM = "JOURNAL_ITEM"
 
         const val BACK_PRESSED = "BACK_PRESSED"
+
+        const val HORIZONTAL_PAGER = "HORIZONTAL_PAGER"
+        const val VERTICAL_SCROLL = "VERTICAL_SCROLL"
+
+        const val DELETE_YES_DIALOG = "DELETE_YES_DIALOG"
+        const val MORE_VERT_CLICKED = "MORE_VERT_CLICKED"
+        const val DELETE = "DELETE"
+
+        const val EMPTY_CONTENT = "EMPTY_CONTENT"
     }
 }

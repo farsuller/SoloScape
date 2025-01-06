@@ -1,164 +1,117 @@
-name: BuildAnimeLoom
+name: BuildSoloScape
 on:
   pull_request :
-    branches : [ test-case-ui ]
+    branches : [ main ]
   push :
-    branches: [ test-case-ui ]
+    branches: [ main ]
 
 jobs:
 
-#  lint:
-#    name: Linting
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      - uses: actions/checkout@v4
-#
-#      - name: Setup Java JDK
-#        uses: actions/setup-java@v4
-#        with:
-#          distribution: 'temurin'
-#          java-version: 17
-#          cache: 'gradle'
-#
-#      - name: Grant execute permissions for gradlew
-#        run: chmod +x gradlew
-#
-#      - name: Create local.properties
-#        run: echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
-#
-#      - name: Run Spotless with Gradle
-#        run: ./gradlew spotlessApply
-#
-#  test:
-#    name: Unit Test
-#    needs: lint
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      - uses: actions/checkout@v4
-#
-#      - name: Setup Java JDK
-#        uses: actions/setup-java@v4
-#        with:
-#          distribution: 'temurin'
-#          java-version: 17
-#          cache: 'gradle'
-#
-#      - name: Grant execute permissions for gradlew
-#        run: chmod +x gradlew
-#
-#      - name: Create local.properties
-#        run: echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
-#
-#      - name: Setup Google Services
-#        run: |
-#            mkdir -p app/src/debug
-#            echo '${{ secrets.GOOGLE_SERVICES }}' > app/src/debug/google-services.json
-#
-#      - name: Run unit tests
-#        run: ./gradlew clean :app:testDebugUnitTest
-
-  ui_tests:
-    name: UI Tests
-#    needs: test
-    runs-on: macos-13
-    continue-on-error: true
+  lint:
+    name: Linting
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Setup Java JDK
         uses: actions/setup-java@v4
         with:
-          distribution: 'adopt'
+          distribution: 'temurin'
           java-version: 17
+          cache: 'gradle'
 
       - name: Grant execute permissions for gradlew
         run: chmod +x gradlew
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+      - name: Create local.properties
+        run: echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
+
+      - name: Run Spotless with Gradle
+        run: ./gradlew spotlessApply
+
+  test:
+    name: Unit Test
+    needs: lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 17
+          cache: 'gradle'
+
+      - name: Grant execute permissions for gradlew
+        run: chmod +x gradlew
+
+      - name: Create local.properties
+        run: echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
 
       - name: Setup Google Services
         run: |
-           mkdir -p app/src/debug
-           echo '${{ secrets.GOOGLE_SERVICES }}' > app/src/debug/google-services.json
+          mkdir -p app/src/debug
+          echo '${{ secrets.GOOGLE_SERVICES }}' > app/src/debug/google-services.json
 
-      - name: Start Android Emulator and Run UI Test
-        uses: reactivecircus/android-emulator-runner@v2
+      - name: Run unit tests
+        run: ./gradlew clean :app:testDebugUnitTest
+
+  distribute:
+    name: Distribute bundle to Google Play
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
         with:
-         api-level: 26
-         target: default
-         arch: x86_64
-         profile: Nexus 4
-         emulator-options: -no-window -no-boot-anim -no-audio -no-snapshot-load
-         script: |
-          adb wait-for-device
-          adb shell input keyevent 82
-          ./gradlew connectedAndroidTest --continue
+          distribution: 'temurin'
+          java-version: 17
+          cache: 'gradle'
 
-      - name: Upload Test Reports
-        if: failure()
-        uses: actions/upload-artifact@v4
+      - name: Version Bump
+        uses: chkfung/android-version-actions@v1.2.3
         with:
-         name: android-test-report
-         path: '**/build/reports/androidTests/connected/'
+          gradlePath: app/build.gradle.kts
+          versionCode: ${{ github.run_number }}
 
-#  distribute:
-#    name: Distribute bundle to Google Play
-#    needs: test
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      - uses: actions/checkout@v4
-#
-#      - name: Setup Java JDK
-#        uses: actions/setup-java@v4
-#        with:
-#          distribution: 'temurin'
-#          java-version: 17
-#          cache: 'gradle'
-#
-#      - name: Version Bump
-#        uses: chkfung/android-version-actions@v1.2.3
-#        with:
-#          gradlePath: app/build.gradle.kts
-#          versionCode: ${{ github.run_number }}
-#
-#      - name: Grant execute permissions for gradlew
-#        run: chmod +x gradlew
-#
-#      - name: Create local.properties
-#        run: echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
-#
-#      - name: Setup Google Services
-#        run: |
-#            mkdir -p app/src/release
-#            echo '${{ secrets.GOOGLE_SERVICES }}' > app/src/release/google-services.json
-#
-#      - name : Assemble Release Bundle
-#        run: ./gradlew bundleRelease
-#
-#      - name: Sign Release
-#        uses: r0adkll/sign-android-release@v1
-#        with:
-#          releaseDirectory: app/build/outputs/bundle/release
-#          signingKeyBase64: ${{ secrets.ANDROID_KEYSTORE }}
-#          keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD}}
-#          alias: ${{ secrets.KEY_ALIAS}}
-#          keyPassword: ${{ secrets.KEY_PASSWORD}}
-#
-#      - name: Setup Authorization with Google Play Store
-#        run: echo '${{ secrets.PLAY_AUTH_JSON }}' > service_account.json
-#
-#      - name: Deploy bundle to Play Store
-#        uses: r0adkll/upload-google-play@v1.1.3
-#        with:
-#          serviceAccountJson: service_account.json
-#          packageName: com.soloscape.compose
-#          releaseFiles: app/build/outputs/bundle/release/app-release.aab
-#          track: internal
-#          status: 'completed'
-#          whatsNewDirectory: whatsNew/
+      - name: Grant execute permissions for gradlew
+        run: chmod +x gradlew
+
+      - name: Create local.properties
+        run: echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
+
+      - name: Setup Google Services
+        run: |
+          mkdir -p app/src/release
+          echo '${{ secrets.GOOGLE_SERVICES }}' > app/src/release/google-services.json
+
+      - name : Assemble Release Bundle
+        run: ./gradlew bundleRelease
+
+      - name: Sign Release
+        uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: app/build/outputs/bundle/release
+          signingKeyBase64: ${{ secrets.ANDROID_KEYSTORE }}
+          keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD}}
+          alias: ${{ secrets.KEY_ALIAS}}
+          keyPassword: ${{ secrets.KEY_PASSWORD}}
+
+      - name: Setup Authorization with Google Play Store
+        run: echo '${{ secrets.PLAY_AUTH_JSON }}' > service_account.json
+
+      - name: Deploy bundle to Play Store
+        uses: r0adkll/upload-google-play@v1.1.3
+        with:
+          serviceAccountJson: service_account.json
+          packageName: com.soloscape.compose
+          releaseFiles: app/build/outputs/bundle/release/app-release.aab
+          track: internal
+          status: 'completed'
+          whatsNewDirectory: whatsNew/

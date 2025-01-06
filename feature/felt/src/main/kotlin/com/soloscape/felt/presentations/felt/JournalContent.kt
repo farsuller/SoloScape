@@ -37,13 +37,15 @@ import com.soloscape.felt.presentations.felt.components.JournalCard
 import com.soloscape.ui.R
 import com.soloscape.ui.Reaction
 import com.soloscape.ui.components.EmptyListContainer
+import com.soloscape.util.Constants.TestTags.EMPTY_CONTENT
 import com.soloscape.util.Constants.TestTags.JOURNAL_ITEM
+import com.soloscape.util.Constants.TestTags.VERTICAL_SCROLL
 import com.soloscape.util.clickableWithoutRipple
 import kotlinx.coroutines.delay
 import java.time.LocalDate
 
 @Composable
-fun FeltContent(
+fun JournalContent(
     paddingValues: PaddingValues,
     writes: Map<LocalDate, List<Journal>>,
     onClickCard: (Int?) -> Unit,
@@ -68,7 +70,8 @@ fun FeltContent(
             modifier = Modifier
                 .padding(horizontal = 24.dp)
                 .navigationBarsPadding()
-                .padding(top = paddingValues.calculateTopPadding()),
+                .padding(top = paddingValues.calculateTopPadding())
+                .testTag(VERTICAL_SCROLL),
         ) {
             writes.forEach { (localDate, write) ->
                 stickyHeader(key = localDate) {
@@ -111,6 +114,7 @@ fun FeltContent(
         EmptyListContainer(
             title = stringResource(R.string.feeling_something_title),
             subtitle = stringResource(R.string.feeling_something_subtitle),
+            testTag = EMPTY_CONTENT,
         )
     }
 }
