@@ -7,8 +7,8 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.hilt)
     alias(libs.plugins.devtool.ksp)
-    alias (libs.plugins.gms.google.services)
-    alias (libs.plugins.firebase.crashlytics)
+    alias(libs.plugins.gms.google.services)
+    alias(libs.plugins.firebase.crashlytics)
 }
 
 val keystoreProperties: Properties by lazy {
@@ -46,6 +46,8 @@ android {
                 base.archivesName.set("$appName-${buildType.name}-$versionCode-$versionName")
             }
         }
+
+        testInstrumentationRunner = "com.compose.soloscape.HiltTestRunner"
     }
 
     if (isGenerateBuild) {
@@ -71,7 +73,10 @@ android {
             if (isGenerateBuild) signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
             isDebuggable = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     buildFeatures {
@@ -89,6 +94,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
 
+    implementation(libs.material)
     implementation(libs.androidx.material3)
 
     implementation(libs.androidx.compose.navigation)
@@ -102,27 +108,38 @@ dependencies {
     ksp(libs.androidx.room.compiler)
 
     //Hilt
-    implementation(libs.androidx.hilt.compose.navigation)
+    implementation(libs.hilt.compose.navigation)
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
 
     // Splash API
-    implementation (libs.splash.api)
+    implementation(libs.splash.api)
 
     //App Updates
     implementation(libs.bundles.bundle.app.updates)
 
-    implementation (libs.coroutines.core)
+    implementation(libs.coroutines.core)
 
     //Profile Installer
-    implementation (libs.profileinstaller)
+    implementation(libs.profileinstaller)
 
-    implementation (projects.core.ui)
-    implementation (projects.core.database)
-    implementation (projects.core.util)
+    implementation(projects.core.ui)
+    implementation(projects.core.database)
+    implementation(projects.core.util)
 
-    implementation (projects.feature.dashboard)
-    implementation (projects.feature.felt)
-    implementation (projects.feature.idea)
+    implementation(projects.feature.dashboard)
+    implementation(projects.feature.felt)
+    implementation(projects.feature.idea)
 
+    androidTestImplementation(libs.androidx.runner)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.junit.ktx)
+    androidTestImplementation(libs.hilt.android.testing)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    androidTestImplementation(libs.androidx.compose.ui.test.manifest)
 }

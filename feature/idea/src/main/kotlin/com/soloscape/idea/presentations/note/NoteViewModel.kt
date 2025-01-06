@@ -7,6 +7,7 @@ import com.soloscape.database.domain.model.Note
 import com.soloscape.database.domain.usecase.NotesUseCases
 import com.soloscape.idea.presentations.note.components.NoteEvent
 import com.soloscape.idea.presentations.note.components.NoteState
+import com.soloscape.util.Constants.Routes.NOTE_ID_ARG_KEY
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -27,7 +28,7 @@ class NoteViewModel @Inject constructor(
     val noteState: StateFlow<NoteState> = _noteState.asStateFlow()
 
     init {
-        savedStateHandle.get<Int>("noteId")?.let { noteId ->
+        savedStateHandle.get<Int>(NOTE_ID_ARG_KEY)?.let { noteId ->
             if (noteId != -1) {
                 viewModelScope.launch {
                     noteUseCases.getNote(noteId)?.also { note ->

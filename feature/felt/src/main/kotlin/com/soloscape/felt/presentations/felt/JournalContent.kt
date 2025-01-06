@@ -26,6 +26,7 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,81 +35,87 @@ import androidx.compose.ui.unit.sp
 import com.soloscape.database.domain.model.Journal
 import com.soloscape.felt.presentations.felt.components.JournalCard
 import com.soloscape.ui.R
+import com.soloscape.ui.Reaction
 import com.soloscape.ui.components.EmptyListContainer
+import com.soloscape.util.Constants.TestTags.EMPTY_CONTENT
+import com.soloscape.util.Constants.TestTags.JOURNAL_ITEM
+import com.soloscape.util.Constants.TestTags.VERTICAL_SCROLL
 import com.soloscape.util.clickableWithoutRipple
 import kotlinx.coroutines.delay
 import java.time.LocalDate
 
 @Composable
-internal fun FeltContent(
+fun JournalContent(
     paddingValues: PaddingValues,
-    writes: Map<LocalDate, List<Journal>>? = null,
+    writes: Map<LocalDate, List<Journal>>,
     onClickCard: (Int?) -> Unit,
 ) {
     val visibleHeaders = remember { mutableStateListOf<LocalDate>() }
     val visibleItems = remember { mutableStateListOf<Int>() }
 
-    if (writes != null) {
-        LaunchedEffect(writes) {
-            writes.keys.forEachIndexed { index, localDate ->
-                delay(30L * index)
-                visibleHeaders.add(localDate)
-            }
-
-            writes.values.flatten().forEachIndexed { index, _ ->
-                delay(100L * index)
-                visibleItems.add(index)
-            }
+    LaunchedEffect(writes) {
+        writes.keys.forEachIndexed { index, localDate ->
+            delay(30L * index)
+            visibleHeaders.add(localDate)
         }
 
-        if (writes.isNotEmpty()) {
-            LazyColumn(
-                modifier = Modifier
-                    .padding(horizontal = 24.dp)
-                    .navigationBarsPadding()
-                    .padding(top = paddingValues.calculateTopPadding()),
-            ) {
-                writes.forEach { (localDate, write) ->
-                    stickyHeader(key = localDate) {
-                        AnimatedVisibility(
-                            visible = visibleHeaders.contains(localDate),
-                            enter = fadeIn(animationSpec = tween(durationMillis = 1000)) +
-                                slideInVertically(
-                                    initialOffsetY = { -it }, // Slide in from above
-                                    animationSpec = tween(durationMillis = 1200), // Adjust the duration as needed
-                                ),
-                        ) {
-                            DateHeader(localDate = localDate)
-                        }
+        writes.values.flatten().forEachIndexed { index, _ ->
+            delay(100L * index)
+            visibleItems.add(index)
+        }
+    }
+
+    if (writes.isNotEmpty()) {
+        LazyColumn(
+            modifier = Modifier
+                .padding(horizontal = 24.dp)
+                .navigationBarsPadding()
+                .padding(top = paddingValues.calculateTopPadding())
+                .testTag(VERTICAL_SCROLL),
+        ) {
+            writes.forEach { (localDate, write) ->
+                stickyHeader(key = localDate) {
+                    AnimatedVisibility(
+                        visible = visibleHeaders.contains(localDate),
+                        enter = fadeIn(animationSpec = tween(durationMillis = 1000)) +
+                            slideInVertically(
+                                initialOffsetY = { -it }, // Slide in from above
+                                animationSpec = tween(durationMillis = 1200), // Adjust the duration as needed
+                            ),
+                    ) {
+                        DateHeader(localDate = localDate)
                     }
-                    itemsIndexed(items = write, key = { _, w -> w.id.toString() }) { index, item ->
-                        AnimatedVisibility(
-                            visible = index in visibleItems,
-                            enter = fadeIn(animationSpec = tween(durationMillis = 600)) +
-                                slideInHorizontally(
-                                    initialOffsetX = { it }, // Start from the right edge
-                                    animationSpec = tween(durationMillis = 600), // Adjust duration
-                                ),
-                            exit = fadeOut(animationSpec = tween(durationMillis = 600)) +
-                                slideOutHorizontally(
-                                    targetOffsetX = { it }, // Exit to the right edge
-                                    animationSpec = tween(durationMillis = 600),
-                                ),
-                        ) {
-                            JournalCard(
-                                write = item,
-                                modifier = Modifier.clickableWithoutRipple { onClickCard(item.id) },
-                            )
-                        }
+                }
+                itemsIndexed(items = write, key = { _, w -> w.id.toString() }) { index, item ->
+                    AnimatedVisibility(
+                        visible = index in visibleItems,
+                        enter = fadeIn(animationSpec = tween(durationMillis = 600)) +
+                            slideInHorizontally(
+                                initialOffsetX = { it }, // Start from the right edge
+                                animationSpec = tween(durationMillis = 600), // Adjust duration
+                            ),
+                        exit = fadeOut(animationSpec = tween(durationMillis = 600)) +
+                            slideOutHorizontally(
+                                targetOffsetX = { it }, // Exit to the right edge
+                                animationSpec = tween(durationMillis = 600),
+                            ),
+                    ) {
+                        JournalCard(
+                            write = item,
+                            modifier = Modifier
+                                .clickableWithoutRipple { onClickCard(item.id) }
+                                .testTag(JOURNAL_ITEM),
+                        )
                     }
                 }
             }
-        } else {
-            EmptyListContainer(
-                title = stringResource(R.string.feeling_something_title),
-                subtitle = stringResource(R.string.feeling_something_subtitle),
-            )
         }
+    } else {
+        EmptyListContainer(
+            title = stringResource(R.string.feeling_something_title),
+            subtitle = stringResource(R.string.feeling_something_subtitle),
+            testTag = EMPTY_CONTENT,
+        )
     }
 }
 
@@ -164,6 +171,12 @@ internal fun DateHeader(localDate: LocalDate) {
             )
         }
     }
+}
+
+@Composable
+@Preview(showBackground = true)
+internal fun JournalCardPreview() {
+    JournalCard(write = Journal(1, Reaction.Happy.name, "Title", "Content", 0))
 }
 
 @Composable

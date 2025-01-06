@@ -6,6 +6,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import com.soloscape.ui.theme.robotoBoldFontFamily
 
@@ -16,6 +18,7 @@ fun DisplayAlertDialog(
     dialogOpened: Boolean,
     onCloseDialog: () -> Unit,
     onYesClicked: () -> Unit,
+    testTagYes: String = "",
 ) {
     if (dialogOpened) {
         AlertDialog(
@@ -41,6 +44,7 @@ fun DisplayAlertDialog(
             },
             confirmButton = {
                 Button(
+                    modifier = Modifier.testTag(testTagYes),
                     onClick = {
                         onYesClicked()
                         onCloseDialog()

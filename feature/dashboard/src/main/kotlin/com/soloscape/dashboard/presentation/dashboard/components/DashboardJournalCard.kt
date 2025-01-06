@@ -22,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
@@ -31,6 +32,7 @@ import com.soloscape.database.domain.model.Journal
 import com.soloscape.ui.Reaction
 import com.soloscape.ui.theme.Elevation
 import com.soloscape.ui.theme.robotoBoldFontFamily
+import com.soloscape.util.Constants.TestTags.JOURNAL_ITEM
 import com.soloscape.util.clickableWithoutRipple
 
 @Composable
@@ -39,7 +41,8 @@ fun DashboardJournalCard(write: Journal, onJournalClick: () -> Unit = {}) {
         modifier = Modifier
             .width(220.dp)
             .clickableWithoutRipple { onJournalClick() }
-            .wrapContentHeight(),
+            .wrapContentHeight()
+            .testTag(JOURNAL_ITEM),
         tonalElevation = Elevation.level1,
     ) {
         Column(

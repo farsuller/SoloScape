@@ -33,9 +33,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.soloscape.dashboard.presentation.dashboard.components.DashboardCardItem
 import com.soloscape.dashboard.presentation.dashboard.components.DashboardStaggeredHorizontalGrid
@@ -46,14 +48,17 @@ import com.soloscape.ui.theme.MossGreenColor
 import com.soloscape.ui.theme.NyanzaColor
 import com.soloscape.ui.theme.PhilippineBronzeColor
 import com.soloscape.ui.theme.robotoThinFontFamily
-import com.soloscape.util.Constants.TestTags.TITLE_TEXT_FIELD
+import com.soloscape.util.Constants.TestTags.HI
+import com.soloscape.util.Constants.TestTags.JOURNAL_CARD
+import com.soloscape.util.Constants.TestTags.NOTE_CARD
+import com.soloscape.util.Constants.TestTags.YOUR_NAME_TEXT_FIELD
 
 @Composable
 fun DashboardScreen(
-    navigationToFelt: () -> Unit,
-    navigationToIdea: () -> Unit,
-    onValueChange: (String) -> Unit,
-    onFocusChange: (FocusState) -> Unit,
+    navigationToFelt: () -> Unit = {},
+    navigationToIdea: () -> Unit = {},
+    onValueChange: (String) -> Unit = {},
+    onFocusChange: (FocusState) -> Unit = {},
     onNoteClick: () -> Unit = {},
     onJournalClick: () -> Unit = {},
     yourNameState: YourNameState,
@@ -90,6 +95,7 @@ fun DashboardScreen(
                 ) {
                     Column {
                         Text(
+                            modifier = Modifier.testTag(HI),
                             text = stringResource(R.string.hi),
                             color = MaterialTheme.colorScheme.onSurface,
                             style = TextStyle(
@@ -107,7 +113,7 @@ fun DashboardScreen(
                             isHintVisible = yourNameState.isHintVisible,
                             singleLine = true,
                             textStyle = MaterialTheme.typography.bodyLarge,
-                            testTag = TITLE_TEXT_FIELD,
+                            testTag = YOUR_NAME_TEXT_FIELD,
                             keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
                             keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
                             characterLimit = 10,
@@ -125,7 +131,8 @@ fun DashboardScreen(
                         modifier = Modifier
                             .height(height = 160.dp)
                             .clip(RoundedCornerShape(12.dp))
-                            .background(NyanzaColor),
+                            .background(NyanzaColor)
+                            .testTag(NOTE_CARD),
                         textTitle = stringResource(R.string.idea_title),
                         textBody = stringResource(R.string.idea_content_1),
                         textDescription = stringResource(R.string.idea_content_2),
@@ -139,7 +146,8 @@ fun DashboardScreen(
                         modifier = Modifier
                             .height(height = 160.dp)
                             .clip(RoundedCornerShape(12.dp))
-                            .background(MistyRoseColor),
+                            .background(MistyRoseColor)
+                            .testTag(JOURNAL_CARD),
                         textTitle = stringResource(R.string.felt_title),
                         textBody = stringResource(R.string.felt_content_1),
                         textDescription = stringResource(R.string.felt_content_2),
@@ -160,4 +168,10 @@ fun DashboardScreen(
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun DashboardScreenPreview() {
+    DashboardScreen(yourNameState = YourNameState(), journalNoteState = JournalNoteState())
 }

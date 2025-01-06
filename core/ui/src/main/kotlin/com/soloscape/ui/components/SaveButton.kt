@@ -7,6 +7,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.soloscape.ui.R
@@ -15,9 +16,10 @@ import com.soloscape.ui.R
 fun SaveButton(
     onClick: () -> Unit,
     color: Color = MaterialTheme.colorScheme.primary,
+    testTag: String = "",
 ) {
     FloatingActionButton(
-        modifier = Modifier.size(55.dp),
+        modifier = Modifier.size(55.dp).testTag(testTag),
         onClick = onClick,
         containerColor = color,
     ) {

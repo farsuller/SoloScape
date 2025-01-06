@@ -6,10 +6,8 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.soloscape.database.domain.usecase.JournalUseCases
-import com.soloscape.felt.presentations.felt.components.FeltEvent
-import com.soloscape.felt.presentations.felt.components.FeltState
-import com.soloscape.util.connectivity.ConnectivityObserver
-import com.soloscape.util.connectivity.NetworkConnectivityObserver
+import com.soloscape.felt.presentations.felt.components.JournalEvent
+import com.soloscape.felt.presentations.felt.components.JournalState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,50 +21,47 @@ import java.time.ZonedDateTime
 import javax.inject.Inject
 
 @HiltViewModel
-internal class FeltViewModel @Inject constructor(
-    private val connectivity: NetworkConnectivityObserver,
+class JournalViewModel @Inject constructor(
     private val writeUseCases: JournalUseCases,
 ) : ViewModel() {
 
-    private var network by mutableStateOf(ConnectivityObserver.Status.Unavailable)
-
-    private val _homeState = MutableStateFlow(FeltState())
-    val homeState: StateFlow<FeltState> = _homeState.asStateFlow()
+    private val _journalState = MutableStateFlow(JournalState())
+    val journalState: StateFlow<JournalState> = _journalState.asStateFlow()
 
     var dateIsSelected by mutableStateOf(false)
         private set
 
     init {
-        getWriteList()
+        getJournalList()
     }
 
-    fun onEvent(event: FeltEvent) {
+    fun onEvent(event: JournalEvent) {
         when (event) {
-            is FeltEvent.DisplayAllDate -> getWriteList()
-            is FeltEvent.FilterBySelectedDate -> {
+            is JournalEvent.DisplayAllDate -> getJournalList()
+            is JournalEvent.FilterBySelectedDate -> {
                 getWriteFilteredList(zonedDateTime = event.dateTime)
             }
-            FeltEvent.DeleteAll -> deleteAllWrite()
+            JournalEvent.DeleteAll -> deleteAllWrite()
         }
     }
 
-    private fun getWriteList() {
+    private fun getJournalList() {
         dateIsSelected = false
 
-        writeUseCases.getWrite().onEach { write ->
-            _homeState.update { it.copy(writes = write) }
+        writeUseCases.getJournals().onEach { write ->
+            _journalState.update { it.copy(writes = write) }
         }.launchIn(viewModelScope)
     }
 
     private fun getWriteFilteredList(zonedDateTime: ZonedDateTime) {
         dateIsSelected = true
 
-        writeUseCases.getWriteByFiltered(date = zonedDateTime).onEach { write ->
-            _homeState.update { it.copy(writes = write) }
+        writeUseCases.getJournalByFiltered(date = zonedDateTime).onEach { write ->
+            _journalState.update { it.copy(writes = write) }
         }.launchIn(viewModelScope)
     }
 
     private fun deleteAllWrite() = viewModelScope.launch(Dispatchers.IO) {
-        writeUseCases.deleteAllWrite()
+        writeUseCases.deleteAllJournal()
     }
 }

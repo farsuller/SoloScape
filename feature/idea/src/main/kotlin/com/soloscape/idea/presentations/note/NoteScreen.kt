@@ -42,7 +42,9 @@ import com.soloscape.database.domain.model.Note
 import com.soloscape.idea.presentations.note.components.NoteState
 import com.soloscape.ui.components.SaveButton
 import com.soloscape.ui.components.TransparentTextField
+import com.soloscape.util.Constants.TestTags.BACK_PRESSED
 import com.soloscape.util.Constants.TestTags.CONTENT_TEXT_FIELD
+import com.soloscape.util.Constants.TestTags.GENERIC_FAB_ADD
 import com.soloscape.util.Constants.TestTags.TITLE_TEXT_FIELD
 import kotlinx.coroutines.launch
 
@@ -62,7 +64,7 @@ fun NoteScreen(
 
     val noteBackgroundAnimatable = remember {
         Animatable(
-            initialValue = Color(if (noteColor != -1) noteColor else noteState.noteColor ?: 0),
+            initialValue = Color(if (noteColor != -1) noteColor else noteState.noteColor),
         )
     }
 
@@ -77,6 +79,7 @@ fun NoteScreen(
             SaveButton(
                 onClick = onSaveClicked,
                 color = MaterialTheme.colorScheme.primary,
+                testTag = GENERIC_FAB_ADD,
             )
         },
     ) { innerPadding ->
@@ -94,7 +97,10 @@ fun NoteScreen(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Start,
             ) {
-                IconButton(onClick = onBackPressed) {
+                IconButton(
+                    modifier = Modifier.testTag(BACK_PRESSED),
+                    onClick = onBackPressed,
+                ) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = "Back Arrow Icon",

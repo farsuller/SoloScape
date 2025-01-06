@@ -15,12 +15,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
 import com.maxkeppeler.sheets.calendar.CalendarDialog
 import com.maxkeppeler.sheets.calendar.models.CalendarConfig
 import com.maxkeppeler.sheets.calendar.models.CalendarSelection
 import com.soloscape.felt.presentations.common.MoreVertAction
+import com.soloscape.util.Constants.TestTags.BACK_PRESSED
 import com.soloscape.util.clickableWithoutRipple
 import java.time.LocalDate
 import java.time.LocalTime
@@ -28,7 +30,7 @@ import java.time.ZoneId
 import java.time.ZonedDateTime
 
 @Composable
-internal fun FeltTopBar(
+internal fun JournalTopBar(
     scrollBehavior: TopAppBarScrollBehavior,
     dateIsSelected: Boolean,
     onDateSelected: (ZonedDateTime) -> Unit,
@@ -44,7 +46,8 @@ internal fun FeltTopBar(
             Icon(
                 modifier = Modifier
                     .padding(10.dp)
-                    .clickableWithoutRipple { onBackPressed() },
+                    .clickableWithoutRipple { onBackPressed() }
+                    .testTag(BACK_PRESSED),
                 imageVector = Icons.AutoMirrored.Filled.ArrowBackIos,
                 contentDescription = "Back Icon",
                 tint = MaterialTheme.colorScheme.onSurface,

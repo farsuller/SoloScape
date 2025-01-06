@@ -15,12 +15,15 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.bundles.bundle.androidx.compose)
+
+    implementation(libs.material)
+    implementation(libs.androidx.material3)
 
     implementation(libs.bundles.bundle.room)
     ksp(libs.androidx.room.compiler)
 
-    implementation(libs.androidx.hilt.compose.navigation)
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
 
