@@ -35,7 +35,7 @@ android {
 
     defaultConfig {
         applicationId = ProjectConfig.APPLICATION_ID
-        versionCode = 18
+        versionCode = 34
         versionName = "2.1.1"
 
         if (isGenerateBuild) {
